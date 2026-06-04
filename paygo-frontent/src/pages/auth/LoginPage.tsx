@@ -25,29 +25,49 @@ function LoginPage(){
                             </div>
                         </div>
                         <div className="flex flex-col">
-                            <div className="flex gap-3">
+                            <div className="flex gap-3.5">
                                 <div className="w-[50px] h-[50px] rounded-2xl bg-[#edecff] flex items-center justify-center">
                                     <IconWallet size={28} color="#8679dc"/> {/* 아이콘은 tabler에서 사용 */}
                                 </div>
-                                <div className="font-medium flex flex-col">
-                                    <div className="text-base text-start">
+                                <div className="text-[#49576f] flex flex-col">
+                                    <div className="font-bold text-base text-start">
                                         간편 지갑 충전
                                     </div>
-                                    <div className=" text-gray-400 mt-auto">
+                                    <div className="font-medium text-sm text-gray-400 mt-0.5">
                                         내 계좌에서 바로 충전
                                     </div>
                                 </div>
                             </div>
-                            <div>
-
+                            <div className="flex gap-3.5 mt-5">
+                                <div className="w-[50px] h-[50px] rounded-2xl bg-[#e8fbf2] flex items-center justify-center">
+                                    <IconShoppingCart size={28} color="#6ccfa8"/> {/* 아이콘은 tabler에서 사용 */}
+                                </div>
+                                <div className="text-[#49576f] font-medium flex flex-col">
+                                    <div className="font-bold text-base text-start">
+                                        빠른 결제
+                                    </div>
+                                    <div className="font-medium text-sm text-gray-400 mt-0.5">
+                                        원클릭으로 상품 구매
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-
+                            <div className="flex gap-3.5 mt-5">
+                                <div className="w-[50px] h-[50px] rounded-2xl bg-[#fef9eb] flex items-center justify-center">
+                                    <IconChartBar size={28} color="#e0b36b"/> {/* 아이콘은 tabler에서 사용 */}
+                                </div>
+                                <div className="text-[#49576f] font-medium flex flex-col">
+                                    <div className="font-bold text-base text-start">
+                                        소비 분석
+                                    </div>
+                                    <div className="font-medium text-sm text-gray-400 mt-0.5">
+                                        지출 패턴을 한 눈에
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="w-[740px] text-center content-center border-l border-amber-100 border-solid bg-[#fafafa]">
+                <div className="w-[740px] text-center content-center border-l border-[#f1f1f1] border-solid bg-[#fafafa]">
                     폼
                 </div>
             </div>
