@@ -24,6 +24,27 @@ function LoginPage(){
                                 하나의 지갑으로 연결되는 경험
                             </div>
                         </div>
+                        <div className="flex flex-col">
+                            <div className="flex gap-3">
+                                <div className="w-[50px] h-[50px] rounded-2xl bg-[#edecff] flex items-center justify-center">
+                                    <IconWallet size={28} color="#8679dc"/> {/* 아이콘은 tabler에서 사용 */}
+                                </div>
+                                <div className="font-medium flex flex-col">
+                                    <div className="text-base text-start">
+                                        간편 지갑 충전
+                                    </div>
+                                    <div className=" text-gray-400 mt-auto">
+                                        내 계좌에서 바로 충전
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="w-[740px] text-center content-center border-l border-amber-100 border-solid bg-[#fafafa]">
