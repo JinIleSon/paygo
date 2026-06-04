@@ -6,7 +6,7 @@ function LoginPage(){
         <AuthLayout>
             <div className="flex h-screen min-w-[1280px]"> {/* 1280px 이상은 내부 컴포넌트(1280px 이하)에 대해 찌그러지지 않음 */}
                 <div className="flex-1 text-center content-center">
-                    <div className="flex flex-col items-center justify-center border border-b">
+                    <div className="flex flex-col items-center justify-center">
                         <div className="flex items-center justify-center gap-3 text-3xl font-medium">
                             <div className="w-[60px] h-[60px] rounded-2xl bg-[#6266f1] flex items-center justify-center">
                                 <IconCreditCard size={34} color="white"/> {/* 아이콘은 tabler에서 사용 */}
@@ -67,8 +67,25 @@ function LoginPage(){
                         </div>
                     </div>
                 </div>
-                <div className="w-[740px] text-center content-center border-l border-[#f1f1f1] border-solid bg-[#fafafa]">
-                    폼
+                <div className="w-[740px] text-center content-center border-l border-[#D9D9D9] border-solid bg-[#fafafa]">
+                    <div className="ml-20 text-start">
+                        <div className="flex flex-col">
+                            <div className="text-3xl font-medium text-">
+                                로그인
+                            </div>
+                            <div className="text-[#bdb6b1] font-bold mt-2">
+                                Paygo 계정으로 시작하세요
+                            </div>
+                        </div>
+                        <div className="mt-10 text-[#bdb6b1] font-medium text">
+                            <div className="mb-2">
+                                이메일
+                            </div>
+                            <div>
+                                <input type="text" placeholder="example@email.com" className="font-medium text-gray-600 pl-3.5 w-[400px] h-[40px] rounded-md border border-[#D9D9D9]"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </AuthLayout>
