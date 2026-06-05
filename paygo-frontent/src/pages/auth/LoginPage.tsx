@@ -1,20 +1,36 @@
-import AuthLayout from "../../components/layout/AuthLayout.tsx";
-import { useState, useRef } from "react";
-import { IconCreditCard, IconWallet, IconShoppingCart, IconChartBar } from "@tabler/icons-react";
+import AuthLayout from '../../components/layout/AuthLayout.tsx';
+import { useState, useRef } from 'react';
+import { IconCreditCard, IconWallet, IconShoppingCart, IconChartBar } from '@tabler/icons-react';
+import notebookImg from '../../assets/notebook.webp';
 
-function LoginPage(){
+function LoginPage() {
     const [password, setPassword] = useState('');
     const [focused, setFocused] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
     return (
         <AuthLayout>
-            <div className="flex h-screen min-w-[1280px]"> {/* 1280px 이상은 내부 컴포넌트(1280px 이하)에 대해 찌그러지지 않음 */}
-                <div className="flex-1 text-center content-center">
-                    <div className="flex flex-col items-center justify-center">
+            <div className="flex h-screen min-w-[1280px]">
+                {' '}
+                {/* 1280px 이상은 내부 컴포넌트(1280px 이하)에 대해 찌그러지지 않음 */}
+                <div className="flex-1 text-center content-center relative overflow-hidden">
+                    {' '}
+                    {/* overflow-hidden은 부모 박스 밖에 나온 자식 요소를 잘라냄.*/}
+                    {/* 배경 이미지 레이어 */}
+                    {/* inset-0은 절대/고정 위치 요소를 부모에 꽉 채움 */}
+                    {/* bg-cover은 해당 div로 꽉 채우는데 바깥으로 나가면 그 부분은 자름. bg-center은 중앙에 두도록 함.*/}
+                    <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{
+                            backgroundImage: `url(${notebookImg})`,
+                            opacity: 0.1, // 투명도 조절(0.1 ~ 0.25 권장)
+                        }}
+                    />
+                    <div className="relative z-10 flex flex-col items-center justify-center">
                         <div className="flex items-center justify-center gap-3 text-3xl font-medium">
                             <div className="w-[60px] h-[60px] rounded-2xl bg-[#6266f1] flex items-center justify-center">
-                                <IconCreditCard size={34} color="white"/> {/* 아이콘은 tabler에서 사용 */}
+                                <IconCreditCard size={34} color="white" />{' '}
+                                {/* 아이콘은 tabler에서 사용 */}
                             </div>
                             <div className="">
                                 <span className="text-[#6266f1]">Pay</span>
@@ -22,17 +38,14 @@ function LoginPage(){
                             </div>
                         </div>
                         <div className="mt-10 mb-10 text-gray-400 font-medium">
-                            <div className="mb-1">
-                                충전부터 결제, 정산까지
-                            </div>
-                            <div>
-                                하나의 지갑으로 연결되는 경험
-                            </div>
+                            <div className="mb-1">충전부터 결제, 정산까지</div>
+                            <div>하나의 지갑으로 연결되는 경험</div>
                         </div>
                         <div className="flex flex-col">
                             <div className="flex gap-3.5">
                                 <div className="w-[50px] h-[50px] rounded-2xl bg-[#edecff] flex items-center justify-center">
-                                    <IconWallet size={28} color="#8679dc"/> {/* 아이콘은 tabler에서 사용 */}
+                                    <IconWallet size={28} color="#8679dc" />{' '}
+                                    {/* 아이콘은 tabler에서 사용 */}
                                 </div>
                                 <div className="text-[#49576f] flex flex-col">
                                     <div className="font-bold text-base text-start">
@@ -45,12 +58,11 @@ function LoginPage(){
                             </div>
                             <div className="flex gap-3.5 mt-5">
                                 <div className="w-[50px] h-[50px] rounded-2xl bg-[#e8fbf2] flex items-center justify-center">
-                                    <IconShoppingCart size={28} color="#6ccfa8"/> {/* 아이콘은 tabler에서 사용 */}
+                                    <IconShoppingCart size={28} color="#6ccfa8" />{' '}
+                                    {/* 아이콘은 tabler에서 사용 */}
                                 </div>
                                 <div className="text-[#49576f] font-medium flex flex-col">
-                                    <div className="font-bold text-base text-start">
-                                        빠른 결제
-                                    </div>
+                                    <div className="font-bold text-base text-start">빠른 결제</div>
                                     <div className="font-medium text-sm text-gray-400 mt-0.5">
                                         원클릭으로 상품 구매
                                     </div>
@@ -58,12 +70,11 @@ function LoginPage(){
                             </div>
                             <div className="flex gap-3.5 mt-5">
                                 <div className="w-[50px] h-[50px] rounded-2xl bg-[#fef9eb] flex items-center justify-center">
-                                    <IconChartBar size={28} color="#e0b36b"/> {/* 아이콘은 tabler에서 사용 */}
+                                    <IconChartBar size={28} color="#e0b36b" />{' '}
+                                    {/* 아이콘은 tabler에서 사용 */}
                                 </div>
                                 <div className="text-[#49576f] font-medium flex flex-col">
-                                    <div className="font-bold text-base text-start">
-                                        소비 분석
-                                    </div>
+                                    <div className="font-bold text-base text-start">소비 분석</div>
                                     <div className="font-medium text-sm text-gray-400 mt-0.5">
                                         지출 패턴을 한 눈에
                                     </div>
@@ -73,29 +84,39 @@ function LoginPage(){
                     </div>
                 </div>
                 <div className="w-[740px] text-center content-center border-l border-[#D9D9D9] border-solid bg-[#fafafa]">
-                    <div className="ml-20 text-start">
+                    <div className="ml-20 text-start w-[400px]">
                         <div className="flex flex-col">
-                            <div className="text-3xl font-medium text-">
-                                로그인
-                            </div>
+                            <div className="text-3xl font-medium">로그인</div>
                             <div className="text-[#bdb6b1] font-bold mt-2">
                                 Paygo 계정으로 시작하세요
                             </div>
                         </div>
                         <div className="mt-10 text-[#bdb6b1] font-medium text">
-                            <div className="mb-2">
-                                이메일
-                            </div>
+                            <div className="mb-2">이메일</div>
                             <div>
-                                <input type="text" placeholder="example@email.com" className="font-medium text-gray-600 pl-3.5 w-[400px] h-[40px] leading-[40px] rounded-md outline-none border border-[#D9D9D9]"/>
+                                <input
+                                    type="text"
+                                    placeholder="example@email.com"
+                                    className="font-medium text-gray-600 pl-3.5 w-[400px] h-[40px] leading-[40px] rounded-md outline-none bg-white border border-[#D9D9D9]"
+                                />
                             </div>
                         </div>
-                        <div className="mt-5 text-[#bdb6b1] font-medium text">
-                            <div className="mb-2">
-                                비밀번호
+                        <div className="mt-5 text-[#bdb6b1] font-medium">
+                            <div className="flex mb-2">
+                                <div>비밀번호</div>
+                                <div className="ml-auto">
+                                    <a
+                                        href="#"
+                                        className="text-xs text-[#6365EF] font-light underline"
+                                    >
+                                        비밀번호 찾기
+                                    </a>
+                                </div>
                             </div>
-                            <div className="relative w-[400px] h-[40px]"
-                            onClick={() => inputRef.current?.focus()}>
+                            <div
+                                className="relative w-[400px] h-[40px] bg-white"
+                                onClick={() => inputRef.current?.focus()}
+                            >
                                 {/* 실제 입력받는 투명 input */}
                                 <input
                                     ref={inputRef}
@@ -113,19 +134,35 @@ function LoginPage(){
                                     </span>
                                     {/* 가짜 커서 */}
                                     {focused && (
-                                        <span className="inline-block w-[1px] h-[22px] bg-gray-600 ml-[1px] animate-blink"/>
+                                        <span className="inline-block w-[1px] h-[22px] bg-gray-600 ml-[1px] animate-blink" />
                                     )}
                                     {!password && !focused && (
-                                        <span className="absolute text-[12px] tracking-widest text-gray-400">●●●●●●●</span>
+                                        <span className="absolute text-[12px] tracking-widest text-gray-400">
+                                            ●●●●●●●
+                                        </span>
                                     )}
                                 </div>
+                            </div>
+                            <div className="mt-2 text-sm font-light">
+                                8자 이상, 영문/숫자/특수문자 포함
+                            </div>
+                            <div className="mt-4 text-sm gap-2 flex">
+                                <div>
+                                    <input type="checkbox" name="" id="" className="mt-[1px]" />
+                                </div>
+                                <div>로그인 상태 유지</div>
+                            </div>
+                            <div className="mt-5">
+                                <button className="w-full h-[40px] text-[#4D4D4D] rounded-md border border-[#BABABA]">
+                                    로그인
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </AuthLayout>
-    )
+    );
 }
 
-export default LoginPage
+export default LoginPage;
