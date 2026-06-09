@@ -8,6 +8,7 @@ import {
     IconBrandGoogle,
 } from '@tabler/icons-react';
 import notebookImg from '../../assets/notebook.webp';
+import Button from '../../components/common/Button.tsx';
 
 function LoginPage() {
     const [password, setPassword] = useState('');
@@ -150,9 +151,9 @@ function LoginPage() {
                                 <div>로그인 상태 유지</div>
                             </div>
                             <div className="mt-5">
-                                <button className="w-full h-[40px] text-[#4D4D4D] rounded-md border border-[#4f4f4f]">
+                                <Button variant="primary" className="h-[40px] w-full">
                                     로그인
-                                </button>
+                                </Button>
                             </div>
                             <div className="flex items-center gap-3 mt-6">
                                 <div className="flex-1 border-t border-[#d8d8d8]"></div>
@@ -160,12 +161,15 @@ function LoginPage() {
                                 <div className="flex-1 border-t border-[#d8d8d8]"></div>
                             </div>
                             <div className="mt-6">
-                                <button className="flex items-center justify-center gap-1.5 w-full h-[50px] rounded-md border border-[#D9D9D9] bg-white">
+                                <Button
+                                    variant="secondary"
+                                    className="flex items-center justify-center gap-1.5 w-full h-[50px]"
+                                >
                                     <IconBrandGoogle size={20} color="#666666" />
                                     <span className="text-[14px] text-[#666666]">
                                         Google로 계속하기
                                     </span>
-                                </button>
+                                </Button>
                             </div>
                             <div className="text-xs text-center mt-6">
                                 <span className="mr-1">아직 계정이 없으신가요?</span>
