@@ -9,7 +9,8 @@ import {
 } from '@tabler/icons-react';
 import notebookImg from '../../assets/notebook.webp';
 import Button from '../../components/common/Button.tsx';
-import PasswordInput from '../../components/layout/auth/PasswordInput.tsx';
+import PasswordInput from '../../components/common/PasswordInput.tsx';
+import TextInput from '../../components/common/TextInput.tsx';
 
 function LoginPage() {
 
@@ -90,10 +91,8 @@ function LoginPage() {
                         <div className="mt-10 text-[#bdb6b1] font-medium text">
                             <div className="mb-2">이메일</div>
                             <div>
-                                <input
-                                    type="text"
+                                <TextInput 
                                     placeholder="example@email.com"
-                                    className="font-medium text-gray-600 pl-3.5 w-full h-[40px] leading-[40px] rounded-md outline-none bg-white border border-[#D9D9D9]"
                                 />
                             </div>
                         </div>
