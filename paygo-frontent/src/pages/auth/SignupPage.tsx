@@ -4,8 +4,20 @@ import { IconCreditCard } from '@tabler/icons-react';
 import TextInput from '../../components/common/TextInput';
 import PasswordInput from '../../components/common/PasswordInput';
 import Button from '../../components/common/Button';
+import { useState } from 'react';
 
 function SignupPage() {
+    const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+    const existedEmail = 'abc@email.com'; // DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
+
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isPasswordMatch = password === confirmPassword && confirmPassword !== '';
+
     return (
         <AuthLayout>
             <div className="flex-[4.5] text-center content-center relative overflow-hidden">
@@ -127,63 +139,91 @@ function SignupPage() {
             <div className="flex-[5.5] flex justify-center items-center border-l border-[#D9D9D9] border-solid bg-[#fafafa]">
                 <div className="w-[480px]">
                     <div className="flex flex-col">
-                        <div className="text-3xl font-medium">로그인</div>
+                        <div className="text-3xl font-medium">회원가입</div>
                         <div className="text-[#bdb6b1] font-bold mt-2">
-                            Paygo 계정으로 시작하세요
+                            Paygo 계정을 만들어보세요
                         </div>
                     </div>
-                    <div className="mt-10 text-[#bdb6b1] font-medium text">
+                    <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
+                    <div className="text-[#bdb6b1] mt-6">기본 정보</div>
+                    <div className="flex mt-6 text-[#bdb6b1] font-medium gap-3">
+                        <div className="flex-[1]">
+                            <div className="mb-2">성</div>
+                            <div>
+                                <TextInput
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                    placeholder="손"
+                                />
+                            </div>
+                        </div>
+                        <div className="flex-[1]">
+                            <div className="mb-2">이름</div>
+                            <div>
+                                <TextInput
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    placeholder="진일"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="mt-5 text-[#bdb6b1] font-medium text">
                         <div className="mb-2">이메일</div>
                         <div>
-                            <TextInput placeholder="example@email.com" />
+                            <TextInput
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="example@email.com"
+                            />
+                        </div>
+                        <div className="h-[10px] mt-1 ml-1 text-sm text-[12px]">
+                            {email &&
+                                (!isEmailValid ? (
+                                    <div className="text-[#edaeaf]">
+                                        이메일 형식이 올바르지 않습니다
+                                    </div>
+                                ) : email !== existedEmail ? (
+                                    <div className="text-[#8fe0ae]">사용 가능한 이메일입니다</div>
+                                ) : (
+                                    <div className="text-[#edaeaf]">
+                                        이미 사용 중인 이메일입니다
+                                    </div>
+                                ))}
                         </div>
                     </div>
-                    <div className="mt-5 text-[#bdb6b1] font-medium">
-                        <div className="flex mb-2">
-                            <div>비밀번호</div>
-                            <div className="ml-auto">
-                                <a href="#" className="text-xs text-[#6365EF] font-light underline">
-                                    비밀번호 찾기
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <PasswordInput />
-                        </div>
-                        <div className="mt-2 text-sm font-light">
-                            8자 이상, 영문/숫자/특수문자 포함
-                        </div>
-                        <div className="mt-4 text-sm gap-2 flex">
+                    <div className="flex mt-5 text-[#bdb6b1] font-medium gap-3">
+                        <div className="flex-[1]">
+                            <div className="mb-2">비밀번호</div>
                             <div>
-                                <input type="checkbox" name="" id="" className="mt-[1px]" />
+                                <PasswordInput
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                             </div>
-                            <div>로그인 상태 유지</div>
+                            <div className="mt-1 ml-1 text-sm text-[12px] font-light">
+                                8자 이상, 영문/숫자/특수문자 포함
+                            </div>
                         </div>
-                        <div className="mt-5">
-                            <Button variant="primary" className="h-[40px] w-full">
-                                로그인
-                            </Button>
-                        </div>
-                        <div className="flex items-center gap-3 mt-6">
-                            <div className="flex-1 border-t border-[#d8d8d8]"></div>
-                            <span className="text-sm font-light">또는</span>
-                            <div className="flex-1 border-t border-[#d8d8d8]"></div>
-                        </div>
-                        <div className="mt-6">
-                            <Button
-                                variant="secondary"
-                                className="flex items-center justify-center gap-1.5 w-full h-[50px]"
-                            >
-                                <span className="text-[14px] text-[#666666]">
-                                    Google로 계속하기
-                                </span>
-                            </Button>
-                        </div>
-                        <div className="text-xs text-center mt-6">
-                            <span className="mr-1">아직 계정이 없으신가요?</span>
-                            <a href="#" className="text-[#6365EF] font-medium underline">
-                                회원가입
-                            </a>
+                        <div className="flex-[1]">
+                            <div className="mb-2">비밀번호 확인</div>
+                            <div>
+                                <PasswordInput
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="mt-1 ml-1 text-sm text-[12px]">
+                                {password &&
+                                    confirmPassword &&
+                                    (isPasswordMatch ? (
+                                        <div className="text-[#8fe0ae]">비밀번호가 일치합니다</div>
+                                    ) : (
+                                        <div className="text-[#edaeaf]">
+                                            비밀번호가 일치하지 않습니다
+                                        </div>
+                                    ))}
+                            </div>
                         </div>
                     </div>
                 </div>
