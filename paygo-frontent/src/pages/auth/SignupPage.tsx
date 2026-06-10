@@ -12,6 +12,8 @@ function SignupPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [certificationNumber, setCertificationNumber] = useState('');
 
     const existedEmail = 'abc@email.com'; // DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
 
@@ -223,6 +225,44 @@ function SignupPage() {
                                             비밀번호가 일치하지 않습니다
                                         </div>
                                     ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
+                    <div className="text-[#bdb6b1] mt-6">본인 인증</div>
+                    <div className="flex mt-6 text-[#bdb6b1] font-medium">
+                        <div className="flex-[2]">
+                            <div className="mb-2">휴대폰 번호</div>
+                            <div className='flex gap-3'>
+                                <div className='flex-[5]'>
+                                    <TextInput
+                                        value={phoneNumber}
+                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        placeholder="010-0000-0000"
+                                        className='text-[#bdb6b1] font-medium'
+                                    />
+                                </div>
+                                <Button className='flex-[2] font-bold'>
+                                    인증번호 발송
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex mt-6 text-[#bdb6b1] font-medium">
+                        <div className="flex-[2]">
+                            <div className="mb-2">인증번호</div>
+                            <div className='flex gap-3'>
+                                <div className='flex-[6]'>
+                                    <TextInput
+                                        value={certificationNumber}
+                                        onChange={(e) => setCertificationNumber(e.target.value)}
+                                        placeholder="6자리 입력"
+                                        className='text-[#bdb6b1] font-medium'
+                                    />
+                                </div>
+                                <Button className='flex-[1] font-bold'>
+                                    확인
+                                </Button>
                             </div>
                         </div>
                     </div>
