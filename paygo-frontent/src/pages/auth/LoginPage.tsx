@@ -13,6 +13,9 @@ import PasswordInput from '../../components/common/PasswordInput.tsx';
 import TextInput from '../../components/common/TextInput.tsx';
 
 function LoginPage() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <AuthLayout>
             <div className="flex-[4.5] text-center content-center relative overflow-hidden">
@@ -86,7 +89,11 @@ function LoginPage() {
                     <div className="mt-10 text-[#bdb6b1] font-medium text">
                         <div className="mb-2">이메일</div>
                         <div>
-                            <TextInput placeholder="example@email.com" />
+                            <TextInput
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="example@email.com"
+                            />
                         </div>
                     </div>
                     <div className="mt-5 text-[#bdb6b1] font-medium">
@@ -99,7 +106,10 @@ function LoginPage() {
                             </div>
                         </div>
                         <div>
-                            <PasswordInput />
+                            <PasswordInput
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
                         </div>
                         <div className="mt-2 text-sm font-light">
                             8자 이상, 영문/숫자/특수문자 포함

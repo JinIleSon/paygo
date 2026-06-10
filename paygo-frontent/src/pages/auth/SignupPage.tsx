@@ -233,36 +233,32 @@ function SignupPage() {
                     <div className="flex mt-6 text-[#bdb6b1] font-medium">
                         <div className="flex-[2]">
                             <div className="mb-2">휴대폰 번호</div>
-                            <div className='flex gap-3'>
-                                <div className='flex-[5]'>
+                            <div className="flex gap-3">
+                                <div className="flex-[5]">
                                     <TextInput
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         placeholder="010-0000-0000"
-                                        className='text-[#bdb6b1] font-medium'
+                                        className="text-[#bdb6b1] font-medium"
                                     />
                                 </div>
-                                <Button className='flex-[2] font-bold'>
-                                    인증번호 발송
-                                </Button>
+                                <Button className="flex-[2] font-bold">인증번호 발송</Button>
                             </div>
                         </div>
                     </div>
                     <div className="flex mt-6 text-[#bdb6b1] font-medium">
                         <div className="flex-[2]">
                             <div className="mb-2">인증번호</div>
-                            <div className='flex gap-3'>
-                                <div className='flex-[6]'>
+                            <div className="flex gap-3">
+                                <div className="flex-[6]">
                                     <TextInput
                                         value={certificationNumber}
                                         onChange={(e) => setCertificationNumber(e.target.value)}
                                         placeholder="6자리 입력"
-                                        className='text-[#bdb6b1] font-medium'
+                                        className="text-[#bdb6b1] font-medium"
                                     />
                                 </div>
-                                <Button className='flex-[1] font-bold'>
-                                    확인
-                                </Button>
+                                <Button className="flex-[1] font-bold">확인</Button>
                             </div>
                         </div>
                     </div>
