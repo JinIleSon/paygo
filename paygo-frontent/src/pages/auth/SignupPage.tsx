@@ -15,10 +15,19 @@ function SignupPage() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [certificationNumber, setCertificationNumber] = useState('');
 
+    // 인증번호 발송 버튼 눌렀을 때 버튼 누름 변수
+    const [isOpen, setIsOpen] = useState(false);
+
     const existedEmail = 'abc@email.com'; // DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
 
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isPasswordMatch = password === confirmPassword && confirmPassword !== '';
+
+    const formatPhone = (digits: string) => {
+        if (digits.length <= 3) return digits;
+        else if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+        else return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+    };
 
     return (
         <AuthLayout>
@@ -236,13 +245,22 @@ function SignupPage() {
                             <div className="flex gap-3">
                                 <div className="flex-[5]">
                                     <TextInput
-                                        value={phoneNumber}
-                                        onChange={(e) => setPhoneNumber(e.target.value)}
+                                        value={formatPhone(phoneNumber)}
+                                        onChange={(e) =>
+                                            setPhoneNumber(
+                                                e.target.value.replace(/\D/g, '').slice(0, 11)
+                                            )
+                                        }
                                         placeholder="010-0000-0000"
                                         className="text-[#bdb6b1] font-medium"
                                     />
                                 </div>
-                                <Button className="flex-[2] font-bold">인증번호 발송</Button>
+                                <Button
+                                    className="flex-[2] font-bold"
+                                    onClick={() => setIsOpen(true)}
+                                >
+                                    인증번호 발송
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -259,6 +277,9 @@ function SignupPage() {
                                     />
                                 </div>
                                 <Button className="flex-[1] font-bold">확인</Button>
+                            </div>
+                            <div className="mt-1 ml-1 text-sm text-[14px] h-[22px]">
+                                {isOpen ? <div>인증번호가 발송되었습니다</div> : <div></div>}
                             </div>
                         </div>
                     </div>
