@@ -4,7 +4,7 @@ import { IconCreditCard } from '@tabler/icons-react';
 import TextInput from '../../components/common/TextInput';
 import PasswordInput from '../../components/common/PasswordInput';
 import Button from '../../components/common/Button';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function SignupPage() {
     const [lastName, setLastName] = useState('');
@@ -17,8 +17,12 @@ function SignupPage() {
 
     // 인증번호 발송 버튼 눌렀을 때 버튼 누름 변수
     const [isOpen, setIsOpen] = useState(false);
+    const [checkedFirst, setCheckedFirst] = useState(false);
+    const [checkedSecond, setCheckedSecond] = useState(false);
+    const [checkedThird, setCheckedThird] = useState(false);
+    const isAllChecked = checkedFirst && checkedSecond && checkedThird;
 
-    const existedEmail = 'abc@email.com'; // DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
+    const existedEmail = 'abc@email.com'; // TODO: DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
 
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isPasswordMatch = password === confirmPassword && confirmPassword !== '';
@@ -27,6 +31,19 @@ function SignupPage() {
         if (digits.length <= 3) return digits;
         else if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
         else return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+    };
+
+    const checkedStyle = {
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+        backgroundColor: '#9f9fa5',  // 연한 회색빛 보라
+        borderColor: '#9f9fa5'       // 테두리도 같이 맞춰주기
+    };
+
+    const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const isChecked = e.target.checked;
+        setCheckedFirst(isChecked);
+        setCheckedSecond(isChecked);
+        setCheckedThird(isChecked);
     };
 
     return (
@@ -278,10 +295,68 @@ function SignupPage() {
                                 </div>
                                 <Button className="flex-[1] font-bold">확인</Button>
                             </div>
-                            <div className="mt-1 ml-1 text-sm text-[14px] h-[22px]">
+                            <div className="mt-1 ml-1 text-sm text-[12px] h-[22px]">
                                 {isOpen ? <div>인증번호가 발송되었습니다</div> : <div></div>}
                             </div>
                         </div>
+                    </div>
+                    <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
+                    <div className="text-[#bdb6b1] mt-6">약관 동의</div>
+                    <div className="p-6 rounded-lg bg-white border border-[#d9d9d9] mt-6">
+                        <label htmlFor="agreeAll" className='flex items-center gap-3 leading-0 cursor-pointer'>
+                            <input type="checkbox" name="" id="agreeAll"
+                            checked={isAllChecked}
+                            onChange={handleCheck}
+                            style={isAllChecked ? checkedStyle : undefined}
+                            className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                    checked:bg-indigo-500 checked:border-indigo-500
+                                    checked:bg-center checked:bg-no-repeat
+                                    "/>
+                            <span className="font-bold text-[18px]">전체 동의</span>
+                        </label>
+                        <div className="flex-1 border-t border-[#d8d8d8] my-6"></div>
+                        <label htmlFor="agreeFirst" className='flex items-center gap-3 text-gray-500 leading-0 cursor-pointer'>
+                            <input type="checkbox" name="" id="agreeFirst"
+                            checked={checkedFirst}
+                            onChange={(e) => {
+                                setCheckedFirst(e.target.checked);
+                            }}
+                            style={checkedFirst ? checkedStyle : undefined}
+                            className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                    checked:bg-indigo-500 checked:border-indigo-500
+                                    checked:bg-center checked:bg-no-repeat
+                                    "/>
+                            <span className="">서비스 이용약관 동의<span className='font-bold'> (필수)</span></span>
+                            <a href="#" className='ml-auto underline text-[#bdb6b1]'>보기</a>
+                        </label>
+                        <label htmlFor="agreeSecond" className='flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4'>
+                            <input type="checkbox" name="" id="agreeSecond"
+                            checked={checkedSecond}
+                            onChange={(e) => {
+                                setCheckedSecond(e.target.checked);
+                            }}
+                            style={checkedSecond ? checkedStyle : undefined}
+                            className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                    checked:bg-indigo-500 checked:border-indigo-500
+                                    checked:bg-center checked:bg-no-repeat
+                                    "/>
+                            <span className="">개인정보 수집 및 이용 동의<span className='font-bold'> (필수)</span></span>
+                            <a href="#" className='ml-auto underline text-[#bdb6b1]'>보기</a>
+                        </label>
+                        <label htmlFor="agreeThird" className='flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4'>
+                            <input type="checkbox" name="" id="agreeThird"
+                            checked={checkedThird}
+                            onChange={(e) => {
+                                setCheckedThird(e.target.checked);
+                            }}
+                            style={checkedThird ? checkedStyle : undefined}
+                            className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                    checked:bg-indigo-500 checked:border-indigo-500
+                                    checked:bg-center checked:bg-no-repeat
+                                    "/>
+                            <span className="">마케팅 정보 수신 동의<span className=''> (선택)</span></span>
+                            <a href="#" className='ml-auto underline text-[#bdb6b1]'>보기</a>
+                        </label>
                     </div>
                 </div>
             </div>
