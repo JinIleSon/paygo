@@ -11,6 +11,7 @@ import notebookImg from '../../assets/notebook.webp';
 import Button from '../../components/common/Button.tsx';
 import PasswordInput from '../../components/common/PasswordInput.tsx';
 import TextInput from '../../components/common/TextInput.tsx';
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -143,9 +144,9 @@ function LoginPage() {
                         </div>
                         <div className="text-xs text-center mt-6">
                             <span className="mr-1">아직 계정이 없으신가요?</span>
-                            <a href="#" className="text-[#6365EF] font-medium underline">
+                            <Link to='/signup' className="text-[#6365EF] font-medium underline">
                                 회원가입
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

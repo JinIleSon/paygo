@@ -5,6 +5,7 @@ import TextInput from '../../components/common/TextInput';
 import PasswordInput from '../../components/common/PasswordInput';
 import Button from '../../components/common/Button';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function SignupPage() {
     const [lastName, setLastName] = useState('');
@@ -327,7 +328,7 @@ function SignupPage() {
                                     checked:bg-center checked:bg-no-repeat
                                     "/>
                             <span className="">서비스 이용약관 동의<span className='font-bold'> (필수)</span></span>
-                            <a href="#" className='ml-auto underline text-[#bdb6b1]'>보기</a>
+                            <Link to='/terms-of-service' className='ml-auto underline text-[#bdb6b1]'>보기</Link>
                         </label>
                         <label htmlFor="agreeSecond" className='flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4'>
                             <input type="checkbox" name="" id="agreeSecond"
@@ -358,6 +359,15 @@ function SignupPage() {
                             <a href="#" className='ml-auto underline text-[#bdb6b1]'>보기</a>
                         </label>
                     </div>
+                    <div>
+                        <Button className="w-full font-bold mt-6 h-[40px]">가입 완료</Button>
+                    </div>
+                    <div className="text-xs text-center mt-6 text-[#bdb6b1]">
+                            <span className="mr-1">이미 계정이 있으신가요?</span>
+                            <Link to='/login' className="text-[#6365EF] font-medium underline">
+                                로그인
+                            </Link>
+                        </div>
                 </div>
             </div>
         </AuthLayout>
