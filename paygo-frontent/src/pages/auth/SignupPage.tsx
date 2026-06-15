@@ -401,9 +401,12 @@ function SignupPage() {
                             <span className="">
                                 마케팅 정보 수신 동의<span className=""> (선택)</span>
                             </span>
-                            <a href="#" className="ml-auto underline text-[#bdb6b1]">
+                            <Link
+                                to="/marketing-consent"
+                                className="ml-auto underline text-[#bdb6b1]"
+                            >
                                 보기
-                            </a>
+                            </Link>
                         </label>
                     </div>
                     <div>
