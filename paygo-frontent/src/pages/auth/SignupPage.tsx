@@ -49,7 +49,7 @@ function SignupPage() {
 
     return (
         <AuthLayout>
-            <div className="flex-[4.5] text-center content-center relative overflow-hidden">
+            <div className="flex-[4.5] sticky top-0 h-screen flex items-center justify-center relative overflow-hidden">
                 {/* 배경 이미지 레이어 */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
