@@ -49,7 +49,7 @@ function SignupPage() {
 
     return (
         <AuthLayout>
-            <div className="flex-[4.5] sticky top-0 h-screen flex items-center justify-center relative overflow-hidden">
+            <div className="flex-[4.5] h-screen flex items-center justify-center relative overflow-hidden">
                 {/* 배경 이미지 레이어 */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
@@ -165,258 +165,260 @@ function SignupPage() {
                     </div>
                 </div>
             </div>
-            <div className="flex-[5.5] flex justify-center items-center border-l border-[#D9D9D9] border-solid bg-[#fafafa]">
-                <div className="w-[480px]">
-                    <div className="flex flex-col">
-                        <div className="text-3xl font-medium">회원가입</div>
-                        <div className="text-[#bdb6b1] font-bold mt-2">
-                            Paygo 계정을 만들어보세요
+            <div className="flex-[5.5] overflow-y-auto border-l border-[#D9D9D9] border-solid bg-[#fafafa]">
+                <div className='flex justify-center py-20'>
+                    <div className="w-[480px] ">
+                        <div className="flex flex-col">
+                            <div className="text-3xl font-medium">회원가입</div>
+                            <div className="text-[#bdb6b1] font-bold mt-2">
+                                Paygo 계정을 만들어보세요
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
-                    <div className="text-[#bdb6b1] mt-6">기본 정보</div>
-                    <div className="flex mt-6 text-[#bdb6b1] font-medium gap-3">
-                        <div className="flex-[1]">
-                            <div className="mb-2">성</div>
+                        <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
+                        <div className="text-[#bdb6b1] mt-6">기본 정보</div>
+                        <div className="flex mt-6 text-[#bdb6b1] font-medium gap-3">
+                            <div className="flex-[1]">
+                                <div className="mb-2">성</div>
+                                <div>
+                                    <TextInput
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                        placeholder="손"
+                                    />
+                                </div>
+                            </div>
+                            <div className="flex-[1]">
+                                <div className="mb-2">이름</div>
+                                <div>
+                                    <TextInput
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        placeholder="진일"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-5 text-[#bdb6b1] font-medium text">
+                            <div className="mb-2">이메일</div>
                             <div>
                                 <TextInput
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
-                                    placeholder="손"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="example@email.com"
                                 />
                             </div>
-                        </div>
-                        <div className="flex-[1]">
-                            <div className="mb-2">이름</div>
-                            <div>
-                                <TextInput
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
-                                    placeholder="진일"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-5 text-[#bdb6b1] font-medium text">
-                        <div className="mb-2">이메일</div>
-                        <div>
-                            <TextInput
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="example@email.com"
-                            />
-                        </div>
-                        <div className="h-[10px] mt-1 ml-1 text-sm text-[12px]">
-                            {email &&
-                                (!isEmailValid ? (
-                                    <div className="text-[#edaeaf]">
-                                        이메일 형식이 올바르지 않습니다
-                                    </div>
-                                ) : email !== existedEmail ? (
-                                    <div className="text-[#8fe0ae]">사용 가능한 이메일입니다</div>
-                                ) : (
-                                    <div className="text-[#edaeaf]">
-                                        이미 사용 중인 이메일입니다
-                                    </div>
-                                ))}
-                        </div>
-                    </div>
-                    <div className="flex mt-5 text-[#bdb6b1] font-medium gap-3">
-                        <div className="flex-[1]">
-                            <div className="mb-2">비밀번호</div>
-                            <div>
-                                <PasswordInput
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-                            <div className="mt-1 ml-1 text-sm text-[12px] font-light">
-                                8자 이상, 영문/숫자/특수문자 포함
-                            </div>
-                        </div>
-                        <div className="flex-[1]">
-                            <div className="mb-2">비밀번호 확인</div>
-                            <div>
-                                <PasswordInput
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                />
-                            </div>
-                            <div className="mt-1 ml-1 text-sm text-[12px]">
-                                {password &&
-                                    confirmPassword &&
-                                    (isPasswordMatch ? (
-                                        <div className="text-[#8fe0ae]">비밀번호가 일치합니다</div>
+                            <div className="h-[10px] mt-1 ml-1 text-sm text-[12px]">
+                                {email &&
+                                    (!isEmailValid ? (
+                                        <div className="text-[#edaeaf]">
+                                            이메일 형식이 올바르지 않습니다
+                                        </div>
+                                    ) : email !== existedEmail ? (
+                                        <div className="text-[#8fe0ae]">사용 가능한 이메일입니다</div>
                                     ) : (
                                         <div className="text-[#edaeaf]">
-                                            비밀번호가 일치하지 않습니다
+                                            이미 사용 중인 이메일입니다
                                         </div>
                                     ))}
                             </div>
                         </div>
-                    </div>
-                    <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
-                    <div className="text-[#bdb6b1] mt-6">본인 인증</div>
-                    <div className="flex mt-6 text-[#bdb6b1] font-medium">
-                        <div className="flex-[2]">
-                            <div className="mb-2">휴대폰 번호</div>
-                            <div className="flex gap-3">
-                                <div className="flex-[5]">
-                                    <TextInput
-                                        value={formatPhone(phoneNumber)}
-                                        onChange={(e) =>
-                                            setPhoneNumber(
-                                                e.target.value.replace(/\D/g, '').slice(0, 11)
-                                            )
-                                        }
-                                        placeholder="010-0000-0000"
-                                        className="text-[#bdb6b1] font-medium"
+                        <div className="flex mt-5 text-[#bdb6b1] font-medium gap-3">
+                            <div className="flex-[1]">
+                                <div className="mb-2">비밀번호</div>
+                                <div>
+                                    <PasswordInput
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
                                     />
                                 </div>
-                                <Button
-                                    className="flex-[2] font-bold"
-                                    onClick={() => setIsOpen(true)}
+                                <div className="mt-1 ml-1 text-sm text-[12px] font-light">
+                                    8자 이상, 영문/숫자/특수문자 포함
+                                </div>
+                            </div>
+                            <div className="flex-[1]">
+                                <div className="mb-2">비밀번호 확인</div>
+                                <div>
+                                    <PasswordInput
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}
+                                    />
+                                </div>
+                                <div className="mt-1 ml-1 text-sm text-[12px]">
+                                    {password &&
+                                        confirmPassword &&
+                                        (isPasswordMatch ? (
+                                            <div className="text-[#8fe0ae]">비밀번호가 일치합니다</div>
+                                        ) : (
+                                            <div className="text-[#edaeaf]">
+                                                비밀번호가 일치하지 않습니다
+                                            </div>
+                                        ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
+                        <div className="text-[#bdb6b1] mt-6">본인 인증</div>
+                        <div className="flex mt-6 text-[#bdb6b1] font-medium">
+                            <div className="flex-[2]">
+                                <div className="mb-2">휴대폰 번호</div>
+                                <div className="flex gap-3">
+                                    <div className="flex-[5]">
+                                        <TextInput
+                                            value={formatPhone(phoneNumber)}
+                                            onChange={(e) =>
+                                                setPhoneNumber(
+                                                    e.target.value.replace(/\D/g, '').slice(0, 11)
+                                                )
+                                            }
+                                            placeholder="010-0000-0000"
+                                            className="text-[#bdb6b1] font-medium"
+                                        />
+                                    </div>
+                                    <Button
+                                        className="flex-[2] font-bold"
+                                        onClick={() => setIsOpen(true)}
+                                    >
+                                        인증번호 발송
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex mt-6 text-[#bdb6b1] font-medium">
+                            <div className="flex-[2]">
+                                <div className="mb-2">인증번호</div>
+                                <div className="flex gap-3">
+                                    <div className="flex-[6]">
+                                        <TextInput
+                                            value={certificationNumber}
+                                            onChange={(e) => setCertificationNumber(e.target.value)}
+                                            placeholder="6자리 입력"
+                                            className="text-[#bdb6b1] font-medium"
+                                        />
+                                    </div>
+                                    <Button className="flex-[1] font-bold">확인</Button>
+                                </div>
+                                {/* TODO: 인증번호 API 연동 시 시간 만료 및 타이머 기능 추가 */}
+                                <div className="mt-1 ml-1 text-sm text-[14px] h-[22px]">
+                                    {isOpen ? <div>인증번호가 발송되었습니다</div> : <div></div>}
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
+                        <div className="text-[#bdb6b1] mt-6">약관 동의</div>
+                        <div className="p-6 rounded-lg bg-white border border-[#d9d9d9] mt-6">
+                            <label
+                                htmlFor="agreeAll"
+                                className="flex items-center gap-3 leading-0 cursor-pointer"
+                            >
+                                <input
+                                    type="checkbox"
+                                    name=""
+                                    id="agreeAll"
+                                    checked={isAllChecked}
+                                    onChange={handleCheck}
+                                    style={isAllChecked ? checkedStyle : undefined}
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                        checked:bg-indigo-500 checked:border-indigo-500
+                                        checked:bg-center checked:bg-no-repeat
+                                        "
+                                />
+                                <span className="font-bold text-[18px]">전체 동의</span>
+                            </label>
+                            <div className="flex-1 border-t border-[#d8d8d8] my-6"></div>
+                            <label
+                                htmlFor="agreeFirst"
+                                className="flex items-center gap-3 text-gray-500 leading-0 cursor-pointer"
+                            >
+                                <input
+                                    type="checkbox"
+                                    name=""
+                                    id="agreeFirst"
+                                    checked={checkedFirst}
+                                    onChange={(e) => {
+                                        setCheckedFirst(e.target.checked);
+                                    }}
+                                    style={checkedFirst ? checkedStyle : undefined}
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                        checked:bg-indigo-500 checked:border-indigo-500
+                                        checked:bg-center checked:bg-no-repeat
+                                        "
+                                />
+                                <span className="">
+                                    서비스 이용약관 동의<span className="font-bold"> (필수)</span>
+                                </span>
+                                <Link
+                                    to="/terms-of-service"
+                                    className="ml-auto underline text-[#bdb6b1]"
                                 >
-                                    인증번호 발송
-                                </Button>
-                            </div>
+                                    보기
+                                </Link>
+                            </label>
+                            <label
+                                htmlFor="agreeSecond"
+                                className="flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4"
+                            >
+                                <input
+                                    type="checkbox"
+                                    name=""
+                                    id="agreeSecond"
+                                    checked={checkedSecond}
+                                    onChange={(e) => {
+                                        setCheckedSecond(e.target.checked);
+                                    }}
+                                    style={checkedSecond ? checkedStyle : undefined}
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                        checked:bg-indigo-500 checked:border-indigo-500
+                                        checked:bg-center checked:bg-no-repeat
+                                        "
+                                />
+                                <span className="">
+                                    개인정보 수집 및 이용 동의<span className="font-bold"> (필수)</span>
+                                </span>
+                                <Link
+                                    to="/privacy-consent"
+                                    className="ml-auto underline text-[#bdb6b1]"
+                                >
+                                    보기
+                                </Link>
+                            </label>
+                            <label
+                                htmlFor="agreeThird"
+                                className="flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4"
+                            >
+                                <input
+                                    type="checkbox"
+                                    name=""
+                                    id="agreeThird"
+                                    checked={checkedThird}
+                                    onChange={(e) => {
+                                        setCheckedThird(e.target.checked);
+                                    }}
+                                    style={checkedThird ? checkedStyle : undefined}
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
+                                        checked:bg-indigo-500 checked:border-indigo-500
+                                        checked:bg-center checked:bg-no-repeat
+                                        "
+                                />
+                                <span className="">
+                                    마케팅 정보 수신 동의<span className=""> (선택)</span>
+                                </span>
+                                <Link
+                                    to="/marketing-consent"
+                                    className="ml-auto underline text-[#bdb6b1]"
+                                >
+                                    보기
+                                </Link>
+                            </label>
                         </div>
-                    </div>
-                    <div className="flex mt-6 text-[#bdb6b1] font-medium">
-                        <div className="flex-[2]">
-                            <div className="mb-2">인증번호</div>
-                            <div className="flex gap-3">
-                                <div className="flex-[6]">
-                                    <TextInput
-                                        value={certificationNumber}
-                                        onChange={(e) => setCertificationNumber(e.target.value)}
-                                        placeholder="6자리 입력"
-                                        className="text-[#bdb6b1] font-medium"
-                                    />
-                                </div>
-                                <Button className="flex-[1] font-bold">확인</Button>
-                            </div>
-                            {/* TODO: 인증번호 API 연동 시 시간 만료 및 타이머 기능 추가 */}
-                            <div className="mt-1 ml-1 text-sm text-[14px] h-[22px]">
-                                {isOpen ? <div>인증번호가 발송되었습니다</div> : <div></div>}
-                            </div>
+                        <div>
+                            <Button className="w-full font-bold mt-6 h-[40px]">가입 완료</Button>
                         </div>
-                    </div>
-                    <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
-                    <div className="text-[#bdb6b1] mt-6">약관 동의</div>
-                    <div className="p-6 rounded-lg bg-white border border-[#d9d9d9] mt-6">
-                        <label
-                            htmlFor="agreeAll"
-                            className="flex items-center gap-3 leading-0 cursor-pointer"
-                        >
-                            <input
-                                type="checkbox"
-                                name=""
-                                id="agreeAll"
-                                checked={isAllChecked}
-                                onChange={handleCheck}
-                                style={isAllChecked ? checkedStyle : undefined}
-                                className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                    checked:bg-indigo-500 checked:border-indigo-500
-                                    checked:bg-center checked:bg-no-repeat
-                                    "
-                            />
-                            <span className="font-bold text-[18px]">전체 동의</span>
-                        </label>
-                        <div className="flex-1 border-t border-[#d8d8d8] my-6"></div>
-                        <label
-                            htmlFor="agreeFirst"
-                            className="flex items-center gap-3 text-gray-500 leading-0 cursor-pointer"
-                        >
-                            <input
-                                type="checkbox"
-                                name=""
-                                id="agreeFirst"
-                                checked={checkedFirst}
-                                onChange={(e) => {
-                                    setCheckedFirst(e.target.checked);
-                                }}
-                                style={checkedFirst ? checkedStyle : undefined}
-                                className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                    checked:bg-indigo-500 checked:border-indigo-500
-                                    checked:bg-center checked:bg-no-repeat
-                                    "
-                            />
-                            <span className="">
-                                서비스 이용약관 동의<span className="font-bold"> (필수)</span>
-                            </span>
-                            <Link
-                                to="/terms-of-service"
-                                className="ml-auto underline text-[#bdb6b1]"
-                            >
-                                보기
+                        <div className="text-xs text-center mt-6 text-[#bdb6b1]">
+                            <span className="mr-1">이미 계정이 있으신가요?</span>
+                            <Link to="/login" className="text-[#6365EF] font-medium underline">
+                                로그인
                             </Link>
-                        </label>
-                        <label
-                            htmlFor="agreeSecond"
-                            className="flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4"
-                        >
-                            <input
-                                type="checkbox"
-                                name=""
-                                id="agreeSecond"
-                                checked={checkedSecond}
-                                onChange={(e) => {
-                                    setCheckedSecond(e.target.checked);
-                                }}
-                                style={checkedSecond ? checkedStyle : undefined}
-                                className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                    checked:bg-indigo-500 checked:border-indigo-500
-                                    checked:bg-center checked:bg-no-repeat
-                                    "
-                            />
-                            <span className="">
-                                개인정보 수집 및 이용 동의<span className="font-bold"> (필수)</span>
-                            </span>
-                            <Link
-                                to="/privacy-consent"
-                                className="ml-auto underline text-[#bdb6b1]"
-                            >
-                                보기
-                            </Link>
-                        </label>
-                        <label
-                            htmlFor="agreeThird"
-                            className="flex items-center gap-3 text-gray-500 leading-0 cursor-pointer mt-4"
-                        >
-                            <input
-                                type="checkbox"
-                                name=""
-                                id="agreeThird"
-                                checked={checkedThird}
-                                onChange={(e) => {
-                                    setCheckedThird(e.target.checked);
-                                }}
-                                style={checkedThird ? checkedStyle : undefined}
-                                className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                    checked:bg-indigo-500 checked:border-indigo-500
-                                    checked:bg-center checked:bg-no-repeat
-                                    "
-                            />
-                            <span className="">
-                                마케팅 정보 수신 동의<span className=""> (선택)</span>
-                            </span>
-                            <Link
-                                to="/marketing-consent"
-                                className="ml-auto underline text-[#bdb6b1]"
-                            >
-                                보기
-                            </Link>
-                        </label>
-                    </div>
-                    <div>
-                        <Button className="w-full font-bold mt-6 h-[40px]">가입 완료</Button>
-                    </div>
-                    <div className="text-xs text-center mt-6 text-[#bdb6b1]">
-                        <span className="mr-1">이미 계정이 있으신가요?</span>
-                        <Link to="/login" className="text-[#6365EF] font-medium underline">
-                            로그인
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>
