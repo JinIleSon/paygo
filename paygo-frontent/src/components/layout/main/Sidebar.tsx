@@ -28,7 +28,7 @@ function Sidebar() {
         }`;
 
     return (
-        <div className="w-[240px] h-screen border-x border-[#D9D9D9] flex flex-col">
+        <div className="w-[240px] h-screen border-x border-[#D9D9D9] flex flex-col shrink-0">
             <div className="flex items-center p-6 gap-3 text-2xl font-bold">
                 <div className="w-[40px] h-[40px] rounded-xl bg-[#6266f1] flex items-center justify-center">
                     <IconCreditCard size={23} color="white" />
@@ -48,11 +48,11 @@ function Sidebar() {
                     <IconWallet size={20} />
                     <div>지갑 홈</div>
                 </NavLink>
-                <NavLink to='/walllet/charge' className={navItemClass}>
+                <NavLink to="/walllet/charge" className={navItemClass}>
                     <IconPlus size={20} />
                     <div>충전</div>
                 </NavLink>
-                <NavLink to='/wallet/history' className={navItemClass}>
+                <NavLink to="/wallet/history" className={navItemClass}>
                     <IconList size={20} />
                     <div>거래내역</div>
                 </NavLink>
@@ -60,15 +60,18 @@ function Sidebar() {
             <div className="border-b border-[#D9D9D9] mt-[-6px]"></div>
             <div className="py-6 text-[gray]">
                 <div className="px-6 font-medium text-[18px]">쇼핑</div>
-                <NavLink to='/shopping/list' className={({isActive}) => `${navItemClass({isActive})} mt-3`}>
+                <NavLink
+                    to="/shopping/list"
+                    className={({ isActive }) => `${navItemClass({ isActive })} mt-3`}
+                >
                     <IconShoppingBag size={20} />
                     <div>상품 목록</div>
                 </NavLink>
-                <NavLink to='/shopping/cart' className={navItemClass}>
+                <NavLink to="/shopping/cart" className={navItemClass}>
                     <IconShoppingCart size={20} />
                     <div>장바구니</div>
                 </NavLink>
-                <NavLink to='/shopping/detail' className={navItemClass}>
+                <NavLink to="/shopping/detail" className={navItemClass}>
                     <IconPackage size={20} />
                     <div>주문내역</div>
                 </NavLink>
@@ -76,11 +79,14 @@ function Sidebar() {
             <div className="border-b border-[#D9D9D9] mt-[-6px]"></div>
             <div className="py-6 text-[gray]">
                 <div className="px-6 font-medium text-[18px]">계정</div>
-                <NavLink to='/account/mypage' className={({isActive}) => `${navItemClass({isActive})} mt-3`}>
+                <NavLink
+                    to="/account/mypage"
+                    className={({ isActive }) => `${navItemClass({ isActive })} mt-3`}
+                >
                     <IconUser size={20} />
                     <div>마이페이지</div>
                 </NavLink>
-                <NavLink to='/account/setting' className={navItemClass}>
+                <NavLink to="/account/setting" className={navItemClass}>
                     <IconSettings size={20} />
                     <div>설정</div>
                 </NavLink>
