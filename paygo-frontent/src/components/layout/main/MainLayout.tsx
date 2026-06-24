@@ -1,8 +1,9 @@
 import type React from 'react';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import { Outlet } from 'react-router-dom';
 
-function MainLayout({ children }: { children: React.ReactNode }) {
+function MainLayout() {
     return (
         // h-screen: 전체 높이 고정 (main 스크롤을 위해 필요)
         <div className="flex h-screen">
@@ -13,7 +14,7 @@ function MainLayout({ children }: { children: React.ReactNode }) {
                 <Topbar />
                 {/* flex-1: Topbar 제외한 나머지 세로 공간 차지 */}
                 {/* overflow-y-auto: 내용물이 넘치면 세로 스크롤 */}
-                <main className="flex-1 overflow-y-auto">{children}</main>
+                <main className="px-8 py-6.5 flex-1 overflow-y-auto bg-[#F6F5F8]"><Outlet /></main>
             </div>
         </div>
     );

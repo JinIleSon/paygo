@@ -48,7 +48,7 @@ function Sidebar() {
                     <IconWallet size={20} />
                     <div>지갑 홈</div>
                 </NavLink>
-                <NavLink to="/walllet/charge" className={navItemClass}>
+                <NavLink to="/wallet/charge" className={navItemClass}>
                     <IconPlus size={20} />
                     <div>충전</div>
                 </NavLink>
