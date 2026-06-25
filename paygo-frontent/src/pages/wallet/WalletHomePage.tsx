@@ -76,28 +76,9 @@ function WalletHomePage() {
                                 </div>
                             </div>
                         ))}
-                        {/* <div className="mt-auto py-4">
-                            <div className="flex items-center gap-4">
-                                <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E4E4FF] text-[#6266f1] text-[14px] font-medium">
-                                    {nameInitial1}
-                                </div>
-                                <div>
-                                    <div className="flex font-medium">{name1}</div>
-                                    <div className="text-[gray] text-[14px]">
-                                        <span>{bank1}</span>
-                                        <span className="ml-2">{accountNumber1}</span>
-                                    </div>
-                                </div>
-                                <div className="ml-auto">
-                                    <Button variant="secondary" className="p-3">
-                                        <div className="flex items-center gap-2">
-                                            <IconArrowRight size={16} />
-                                            <div>송금</div>
-                                        </div>
-                                    </Button>
-                                </div>
-                            </div>
-                        </div> */}
+                    </div>
+                    <div className="px-8 py-5 border border-[#D9D9D9] bg-white rounded-2xl my-6.5">
+                        <div className='text-[gray] '>소비 카테고리</div>
                     </div>
                 </div>
             </div>
