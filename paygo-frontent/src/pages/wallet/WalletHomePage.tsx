@@ -6,6 +6,7 @@ function WalletHomePage() {
     const balance = 3842000;
     const pg = 'PG-1234-5678-9012';
 
+    // 빠른 송금
     const contacts = [
         { name: '김철수', bank: 'Paygo', account: '123-1234-1234-1234' },
         { name: '홍길동', bank: 'KB국민', account: '110-1234-1234-1234' },
@@ -17,6 +18,16 @@ function WalletHomePage() {
         { bg: 'bg-[#E8FBF2]', text: 'text-[#6ccfa8]' },  // 그린
         { bg: 'bg-[#FEF9EB]', text: 'text-[#e0b36b]' },  // 앰버
     ]
+
+    // 소비 카테고리
+    const categories = [
+        { name: '패션/의류', amount: 210000, color: 'bg-[#6266F1]' },
+        { name: '전자기기', amount: 120000, color: 'bg-[#22C55E]' },
+        { name: '스포츠/레저', amount: 89000, color: 'bg-[#F59E0B]' },
+        { name: '기타', amount: 45000, color: 'bg-[#D1D5DB]' },
+    ]
+
+    const total = categories.reduce((sum, cat) => sum + cat.amount, 0)
 
     return (
         // MainLayout에서 Outlet으로 불러온 레이아웃 상태
@@ -79,6 +90,11 @@ function WalletHomePage() {
                     </div>
                     <div className="px-8 py-5 border border-[#D9D9D9] bg-white rounded-2xl my-6.5">
                         <div className='text-[gray] '>소비 카테고리</div>
+                        {categories.map((cat, index) => (
+                            <div key={index}>
+
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
