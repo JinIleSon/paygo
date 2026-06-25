@@ -6,11 +6,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 function Button({ variant = 'primary', className, children, ...props }: ButtonProps) {
-    const base = 'border rounded-md';
+    const base = 'border rounded-md cursor-pointer duration-500 transition-colors';
 
     const variants = {
-        primary: 'border-[#4f4f4f] text-[#4D4D4D] hover:bg-gray-100',
-        secondary: 'border-[#d9d9d9] bg-white hover:bg-gray-100',
+        primary: 'border-[#4f4f4f] text-[#4D4D4D] hover:bg-gray-300',
+        secondary: 'border-[#d9d9d9] bg-white hover:bg-gray-300',
     };
 
     return (
