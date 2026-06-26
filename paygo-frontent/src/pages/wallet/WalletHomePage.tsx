@@ -11,13 +11,13 @@ function WalletHomePage() {
         { name: '김철수', bank: 'Paygo', account: '123-1234-1234-1234' },
         { name: '홍길동', bank: 'KB국민', account: '110-1234-1234-1234' },
         { name: '박민수', bank: '신한', account: '111-1234-1234-1234' },
-    ]
+    ];
 
     const avatarColors = [
-        { bg: 'bg-[#E4E4FF]', text: 'text-[#6266f1]' },  // 인디고
-        { bg: 'bg-[#E8FBF2]', text: 'text-[#6ccfa8]' },  // 그린
-        { bg: 'bg-[#FEF9EB]', text: 'text-[#e0b36b]' },  // 앰버
-    ]
+        { bg: 'bg-[#E4E4FF]', text: 'text-[#6266f1]' }, // 인디고
+        { bg: 'bg-[#E8FBF2]', text: 'text-[#6ccfa8]' }, // 그린
+        { bg: 'bg-[#FEF9EB]', text: 'text-[#e0b36b]' }, // 앰버
+    ];
 
     // 소비 카테고리
     const categories = [
@@ -25,9 +25,10 @@ function WalletHomePage() {
         { name: '전자기기', amount: 120000, color: 'bg-[#22C55E]' },
         { name: '스포츠/레저', amount: 89000, color: 'bg-[#F59E0B]' },
         { name: '기타', amount: 45000, color: 'bg-[#D1D5DB]' },
-    ]
+    ];
 
-    const total = categories.reduce((sum, cat) => sum + cat.amount, 0)
+    // 비율에 따른 bar 그리기용
+    const total = categories.reduce((sum, cat) => sum + cat.amount, 0);
 
     return (
         // MainLayout에서 Outlet으로 불러온 레이아웃 상태
@@ -62,11 +63,13 @@ function WalletHomePage() {
                 </div>
                 <div className="min-w-1/2">
                     <div className="px-8 py-5 border border-[#D9D9D9] bg-white rounded-2xl">
-                        <div className='text-[gray] '>빠른 송금</div>
-                        { contacts.map((contact, index) => (
+                        <div className="text-[gray] ">빠른 송금</div>
+                        {contacts.map((contact, index) => (
                             <div key={index} className="mt-auto py-4">
                                 <div className="flex items-center gap-4">
-                                    <div className={`${avatarColors[index % 3].bg} ${avatarColors[index % 3].text} flex items-center justify-center w-[40px] h-[40px] rounded-full  text-[14px] font-medium`}>
+                                    <div
+                                        className={`${avatarColors[index % 3].bg} ${avatarColors[index % 3].text} flex items-center justify-center w-[40px] h-[40px] rounded-full  text-[14px] font-medium`}
+                                    >
                                         {contact.name.slice(-2)}
                                     </div>
                                     <div>
@@ -89,10 +92,29 @@ function WalletHomePage() {
                         ))}
                     </div>
                     <div className="px-8 py-5 border border-[#D9D9D9] bg-white rounded-2xl my-6.5">
-                        <div className='text-[gray] '>소비 카테고리</div>
+                        <div className="text-[gray] ">소비 카테고리</div>
                         {categories.map((cat, index) => (
                             <div key={index}>
-
+                                <div className="mt-4">
+                                    <div className="flex text-[gray]">
+                                        <div>{cat.name}</div>
+                                        <div className="ml-auto text-[black] font-bold">
+                                            {cat.amount.toLocaleString()}원
+                                        </div>
+                                    </div>
+                                    <div className="flex mt-2.5 mb-2.5">
+                                        <div
+                                            style={{ width: `${(cat.amount / total) * 100}%` }} // 채우는 부분
+                                            className={`${cat.color} h-1 rounded-full`}
+                                        ></div>
+                                        <div
+                                            style={{
+                                                width: `${100 - (cat.amount / total) * 100}%`, // 빈 회색 부분
+                                            }}
+                                            className={`bg-[#E6E6E6] h-1 rounded-full`}
+                                        ></div>
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
