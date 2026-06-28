@@ -1,5 +1,6 @@
 import Button from '../../components/common/Button';
 import { IconPlus, IconArrowRight } from '@tabler/icons-react';
+import Card from '../../components/common/Card';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
@@ -35,7 +36,7 @@ function WalletHomePage() {
         <div>
             <div className="flex gap-8 pr-8">
                 <div className="min-w-1/2">
-                    <div className="px-8 py-6.5 bg-[#6266f1] rounded-2xl">
+                    <Card variant="primary">
                         <div>
                             <div className="text-[#E2E3FF]">Paygo 지갑 잔액</div>
                             <div className="py-3 text-white text-[32px] font-medium">
@@ -59,10 +60,10 @@ function WalletHomePage() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Card>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="px-8 py-5 border border-[#D9D9D9] bg-white rounded-2xl">
+                    <Card>
                         <div className="text-[gray] ">빠른 송금</div>
                         {contacts.map((contact, index) => (
                             <div key={index} className="mt-auto py-4">
@@ -90,8 +91,8 @@ function WalletHomePage() {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                    <div className="px-8 py-5 border border-[#D9D9D9] bg-white rounded-2xl my-6.5">
+                    </Card>
+                    <Card className="my-6.5">
                         <div className="text-[gray] ">소비 카테고리</div>
                         {categories.map((cat, index) => (
                             <div key={index}>
@@ -117,7 +118,7 @@ function WalletHomePage() {
                                 </div>
                             </div>
                         ))}
-                    </div>
+                    </Card>
                 </div>
             </div>
         </div>
