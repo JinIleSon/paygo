@@ -1,5 +1,5 @@
 import Button from '../../components/common/Button';
-import { IconPlus, IconArrowRight } from '@tabler/icons-react';
+import { IconPlus, IconArrowRight, IconArrowDown, IconArrowUp } from '@tabler/icons-react';
 import Card from '../../components/common/Card';
 
 function WalletHomePage() {
@@ -15,9 +15,9 @@ function WalletHomePage() {
     ];
 
     const avatarColors = [
-        { bg: 'bg-[#E4E4FF]', text: 'text-[#6266f1]' }, // 인디고
-        { bg: 'bg-[#E8FBF2]', text: 'text-[#6ccfa8]' }, // 그린
-        { bg: 'bg-[#FEF9EB]', text: 'text-[#e0b36b]' }, // 앰버
+        { bg: 'bg-[#E4E4FF]', text: 'text-[#6266F1]' }, // 인디고
+        { bg: 'bg-[#E8FBF2]', text: 'text-[#6CCFA8]' }, // 그린
+        { bg: 'bg-[#FEF9EB]', text: 'text-[#E0B36B]' }, // 앰버
     ];
 
     // 소비 카테고리
@@ -61,6 +61,30 @@ function WalletHomePage() {
                             </div>
                         </div>
                     </Card>
+                    <div className="flex my-6.5">
+                        <Card className="mr-6.5 flex flex-col items-center">
+                            <div className="flex items-center gap-1.5 text-[#22C55E] font-medium">
+                                <IconArrowUp size={24}/>
+                                <div className="text-xl">이번달 충전</div>
+                            </div>
+                            <div className="py-6 text-xl font-bold">{(1250000).toLocaleString()}<span className="text-sm text-gray-400 ml-1">원</span></div>
+                            <div className="flex items-center gap-1.5">
+                                <IconArrowUp size={16} />
+                                <div>지난달 대비 <span className="font-bold text-[#22C55E]">+12%</span></div>
+                            </div>
+                        </Card>
+                        <Card className="flex flex-col items-center">
+                            <div className="flex items-center gap-1.5 text-[red] font-medium">
+                                <IconArrowDown size={24}/>
+                                <div className="text-xl">이번달 지출</div>
+                            </div>
+                            <div className="py-6 text-xl font-bold">{(680000).toLocaleString()}<span className="text-sm text-gray-400 ml-1">원</span></div>
+                            <div className="flex items-center gap-1.5">
+                                <IconArrowUp size={16} />
+                                <div>지난달 대비 <span className="font-bold text-[red]">+12%</span></div>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
                 <div className="min-w-1/2">
                     <Card>
