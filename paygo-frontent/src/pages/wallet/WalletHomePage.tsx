@@ -31,6 +31,13 @@ function WalletHomePage() {
     // 비율에 따른 bar 그리기용
     const total = categories.reduce((sum, cat) => sum + cat.amount, 0);
 
+    // 공지사항
+    const notices = [
+        { title: '수수료 정책 변경 안내', date: '2026.06.29' },
+        { title: '앱 업데이트 v2.1.0', date: '2026.06.15' },
+        { title: '설 연휴 운영시간 안내', date: '2026.01.02' },
+    ];
+
     return (
         // MainLayout에서 Outlet으로 불러온 레이아웃 상태
         <div>
@@ -64,24 +71,35 @@ function WalletHomePage() {
                     <div className="flex my-6.5">
                         <Card className="mr-6.5 flex flex-col items-center">
                             <div className="flex items-center gap-1.5 text-[#22C55E] font-medium">
-                                <IconArrowUp size={24}/>
+                                <IconArrowUp size={24} />
                                 <div className="text-xl">이번달 충전</div>
                             </div>
-                            <div className="py-6 text-xl font-bold">{(1250000).toLocaleString()}<span className="text-sm text-gray-400 ml-1">원</span></div>
+                            <div className="py-6 text-xl font-bold">
+                                {(1250000).toLocaleString()}
+                                <span className="text-sm text-gray-400 ml-1">원</span>
+                            </div>
                             <div className="flex items-center gap-1.5">
                                 <IconArrowUp size={16} />
-                                <div>지난달 대비 <span className="font-bold text-[#22C55E]">+12%</span></div>
+                                <div>
+                                    지난달 대비{' '}
+                                    <span className="font-bold text-[#22C55E]">+12%</span>
+                                </div>
                             </div>
                         </Card>
                         <Card className="flex flex-col items-center">
                             <div className="flex items-center gap-1.5 text-[red] font-medium">
-                                <IconArrowDown size={24}/>
+                                <IconArrowDown size={24} />
                                 <div className="text-xl">이번달 지출</div>
                             </div>
-                            <div className="py-6 text-xl font-bold">{(680000).toLocaleString()}<span className="text-sm text-gray-400 ml-1">원</span></div>
+                            <div className="py-6 text-xl font-bold">
+                                {(680000).toLocaleString()}
+                                <span className="text-sm text-gray-400 ml-1">원</span>
+                            </div>
                             <div className="flex items-center gap-1.5">
                                 <IconArrowUp size={16} />
-                                <div>지난달 대비 <span className="font-bold text-[red]">+12%</span></div>
+                                <div>
+                                    지난달 대비 <span className="font-bold text-[red]">+12%</span>
+                                </div>
                             </div>
                         </Card>
                     </div>
@@ -140,6 +158,18 @@ function WalletHomePage() {
                                         ></div>
                                     </div>
                                 </div>
+                            </div>
+                        ))}
+                    </Card>
+                    <Card className="">
+                        <div className="text-[gray] mb-2">공지사항</div>
+                        {notices.map((notice, index) => (
+                            <div
+                                key={index}
+                                className="py-2.5 border-b-2 border-[#E6E6E6] last:border-b-0"
+                            >
+                                <div>{notice.title}</div>
+                                <div className="text-sm text-[gray] font-medium">{notice.date}</div>
                             </div>
                         ))}
                     </Card>
