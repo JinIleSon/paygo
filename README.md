@@ -12,7 +12,7 @@
 <br><br>
 회원가입
 <br><br>
-<img width="1278" height="928" alt="image" src="https://github.com/user-attachments/assets/162b03e8-b43a-4065-848a-63fe92b94442" />
+<img width="1278" height="928" alt="image" src="https://github.com/user-attachments/assets/61920c3c-c20d-4f7a-bfc0-8d669874ec88" />
 
 <br><br>
 지갑 홈
