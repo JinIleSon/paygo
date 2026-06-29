@@ -1,6 +1,13 @@
 import Button from '../../components/common/Button';
-import { IconPlus, IconArrowRight, IconArrowDown, IconArrowUp } from '@tabler/icons-react';
+import {
+    IconShoppingBag,
+    IconPlus,
+    IconArrowRight,
+    IconArrowDown,
+    IconArrowUp,
+} from '@tabler/icons-react';
 import Card from '../../components/common/Card';
+import { NavLink } from 'react-router-dom';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
@@ -36,6 +43,45 @@ function WalletHomePage() {
         { title: '수수료 정책 변경 안내', date: '2026.06.29' },
         { title: '앱 업데이트 v2.1.0', date: '2026.06.15' },
         { title: '설 연휴 운영시간 안내', date: '2026.01.02' },
+    ];
+
+    // 최근 거래내역
+    const transHistory = [
+        {
+            title: '지갑 충전',
+            date: '01.15 14:23',
+            change: '+300000',
+            balance: 3842000,
+            statement: '완료',
+        },
+        {
+            title: '나이키 슈즈 구매',
+            date: '01.14 11:05',
+            change: '-120000',
+            balance: 3542000,
+            statement: '완료',
+        },
+        {
+            title: '무선 이어폰 구매',
+            date: '01.13 16:42',
+            change: '-89000',
+            balance: 3662000,
+            statement: '결재실패',
+        },
+        {
+            title: '주문 취소',
+            date: '01.12 09:30',
+            change: '+45000',
+            balance: 3751000,
+            statement: '완료',
+        },
+        {
+            title: '캠핑 도구 구매',
+            date: '01.11 20:15',
+            change: '-211000',
+            balance: 3706000,
+            statement: '처리중',
+        },
     ];
 
     return (
@@ -103,6 +149,16 @@ function WalletHomePage() {
                             </div>
                         </Card>
                     </div>
+                    <div>
+                        <div className="flex">
+                            <div className="text-[gray]">최근 거래내역</div>
+                            <NavLink to="#" className="ml-auto flex items-center text-[#6266F1]">
+                                <div>전체보기</div>
+                                <IconArrowRight size={16} />
+                            </NavLink>
+                        </div>
+                        <Card className="mt-2"></Card>
+                    </div>
                 </div>
                 <div className="min-w-1/2">
                     <Card>
@@ -168,8 +224,12 @@ function WalletHomePage() {
                                 key={index}
                                 className="py-2.5 border-b-2 border-[#E6E6E6] last:border-b-0"
                             >
-                                <div>{notice.title}</div>
-                                <div className="text-sm text-[gray] font-medium">{notice.date}</div>
+                                <NavLink to="#">
+                                    <div>{notice.title}</div>
+                                    <div className="text-sm text-[gray] font-medium">
+                                        {notice.date}
+                                    </div>
+                                </NavLink>
                             </div>
                         ))}
                     </Card>
