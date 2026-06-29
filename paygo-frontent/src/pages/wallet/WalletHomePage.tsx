@@ -5,6 +5,7 @@ import {
     IconArrowRight,
     IconArrowDown,
     IconArrowUp,
+    IconRefresh,
 } from '@tabler/icons-react';
 import Card from '../../components/common/Card';
 import { NavLink } from 'react-router-dom';
@@ -50,39 +51,64 @@ function WalletHomePage() {
         {
             title: '지갑 충전',
             date: '01.15 14:23',
-            change: '+300000',
+            change: 300000,
             balance: 3842000,
             statement: '완료',
         },
         {
             title: '나이키 슈즈 구매',
             date: '01.14 11:05',
-            change: '-120000',
+            change: -120000,
             balance: 3542000,
             statement: '완료',
         },
         {
             title: '무선 이어폰 구매',
             date: '01.13 16:42',
-            change: '-89000',
+            change: -89000,
             balance: 3662000,
-            statement: '결재실패',
+            statement: '결제실패',
         },
         {
             title: '주문 취소',
             date: '01.12 09:30',
-            change: '+45000',
+            change: 45000,
             balance: 3751000,
             statement: '완료',
         },
         {
             title: '캠핑 도구 구매',
             date: '01.11 20:15',
-            change: '-211000',
+            change: -211000,
             balance: 3706000,
             statement: '처리중',
         },
     ];
+
+    // 텍스트에 따른 아이콘 종류
+    const getIcon = (title: string) => {
+        if (title.includes('충전')) return (
+        <div className="w-[40px] h-[40px] rounded-xl bg-[#FEF9EB] flex items-center justify-center">
+            <IconPlus size={20} className="text-[#E0B36B]" />
+        </div>
+    )
+    if (title.includes('취소')) return (
+        <div className="w-[40px] h-[40px] rounded-xl bg-[#E8FBF2] flex items-center justify-center">
+            <IconRefresh size={20} className="text-[#22C55E]" />
+        </div>
+    )
+    return (
+        <div className="w-[40px] h-[40px] rounded-xl bg-[#E4E4FF] flex items-center justify-center">
+            <IconShoppingBag size={20} className="text-[#6266F1]" />
+        </div>
+    ) // 구매 등 기본 아이콘
+    };
+
+    const getBadge = (statement: string) => {
+        if (statement === '완료') return <span className="rounded-full text-[#22C55E] bg-[#E8FBF2] px-2 py-1 text-xs">완료</span>
+        if (statement === '결제실패') return <span className="bg-[#FFE4E4] text-[red] px-2 py-1 rounded-full text-xs">결제실패</span>
+        if (statement === '처리중') return <span className="bg-[#E4E4FF] text-[#6266F1] px-2 py-1 rounded-full text-xs">결제실패</span>
+    };
 
     return (
         // MainLayout에서 Outlet으로 불러온 레이아웃 상태
@@ -157,7 +183,28 @@ function WalletHomePage() {
                                 <IconArrowRight size={16} />
                             </NavLink>
                         </div>
-                        <Card className="mt-2"></Card>
+                        <Card className="mt-2">
+                            {transHistory.map((trans, index) => (
+                                <div key={index} className="grid grid-cols-[40px_120px_110px_70px] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[20.5px]">
+                                    <div>
+                                        {getIcon(trans.title)}
+                                    </div>
+                                    <div>
+                                        <div>{trans.title}</div>
+                                        <div className="text-sm text-[gray] font-medium">{trans.date}</div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className={trans.change > 0 ? `text-[#22C55E] font-medium` : `text-[red] font-medium`}>
+                                            {trans.change > 0 ? '+' : ''}{trans.change.toLocaleString()}원
+                                        </div>
+                                        <div className="text-sm text-[gray] font-medium">잔액 {trans.balance.toLocaleString()}원</div>
+                                    </div>
+                                    <div className="flex justify-center">
+                                        {getBadge(trans.statement)}
+                                    </div>
+                                </div>
+                            ))}
+                        </Card>
                     </div>
                 </div>
                 <div className="min-w-1/2">
