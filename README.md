@@ -12,9 +12,9 @@
 <br><br>
 회원가입
 <br><br>
-<img width="1278" height="928" alt="image" src="https://github.com/user-attachments/assets/61920c3c-c20d-4f7a-bfc0-8d669874ec88" />
+<img width="2542" height="1348" alt="image" src="https://github.com/user-attachments/assets/c3d7008c-0ffc-4c1a-bf5c-70e16c65998c" />
 
 <br><br>
 지갑 홈
 <br><br>
-<img width="1278" height="928" alt="image" src="https://github.com/user-attachments/assets/b428201e-fca4-42ed-a6e1-fa56126017db" />
+<img width="1285" height="1050" alt="image" src="https://github.com/user-attachments/assets/a8e1f2e6-085b-4b38-bc8d-1f8bf71a7f38" />
