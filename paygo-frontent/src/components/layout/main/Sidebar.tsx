@@ -23,8 +23,8 @@ function Sidebar() {
         `flex items-center gap-3 py-2.5 px-6 cursor-pointer transition-colors duration-500
         ${
             isActive
-                ? 'bg-[#E4E4FF] text-[#6266f1] font-medium border-r-2 border-[#6266f1]'
-                : 'text-[gray] hover:bg-[#F5F6FF] hover:text-[#6266f1]'
+                ? 'bg-[#E4E4FF] text-[#6266F1] font-medium border-r-2 border-[#6266f1]'
+                : 'text-[gray] hover:bg-[#F5F6FF] hover:text-[#6266F1]'
         }`;
 
     return (
@@ -93,7 +93,7 @@ function Sidebar() {
             </div>
             <div className="mt-auto border-t border-[#D9D9D9] p-6">
                 <div className="flex items-center gap-2.5">
-                    <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E4E4FF] text-[#6266f1] text-[14px] font-medium">
+                    <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E4E4FF] text-[#6266F1] text-[14px] font-medium">
                         {nameInitial}
                     </div>
                     <div>
