@@ -23,7 +23,9 @@ function WalletChargePage() {
     // 충전할 금액 - 버튼 클릭 시 금액 추가
     const handleButtonCharge = (amount: number) => {
         const current = chargeAmount ? Number(chargeAmount.replace(/,/g, '')) : 0;
-        setChargeAmount(String(current + amount));
+        const sum = current + amount;
+        if (sum > maxCharge) return; // 최대 초과 시 막기
+        setChargeAmount(String(sum));
     };
 
     return (
