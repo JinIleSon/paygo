@@ -11,7 +11,7 @@ function PasswordInput({ value, onChange, ...props }: PasswordInputProps) {
 
     return (
         <div
-            className="relative w-full h-[40px] bg-white"
+            className="relative w-full h-10 bg-white"
             onClick={() => inputRef.current?.focus()}
         >
             {/* 실제 입력받는 투명 input */}
@@ -26,15 +26,15 @@ function PasswordInput({ value, onChange, ...props }: PasswordInputProps) {
             />
             {/* 보여주는 div */}
             <div className="flex items-center h-full pl-3.5 border border-[#D9D9D9] rounded-md text-gray-600">
-                <span className="text-[12px] tracking-widest text-gray-600">
+                <span className="text-xs tracking-widest text-gray-600">
                     {'●'.repeat(value.length)}
                 </span>
                 {/* 가짜 커서 */}
                 {focused && (
-                    <span className="inline-block w-[1px] h-[22px] bg-gray-600 ml-[1px] animate-blink" />
+                    <span className="inline-block w-px h-[1.375rem] bg-gray-600 ml-px animate-blink" />
                 )}
                 {!value && !focused && (
-                    <span className="absolute text-[12px] tracking-widest text-gray-400">
+                    <span className="absolute text-xs tracking-widest text-gray-400">
                         ●●●●●●●
                     </span>
                 )}

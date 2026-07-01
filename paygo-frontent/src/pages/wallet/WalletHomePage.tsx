@@ -88,17 +88,17 @@ function WalletHomePage() {
     // 텍스트에 따른 아이콘 종류
     const getIcon = (title: string) => {
         if (title.includes('충전')) return (
-        <div className="w-[40px] h-[40px] rounded-xl bg-[#FEF9EB] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
             <IconPlus size={20} className="text-[#E0B36B]" />
         </div>
     )
     if (title.includes('취소')) return (
-        <div className="w-[40px] h-[40px] rounded-xl bg-[#E8FBF2] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center">
             <IconRefresh size={20} className="text-[#22C55E]" />
         </div>
     )
     return (
-        <div className="w-[40px] h-[40px] rounded-xl bg-[#F5F6FF] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-[#F5F6FF] flex items-center justify-center">
             <IconShoppingBag size={20} className="text-[#6266F1]" />
         </div>
     ) // 구매 등 기본 아이콘
@@ -118,7 +118,7 @@ function WalletHomePage() {
                     <Card variant="primary">
                         <div>
                             <div className="text-[#E2E3FF]">Paygo 지갑 잔액</div>
-                            <div className="py-3 text-white text-[32px] font-medium">
+                            <div className="py-3 text-white text-[2rem] font-medium">
                                 {balance.toLocaleString()}원
                             </div>
                             <div className="flex items-center gap-3">
@@ -185,7 +185,7 @@ function WalletHomePage() {
                         </div>
                         <Card className="mt-2">
                             {transHistory.map((trans, index) => (
-                                <div key={index} className="grid grid-cols-[40px_120px_110px_70px] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[20.5px]">
+                                <div key={index} className="grid grid-cols-[2.5rem_7.5rem_6.875rem_4.375rem] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[1.28125rem]">
                                     <div>
                                         {getIcon(trans.title)}
                                     </div>
@@ -214,13 +214,13 @@ function WalletHomePage() {
                             <div key={index} className="mt-auto py-4">
                                 <div className="flex items-center gap-4">
                                     <div
-                                        className={`${avatarColors[index % 3].bg} ${avatarColors[index % 3].text} flex items-center justify-center w-[40px] h-[40px] rounded-full  text-[14px] font-medium`}
+                                        className={`${avatarColors[index % 3].bg} ${avatarColors[index % 3].text} flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium`}
                                     >
                                         {contact.name.slice(-2)}
                                     </div>
                                     <div>
                                         <div className="flex font-medium">{contact.name}</div>
-                                        <div className="text-[gray] text-[14px]">
+                                        <div className="text-[gray] text-sm">
                                             <span>{contact.bank}</span>
                                             <span className="ml-2">{contact.account}</span>
                                         </div>

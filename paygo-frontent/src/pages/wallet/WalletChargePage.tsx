@@ -47,7 +47,7 @@ function WalletChargePage() {
                                         {balance.toLocaleString()}원
                                     </div>
                                 </div>
-                                <div className="w-[60px] h-[60px] rounded-xl bg-[#EDECFF] flex items-center justify-center ml-auto">
+                                <div className="w-[3.75rem] h-[3.75rem] rounded-xl bg-[#EDECFF] flex items-center justify-center ml-auto">
                                     <IconWallet size={30} className="text-[#6266F1]" />
                                 </div>
                             </div>
@@ -60,7 +60,7 @@ function WalletChargePage() {
                                         chargeAmount ? Number(chargeAmount).toLocaleString() : ''
                                     }
                                     placeholder="100,000"
-                                    className="text-2xl flex justify-center h-[48px] leading-[48px]"
+                                    className="text-2xl flex justify-center h-12 leading-[3rem]"
                                     onChange={handleCharge}
                                 />
                                 <span className="text-2xl absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
@@ -75,19 +75,19 @@ function WalletChargePage() {
                                 <div className="flex gap-3 mt-5">
                                     <Button
                                         onClick={() => handleButtonCharge(10000)}
-                                        className="flex-1 px-3 py-2 font-medium border border-[#d9d9d9]"
+                                        className="flex-1 px-3 py-2 font-medium border border-[#D9D9D9]"
                                     >
                                         +{Number(10000).toLocaleString()} 원
                                     </Button>
                                     <Button
                                         onClick={() => handleButtonCharge(30000)}
-                                        className="flex-1 px-3 py-2 font-medium border border-[#d9d9d9]"
+                                        className="flex-1 px-3 py-2 font-medium border border-[#D9D9D9]"
                                     >
                                         +{Number(30000).toLocaleString()} 원
                                     </Button>
                                     <Button
                                         onClick={() => handleButtonCharge(50000)}
-                                        className="flex-1 px-3 py-2 font-medium border border-[#d9d9d9]"
+                                        className="flex-1 px-3 py-2 font-medium border border-[#D9D9D9]"
                                     >
                                         +{Number(50000).toLocaleString()} 원
                                     </Button>
@@ -95,19 +95,19 @@ function WalletChargePage() {
                                 <div className="flex gap-3 my-3">
                                     <Button
                                         onClick={() => handleButtonCharge(100000)}
-                                        className="flex-1 px-3 py-2 font-medium border border-[#d9d9d9]"
+                                        className="flex-1 px-3 py-2 font-medium border border-[#D9D9D9]"
                                     >
                                         +{Number(100000).toLocaleString()} 원
                                     </Button>
                                     <Button
                                         onClick={() => handleButtonCharge(300000)}
-                                        className="flex-1 px-3 py-2 font-medium border border-[#d9d9d9]"
+                                        className="flex-1 px-3 py-2 font-medium border border-[#D9D9D9]"
                                     >
                                         +{Number(300000).toLocaleString()} 원
                                     </Button>
                                     <Button
                                         onClick={() => handleButtonCharge(500000)}
-                                        className="flex-1 px-3 py-2 font-medium border border-[#d9d9d9]"
+                                        className="flex-1 px-3 py-2 font-medium border border-[#D9D9D9]"
                                     >
                                         +{Number(500000).toLocaleString()} 원
                                     </Button>

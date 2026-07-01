@@ -110,7 +110,7 @@ function PrivacyConsentPage() {
                         <IconCreditCard size={24} color="white" />
                     </div>
                     <span className="font-semibold text-gray-900 text-lg">
-                        <span className="text-[#6266f1]">Pay</span>
+                        <span className="text-[#6266F1]">Pay</span>
                         <span>go</span>
                     </span>
                     <span className="text-gray-400 text-sm ml-1">개인정보 수집 및 이용 동의</span>
@@ -206,11 +206,11 @@ function PrivacyConsentPage() {
 
                 {/* Footer */}
                 <div className="mt-16 pt-8 border-t border-gray-200 text-center">
-                    <div className="mx-auto mb-3 w-[46px] h-[46px] rounded-2xl bg-[#6266f1] flex items-center justify-center">
+                    <div className="mx-auto mb-3 w-[46px] h-[46px] rounded-2xl bg-[#6266F1] flex items-center justify-center">
                         <IconCreditCard size={24} color="white" />
                     </div>
                     <p className="text-sm font-semibold text-gray-900">
-                        <span className="text-[#6266f1]">Pay</span>
+                        <span className="text-[#6266F1]">Pay</span>
                         <span>go</span>
                         <span> 주식회사</span>
                     </p>

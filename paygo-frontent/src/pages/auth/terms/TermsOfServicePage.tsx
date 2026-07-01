@@ -124,7 +124,7 @@ function TermsOfServicePage() {
                         <IconCreditCard size={24} color="white" />{' '}
                     </div>
                     <span className="font-semibold text-gray-900 text-lg">
-                        <span className="text-[#6266f1]">Pay</span>
+                        <span className="text-[#6266F1]">Pay</span>
                         <span>go</span>
                     </span>
                     <span className="text-gray-400 text-sm ml-1">서비스 이용약관</span>
@@ -223,7 +223,7 @@ function TermsOfServicePage() {
                         <IconCreditCard size={24} color="white" />{' '}
                     </div>
                     <p className="text-sm font-semibold text-gray-900">
-                        <span className="text-[#6266f1]">Pay</span>
+                        <span className="text-[#6266F1]">Pay</span>
                         <span>go</span>
                         <span> 주식회사</span>
                     </p>

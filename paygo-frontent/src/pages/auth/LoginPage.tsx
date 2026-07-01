@@ -44,10 +44,10 @@ function LoginPage() {
                     </div>
                     <div className="flex flex-col">
                         <div className="flex gap-3.5">
-                            <div className="w-[50px] h-[50px] rounded-2xl bg-[#edecff] flex items-center justify-center">
+                            <div className="w-[3.125rem] h-[3.125rem] rounded-2xl bg-[#edecff] flex items-center justify-center">
                                 <IconWallet size={28} color="#8679dc" />{' '}
                             </div>
-                            <div className="text-[#49576f] flex flex-col">
+                            <div className="text-[#49576F] flex flex-col">
                                 <div className="font-bold text-base text-start">간편 지갑 충전</div>
                                 <div className="font-medium text-sm text-gray-400 mt-0.5">
                                     내 계좌에서 바로 충전
@@ -55,10 +55,10 @@ function LoginPage() {
                             </div>
                         </div>
                         <div className="flex gap-3.5 mt-5">
-                            <div className="w-[50px] h-[50px] rounded-2xl bg-[#e8fbf2] flex items-center justify-center">
+                            <div className="w-[3.125rem] h-[3.125rem] rounded-2xl bg-[#E8FBF2] flex items-center justify-center">
                                 <IconShoppingCart size={28} color="#6ccfa8" />{' '}
                             </div>
-                            <div className="text-[#49576f] font-medium flex flex-col">
+                            <div className="text-[#49576F] font-medium flex flex-col">
                                 <div className="font-bold text-base text-start">빠른 결제</div>
                                 <div className="font-medium text-sm text-gray-400 mt-0.5">
                                     원클릭으로 상품 구매
@@ -66,10 +66,10 @@ function LoginPage() {
                             </div>
                         </div>
                         <div className="flex gap-3.5 mt-5">
-                            <div className="w-[50px] h-[50px] rounded-2xl bg-[#fef9eb] flex items-center justify-center">
-                                <IconChartBar size={28} color="#e0b36b" />{' '}
+                            <div className="w-[3.125rem] h-[3.125rem] rounded-2xl bg-[#FEF9EB] flex items-center justify-center">
+                                <IconChartBar size={28} color="#E0B36B" />{' '}
                             </div>
-                            <div className="text-[#49576f] font-medium flex flex-col">
+                            <div className="text-[#49576F] font-medium flex flex-col">
                                 <div className="font-bold text-base text-start">소비 분석</div>
                                 <div className="font-medium text-sm text-gray-400 mt-0.5">
                                     지출 패턴을 한 눈에
@@ -79,15 +79,15 @@ function LoginPage() {
                     </div>
                 </div>
             </div>
-            <div className="flex-[5.5] flex justify-center items-center border-l border-[#D9D9D9] border-solid bg-[#fafafa]">
-                <div className="w-[480px]">
+            <div className="flex-[5.5] flex justify-center items-center border-l border-[#D9D9D9] border-solid bg-[#FAFAFA]">
+                <div className="w-[30rem]">
                     <div className="flex flex-col">
                         <div className="text-3xl font-medium">로그인</div>
-                        <div className="text-[#bdb6b1] font-bold mt-2">
+                        <div className="text-[#BDB6B1] font-bold mt-2">
                             Paygo 계정으로 시작하세요
                         </div>
                     </div>
-                    <div className="mt-10 text-[#bdb6b1] font-medium text">
+                    <div className="mt-10 text-[#BDB6B1] font-medium">
                         <div className="mb-2">이메일</div>
                         <div>
                             <TextInput
@@ -97,7 +97,7 @@ function LoginPage() {
                             />
                         </div>
                     </div>
-                    <div className="mt-5 text-[#bdb6b1] font-medium">
+                    <div className="mt-5 text-[#BDB6B1] font-medium">
                         <div className="flex mb-2">
                             <div>비밀번호</div>
                             <div className="ml-auto">
@@ -117,27 +117,27 @@ function LoginPage() {
                         </div>
                         <div className="mt-4 text-sm gap-2 flex">
                             <div>
-                                <input type="checkbox" name="" id="" className="mt-[1px]" />
+                                <input type="checkbox" name="" id="" className="mt-px" />
                             </div>
                             <div>로그인 상태 유지</div>
                         </div>
                         <div className="mt-5">
-                            <Button variant="primary" className="h-[40px] w-full">
+                            <Button variant="primary" className="h-10 w-full">
                                 로그인
                             </Button>
                         </div>
                         <div className="flex items-center gap-3 mt-6">
-                            <div className="flex-1 border-t border-[#d8d8d8]"></div>
+                            <div className="flex-1 border-t border-[#D8D8D8]"></div>
                             <span className="text-sm font-light">또는</span>
-                            <div className="flex-1 border-t border-[#d8d8d8]"></div>
+                            <div className="flex-1 border-t border-[#D8D8D8]"></div>
                         </div>
                         <div className="mt-6">
                             <Button
                                 variant="secondary"
-                                className="flex items-center justify-center gap-1.5 w-full h-[50px]"
+                                className="flex items-center justify-center gap-1.5 w-full h-[3.125rem]"
                             >
                                 <IconBrandGoogle size={20} color="#666666" />
-                                <span className="text-[14px] text-[#666666]">
+                                <span className="text-sm text-[#666666]">
                                     Google로 계속하기
                                 </span>
                             </Button>

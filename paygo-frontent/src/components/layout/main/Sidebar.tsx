@@ -28,19 +28,19 @@ function Sidebar() {
         }`;
 
     return (
-        <div className="w-[240px] h-screen border-x border-[#D9D9D9] flex flex-col shrink-0">
+        <div className="w-60 h-screen border-x border-[#D9D9D9] flex flex-col shrink-0">
             <div className="flex items-center p-6 gap-3 text-2xl font-bold">
-                <div className="w-[40px] h-[40px] rounded-xl bg-[#6266f1] flex items-center justify-center">
+                <div className="w-[40px] h-[40px] rounded-xl bg-[#6266F1] flex items-center justify-center">
                     <IconCreditCard size={23} color="white" />
                 </div>
                 <div className="">
-                    <span className="text-[#6266f1]">Pay</span>
+                    <span className="text-[#6266F1]">Pay</span>
                     <span>go</span>
                 </div>
             </div>
             <div className="border-b border-[#D9D9D9]"></div>
             <div className="py-6 text-[gray]">
-                <div className="font-medium px-6 text-[18px]">지갑</div>
+                <div className="font-medium px-6 text-lg">지갑</div>
                 <NavLink
                     to="/wallet/home"
                     className={({ isActive }) => `${navItemClass({ isActive })} mt-3`}
@@ -57,9 +57,9 @@ function Sidebar() {
                     <div>거래내역</div>
                 </NavLink>
             </div>
-            <div className="border-b border-[#D9D9D9] mt-[-6px]"></div>
+            <div className="border-b border-[#D9D9D9] -mt-1.5"></div>
             <div className="py-6 text-[gray]">
-                <div className="px-6 font-medium text-[18px]">쇼핑</div>
+                <div className="px-6 font-medium text-lg">쇼핑</div>
                 <NavLink
                     to="/shopping/list"
                     className={({ isActive }) => `${navItemClass({ isActive })} mt-3`}
@@ -76,9 +76,9 @@ function Sidebar() {
                     <div>주문내역</div>
                 </NavLink>
             </div>
-            <div className="border-b border-[#D9D9D9] mt-[-6px]"></div>
+            <div className="border-b border-[#D9D9D9] -mt-1.5"></div>
             <div className="py-6 text-[gray]">
-                <div className="px-6 font-medium text-[18px]">계정</div>
+                <div className="px-6 font-medium text-lg">계정</div>
                 <NavLink
                     to="/account/mypage"
                     className={({ isActive }) => `${navItemClass({ isActive })} mt-3`}
@@ -93,12 +93,12 @@ function Sidebar() {
             </div>
             <div className="mt-auto border-t border-[#D9D9D9] p-6">
                 <div className="flex items-center gap-2.5">
-                    <div className="flex items-center justify-center w-[40px] h-[40px] rounded-full bg-[#E4E4FF] text-[#6266F1] text-[14px] font-medium">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#E4E4FF] text-[#6266F1] text-sm font-medium">
                         {nameInitial}
                     </div>
                     <div>
                         <div className="font-medium">{name}</div>
-                        <div className="text-[gray] text-[14px]">{grade}</div>
+                        <div className="text-[gray] text-sm">{grade}</div>
                     </div>
                 </div>
             </div>

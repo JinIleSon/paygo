@@ -10,7 +10,7 @@ interface TextInputProps {
 
 function TextInput({ value, onChange, placeholder, className, ...props }: TextInputProps) {
     const base =
-        'w-full leading-[40px] pl-3.5 h-[40px] rounded-md outline-none bg-white border border-[#d9d9d9]';
+        'w-full leading-10 pl-3.5 h-10 rounded-md outline-none bg-white border border-[#D9D9D9]';
 
     return (
         <input
