@@ -23,7 +23,6 @@ function WalletChargePage() {
         const current = chargeAmount ? Number(chargeAmount.replace(/,/g, '')) : 0;
         const sum = current + amount;
         if (sum > maxCharge) return; // 최대 초과 시 막기
-        if (sum > balance) return; // 현재 내가 가진 돈보다 많아지면 막기
         setChargeAmount(String(sum));
     };
 
