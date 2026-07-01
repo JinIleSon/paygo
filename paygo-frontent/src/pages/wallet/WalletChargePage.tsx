@@ -6,6 +6,9 @@ import Button from '../../components/common/Button';
 
 function WalletChargePage() {
     const balance = 3842000;
+    const minCharge = 1000; // 충전 금액 최소
+    const maxCharge = 10000000; // 충전 금액 최대
+    const fee = 0; // TODO: 수수료 데이터 연동 필요
     const [chargeAmount, setChargeAmount] = useState('');
 
     // 충전할 금액 - 숫자만 입력 가능
@@ -14,11 +17,6 @@ function WalletChargePage() {
         setChargeAmount(onlyNumbersOne);
     };
 
-    // 충전 금액 최소
-    const minCharge = 1000;
-
-    // 충전 금액 최대
-    const maxCharge = 10000000;
 
     // 충전할 금액 - 버튼 클릭 시 금액 추가
     const handleButtonCharge = (amount: number) => {
@@ -28,6 +26,13 @@ function WalletChargePage() {
         if (sum > balance) return; // 현재 내가 가진 돈보다 많아지면 막기
         setChargeAmount(String(sum));
     };
+
+    const chargeSummary = [
+        { title: '충전 금액', content: Number(chargeAmount).toLocaleString() + '원' },
+        { title: '결제 수단', content: '계좌이체' }, // TODO: 결제 수단 데이터 연동 필요
+        { title: '수수료', content: fee.toLocaleString() + '원' },
+        { title: '충전 후 금액', content: Number(balance + Number(chargeAmount) - fee).toLocaleString() + '원' }
+    ];
 
     return (
         <div>
@@ -113,7 +118,19 @@ function WalletChargePage() {
                     </Card>
                 </div>
                 <div className="min-w-1/2">
-                    <Card></Card>
+                    <Card>
+                        <div className="text-[gray] mb-6">충전 요약</div>
+                        <Card className="bg-[#FAFAFA] text-[gray]">
+                            {chargeSummary.map((summary, index) => (
+                                <div 
+                                    key={index} 
+                                    className={`flex items-center justify-between py-3 ${index === chargeSummary.length - 1 ? 'border-t-2 border-[#E6E6E6] pt-5 pb-2.5': ''} ${index === chargeSummary.length - 2 ? 'pb-7' : ''}`}>
+                                    <div className={`${index === chargeSummary.length - 1 ? 'text-xl' : ''}`}>{summary.title}</div>
+                                    <div className={`font-bold ${index === chargeSummary.length - 1 ? 'text-[#6266F1] text-2xl' : 'text-black'}`}>{summary.content}</div>
+                                </div> 
+                            ))}
+                        </Card>
+                    </Card>
                 </div>
             </div>
         </div>
