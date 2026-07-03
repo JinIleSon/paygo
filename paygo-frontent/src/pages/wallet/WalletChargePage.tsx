@@ -17,7 +17,6 @@ function WalletChargePage() {
         setChargeAmount(onlyNumbersOne);
     };
 
-
     // 충전할 금액 - 버튼 클릭 시 금액 추가
     const handleButtonCharge = (amount: number) => {
         const current = chargeAmount ? Number(chargeAmount.replace(/,/g, '')) : 0;
@@ -30,7 +29,10 @@ function WalletChargePage() {
         { title: '충전 금액', content: Number(chargeAmount).toLocaleString() + '원' },
         { title: '결제 수단', content: '계좌이체' }, // TODO: 결제 수단 데이터 연동 필요
         { title: '수수료', content: fee.toLocaleString() + '원' },
-        { title: '충전 후 금액', content: Number(balance + Number(chargeAmount) - fee).toLocaleString() + '원' }
+        {
+            title: '충전 후 금액',
+            content: Number(balance + Number(chargeAmount) - fee).toLocaleString() + '원',
+        },
     ];
 
     return (
@@ -121,14 +123,31 @@ function WalletChargePage() {
                         <div className="text-[gray] mb-6">충전 요약</div>
                         <Card className="bg-[#FAFAFA] text-[gray]">
                             {chargeSummary.map((summary, index) => (
-                                <div 
-                                    key={index} 
-                                    className={`flex items-center justify-between py-3 ${index === chargeSummary.length - 1 ? 'border-t-2 border-[#E6E6E6] pt-5 pb-2.5': ''} ${index === chargeSummary.length - 2 ? 'pb-7' : ''}`}>
-                                    <div className={`${index === chargeSummary.length - 1 ? 'text-xl' : ''}`}>{summary.title}</div>
-                                    <div className={`font-bold ${index === chargeSummary.length - 1 ? 'text-[#6266F1] text-2xl' : 'text-black'}`}>{summary.content}</div>
-                                </div> 
+                                <div
+                                    key={index}
+                                    className={`flex items-center justify-between py-3 ${index === chargeSummary.length - 1 ? 'border-t-2 border-[#E6E6E6] pt-5 pb-2.5' : ''} ${index === chargeSummary.length - 2 ? 'pb-7' : ''}`}
+                                >
+                                    <div
+                                        className={`${index === chargeSummary.length - 1 ? 'text-xl' : ''}`}
+                                    >
+                                        {summary.title}
+                                    </div>
+                                    <div
+                                        className={`font-bold ${index === chargeSummary.length - 1 ? 'text-[#6266F1] text-2xl' : 'text-black'}`}
+                                    >
+                                        {summary.content}
+                                    </div>
+                                </div>
                             ))}
                         </Card>
+                        <div className="mt-6">
+                            <Button className="w-full h-11 font-bold border border-[#D9D9D9]">
+                                충전하기
+                            </Button>
+                            <Button className="w-full h-11 font-bold mt-3 border border-[#D9D9D9]">
+                                취소
+                            </Button>
+                        </div>
                     </Card>
                 </div>
             </div>
