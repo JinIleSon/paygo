@@ -3,6 +3,7 @@ import Card from '../../components/common/Card';
 import TextInput from '../../components/common/TextInput';
 import { useState } from 'react';
 import Button from '../../components/common/Button';
+import SelectCard from '../../components/common/SelectCard';
 
 function WalletChargePage() {
     const balance = 3842000;
@@ -115,6 +116,12 @@ function WalletChargePage() {
                                     </Button>
                                 </div>
                             </div>
+                        </div>
+                    </Card>
+                    <Card className="my-6.5">
+                        <div className="text-[gray] mb-6">결제 수단</div>
+                        <div className="flex flex-col gap-3 mb-3">
+                            <SelectCard>계좌이체</SelectCard>
                         </div>
                     </Card>
                 </div>
