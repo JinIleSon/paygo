@@ -7,7 +7,7 @@ import Button from '../../components/common/Button';
 function WalletChargePage() {
     const balance = 3842000;
     const minCharge = 1000; // 충전 금액 최소
-    const maxCharge = 10000000; // 충전 금액 최대
+    const maxCharge = 2000000; // 충전 금액 최대
     const fee = 0; // TODO: 수수료 데이터 연동 필요
     const [chargeAmount, setChargeAmount] = useState('');
 
@@ -140,13 +140,22 @@ function WalletChargePage() {
                                 </div>
                             ))}
                         </Card>
-                        <div className="mt-6">
+                        <div className="mt-6 mb-3">
                             <Button className="w-full h-11 font-bold border border-[#D9D9D9]">
                                 충전하기
                             </Button>
                             <Button className="w-full h-11 font-bold mt-3 border border-[#D9D9D9]">
                                 취소
                             </Button>
+                        </div>
+                    </Card>
+                    <Card className="my-6.5">
+                        <div className="text-[gray] mb-6">충전 유의사항</div>
+                        <div className="text-lg flex flex-col gap-3 mb-3">
+                            <div><span className="mr-3">ⓘ</span><span>1회 최대 충전 한도는 2,000,000원입니다.</span></div>
+                            <div><span className="mr-3">ⓘ</span><span>계좌이체는 영업시간(09:00~22:00) 내에만 가능합니다.</span></div>
+                            <div><span className="mr-3">ⓘ</span><span>충전된 금액은 Paygo 서비스 내에서만 사용 가능합니다.</span></div>
+                            <div><span className="mr-3">ⓘ</span><span>충전 취소는 충전 후 24시간 이내에만 가능합니다.</span></div>
                         </div>
                     </Card>
                 </div>
