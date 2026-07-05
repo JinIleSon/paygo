@@ -23,7 +23,7 @@ function Sidebar() {
         `flex items-center gap-3 py-2.5 px-6 cursor-pointer transition-colors duration-500
         ${
             isActive
-                ? 'bg-[#E4E4FF] text-[#6266F1] font-medium border-r-2 border-[#6266f1]'
+                ? 'bg-[#E4E4FF] text-[#6266F1] font-medium border-r-2 border-[#6266F1]'
                 : 'text-[gray] hover:bg-[#F5F6FF] hover:text-[#6266F1]'
         }`;
 
