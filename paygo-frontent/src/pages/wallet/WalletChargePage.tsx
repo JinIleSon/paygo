@@ -1,4 +1,4 @@
-import { IconWallet } from '@tabler/icons-react';
+import { IconWallet, IconBuildingBank, IconCreditCard, IconDeviceMobile } from '@tabler/icons-react';
 import Card from '../../components/common/Card';
 import TextInput from '../../components/common/TextInput';
 import { useState } from 'react';
@@ -35,6 +35,22 @@ function WalletChargePage() {
             content: Number(balance + Number(chargeAmount) - fee).toLocaleString() + '원',
         },
     ];
+
+    const paymentMethods = [
+        { id: 'account', label: '계좌이체', desc: '국민·신한·우리·하나 등' },
+        { id: 'card', label: '신용/체크카드', desc: 'VISA·MasterCard 등' },
+        { id: 'digitalWallet', label: '간편결제', desc: '카카오페이·네이버페이' },
+    ];
+
+    const [selectedPayment, setSelectedPayment] = useState('');
+
+    const getIcon = (id: string) => {
+        if (id === 'account') 
+            return <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center"><IconBuildingBank size={20} className="text-[#22C55E]"/></div>;
+        if (id === 'card')
+            return <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center"><IconCreditCard size={20} className="text-[#E0B36B]"/></div>;
+        return <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center"><IconDeviceMobile size={20} className="text-[#E0B36B]"/></div>;
+    };
 
     return (
         <div>
@@ -119,9 +135,29 @@ function WalletChargePage() {
                         </div>
                     </Card>
                     <Card className="my-6.5">
-                        <div className="text-[gray] mb-6">결제 수단</div>
+                        <div className="text-[gray] mb-6">충전 수단</div>
                         <div className="flex flex-col gap-3 mb-3">
-                            <SelectCard>계좌이체</SelectCard>
+                            {paymentMethods.map((method) => (
+                                <SelectCard
+                                    key={method.id}
+                                    isSelected={selectedPayment === method.id}
+                                    onClick={() => setSelectedPayment(method.id)}
+                                    variant="secondary">
+                                        <div className="flex items-center p-5 gap-5">
+                                            {getIcon(method.id)}
+                                            <div className="flex flex-col justify-start">
+                                                <div className="flex font-medium">
+                                                    {method.label}
+                                                </div>
+                                                <div>
+                                                    {method.desc}
+                                                </div>
+                                            </div>
+                                        </div>
+                                </SelectCard>
+                            ))
+
+                            }
                         </div>
                     </Card>
                 </div>
@@ -158,7 +194,7 @@ function WalletChargePage() {
                     </Card>
                     <Card className="my-6.5">
                         <div className="text-[gray] mb-6">충전 유의사항</div>
-                        <div className="text-lg flex flex-col gap-3 mb-3">
+                        <div className="text-lg flex flex-col gap-5 mb-3">
                             <div><span className="mr-3">ⓘ</span><span>1회 최대 충전 한도는 2,000,000원입니다.</span></div>
                             <div><span className="mr-3">ⓘ</span><span>계좌이체는 영업시간(09:00~22:00) 내에만 가능합니다.</span></div>
                             <div><span className="mr-3">ⓘ</span><span>충전된 금액은 Paygo 서비스 내에서만 사용 가능합니다.</span></div>
