@@ -18,3 +18,8 @@
 지갑 홈
 <br><br>
 <img width="1285" height="1050" alt="image" src="https://github.com/user-attachments/assets/a8e1f2e6-085b-4b38-bc8d-1f8bf71a7f38" />
+
+<br><br>
+충전
+<br><br>
+<img width="1287" height="1018" alt="image" src="https://github.com/user-attachments/assets/dce58e22-209c-40c8-abd0-86bbdf1a981c" />
