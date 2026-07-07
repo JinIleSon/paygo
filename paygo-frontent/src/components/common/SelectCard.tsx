@@ -12,7 +12,7 @@ interface SelectCardProps{
 function SelectCard({variant = 'primary', isSelected, onClick, children, className, ...props} : SelectCardProps){
 
     const variants = {
-        primary : 'rounded-full px-3 py-1',
+        primary : 'rounded-full px-3.5 py-1',
         secondary: 'rounded-xl'
     };
 
