@@ -7,6 +7,7 @@ import MarketingConsentPage from '../pages/auth/terms/MarketingConsentPage.tsx';
 import WalletHomePage from '../pages/wallet/WalletHomePage.tsx';
 import MainLayout from '../components/layout/main/MainLayout.tsx';
 import WalletChargePage from '../pages/wallet/WalletChargePage.tsx';
+import WalletHistoryPage from '../pages/wallet/WalletHistoryPage.tsx';
 
 export const router = createBrowserRouter([
     { path: '/login', element: <LoginPage /> },
@@ -17,5 +18,6 @@ export const router = createBrowserRouter([
     { element: <MainLayout />, children: [
         { path: '/wallet/home', element: <WalletHomePage /> },
         { path: '/wallet/charge', element: <WalletChargePage /> },
+        { path: '/wallet/history', element: <WalletHistoryPage /> },
     ]}
 ]);
