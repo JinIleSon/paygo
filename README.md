@@ -22,4 +22,4 @@
 <br><br>
 충전
 <br><br>
-<img width="1293" height="1114" alt="image" src="https://github.com/user-attachments/assets/dc8a133d-a44a-46f1-b718-8c62f81c8bd5" />
+<img width="1287" height="1018" alt="image" src="https://github.com/user-attachments/assets/dce58e22-209c-40c8-abd0-86bbdf1a981c" />
