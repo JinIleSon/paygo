@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Card from "../../components/common/Card";
 import SelectCard from "../../components/common/SelectCard";
+import TextInput from "../../components/common/TextInput";
 
 function WalletHistoryPage(){
 
@@ -36,6 +37,9 @@ function WalletHistoryPage(){
                             </SelectCard>
                         ))}
                     </div>
+                </div>
+                <div>
+                    <TextInput placeholder="검색어 입력" className=""/>
                 </div>
             </Card>
         </div>
