@@ -24,7 +24,7 @@ function Sidebar() {
         ${
             isActive
                 ? 'bg-[#E4E4FF] text-[#6266F1] font-medium border-r-2 border-[#6266F1]'
-                : 'text-[gray] hover:bg-[#F5F6FF] hover:text-[#6266F1]'
+                : 'text-[gray] hover:bg-[#F5F6FF] hover:text-[#9294F5]'
         }`;
 
     return (

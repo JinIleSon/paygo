@@ -12,7 +12,7 @@ interface SelectCardProps{
 function SelectCard({variant = 'primary', isSelected, onClick, children, className, ...props} : SelectCardProps){
 
     const variants = {
-        primary : 'rounded-full',
+        primary : 'rounded-full px-3 py-1',
         secondary: 'rounded-xl'
     };
 
@@ -22,8 +22,8 @@ function SelectCard({variant = 'primary', isSelected, onClick, children, classNa
             'transition-all duration-200',
             variants[variant], 
             isSelected
-            ? 'border border-[#6C6DD3] bg-[#E4E4FF]'
-            : 'border border-transparent border-[#D9D9D9] text-[gray] hover:bg-[#F5F6FF] cursor-pointer duration-500',
+            ? 'border border-[#6C6DD3] bg-[#E4E4FF] text-[#6266F1]'
+            : 'border border-[#D9D9D9] text-[gray] hover:border-[#B4B6F8] hover:bg-[#F5F6FF] hover:text-[#9294F5] cursor-pointer duration-500',
             className
         )}
         {...props}
