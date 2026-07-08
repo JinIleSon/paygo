@@ -184,10 +184,10 @@ function WalletChargePage() {
                             ))}
                         </Card>
                         <div className="mt-6 mb-3">
-                            <Button className="w-full h-11 font-bold border border-[#D9D9D9]">
+                            <Button className="w-full h-11 font-bold">
                                 충전하기
                             </Button>
-                            <Button className="w-full h-11 font-bold mt-3 border border-[#D9D9D9]">
+                            <Button variant="secondary" className="w-full h-11 font-bold mt-3">
                                 취소
                             </Button>
                         </div>

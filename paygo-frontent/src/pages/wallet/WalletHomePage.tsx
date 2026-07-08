@@ -226,7 +226,7 @@ function WalletHomePage() {
                                         </div>
                                     </div>
                                     <div className="ml-auto">
-                                        <Button variant="secondary" className="p-3">
+                                        <Button className="p-3">
                                             <div className="flex items-center gap-2">
                                                 <IconArrowRight size={16} />
                                                 <div>송금</div>
