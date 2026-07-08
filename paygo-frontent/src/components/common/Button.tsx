@@ -9,8 +9,8 @@ function Button({ variant = 'primary', className, children, ...props }: ButtonPr
     const base = 'border rounded-md cursor-pointer duration-500 transition-colors';
 
     const variants = {
-        primary: 'border-[#4F4F4F] text-[#4D4D4D] hover:bg-[#DDDDDD] hover:border-indigo-100',
-        secondary: 'border-[#D9D9D9] bg-white hover:bg-[#DDDDDD] hover:border-indigo-100',
+        primary: 'border-[#D9D9D9] bg-white text-[#4D4D4D] hover:border-[#B4B6F8] hover:bg-[#F5F6FF] hover:text-[#9294F5]',
+        secondary: 'border-[#D9D9D9] bg-white hover:bg-[#F0F0F0] hover:border-[#BCBCBD]',
     };
 
     return (
