@@ -3,6 +3,8 @@ import Card from '../../components/common/Card';
 import SelectCard from '../../components/common/SelectCard';
 import TextInput from '../../components/common/TextInput';
 import Button from '../../components/common/Button';
+import PeriodPicker from '../../components/common/PeriodPicker';
+import { type DateRange } from 'react-day-picker';
 
 function WalletHistoryPage() {
     const types = [
@@ -22,6 +24,7 @@ function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('');
     const [selectedStatement, setSelectedStatement] = useState('');
     const [search, setSearch] = useState('');
+    const [period, setPeriod] = useState<DateRange | undefined>();
 
     return (
         <div>
@@ -38,7 +41,10 @@ function WalletHistoryPage() {
                             </SelectCard>
                         ))}
                     </div>
-                    <div className="text-[gray]">기간</div>
+                    <div className="text-[gray] ml-auto mr-6">기간</div>
+                    <div>
+                        <PeriodPicker value={period} onChange={setPeriod} />
+                    </div>
                 </div>
                 <div className="flex items-center mt-5">
                     <div className="text-[gray] mr-6">상태</div>
