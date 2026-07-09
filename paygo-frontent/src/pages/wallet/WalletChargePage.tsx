@@ -148,7 +148,8 @@ function WalletChargePage() {
                                     key={method.id}
                                     isSelected={selectedPayment === method.id}
                                     onClick={() => setSelectedPayment(method.id)}
-                                    variant="secondary">
+                                    variant="secondary"
+                                    importance="high">
                                         <div className="flex items-center p-5 gap-5">
                                             {getIcon(method.id)}
                                             <div className="flex flex-col justify-start">
