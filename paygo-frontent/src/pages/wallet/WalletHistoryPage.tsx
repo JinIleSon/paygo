@@ -7,6 +7,11 @@ import PeriodPicker from '../../components/common/PeriodPicker';
 import { type DateRange } from 'react-day-picker';
 
 function WalletHistoryPage() {
+    const [selectedType, setSelectedType] = useState('');
+    const [selectedStatement, setSelectedStatement] = useState('');
+    const [search, setSearch] = useState('');
+    const [period, setPeriod] = useState<DateRange | undefined>();
+
     const types = [
         { id: 'all', label: '전체' },
         { id: 'charge', label: '충전' },
@@ -21,13 +26,8 @@ function WalletHistoryPage() {
         { id: 'processing', label: '처리중' },
     ];
 
-    const [selectedType, setSelectedType] = useState('');
-    const [selectedStatement, setSelectedStatement] = useState('');
-    const [search, setSearch] = useState('');
-    const [period, setPeriod] = useState<DateRange | undefined>();
-
     return (
-        <div>
+        <div className="flex flex-col gap-6">
             <Card>
                 <div className="flex items-center">
                     <div className="text-[gray] mr-6">유형</div>
@@ -71,6 +71,28 @@ function WalletHistoryPage() {
                     </div>
                 </div>
             </Card>
+            <div className="flex gap-8">
+                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
+                    <div>총 충전</div>
+                    <div>+1250000원</div>
+                    <div>3건</div>
+                </Card>
+                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
+                    <div>총 지출</div>
+                    <div>+1250000원</div>
+                    <div>3건</div>
+                </Card>
+                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
+                    <div>총 환불</div>
+                    <div>+1250000원</div>
+                    <div>3건</div>
+                </Card>
+                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
+                    <div>실패 건수</div>
+                    <div>2건</div>
+                    <div>3건</div>
+                </Card>
+            </div>
         </div>
     );
 }

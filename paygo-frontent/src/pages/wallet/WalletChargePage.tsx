@@ -1,4 +1,9 @@
-import { IconWallet, IconBuildingBank, IconCreditCard, IconDeviceMobile } from '@tabler/icons-react';
+import {
+    IconWallet,
+    IconBuildingBank,
+    IconCreditCard,
+    IconDeviceMobile,
+} from '@tabler/icons-react';
 import Card from '../../components/common/Card';
 import TextInput from '../../components/common/TextInput';
 import { useState } from 'react';
@@ -6,25 +11,13 @@ import Button from '../../components/common/Button';
 import SelectCard from '../../components/common/SelectCard';
 
 function WalletChargePage() {
+    const [chargeAmount, setChargeAmount] = useState('');
+    const [selectedPayment, setSelectedPayment] = useState('');
+
     const balance = 3842000;
     const minCharge = 1000; // 충전 금액 최소
     const maxCharge = 2000000; // 충전 금액 최대
     const fee = 0; // TODO: 수수료 데이터 연동 필요
-    const [chargeAmount, setChargeAmount] = useState('');
-
-    // 충전할 금액 - 숫자만 입력 가능
-    const handleCharge = (e) => {
-        const onlyNumbersOne = e.target.value.replace(/[^0-9]/g, '');
-        setChargeAmount(onlyNumbersOne);
-    };
-
-    // 충전할 금액 - 버튼 클릭 시 금액 추가
-    const handleButtonCharge = (amount: number) => {
-        const current = chargeAmount ? Number(chargeAmount.replace(/,/g, '')) : 0;
-        const sum = current + amount;
-        if (sum > maxCharge) return; // 최대 초과 시 막기
-        setChargeAmount(String(sum));
-    };
 
     const chargeSummary = [
         { title: '충전 금액', content: Number(chargeAmount).toLocaleString() + '원' },
@@ -42,14 +35,38 @@ function WalletChargePage() {
         { id: 'digitalWallet', label: '간편결제', desc: '카카오페이·네이버페이' },
     ];
 
-    const [selectedPayment, setSelectedPayment] = useState('');
+    // 충전할 금액 - 숫자만 입력 가능
+    const handleCharge = (e) => {
+        const onlyNumbersOne = e.target.value.replace(/[^0-9]/g, '');
+        setChargeAmount(onlyNumbersOne);
+    };
+
+    // 충전할 금액 - 버튼 클릭 시 금액 추가
+    const handleButtonCharge = (amount: number) => {
+        const current = chargeAmount ? Number(chargeAmount.replace(/,/g, '')) : 0;
+        const sum = current + amount;
+        if (sum > maxCharge) return; // 최대 초과 시 막기
+        setChargeAmount(String(sum));
+    };
 
     const getIcon = (id: string) => {
-        if (id === 'account') 
-            return <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center"><IconBuildingBank size={20} className="text-[#22C55E]"/></div>;
+        if (id === 'account')
+            return (
+                <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center">
+                    <IconBuildingBank size={20} className="text-[#22C55E]" />
+                </div>
+            );
         if (id === 'card')
-            return <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center"><IconCreditCard size={20} className="text-[#E0B36B]"/></div>;
-        return <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center"><IconDeviceMobile size={20} className="text-[#E0B36B]"/></div>;
+            return (
+                <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
+                    <IconCreditCard size={20} className="text-[#E0B36B]" />
+                </div>
+            );
+        return (
+            <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
+                <IconDeviceMobile size={20} className="text-[#E0B36B]" />
+            </div>
+        );
     };
 
     return (
@@ -149,22 +166,17 @@ function WalletChargePage() {
                                     isSelected={selectedPayment === method.id}
                                     onClick={() => setSelectedPayment(method.id)}
                                     variant="secondary"
-                                    importance="high">
-                                        <div className="flex items-center p-5 gap-5">
-                                            {getIcon(method.id)}
-                                            <div className="flex flex-col justify-start">
-                                                <div className="flex font-medium">
-                                                    {method.label}
-                                                </div>
-                                                <div>
-                                                    {method.desc}
-                                                </div>
-                                            </div>
+                                    importance="high"
+                                >
+                                    <div className="flex items-center p-5 gap-5">
+                                        {getIcon(method.id)}
+                                        <div className="flex flex-col justify-start">
+                                            <div className="flex font-medium">{method.label}</div>
+                                            <div>{method.desc}</div>
                                         </div>
+                                    </div>
                                 </SelectCard>
-                            ))
-
-                            }
+                            ))}
                         </div>
                     </Card>
                 </div>
@@ -191,9 +203,7 @@ function WalletChargePage() {
                             ))}
                         </Card>
                         <div className="mt-6 mb-3">
-                            <Button className="w-full h-11 font-bold">
-                                충전하기
-                            </Button>
+                            <Button className="w-full h-11 font-bold">충전하기</Button>
                             <Button variant="secondary" className="w-full h-11 font-bold mt-3">
                                 취소
                             </Button>
@@ -202,10 +212,22 @@ function WalletChargePage() {
                     <Card className="my-6.5">
                         <div className="text-[gray] mb-6">충전 유의사항</div>
                         <div className="text-lg flex flex-col gap-5 mb-3">
-                            <div><span className="mr-3">ⓘ</span><span>1회 최대 충전 한도는 2,000,000원입니다.</span></div>
-                            <div><span className="mr-3">ⓘ</span><span>계좌이체는 영업시간(09:00~22:00) 내에만 가능합니다.</span></div>
-                            <div><span className="mr-3">ⓘ</span><span>충전된 금액은 Paygo 서비스 내에서만 사용 가능합니다.</span></div>
-                            <div><span className="mr-3">ⓘ</span><span>충전 취소는 충전 후 24시간 이내에만 가능합니다.</span></div>
+                            <div>
+                                <span className="mr-3">ⓘ</span>
+                                <span>1회 최대 충전 한도는 2,000,000원입니다.</span>
+                            </div>
+                            <div>
+                                <span className="mr-3">ⓘ</span>
+                                <span>계좌이체는 영업시간(09:00~22:00) 내에만 가능합니다.</span>
+                            </div>
+                            <div>
+                                <span className="mr-3">ⓘ</span>
+                                <span>충전된 금액은 Paygo 서비스 내에서만 사용 가능합니다.</span>
+                            </div>
+                            <div>
+                                <span className="mr-3">ⓘ</span>
+                                <span>충전 취소는 충전 후 24시간 이내에만 가능합니다.</span>
+                            </div>
                         </div>
                     </Card>
                 </div>
