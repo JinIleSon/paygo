@@ -27,7 +27,7 @@ function WalletHistoryPage() {
     ];
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6.5">
             <Card>
                 <div className="flex items-center">
                     <div className="text-[gray] mr-6">유형</div>
@@ -71,7 +71,7 @@ function WalletHistoryPage() {
                     </div>
                 </div>
             </Card>
-            <div className="flex gap-8">
+            <div className="flex gap-6.5">
                 <Card className="flex-1 flex flex-col gap-2 text-[gray]">
                     <div>총 충전</div>
                     <div>+1250000원</div>
