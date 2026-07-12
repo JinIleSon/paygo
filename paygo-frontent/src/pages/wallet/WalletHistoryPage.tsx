@@ -26,6 +26,13 @@ function WalletHistoryPage() {
         { id: 'processing', label: '처리중' },
     ];
 
+    const summary = [
+        { title: '총 충전', content: 1250000, summation: 3 },
+        { title: '총 지출', content: -680000, summation: 8 },
+        { title: '총 환불', content: 45000, summation: 1 },
+        { title: '실패 건수', content: 2, summation: '동시성 처리 실패 포함'}
+    ];
+
     return (
         <div className="flex flex-col gap-6.5">
             <Card>
@@ -72,26 +79,24 @@ function WalletHistoryPage() {
                 </div>
             </Card>
             <div className="flex gap-6.5">
-                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
-                    <div>총 충전</div>
-                    <div>+1250000원</div>
-                    <div>3건</div>
-                </Card>
-                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
-                    <div>총 지출</div>
-                    <div>+1250000원</div>
-                    <div>3건</div>
-                </Card>
-                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
-                    <div>총 환불</div>
-                    <div>+1250000원</div>
-                    <div>3건</div>
-                </Card>
-                <Card className="flex-1 flex flex-col gap-2 text-[gray]">
-                    <div>실패 건수</div>
-                    <div>2건</div>
-                    <div>3건</div>
-                </Card>
+                {summary.map((sum, index) => {
+                    const isLast = index === summary.length - 1; // 마지막 인덱스
+
+                    return (
+                        <Card key={index} className="flex-1 flex flex-col gap-2 text-[gray]">
+                            <div>{sum.title}</div>
+                            <div className={`${!isLast && sum.content > 0 ? 'text-[#22C55E]' : 'text-[red]'} text-2xl font-medium`}>{/* 마지막 실패 건수는 중요도 때문에 빨간색으로 표현 */}
+                                <span>{!isLast && sum.content > 0? '+' : ''}</span>{/* 마지막은 금액이 아니므로(실패 건수) +로 표시하지 않음 */}
+                                {sum.content.toLocaleString()}
+                                <span>{!isLast ? '원' : '건'}</span>
+                            </div>
+                            <div>
+                                {sum.summation}
+                                <span>{!isLast ? '건' : ''}</span>
+                            </div>
+                        </Card>
+                    );
+                })}
             </div>
         </div>
     );
