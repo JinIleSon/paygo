@@ -28,3 +28,8 @@
 충전
 <br><br>
 <img width="1287" height="1018" alt="image" src="https://github.com/user-attachments/assets/dce58e22-209c-40c8-abd0-86bbdf1a981c" />
+
+<br><br>
+거래내역
+<br><br>
+<img width="1274" height="970" alt="image" src="https://github.com/user-attachments/assets/ceac7558-1046-4b42-b67e-f9c2d7598638" />
