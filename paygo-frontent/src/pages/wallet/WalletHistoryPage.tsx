@@ -108,6 +108,7 @@ function WalletHistoryPage() {
                             <SelectCard
                                 onClick={() => setSelectedType(type.id)}
                                 isSelected={selectedType === type.id}
+                                key={type.id}
                             >
                                 <div>{type.label}</div>
                             </SelectCard>
@@ -125,6 +126,7 @@ function WalletHistoryPage() {
                             <SelectCard
                                 onClick={() => setSelectedStatement(state.id)}
                                 isSelected={selectedStatement === state.id}
+                                key={state.id}
                             >
                                 <div>{state.label}</div>
                             </SelectCard>
