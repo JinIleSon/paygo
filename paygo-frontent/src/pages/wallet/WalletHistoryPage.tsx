@@ -184,11 +184,11 @@ function WalletHistoryPage() {
                                     <div>{tran.content}</div>
                                     <div>{tran.createdAt}</div>
                                 </div>
-                                <div className={`${graphStyle}`}>{tran.type}</div>
-                                <div className={`${graphStyle}`}>{tran.paymentMethod}</div>
-                                <div className={`${graphStyle}`}>{tran.amount}</div>
-                                <div className={`${graphStyle}`}>{tran.balance}</div>
-                                <div className={`${graphStyle}`}>{tran.statement}</div>
+                                <div className={graphStyle}>{tran.type}</div>
+                                <div className={graphStyle}>{tran.paymentMethod}</div>
+                                <div className={graphStyle}>{tran.amount}</div>
+                                <div className={graphStyle}>{tran.balance}</div>
+                                <div className={graphStyle}>{tran.statement}</div>
                             </Fragment>
                         ))}
                     </div>
