@@ -61,7 +61,7 @@ function Sidebar() {
             <div className="py-6 text-[gray]">
                 <div className="px-6 font-medium text-lg">쇼핑</div>
                 <NavLink
-                    to="/shopping/list"
+                    to="/shopping/product-list"
                     className={({ isActive }) => `${navItemClass({ isActive })} mt-3`}
                 >
                     <IconShoppingBag size={20} />
@@ -71,7 +71,7 @@ function Sidebar() {
                     <IconShoppingCart size={20} />
                     <div>장바구니</div>
                 </NavLink>
-                <NavLink to="/shopping/detail" className={navItemClass}>
+                <NavLink to="/shopping/order-list" className={navItemClass}>
                     <IconPackage size={20} />
                     <div>주문내역</div>
                 </NavLink>

@@ -5,9 +5,12 @@ const pageTitles: Record<string, string> = {
     '/wallet/home': '지갑 홈',
     '/wallet/charge': '충전',
     '/wallet/history': '거래내역',
-    '/shopping/list': '상품 목록',
+    '/shopping/product-list': '상품 목록',
+    '/shopping/product-detail': '상품 상세',
+    '/shopping/product-payment': '주문/결제',
     '/shopping/cart': '장바구니',
-    '/shopping/detail': '주문내역',
+    '/shopping/order-list': '주문 내역',
+    '/shopping/order-detail': '주문 상세',
     '/account/mypage': '마이페이지',
     '/account/setting': '설정'
 }
