@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Card from "../../components/common/Card";
-import SelectCard from "../../components/common/SelectCard";
-import TextInput from "../../components/common/TextInput";
-import Button from "../../components/common/Button";
-import { IconChevronDown, IconSearch } from "@tabler/icons-react";
+import { useState } from 'react';
+import Card from '../../components/common/Card';
+import SelectCard from '../../components/common/SelectCard';
+import TextInput from '../../components/common/TextInput';
+import Button from '../../components/common/Button';
+import { IconChevronDown, IconSearch } from '@tabler/icons-react';
+import SelectBox from '../../components/common/SelectBox';
 
 function ProductListPage() {
-
     const [selectedType, setSelectedType] = useState('');
     const [search, setSearch] = useState('');
 
@@ -18,7 +18,6 @@ function ProductListPage() {
         { id: 'dailyNecessities', label: '생활용품' },
         { id: 'food', label: '식품' },
     ];
-
 
     return (
         <div>
@@ -35,15 +34,12 @@ function ProductListPage() {
                             </SelectCard>
                         ))}
                     </div>
-                    <div className="relative ml-auto">
-                        <select
-                            className="font-medium text-gray-400 appearance-none pl-3.5 w-[14.5rem] h-[2.875rem] w-70 rounded-md outline-none bg-white border border-[#D9D9D9]"
-                        >
+                    <div className="ml-auto">
+                        <SelectBox>
                             <option value="latest">최신순</option>
                             <option value="priceAsc">낮은 가격순</option>
                             <option value="priceDesc">높은 가격순</option>
-                        </select>
-                        <IconChevronDown size={14} className="absolute top-1/2 right-2 -translate-y-1/2 text-gray-400"/>
+                        </SelectBox>
                     </div>
                 </div>
                 <div className="flex gap-3 items-center justify-end mt-5">
