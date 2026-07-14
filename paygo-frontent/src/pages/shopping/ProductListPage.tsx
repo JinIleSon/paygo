@@ -20,7 +20,7 @@ function ProductListPage() {
     ];
 
     return (
-        <div>
+        <div className="flex flex-col gap-6.5">
             <Card>
                 <div className="flex items-center">
                     <div className="flex gap-3">
@@ -48,11 +48,17 @@ function ProductListPage() {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="검색어 입력"
-                        className="w-60"
+                        className="w-100"
                     />
                     <Button variant="secondary" className="w-16 h-10">
                         검색
                     </Button>
+                </div>
+            </Card>
+            <Card variant="primary">
+                <div className="flex flex-col gap-1.5">
+                    <div className="font-bold text-[white] text-xl">Paygo 첫 구매 혜택</div>
+                    <div className="text-[#E2E3FF]">첫 구매 시 5,000원 캐시백 - Paygo 잔액으로 바로 적립</div>
                 </div>
             </Card>
         </div>
