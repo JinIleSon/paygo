@@ -3,8 +3,9 @@ import Card from '../../components/common/Card';
 import SelectCard from '../../components/common/SelectCard';
 import TextInput from '../../components/common/TextInput';
 import Button from '../../components/common/Button';
-import { IconChevronDown, IconSearch } from '@tabler/icons-react';
+import { IconArrowRight, IconChevronDown, IconSearch, IconShoe, IconShoppingCartPlus } from '@tabler/icons-react';
 import SelectBox from '../../components/common/SelectBox';
+import { NavLink } from 'react-router-dom';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('');
@@ -61,6 +62,50 @@ function ProductListPage() {
                     <div className="text-[#E2E3FF]">첫 구매 시 5,000원 캐시백 - Paygo 잔액으로 바로 적립</div>
                 </div>
             </Card>
+            <div>
+                <div className="flex">
+                    <div className="text-[gray]">인기 상품</div>
+                    <NavLink to="#" className="ml-auto flex items-center text-[#6266F1]">
+                        <div>전체보기</div>
+                        <IconArrowRight size={16} />
+                    </NavLink>
+                </div>
+                <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
+                    <Card className="p-0 h-100 overflow-hidden">
+                        <div className="flex justify-center items-center h-1/2 bg-[#F5F6FF]">
+                            <IconShoe size={80} className="text-[#6266F1]"/>
+                        </div>
+                        <div className="p-3 pl-4.5 pr-4.5 flex flex-col">
+                            <div className="text-sm text-gray-400 flex">
+                                <div>패션/신발</div><div className="ml-auto">재고 3개</div>
+                            </div>
+                            <div className="text-2xl text-gray-600 mt-3">나이키 에어맥스</div>
+                            <div className="flex text-2xl text-gray-600 font-medium mt-3">
+                                <div>120,000원</div>
+                            </div>
+                            <div className="mt-4">
+                                <Button className="flex p-2 w-full ">
+                                    <div className="flex items-center justify-center pl-2 w-full">
+                                        <IconShoppingCartPlus/>
+                                        <div className="ml-auto mr-2 text-xl">
+                                            장바구니 추가
+                                        </div>
+                                    </div>
+                                </Button>
+                            </div>
+                        </div>
+                    </Card>
+                    <Card>
+
+                    </Card>
+                    <Card>
+
+                    </Card>
+                    <Card>
+
+                    </Card>
+                </div>
+            </div>
         </div>
     );
 }
