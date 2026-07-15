@@ -33,3 +33,8 @@
 거래내역
 <br><br>
 <img width="1274" height="970" alt="image" src="https://github.com/user-attachments/assets/ceac7558-1046-4b42-b67e-f9c2d7598638" />
+
+<br><br>
+상품 목록
+<br><br>
+<img width="1262" height="1336" alt="image" src="https://github.com/user-attachments/assets/201acfdb-e0f9-4c5f-9968-1682723cd709" />
