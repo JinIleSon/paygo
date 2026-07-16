@@ -2,12 +2,17 @@ import { IconShoe } from "@tabler/icons-react";
 import Card from "../../components/common/Card";
 
 function ProductDetailPage() {
-    const product = [
-        { 
+    const product = { 
             id: 0, 
             itemBg: 'bg-[#F5F6FF]',
             itemText: 'text-[#6266F1]',
             icon: IconShoe,
+            colorSet:[
+                { color: '#6266F1', bg: '#F5F6FF' },
+                { color: '#22C55E', bg: '#E8FBF2' },
+                { color: '#E0B36B', bg: '#FEF9EB' },
+                { color: '#D862A1', bg: '#FCF2F8' },
+            ],
 
             // 상품 정보
             brand: 'Nike',
@@ -34,20 +39,25 @@ function ProductDetailPage() {
 
             stock: 3,
             size: [240, 245, 250, 260, 265, 270, 275],
-            color: ['블랙/화이트', '그레이/블루', '레드/블랙'],
-        }
-    ];
+            chooseColor: ['인디고', '그린', '옐로', '핑크']
+        };
+
+        const Icon = product.icon;
 
     return (
         <div>
             <div className="flex gap-8 pr-8">
                 <div className="min-w-1/2">
-                    <Card className="p-0 h-125 overflow-hidden">
-                        <div className="h-100 bg-[#F5F6FF]">
-
+                    <Card className="p-0 h-130 overflow-hidden">
+                        <div className={`flex justify-center items-center h-100 ${product.itemBg}`}>
+                            <Icon size={160} className={product.itemText}/>
                         </div>
-                        <div className="px-4.5 pb-3">
-
+                        <div className="px-6 py-4 gap-4 grid grid-cols-[1fr_1fr_1fr_1fr] h-30">
+                            {product.colorSet.map((setting, index) => (
+                                <Card key={index} style={{backgroundColor: setting.bg}} className="p-0 flex items-center justify-center"> 
+                                    <Icon size={40} style={{color: setting.color}}/>
+                                </Card>
+                            ))}
                         </div>
                     </Card>
                 </div>
