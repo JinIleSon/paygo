@@ -1,7 +1,11 @@
 import { IconShoe } from "@tabler/icons-react";
 import Card from "../../components/common/Card";
+import { useState } from "react";
 
 function ProductDetailPage() {
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
     const product = { 
             id: 0, 
             itemBg: 'bg-[#F5F6FF]',
@@ -49,12 +53,19 @@ function ProductDetailPage() {
             <div className="flex gap-8 pr-8">
                 <div className="min-w-1/2">
                     <Card className="p-0 h-130 overflow-hidden">
-                        <div className={`flex justify-center items-center h-100 ${product.itemBg}`}>
-                            <Icon size={160} className={product.itemText}/>
+                        <div className="flex justify-center items-center h-100" style={{background: product.colorSet[selectedIndex].bg}}>
+                            <Icon size={160} style={{color: product.colorSet[selectedIndex].color}}/>
                         </div>
                         <div className="px-6 py-4 gap-4 grid grid-cols-[1fr_1fr_1fr_1fr] h-30">
                             {product.colorSet.map((setting, index) => (
-                                <Card key={index} style={{backgroundColor: setting.bg}} className="p-0 flex items-center justify-center"> 
+                                <Card 
+                                    key={index}
+                                    onClick={() => setSelectedIndex(index)} 
+                                    style={{
+                                        backgroundColor: setting.bg,
+                                        border: selectedIndex === index ? '2px solid #A7A7A7' : ''
+                                    }} 
+                                    className="p-0 flex items-center justify-center cursor-pointer"> 
                                     <Icon size={40} style={{color: setting.color}}/>
                                 </Card>
                             ))}
