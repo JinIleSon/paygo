@@ -1,11 +1,13 @@
 import { IconShoe } from "@tabler/icons-react";
 import Card from "../../components/common/Card";
 import { useState } from "react";
+import SelectCard from "../../components/common/SelectCard";
 
 function ProductDetailPage() {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [selectedTab, setSelectedTab] = useState<'info' | 'description'>('info');
+    const [selectedSize, setSelectedSize] = useState(-1);
 
     const product = { 
             id: 0, 
@@ -40,9 +42,10 @@ function ProductDetailPage() {
             // 오른쪽 섹션
             itemClassification: '패션/신발',
             name: '나이키 에어맥스',
+            originPrice: 160000,
             discountPrice: 120000,
 
-            stock: 3,
+            stock: 2,
             size: [240, 245, 250, 260, 265, 270, 275],
             chooseColor: ['인디고', '그린', '옐로', '핑크']
         };
@@ -114,7 +117,37 @@ function ProductDetailPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                
+                    <Card>
+                        <div className="flex flex-col gap-4 font-medium">
+                            <div className="text-[gray]">쇼핑 &gt; {product.itemClassification} &gt; <span className="text-[#6266F1]">{product.name}</span></div>
+                            <div className="text-2xl">{product.name} — {product.chooseColor[0]}</div> {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
+                            <div className="flex items-end">
+                                <div className="text-xl text-[red]"><span className="text-2xl">{(product.originPrice - product.discountPrice) / product.originPrice * 100}%</span> 할인</div>
+                                <div className="text-[gray] ml-auto">재고 <span className={`${product.stock > 2 ? "text-[gray]" : "text-[red]"}`}>{product.stock}개</span> 남음</div>
+                            </div>
+                            <div className="flex items-end gap-1">
+                                <div className="text-4xl">{product.discountPrice.toLocaleString()}원</div>
+                                <div className="text-xl text-gray-300 line-through">{product.originPrice.toLocaleString()}원</div>
+                            </div>
+
+                            <div className="border-t border-t-[#D9D9D9] mt-4 mb-2"></div>
+
+                            <div className="text-[gray]">사이즈 선택</div>
+                            <div className="flex flex-wrap gap-3">
+                                {product.size.map((s, index) => (
+                                        <SelectCard
+                                            key={index}
+                                            onClick={() => setSelectedSize(index)}
+                                            isSelected={selectedSize === index}
+                                            variant="secondary"
+                                            className="px-4 py-1 rounded-md">
+                                            {s}
+                                        </SelectCard>
+                                ))}
+                            </div>
+                            <div className="text-[gray]">색상 선택</div>
+                        </div>
+                    </Card>
                 </div>
             </div>
         </div>
