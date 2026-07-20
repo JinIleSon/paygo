@@ -143,7 +143,7 @@ function ProductDetailPage() {
                                 <span className="text-[#6266F1]">{product.name}</span>
                             </div>
                             <div className="text-2xl">
-                                {product.name} — {product.chooseColor[0]}
+                                {product.name} — {selectedColor}
                             </div>{' '}
                             {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
                             <div className="flex items-end">
@@ -217,7 +217,7 @@ function ProductDetailPage() {
                                 >
                                     –
                                 </Button>
-                                <div>{selectedCount}</div>
+                                <div className="text-xl">{selectedCount}</div>
                                 <Button
                                     variant="secondary"
                                     className="px-3 py-1"
