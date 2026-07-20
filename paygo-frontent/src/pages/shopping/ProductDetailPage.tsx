@@ -175,61 +175,71 @@ function ProductDetailPage() {
                                 </div>
                             </div>
                             <div className="border-t border-t-[#D9D9D9] mt-4 mb-2"></div>
-                            <div className="text-[gray]">사이즈 선택</div>
-                            <div className="flex flex-wrap gap-3">
-                                {product.size.map((s) => (
-                                    <SelectCard
-                                        key={s}
-                                        onClick={() => setSelectedSize(s)}
-                                        isSelected={selectedSize === s}
-                                        variant="secondary"
-                                        className="px-4 py-1 rounded-md"
-                                    >
-                                        {s}
-                                    </SelectCard>
-                                ))}
-                            </div>
-                            <div className="text-[gray]">색상 선택</div>
-                            <div className="flex flex-wrap gap-3">
-                                {product.chooseColor.map((color) => (
-                                    <SelectCard
-                                        key={color}
-                                        onClick={() => setSelectedColor(color)}
-                                        isSelected={selectedColor === color}
-                                        variant="secondary"
-                                        className="px-4 py-1 rounded-md"
-                                    >
-                                        {color}
-                                    </SelectCard>
-                                ))}
-                            </div>
-                            <div className="text-[gray]">수량</div>
-                            <div className="flex items-center gap-5">
-                                <Button
-                                    variant="secondary"
-                                    className="px-3 py-1"
-                                    onClick={() =>
-                                        setSelectedCount((prev) => {
-                                            if (prev > 0) return prev - 1;
-                                            return 0;
-                                        })
-                                    }
-                                >
-                                    –
-                                </Button>
-                                <div className="text-xl">{selectedCount}</div>
-                                <Button
-                                    variant="secondary"
-                                    className="px-3 py-1"
-                                    onClick={() =>
-                                        setSelectedCount((next) => {
-                                            if (next < product.stock) return next + 1;
-                                            return next;
-                                        })
-                                    }
-                                >
-                                    +
-                                </Button>
+                            <div className="flex flex-col gap-6">
+                                <div className="flex flex-col gap-4">
+                                    <div className="text-[gray]">사이즈 선택</div>
+                                    <div className="flex flex-wrap gap-3">
+                                        {product.size.map((s) => (
+                                            <SelectCard
+                                                key={s}
+                                                onClick={() => setSelectedSize(s)}
+                                                isSelected={selectedSize === s}
+                                                variant="secondary"
+                                                className="px-4 py-1 rounded-md"
+                                            >
+                                                {s}
+                                            </SelectCard>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col gap-4">
+                                    <div className="text-[gray]">색상 선택</div>
+                                    <div className="flex flex-wrap gap-3">
+                                        {product.chooseColor.map((color) => (
+                                            <SelectCard
+                                                key={color}
+                                                onClick={() => setSelectedColor(color)}
+                                                isSelected={selectedColor === color}
+                                                variant="secondary"
+                                                className="px-4 py-1 rounded-md"
+                                            >
+                                                {color}
+                                            </SelectCard>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                <div className="flex flex-col gap-4">
+                                    <div className="text-[gray]">수량</div>
+                                    <div className="flex items-center gap-5">
+                                        <Button
+                                            variant="secondary"
+                                            className="px-3 py-1"
+                                            onClick={() =>
+                                                setSelectedCount((prev) => {
+                                                    if (prev > 0) return prev - 1;
+                                                    return 0;
+                                                })
+                                            }
+                                        >
+                                            –
+                                        </Button>
+                                        <div className="text-xl">{selectedCount}</div>
+                                        <Button
+                                            variant="secondary"
+                                            className="px-3 py-1"
+                                            onClick={() =>
+                                                setSelectedCount((next) => {
+                                                    if (next < product.stock) return next + 1;
+                                                    return next;
+                                                })
+                                            }
+                                        >
+                                            +
+                                        </Button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Card>
