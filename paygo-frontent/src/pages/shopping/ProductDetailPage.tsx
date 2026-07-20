@@ -1,4 +1,4 @@
-import { IconShoe } from '@tabler/icons-react';
+import { IconAlertTriangle, IconShoe } from '@tabler/icons-react';
 import Card from '../../components/common/Card';
 import { useState } from 'react';
 import SelectCard from '../../components/common/SelectCard';
@@ -136,7 +136,7 @@ function ProductDetailPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <Card>
+                    <Card className="pt-10 pb-12">
                         <div className="flex flex-col gap-4 font-medium">
                             <div className="text-[gray]">
                                 쇼핑 &gt; {product.itemClassification} &gt;{' '}
@@ -238,6 +238,12 @@ function ProductDetailPage() {
                                         >
                                             +
                                         </Button>
+                                        {product.stock <= 2 && 
+                                            <div className="flex items-center gap-2 text-[red]">
+                                                <IconAlertTriangle size={20} />
+                                                <div>재고 {product.stock}개 남음 — 서두르세요</div>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
