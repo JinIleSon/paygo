@@ -1,4 +1,4 @@
-import { IconAlertTriangle, IconShoe } from '@tabler/icons-react';
+import { IconAlertTriangle, IconShoe, IconShoppingCart } from '@tabler/icons-react';
 import Card from '../../components/common/Card';
 import { useState } from 'react';
 import SelectCard from '../../components/common/SelectCard';
@@ -10,6 +10,8 @@ function ProductDetailPage() {
     const [selectedSize, setSelectedSize] = useState(-1);
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedCount, setSelectedCount] = useState(1);
+
+    const balance = 3842000;
 
     const product = {
         id: 0,
@@ -136,119 +138,150 @@ function ProductDetailPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <Card className="pt-10 pb-12">
-                        <div className="flex flex-col gap-4 font-medium">
-                            <div className="text-[gray]">
-                                쇼핑 &gt; {product.itemClassification} &gt;{' '}
-                                <span className="text-[#6266F1]">{product.name}</span>
-                            </div>
-                            <div className="text-2xl">
-                                {product.name} — {selectedColor}
-                            </div>{' '}
-                            {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
-                            <div className="flex items-end">
-                                <div className="text-xl text-[red]">
-                                    <span className="text-2xl">
-                                        {((product.originPrice - product.discountPrice) /
-                                            product.originPrice) *
-                                            100}
-                                        %
-                                    </span>{' '}
-                                    할인
+                    <div className="flex flex-col gap-6.5">
+                        <Card className="pt-10 pb-12">
+                            <div className="flex flex-col gap-4 font-medium">
+                                <div className="text-[gray]">
+                                    쇼핑 &gt; {product.itemClassification} &gt;{' '}
+                                    <span className="text-[#6266F1]">{product.name}</span>
                                 </div>
-                                <div className="text-[gray] ml-auto">
-                                    재고{' '}
-                                    <span
-                                        className={`${product.stock > 2 ? 'text-[gray]' : 'text-[red]'}`}
-                                    >
-                                        {product.stock}개
-                                    </span>{' '}
-                                    남음
-                                </div>
-                            </div>
-                            <div className="flex items-end gap-1">
-                                <div className="text-4xl">
-                                    {product.discountPrice.toLocaleString()}원
-                                </div>
-                                <div className="text-xl text-gray-300 line-through">
-                                    {product.originPrice.toLocaleString()}원
-                                </div>
-                            </div>
-                            <div className="border-t border-t-[#D9D9D9] mt-4 mb-2"></div>
-                            <div className="flex flex-col gap-6">
-                                <div className="flex flex-col gap-4">
-                                    <div className="text-[gray]">사이즈 선택</div>
-                                    <div className="flex flex-wrap gap-3">
-                                        {product.size.map((s) => (
-                                            <SelectCard
-                                                key={s}
-                                                onClick={() => setSelectedSize(s)}
-                                                isSelected={selectedSize === s}
-                                                variant="secondary"
-                                                className="px-4 py-1 rounded-md"
-                                            >
-                                                {s}
-                                            </SelectCard>
-                                        ))}
+                                <div className="text-2xl">
+                                    {product.name} {selectedColor && "— "}{selectedColor}
+                                </div>{' '}
+                                {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
+                                <div className="flex items-end">
+                                    <div className="text-xl text-[red]">
+                                        <span className="text-2xl">
+                                            {((product.originPrice - product.discountPrice) /
+                                                product.originPrice) *
+                                                100}
+                                            %
+                                        </span>{' '}
+                                        할인
+                                    </div>
+                                    <div className="text-[gray] ml-auto">
+                                        재고{' '}
+                                        <span
+                                            className={`${product.stock > 2 ? 'text-[gray]' : 'text-[red]'}`}
+                                        >
+                                            {product.stock}개
+                                        </span>{' '}
+                                        남음
                                     </div>
                                 </div>
+                                <div className="flex items-end gap-1">
+                                    <div className="text-4xl">
+                                        {product.discountPrice.toLocaleString()}원
+                                    </div>
+                                    <div className="text-xl text-gray-300 line-through">
+                                        {product.originPrice.toLocaleString()}원
+                                    </div>
+                                </div>
+                                <div className="border-t border-t-[#D9D9D9] mt-4 mb-2"></div>
+                                <div className="flex flex-col gap-6">
+                                    <div className="flex flex-col gap-4">
+                                        <div className="text-[gray]">사이즈 선택</div>
+                                        <div className="flex flex-wrap gap-3">
+                                            {product.size.map((s) => (
+                                                <SelectCard
+                                                    key={s}
+                                                    onClick={() => setSelectedSize(s)}
+                                                    isSelected={selectedSize === s}
+                                                    variant="secondary"
+                                                    className="px-4 py-1 rounded-md"
+                                                >
+                                                    {s}
+                                                </SelectCard>
+                                            ))}
+                                        </div>
+                                    </div>
 
-                                <div className="flex flex-col gap-4">
-                                    <div className="text-[gray]">색상 선택</div>
-                                    <div className="flex flex-wrap gap-3">
-                                        {product.chooseColor.map((color) => (
-                                            <SelectCard
-                                                key={color}
-                                                onClick={() => setSelectedColor(color)}
-                                                isSelected={selectedColor === color}
-                                                variant="secondary"
-                                                className="px-4 py-1 rounded-md"
-                                            >
-                                                {color}
-                                            </SelectCard>
-                                        ))}
+                                    <div className="flex flex-col gap-4">
+                                        <div className="text-[gray]">색상 선택</div>
+                                        <div className="flex flex-wrap gap-3">
+                                            {product.chooseColor.map((color) => (
+                                                <SelectCard
+                                                    key={color}
+                                                    onClick={() => setSelectedColor(color)}
+                                                    isSelected={selectedColor === color}
+                                                    variant="secondary"
+                                                    className="px-4 py-1 rounded-md"
+                                                >
+                                                    {color}
+                                                </SelectCard>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <div className="flex flex-col gap-4">
-                                    <div className="text-[gray]">수량</div>
-                                    <div className="flex items-center gap-5">
-                                        <Button
-                                            variant="secondary"
-                                            className="px-3 py-1"
-                                            onClick={() =>
-                                                setSelectedCount((prev) => {
-                                                    if (prev > 0) return prev - 1;
-                                                    return 0;
-                                                })
+                                    
+                                    <div className="flex flex-col gap-4">
+                                        <div className="text-[gray]">수량</div>
+                                        <div className="flex items-center gap-5">
+                                            <Button
+                                                variant="secondary"
+                                                className="px-3 py-1"
+                                                onClick={() =>
+                                                    setSelectedCount((prev) => {
+                                                        if (prev > 0) return prev - 1;
+                                                        return 0;
+                                                    })
+                                                }
+                                            >
+                                                –
+                                            </Button>
+                                            <div className="text-xl">{selectedCount}</div>
+                                            <Button
+                                                variant="secondary"
+                                                className="px-3 py-1"
+                                                onClick={() =>
+                                                    setSelectedCount((next) => {
+                                                        if (next < product.stock) return next + 1;
+                                                        return next;
+                                                    })
+                                                }
+                                            >
+                                                +
+                                            </Button>
+                                            {product.stock <= 2 && 
+                                                <div className="flex items-center gap-2 text-[red]">
+                                                    <IconAlertTriangle size={20} />
+                                                    <div>재고 {product.stock}개 남음 — 서두르세요</div>
+                                                </div>
                                             }
-                                        >
-                                            –
-                                        </Button>
-                                        <div className="text-xl">{selectedCount}</div>
-                                        <Button
-                                            variant="secondary"
-                                            className="px-3 py-1"
-                                            onClick={() =>
-                                                setSelectedCount((next) => {
-                                                    if (next < product.stock) return next + 1;
-                                                    return next;
-                                                })
-                                            }
-                                        >
-                                            +
-                                        </Button>
-                                        {product.stock <= 2 && 
-                                            <div className="flex items-center gap-2 text-[red]">
-                                                <IconAlertTriangle size={20} />
-                                                <div>재고 {product.stock}개 남음 — 서두르세요</div>
-                                            </div>
-                                        }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </Card>
+                        </Card>
+                        <Card className="py-9 flex flex-col gap-5">
+
+                            <div className="flex justify-between items-center font-medium">
+                                <div className="text-[gray]">Paygo 잔액</div>
+                                <div className="text-2xl">{balance.toLocaleString()}원</div>
+                            </div>
+
+                            <div className="flex justify-between items-center font-medium">
+                                <div className="text-[gray]">결제 후 잔액</div>
+                                <div className="text-[#6266F1] text-2xl">{(balance - product.discountPrice).toLocaleString()}원</div>
+                            </div>
+
+                            {/* 담기 버튼은 장바구니로 이동하면서 장바구니 테이블에 데이터 row 하나 추가 */}
+                            <div className="grid grid-cols-[8rem_1fr] gap-3 mt-3 font-medium">
+                                <Button
+                                    variant="secondary"
+                                    className="flex items-center justify-center gap-2 p-3 py-6 text-xl"
+                                    >
+                                    <IconShoppingCart size={25} />
+                                    <div>담기</div>
+                                </Button>
+                                <Button
+                                    className="flex items-center justify-center gap-2 p-3 py-6 text-xl
+                                    "
+                                    >
+                                    <div>바로 구매</div>
+                                </Button>
+                            </div>
+                        </Card>
+                    </div>
                 </div>
             </div>
         </div>
