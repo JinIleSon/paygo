@@ -14,8 +14,8 @@ function MainLayout() {
                 <Topbar />
                 {/* flex-1: Topbar 제외한 나머지 세로 공간 차지 */}
                 {/* overflow-y-auto: 내용물이 넘치면 세로 스크롤 */}
-                <main className="flex-1 overflow-y-auto bg-[#F6F5F8]">
-                    <div className="max-w-[1000px] mx-auto px-8 py-6.5">
+                <main className="flex-1 overflow-y-auto [scrollbar-gutter:stable] bg-[#F6F5F8]">
+                    <div className="max-w-[1000px] mx-auto px-8 py-6.5 ">
                         <Outlet />
                     </div>
                 </main>
