@@ -3,6 +3,7 @@ import Card from '../../components/common/Card';
 import { useState } from 'react';
 import SelectCard from '../../components/common/SelectCard';
 import Button from '../../components/common/Button';
+import type { ProductDetail } from '../../types/product';
 
 function ProductDetailPage() {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -13,7 +14,7 @@ function ProductDetailPage() {
 
     const balance = 3842000;
 
-    const product = {
+    const product : ProductDetail = {
         id: 0,
         itemBg: 'bg-[#F5F6FF]',
         itemText: 'text-[#6266F1]',

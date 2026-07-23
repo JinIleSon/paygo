@@ -18,6 +18,7 @@ import {
 } from '@tabler/icons-react';
 import SelectBox from '../../components/common/SelectBox';
 import { NavLink } from 'react-router-dom';
+import type { Product } from '../../types/product';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('');
@@ -32,7 +33,7 @@ function ProductListPage() {
         { id: 'food', label: '식품' },
     ];
 
-    const popularItems = [
+    const popularItems : Product[] = [
         {
             id: 0,
             itemClassification: '패션/신발',
@@ -75,7 +76,7 @@ function ProductListPage() {
         },
     ];
 
-    const newItems = [
+    const newItems : Product[] = [
         {
             id: 0,
             itemClassification: '전자기기',
