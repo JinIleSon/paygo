@@ -7,7 +7,7 @@ interface CartState {
     removeItem: (productId: number, color: string, size?: number) => void;
 }
 
-export const useCartState = create<CartState>((set) => ({
+export const useCartStore = create<CartState>((set) => ({
     items: [],
 
     addItem: (item) => 
