@@ -1,4 +1,4 @@
-import AuthLayout from '../../components/layout/auth/AuthLayout.tsx';
+import AuthLayout from '../../components/layout/auth/authLayout.tsx';
 import { useState, useRef } from 'react';
 import {
     IconCreditCard,
@@ -8,9 +8,9 @@ import {
     IconBrandGoogle,
 } from '@tabler/icons-react';
 import notebookImg from '../../assets/notebook.webp';
-import Button from '../../components/common/Button.tsx';
-import PasswordInput from '../../components/common/PasswordInput.tsx';
-import TextInput from '../../components/common/TextInput.tsx';
+import Button from '../../components/common/button.tsx';
+import PasswordInput from '../../components/common/passwordInput.tsx';
+import TextInput from '../../components/common/textInput.tsx';
 import { Link } from 'react-router-dom';
 
 function LoginPage() {

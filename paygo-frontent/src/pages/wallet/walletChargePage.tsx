@@ -4,11 +4,11 @@ import {
     IconCreditCard,
     IconDeviceMobile,
 } from '@tabler/icons-react';
-import Card from '../../components/common/Card';
-import TextInput from '../../components/common/TextInput';
+import Card from '../../components/common/card';
+import TextInput from '../../components/common/textInput';
 import { useState } from 'react';
-import Button from '../../components/common/Button';
-import SelectCard from '../../components/common/SelectCard';
+import Button from '../../components/common/button';
+import SelectCard from '../../components/common/selectCard';
 
 function WalletChargePage() {
     const [chargeAmount, setChargeAmount] = useState('');

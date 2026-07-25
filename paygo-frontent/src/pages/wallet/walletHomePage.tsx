@@ -1,4 +1,4 @@
-import Button from '../../components/common/Button';
+import Button from '../../components/common/button';
 import {
     IconShoppingBag,
     IconPlus,
@@ -7,7 +7,7 @@ import {
     IconArrowUp,
     IconRefresh,
 } from '@tabler/icons-react';
-import Card from '../../components/common/Card';
+import Card from '../../components/common/card';
 import { NavLink } from 'react-router-dom';
 
 function WalletHomePage() {

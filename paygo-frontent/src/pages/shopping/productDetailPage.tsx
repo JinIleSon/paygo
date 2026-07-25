@@ -1,8 +1,8 @@
 import { IconAlertTriangle, IconShoe, IconShoppingCart } from '@tabler/icons-react';
-import Card from '../../components/common/Card';
+import Card from '../../components/common/card';
 import { useState } from 'react';
-import SelectCard from '../../components/common/SelectCard';
-import Button from '../../components/common/Button';
+import SelectCard from '../../components/common/selectCard';
+import Button from '../../components/common/button';
 import type { ProductDetail } from '../../types/product';
 
 function ProductDetailPage() {

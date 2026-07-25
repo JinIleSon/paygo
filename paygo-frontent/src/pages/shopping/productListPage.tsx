@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Card from '../../components/common/Card';
-import SelectCard from '../../components/common/SelectCard';
-import TextInput from '../../components/common/TextInput';
-import Button from '../../components/common/Button';
+import Card from '../../components/common/card';
+import SelectCard from '../../components/common/selectCard';
+import TextInput from '../../components/common/textInput';
+import Button from '../../components/common/button';
 import {
     IconArrowRight,
     IconBackpack,
@@ -16,7 +16,7 @@ import {
     IconTent,
     IconYoga,
 } from '@tabler/icons-react';
-import SelectBox from '../../components/common/SelectBox';
+import SelectBox from '../../components/common/selectBox';
 import { NavLink } from 'react-router-dom';
 import type { Product } from '../../types/product';
 

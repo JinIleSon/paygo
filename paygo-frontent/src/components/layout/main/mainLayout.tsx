@@ -1,6 +1,6 @@
 import type React from 'react';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+import Sidebar from './sidebar';
+import Topbar from './topbar';
 import { Outlet } from 'react-router-dom';
 
 function MainLayout() {

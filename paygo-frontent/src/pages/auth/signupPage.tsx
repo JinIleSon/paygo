@@ -1,9 +1,9 @@
-import AuthLayout from '../../components/layout/auth/AuthLayout';
+import AuthLayout from '../../components/layout/auth/authLayout';
 import notebookImg from '../../assets/notebook.webp';
 import { IconCreditCard } from '@tabler/icons-react';
-import TextInput from '../../components/common/TextInput';
-import PasswordInput from '../../components/common/PasswordInput';
-import Button from '../../components/common/Button';
+import TextInput from '../../components/common/textInput';
+import PasswordInput from '../../components/common/passwordInput';
+import Button from '../../components/common/button';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
