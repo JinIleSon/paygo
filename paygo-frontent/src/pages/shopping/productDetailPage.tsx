@@ -298,13 +298,14 @@ function ProductDetailPage() {
                                     variant="secondary"
                                     className="flex items-center justify-center gap-2 p-3 py-6 text-xl"
                                     onClick={handleAddToCart}
+                                    isDisabled={isAddToCartDisabled}
                                     >
                                     <IconShoppingCart size={25} />
                                     <div>담기</div>
                                 </Button>
                                 <Button
-                                    className="flex items-center justify-center gap-2 p-3 py-6 text-xl
-                                    "
+                                    className="flex items-center justify-center gap-2 p-3 py-6 text-xl"
+                                    isDisabled={isAddToCartDisabled}
                                     >
                                     <div>바로 구매</div>
                                 </Button>
