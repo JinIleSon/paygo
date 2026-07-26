@@ -3,10 +3,11 @@ import { cn } from '../../lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary';
+    isDisabled?: boolean;
 }
 
-function Button({ variant = 'primary', className, children, ...props }: ButtonProps) {
-    const base = 'text-gray-400 border rounded-md cursor-pointer duration-500 transition-colors';
+function Button({ variant = 'primary', isDisabled = false, className, children, ...props }: ButtonProps) {
+    const base = 'text-gray-400 border rounded-md cursor-pointer duration-500 transition-colors disabled:opacity-50 disabled:pointer-events-none';
 
     const variants = {
         primary: 'border-[#D1D5DB] bg-white text-[#4D4D4D] hover:border-[#B4B6F8] hover:bg-[#F5F6FF] hover:text-[#9294F5]',
@@ -14,7 +15,11 @@ function Button({ variant = 'primary', className, children, ...props }: ButtonPr
     };
 
     return (
-        <button className={cn(base, variants[variant], className)} {...props}>
+        <button 
+            disabled={isDisabled}
+            className={cn(base, variants[variant], className)} 
+            {...props}
+        >
             {children}
         </button>
     );

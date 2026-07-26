@@ -4,6 +4,7 @@ import { useState } from 'react';
 import SelectCard from '../../components/common/selectCard';
 import Button from '../../components/common/button';
 import type { ProductDetail } from '../../types/product';
+import { useCartStore } from '../../stores/useCartStore';
 
 function ProductDetailPage() {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -12,7 +13,7 @@ function ProductDetailPage() {
     const [selectedColor, setSelectedColor] = useState('');
     const [selectedCount, setSelectedCount] = useState(1);
 
-    const balance = 3842000;
+    const addItem = useCartStore((state) => state.addItem);
 
     const product : ProductDetail = {
         id: 0,
@@ -55,6 +56,32 @@ function ProductDetailPage() {
         chooseColor: ['인디고', '그린', '옐로', '핑크'],
     };
 
+    const handleAddToCart = () => {
+        addItem({
+            productId: product.id,
+            productName: product.name,
+            size: selectedSize, // 사용자가 고른 사이즈
+            color: selectedColor, // 사용자가 고른 색
+            price: product.discountPrice,
+            stock: product.stock, // 남은 재고
+            count: selectedCount, // 사용자가 고른 개수
+            icon: product.icon,
+            itemBg: product.itemBg,
+            itemText: product.itemText
+        });
+
+        // TODO: 전역 Toast 추가 필요
+    };
+
+    const requireSize = product.size && product.size.length > 0;
+
+    // size, color가 선택되지 않고, count가 stock보다 크고 0보다 작은지 판별
+    const isAddToCartDisabled = (requireSize && selectedSize === -1) || 
+        selectedColor === '' || (
+            product.stock <= 0 || selectedCount > product.stock || selectedCount < 1
+        );
+
+    const balance = 3842000;
     const Icon = product.icon;
 
     return (
@@ -270,6 +297,7 @@ function ProductDetailPage() {
                                 <Button
                                     variant="secondary"
                                     className="flex items-center justify-center gap-2 p-3 py-6 text-xl"
+                                    onClick={handleAddToCart}
                                     >
                                     <IconShoppingCart size={25} />
                                     <div>담기</div>
