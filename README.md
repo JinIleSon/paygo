@@ -1,9 +1,12 @@
-# 💳 Paygo
+# Paygo — 지갑 충전부터 정산까지, 결제 커머스 플랫폼
 
-결제 지갑 + 이커머스 통합 플랫폼 (개발 진행 중)
+[상태 배지: 🚧 진행중 | Frontend 70% · Backend 설계 완료/구현 예정]
 
-> README는 프로젝트 완성 후 업데이트 예정입니다.
+## 프로젝트 소개
+지갑 충전 → 상품 구매 → 판매자 정산까지, 돈의 흐름 전체를 
+설계한 결제 커머스 플랫폼입니다.
 
+## 스크린샷
 <br><br>
 로그인
 <br><br>
@@ -43,3 +46,31 @@
 상품 상세
 <br><br>
 <img width="1288" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c931c74-1b83-4307-bbbd-8cfa690fa406" />
+
+## 기술 스택
+| 구분 | 상태 | 내용 |
+|---|---|---|
+| Frontend | ✅ 구현중 | React, TypeScript, Tailwind, React Query, Zustand |
+| Backend | 📐 설계 완료 · 구현 예정 | Spring Boot, Spring Security, JPA, QueryDSL |
+| DB | 📐 설계 완료 | MySQL, Redis |
+| Infra | 📐 계획 | Docker, GitHub Actions, Railway |
+
+## 아키텍처 설계 (구현 예정)
+이 프로젝트의 핵심은 화면 UX 자체가 아니라 그 아래 깔린 
+동시성/트랜잭션 설계입니다.
+
+- **동시성 제어**: 지갑 잔액 차감은 낙관적 락(@Version), 
+  상품 재고 차감은 Redis 분산 락(Redisson)으로 분리 설계
+  → 화면에서도 재고 1개 남은 상품에 경고 문구를 미리 노출해 
+    이 시나리오를 UX로 먼저 검증
+- **트랜잭션 설계**: 주문→결제→재고차감→정산을 하나의 
+  트랜잭션으로 묶고, 실패 시 전체 롤백 + 실패 내역 별도 보존
+  → 주문내역 화면의 "결제실패, 잔액 차감 안 됨" 문구가 
+    이 설계를 미리 반영한 것
+- **인증**: JWT Access/Refresh, 구매자/판매자 권한 분리 (설계)
+
+## 진행 상황
+- [x] 화면 설계 및 프론트엔드 12개 화면 중 8개 완료
+- [ ] 나머지 4개 화면
+- [ ] 백엔드 API 연동
+- [ ] 낙관적 락 / 분산 락 구현
