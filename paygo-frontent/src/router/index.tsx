@@ -1,19 +1,19 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginPage from '../pages/auth/LoginPage.tsx';
-import SignupPage from '../pages/auth/SignupPage.tsx';
-import TermsOfServicePage from '../pages/auth/terms/TermsOfServicePage.tsx';
-import PrivacyConsentPage from '../pages/auth/terms/PrivacyConsentPage.tsx';
-import MarketingConsentPage from '../pages/auth/terms/MarketingConsentPage.tsx';
-import WalletHomePage from '../pages/wallet/WalletHomePage.tsx';
-import MainLayout from '../components/layout/main/MainLayout.tsx';
-import WalletChargePage from '../pages/wallet/WalletChargePage.tsx';
-import WalletHistoryPage from '../pages/wallet/WalletHistoryPage.tsx';
-import ProductListPage from '../pages/shopping/ProductListPage.tsx';
-import CartPage from '../pages/shopping/CartPage.tsx';
-import OrderListPage from '../pages/shopping/OrderListPage.tsx';
-import OrderDetailPage from '../pages/shopping/OrderDetailPage.tsx';
-import ProductDetailPage from '../pages/shopping/ProductDetailPage.tsx';
-import ProductPaymentPage from '../pages/shopping/ProductPaymentPage.tsx';
+import LoginPage from '../pages/auth/loginPage.tsx';
+import SignupPage from '../pages/auth/signupPage.tsx';
+import TermsOfServicePage from '../pages/auth/terms/termsOfServicePage.tsx';
+import PrivacyConsentPage from '../pages/auth/terms/privacyConsentPage.tsx';
+import MarketingConsentPage from '../pages/auth/terms/marketingConsentPage.tsx';
+import WalletHomePage from '../pages/wallet/walletHomePage.tsx';
+import MainLayout from '../components/layout/main/mainLayout.tsx';
+import WalletChargePage from '../pages/wallet/walletChargePage.tsx';
+import WalletHistoryPage from '../pages/wallet/walletHistoryPage.tsx';
+import ProductListPage from '../pages/shopping/productListPage.tsx';
+import CartPage from '../pages/shopping/cartPage.tsx';
+import OrderListPage from '../pages/shopping/orderListPage.tsx';
+import OrderDetailPage from '../pages/shopping/orderDetailPage.tsx';
+import ProductDetailPage from '../pages/shopping/productDetailPage.tsx';
+import ProductPaymentPage from '../pages/shopping/productPaymentPage.tsx';
 
 export const router = createBrowserRouter([
     { path: '/login', element: <LoginPage /> },
