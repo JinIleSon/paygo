@@ -6,8 +6,10 @@ import Button from '../../components/common/button';
 import {
     IconArrowRight,
     IconBackpack,
+    IconChevronRight,
     IconCoffee,
     IconDeviceLaptop,
+    IconEye,
     IconHeadphones,
     IconSearch,
     IconShirt,
@@ -17,12 +19,13 @@ import {
     IconYoga,
 } from '@tabler/icons-react';
 import SelectBox from '../../components/common/selectBox';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import type { Product } from '../../types/product';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('');
     const [search, setSearch] = useState('');
+    const navigate = useNavigate();
 
     const classification = [
         { id: 'all', label: '전체' },
@@ -198,20 +201,25 @@ function ProductListPage() {
                                         <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                             <div>{item.price.toLocaleString()}원</div>
                                         </div>
+                                        <Button 
+                                            className="flex p-2 w-full mt-3"
+                                            onClick={(e) => {
+                                                e.preventDefault();  // <a>, <NavLink> 기본 동작 막기
+                                                e.stopPropagation(); // 이벤트 버블링 막기
+                                                navigate('/shopping/product-detail');
+                                            }}
+                                        >
+                                            <div className="pl-2 w-full">
+                                                <div className="flex items-center justify-center text-xl">
+                                                    <div className="mr-2">
+                                                        상세보기
+                                                    </div>
+                                                    <IconArrowRight />
+                                                </div>
+                                            </div>
+                                        </Button>
                                     </div>
                                 </NavLink>
-                                <div className="px-4.5 pb-3">
-                                    <Button 
-                                        className="flex p-2 w-full"
-                                    >
-                                        <div className="flex items-center justify-center pl-2 w-full">
-                                            <IconShoppingCartPlus />
-                                            <div className="ml-auto mr-2 text-xl">
-                                                장바구니 추가
-                                            </div>
-                                        </div>
-                                    </Button>
-                                </div>
                             </Card>
                         );
                     })}
@@ -252,18 +260,25 @@ function ProductListPage() {
                                         <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                             <div>{item.price.toLocaleString()}원</div>
                                         </div>
+                                        <Button 
+                                            className="flex p-2 w-full mt-3"
+                                            onClick={(e) => {
+                                                e.preventDefault(); 
+                                                e.stopPropagation(); 
+                                                navigate('/shopping/product-detail');
+                                            }}
+                                        >
+                                            <div className="pl-2 w-full">
+                                                <div className="flex items-center justify-center text-xl">
+                                                    <div className="mr-2">
+                                                        상세보기
+                                                    </div>
+                                                    <IconArrowRight />
+                                                </div>
+                                            </div>
+                                        </Button>
                                     </div>
                                 </NavLink>
-                                <div className="px-4.5 pb-3">
-                                    <Button className="flex p-2 w-full ">
-                                        <div className="flex items-center justify-center pl-2 w-full">
-                                            <IconShoppingCartPlus />
-                                            <div className="ml-auto mr-2 text-xl">
-                                                장바구니 추가
-                                            </div>
-                                        </div>
-                                    </Button>
-                                </div>
                             </Card>
                         );
                     })}
