@@ -9,7 +9,7 @@ function ToastContainer() {
                 <div
                     key={toast.id}
                     className={`animate-toast-in px-4 py-3 rounded-lg shadow-lg text-sm text-white ${
-                        toast.type === 'success' ? 'bg-gray-900' : 'bg-red-500'
+                        toast.type === 'success' ? 'bg-gray-700' : 'bg-red-500'
                     }`}
                 >
                     {toast.message}
