@@ -317,10 +317,7 @@ function SignupPage() {
                                     checked={isAllChecked}
                                     onChange={handleCheck}
                                     style={isAllChecked ? checkedStyle : undefined}
-                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                        checked:bg-indigo-500 checked:border-indigo-500
-                                        checked:bg-center checked:bg-no-repeat
-                                        "
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
                                 <span className="font-bold text-[18px]">전체 동의</span>
                             </label>
@@ -338,10 +335,7 @@ function SignupPage() {
                                         setCheckedFirst(e.target.checked);
                                     }}
                                     style={checkedFirst ? checkedStyle : undefined}
-                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                        checked:bg-indigo-500 checked:border-indigo-500
-                                        checked:bg-center checked:bg-no-repeat
-                                        "
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
                                 <span className="">
                                     서비스 이용약관 동의<span className="font-bold"> (필수)</span>
@@ -366,10 +360,7 @@ function SignupPage() {
                                         setCheckedSecond(e.target.checked);
                                     }}
                                     style={checkedSecond ? checkedStyle : undefined}
-                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                        checked:bg-indigo-500 checked:border-indigo-500
-                                        checked:bg-center checked:bg-no-repeat
-                                        "
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
                                 <span className="">
                                     개인정보 수집 및 이용 동의<span className="font-bold"> (필수)</span>
@@ -394,10 +385,7 @@ function SignupPage() {
                                         setCheckedThird(e.target.checked);
                                     }}
                                     style={checkedThird ? checkedStyle : undefined}
-                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer
-                                        checked:bg-indigo-500 checked:border-indigo-500
-                                        checked:bg-center checked:bg-no-repeat
-                                        "
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
                                 <span className="">
                                     마케팅 정보 수신 동의<span className=""> (선택)</span>
