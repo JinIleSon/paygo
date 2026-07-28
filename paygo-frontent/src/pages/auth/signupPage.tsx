@@ -36,8 +36,8 @@ function SignupPage() {
 
     const checkedStyle = {
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
-        backgroundColor: '#9f9fa5', // 연한 회색빛 보라
-        borderColor: '#9f9fa5', // 테두리도 같이 맞춰주기
+        backgroundColor: '#6266f1', // 연한 회색빛 보라
+        borderColor: '#6266f1', // 테두리도 같이 맞춰주기
     };
 
     const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
