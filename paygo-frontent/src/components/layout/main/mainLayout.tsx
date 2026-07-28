@@ -2,6 +2,7 @@ import type React from 'react';
 import Sidebar from './sidebar';
 import Topbar from './topbar';
 import { Outlet } from 'react-router-dom';
+import ToastContainer from '../../common/toastContainer';
 
 function MainLayout() {
     return (
@@ -20,6 +21,7 @@ function MainLayout() {
                     </div>
                 </main>
             </div>
+            <ToastContainer />
         </div>
     );
 }
