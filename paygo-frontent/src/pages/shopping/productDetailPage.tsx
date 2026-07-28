@@ -5,6 +5,7 @@ import SelectCard from '../../components/common/selectCard';
 import Button from '../../components/common/button';
 import type { ProductDetail } from '../../types/product';
 import { useCartStore } from '../../stores/useCartStore';
+import { useToastStore } from '../../stores/useToastStore';
 
 function ProductDetailPage() {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -14,6 +15,7 @@ function ProductDetailPage() {
     const [selectedCount, setSelectedCount] = useState(1);
 
     const addItem = useCartStore((state) => state.addItem);
+    const showToast = useToastStore((state) => state.showToast);
 
     const product : ProductDetail = {
         id: 0,
@@ -70,7 +72,7 @@ function ProductDetailPage() {
             itemText: product.itemText
         });
 
-        // TODO: 전역 Toast 추가 필요
+        showToast("장바구니에 상품을 담았어요");
     };
 
     const requireSize = product.size && product.size.length > 0;
