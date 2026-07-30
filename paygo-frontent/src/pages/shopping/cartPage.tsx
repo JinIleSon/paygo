@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import Card from '../../components/common/card';
 import { useCartStore } from '../../stores/useCartStore';
+import { IconAlertTriangle } from '@tabler/icons-react';
+import Button from '../../components/common/button';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const [selectedCount, setSelectedCount] = useState(0);
 
     // 개별 체크박스 토글
     const toggleItem = (cartItemId: string) => {
@@ -63,29 +66,88 @@ function CartPage() {
                                 </div>
                             </label>
                         </Card>
-                        {items.map((item) => (
-                            <Card key={item.cartItemId} className="flex">
-                                <label
-                                    htmlFor={`agree${item.cartItemId}`}
-                                    className="cursor-pointer flex items-center gap-3"
-                                >
-                                    <input
-                                        id={`agree${item.cartItemId}`}
-                                        type="checkbox"
-                                        checked={selectedIds.includes(item.cartItemId)}
-                                        onChange={() => {
-                                            toggleItem(item.cartItemId);
-                                        }}
-                                        style={
-                                            selectedIds.includes(item.cartItemId)
-                                                ? checkedStyle
-                                                : undefined
-                                        }
-                                        className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
-                                    />
-                                </label>
-                            </Card>
-                        ))}
+                        {items.map((item) => {
+                            const Icon = item.icon;
+
+                            return (
+                                <Card key={item.cartItemId} className="flex">
+                                    <label
+                                        htmlFor={`agree${item.cartItemId}`}
+                                        className="cursor-pointer flex flex-wrap items-center gap-4"
+                                    >
+                                        <input
+                                            id={`agree${item.cartItemId}`}
+                                            type="checkbox"
+                                            checked={selectedIds.includes(item.cartItemId)}
+                                            onChange={() => {
+                                                toggleItem(item.cartItemId);
+                                            }}
+                                            style={
+                                                selectedIds.includes(item.cartItemId)
+                                                    ? checkedStyle
+                                                    : undefined
+                                            }
+                                            className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
+                                        />
+                                        <div
+                                            className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ml-auto ${item.itemBg}`}
+                                        >
+                                            <Icon size={30} className={item.itemText} />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <div>{item.productName}</div>
+                                            <div className="flex">
+                                                {item.size && (
+                                                    <div className="text-gray-400 text-sm">
+                                                        사이즈: {item.size} |
+                                                    </div>
+                                                )}
+                                                <div className="text-gray-400 text-sm">
+                                                    &nbsp;색상: {item.color}
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-5">
+                                                <Button
+                                                    variant="secondary"
+                                                    className="px-2"
+                                                    onClick={() =>
+                                                        setSelectedCount((prev) => {
+                                                            if (prev > 0) return prev - 1;
+                                                            return 0;
+                                                        })
+                                                    }
+                                                >
+                                                    –
+                                                </Button>
+                                                <div className="text-lg">{item.count}</div>
+                                                <Button
+                                                    variant="secondary"
+                                                    className="px-2"
+                                                    onClick={() =>
+                                                        setSelectedCount((next) => {
+                                                            if (next < item.stock) return next + 1;
+                                                            return next;
+                                                        })
+                                                    }
+                                                >
+                                                    +
+                                                </Button>
+                                                <div>
+                                                    {(selectedCount * item.price).toLocaleString()}
+                                                    원
+                                                </div>
+                                            </div>
+                                            {item.stock <= 2 && (
+                                                <div className="flex items-center gap-2 text-[red] text-sm">
+                                                    <IconAlertTriangle size={18} />
+                                                    <div>재고 {item.stock}개 남음 — 서두르세요</div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </label>
+                                </Card>
+                            );
+                        })}
                     </div>
                 </div>
                 <div className="min-w-1/2">
