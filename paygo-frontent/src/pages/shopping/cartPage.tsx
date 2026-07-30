@@ -1,6 +1,6 @@
-import { useState } from "react";
-import Card from "../../components/common/card";
-import { useCartStore } from "../../stores/useCartStore";
+import { useState } from 'react';
+import Card from '../../components/common/card';
+import { useCartStore } from '../../stores/useCartStore';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
@@ -9,19 +9,21 @@ function CartPage() {
 
     // 개별 체크박스 토글
     const toggleItem = (productId: number) => {
-        setSelectedIds((prev) => 
-            prev.includes(productId)
-                ? prev.filter((id) => productId !== id) // 이미 선택됨 -> 제거
-                : [...prev, productId]                  // 선택 안 됨 -> 추가
+        setSelectedIds(
+            (prev) =>
+                prev.includes(productId)
+                    ? prev.filter((id) => productId !== id) // 이미 선택됨 -> 제거
+                    : [...prev, productId] // 선택 안 됨 -> 추가
         );
     };
 
     // 전체 선택 토글
     const toggleAll = () => {
-        setSelectedIds((prev) => 
-            prev.length === items.length
-            ? []                                        // 전부 선택됨 -> 전체 해제
-            : items.map((item) => item.productId)       // 아니면 -> 전체 선택
+        setSelectedIds(
+            (prev) =>
+                prev.length === items.length
+                    ? [] // 전부 선택됨 -> 전체 해제
+                    : items.map((item) => item.productId) // 아니면 -> 전체 선택
         );
     };
 
@@ -35,38 +37,60 @@ function CartPage() {
         <div>
             <div className="flex gap-8 pr-8">
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5">
+                    <div className="flex flex-col gap-6.5 font-medium">
                         <Card>
-                            <label htmlFor="agreeAll">
-                                <input 
-                                    type="checkbox" 
-                                    name="" 
+                            <label
+                                htmlFor="agreeAll"
+                                className="cursor-pointer flex items-center gap-3"
+                            >
+                                <input
+                                    type="checkbox"
+                                    name=""
                                     id="agreeAll"
-                                    checked={checked}
-                                    onChange={(e) => {
-                                        setChecked(e.target.checked)
-                                    }}
-                                    style={checked ? checkedStyle : undefined}
+                                    checked={
+                                        selectedIds.length === items.length && items.length > 0
+                                    }
+                                    onChange={toggleAll}
+                                    style={
+                                        selectedIds.length === items.length && items.length > 0
+                                            ? checkedStyle
+                                            : undefined
+                                    }
                                     className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
-                                    <div>전체 선택 (/{items.length})</div>
+                                <div className="text-gray-500">
+                                    전체 선택 ({selectedIds.length}/{items.length})
+                                </div>
                             </label>
                         </Card>
                         {items.map((item) => (
-                            <Card 
-                                key={item.productId}
-                                className="flex"
+                            <Card key={item.productId} className="flex">
+                                <label
+                                    htmlFor={`agree${item.productId}`}
+                                    className="cursor-pointer flex items-center gap-3"
                                 >
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedIds.includes(item.productId)}
+                                        onChange={() => {
+                                            toggleItem(item.productId);
+                                        }}
+                                        style={
+                                            selectedIds.includes(item.productId)
+                                                ? checkedStyle
+                                                : undefined
+                                        }
+                                        className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
+                                    ></input>
+                                </label>
                             </Card>
                         ))}
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5">
-
-                    </div>
+                    <div className="flex flex-col gap-6.5"></div>
                 </div>
-            </div>            
+            </div>
         </div>
     );
 }
