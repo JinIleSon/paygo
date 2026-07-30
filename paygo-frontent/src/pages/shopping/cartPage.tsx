@@ -5,15 +5,15 @@ import { useCartStore } from '../../stores/useCartStore';
 function CartPage() {
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
-    const [selectedIds, setSelectedIds] = useState<number[]>([]);
+    const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
     // 개별 체크박스 토글
-    const toggleItem = (productId: number) => {
+    const toggleItem = (cartItemId: string) => {
         setSelectedIds(
             (prev) =>
-                prev.includes(productId)
-                    ? prev.filter((id) => productId !== id) // 이미 선택됨 -> 제거
-                    : [...prev, productId] // 선택 안 됨 -> 추가
+                prev.includes(cartItemId)
+                    ? prev.filter((id) => cartItemId !== id) // 이미 선택됨 -> 제거
+                    : [...prev, cartItemId] // 선택 안 됨 -> 추가
         );
     };
 
@@ -23,7 +23,7 @@ function CartPage() {
             (prev) =>
                 prev.length === items.length
                     ? [] // 전부 선택됨 -> 전체 해제
-                    : items.map((item) => item.productId) // 아니면 -> 전체 선택
+                    : items.map((item) => item.cartItemId) // 아니면 -> 전체 선택
         );
     };
 
@@ -64,24 +64,25 @@ function CartPage() {
                             </label>
                         </Card>
                         {items.map((item) => (
-                            <Card key={item.productId} className="flex">
+                            <Card key={item.cartItemId} className="flex">
                                 <label
-                                    htmlFor={`agree${item.productId}`}
+                                    htmlFor={`agree${item.cartItemId}`}
                                     className="cursor-pointer flex items-center gap-3"
                                 >
                                     <input
+                                        id={`agree${item.cartItemId}`}
                                         type="checkbox"
-                                        checked={selectedIds.includes(item.productId)}
+                                        checked={selectedIds.includes(item.cartItemId)}
                                         onChange={() => {
-                                            toggleItem(item.productId);
+                                            toggleItem(item.cartItemId);
                                         }}
                                         style={
-                                            selectedIds.includes(item.productId)
+                                            selectedIds.includes(item.cartItemId)
                                                 ? checkedStyle
                                                 : undefined
                                         }
                                         className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
-                                    ></input>
+                                    />
                                 </label>
                             </Card>
                         ))}

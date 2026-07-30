@@ -1,7 +1,8 @@
 import type { Icon } from '@tabler/icons-react';
 
 export interface CartItem {
-    productId: number;
+    cartItemId: string; // 장바구니 고유 ID
+    productId: number; // 상품 고유 ID
     productName: string;
     size?: number;
     color: string;
