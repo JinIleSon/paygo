@@ -17,7 +17,7 @@ function ProductDetailPage() {
     const addItem = useCartStore((state) => state.addItem);
     const showToast = useToastStore((state) => state.showToast);
 
-    const product : ProductDetail = {
+    const product: ProductDetail = {
         id: 0,
         itemBg: 'bg-[#F5F6FF]',
         itemText: 'text-[#6266F1]',
@@ -69,19 +69,21 @@ function ProductDetailPage() {
             count: selectedCount, // 사용자가 고른 개수
             icon: product.icon,
             itemBg: product.itemBg,
-            itemText: product.itemText
+            itemText: product.itemText,
         });
 
-        showToast("장바구니에 상품을 담았어요");
+        showToast('장바구니에 상품을 담았어요');
     };
 
     const requireSize = product.size && product.size.length > 0;
 
     // size, color가 선택되지 않고, count가 stock보다 크고 0보다 작은지 판별
-    const isAddToCartDisabled = (requireSize && selectedSize === -1) || 
-        selectedColor === '' || (
-            product.stock <= 0 || selectedCount > product.stock || selectedCount < 1
-        );
+    const isAddToCartDisabled =
+        (requireSize && selectedSize === -1) ||
+        selectedColor === '' ||
+        product.stock <= 0 ||
+        selectedCount > product.stock ||
+        selectedCount < 1;
 
     const balance = 3842000;
     const Icon = product.icon;
@@ -176,7 +178,8 @@ function ProductDetailPage() {
                                     <span className="text-[#6266F1]">{product.name}</span>
                                 </div>
                                 <div className="text-2xl">
-                                    {product.name} {selectedColor && "— "}{selectedColor}
+                                    {product.name} {selectedColor && '— '}
+                                    {selectedColor}
                                 </div>{' '}
                                 {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
                                 <div className="flex items-end">
@@ -242,7 +245,7 @@ function ProductDetailPage() {
                                             ))}
                                         </div>
                                     </div>
-                                    
+
                                     <div className="flex flex-col gap-4">
                                         <div className="text-[gray]">수량</div>
                                         <div className="flex items-center gap-5">
@@ -271,19 +274,20 @@ function ProductDetailPage() {
                                             >
                                                 +
                                             </Button>
-                                            {product.stock <= 2 && 
+                                            {product.stock <= 2 && (
                                                 <div className="flex items-center gap-2 text-[red]">
                                                     <IconAlertTriangle size={20} />
-                                                    <div>재고 {product.stock}개 남음 — 서두르세요</div>
+                                                    <div>
+                                                        재고 {product.stock}개 남음 — 서두르세요
+                                                    </div>
                                                 </div>
-                                            }
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </Card>
                         <Card className="py-9 flex flex-col gap-5">
-
                             <div className="flex justify-between items-center font-medium">
                                 <div className="text-[gray]">Paygo 잔액</div>
                                 <div className="text-2xl">{balance.toLocaleString()}원</div>
@@ -291,7 +295,9 @@ function ProductDetailPage() {
 
                             <div className="flex justify-between items-center font-medium">
                                 <div className="text-[gray]">결제 후 잔액</div>
-                                <div className="text-[#6266F1] text-2xl">{(balance - product.discountPrice).toLocaleString()}원</div>
+                                <div className="text-[#6266F1] text-2xl">
+                                    {(balance - product.discountPrice).toLocaleString()}원
+                                </div>
                             </div>
 
                             {/* 담기 버튼은 장바구니로 이동하면서 장바구니 테이블에 데이터 row 하나 추가 */}
@@ -301,14 +307,14 @@ function ProductDetailPage() {
                                     className="flex items-center justify-center gap-2 p-3 py-6 text-xl"
                                     onClick={handleAddToCart}
                                     isDisabled={isAddToCartDisabled}
-                                    >
+                                >
                                     <IconShoppingCart size={25} />
                                     <div>담기</div>
                                 </Button>
                                 <Button
                                     className="flex items-center justify-center gap-2 p-3 py-6 text-xl"
                                     isDisabled={isAddToCartDisabled}
-                                    >
+                                >
                                     <div>바로 구매</div>
                                 </Button>
                             </div>

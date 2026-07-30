@@ -3,7 +3,7 @@ import type { CartItem } from '../types/cartItem';
 
 interface CartState {
     items: CartItem[];
-    addItem: (item: CartItem) => void;
+    addItem: (item: Omit<CartItem, 'cartItemId'>) => void; // cartItemId 필드 없는 CartItem 타입으로 입력받음.
     removeItem: (cartItemId: string) => void;
 }
 
