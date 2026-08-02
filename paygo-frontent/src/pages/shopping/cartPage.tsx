@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Card from '../../components/common/card';
 import { useCartStore } from '../../stores/useCartStore';
-import { IconAlertTriangle } from '@tabler/icons-react';
+import { IconAlertTriangle, IconX } from '@tabler/icons-react';
 import Button from '../../components/common/button';
 
 function CartPage() {
@@ -110,7 +110,10 @@ function CartPage() {
                                                 <Button
                                                     variant="secondary"
                                                     className="px-2"
-                                                    onClick={() => updateItem(item.cartItemId, Math.max(0, item.count - 1))}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        updateItem(item.cartItemId, Math.max(0, item.count - 1));
+                                                    }}
                                                 >
                                                     –
                                                 </Button>
@@ -118,7 +121,10 @@ function CartPage() {
                                                 <Button
                                                     variant="secondary"
                                                     className="px-2"
-                                                    onClick={() => updateItem(item.cartItemId, Math.min(item.stock, item.count + 1))}
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        updateItem(item.cartItemId, Math.min(item.stock, item.count + 1));
+                                                    }}
                                                 >
                                                     +
                                                 </Button>
@@ -135,6 +141,12 @@ function CartPage() {
                                             )}
                                         </div>
                                     </label>
+                                    <div className="ml-auto">
+                                        <IconX 
+                                            onClick={() => removeItem(item.cartItemId)} 
+                                            className="cursor-pointer text-gray-400"
+                                        />
+                                    </div>
                                 </Card>
                             );
                         })}
