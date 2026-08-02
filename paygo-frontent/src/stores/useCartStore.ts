@@ -5,6 +5,7 @@ interface CartState {
     items: CartItem[];
     addItem: (item: Omit<CartItem, 'cartItemId'>) => void; // cartItemId 필드 없는 CartItem 타입으로 입력받음.
     removeItem: (cartItemId: string) => void;
+    updateItem: (cartItemId: string, count: number) => void;
 }
 
 export const useCartStore = create<CartState>((set) => ({
@@ -20,5 +21,10 @@ export const useCartStore = create<CartState>((set) => ({
     removeItem: (cartItemId) =>
         set((state) => ({
             items: state.items.filter((i) => i.cartItemId !== cartItemId),
+        })),
+    
+    updateItem: (cartItemId, count) =>
+        set((state) => ({
+            items: state.items.map((i) => i.cartItemId === cartItemId ? { ...i, count } : i),
         })),
 }));

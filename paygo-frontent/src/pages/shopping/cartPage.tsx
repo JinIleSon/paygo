@@ -7,8 +7,8 @@ import Button from '../../components/common/button';
 function CartPage() {
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
+    const updateItem = useCartStore((state) => state.updateItem);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
-    const [selectedCount, setSelectedCount] = useState(0);
 
     // 개별 체크박스 토글
     const toggleItem = (cartItemId: string) => {
@@ -110,12 +110,7 @@ function CartPage() {
                                                 <Button
                                                     variant="secondary"
                                                     className="px-2"
-                                                    onClick={() =>
-                                                        setSelectedCount((prev) => {
-                                                            if (prev > 0) return prev - 1;
-                                                            return 0;
-                                                        })
-                                                    }
+                                                    onClick={() => updateItem(item.cartItemId, Math.max(0, item.count - 1))}
                                                 >
                                                     –
                                                 </Button>
@@ -123,17 +118,12 @@ function CartPage() {
                                                 <Button
                                                     variant="secondary"
                                                     className="px-2"
-                                                    onClick={() =>
-                                                        setSelectedCount((next) => {
-                                                            if (next < item.stock) return next + 1;
-                                                            return next;
-                                                        })
-                                                    }
+                                                    onClick={() => updateItem(item.cartItemId, Math.min(item.stock, item.count + 1))}
                                                 >
                                                     +
                                                 </Button>
                                                 <div>
-                                                    {(selectedCount * item.price).toLocaleString()}
+                                                    {(item.count * item.price).toLocaleString()}
                                                     원
                                                 </div>
                                             </div>
