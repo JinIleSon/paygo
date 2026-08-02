@@ -153,9 +153,20 @@ function CartPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5">
+                    <div className="flex flex-col gap-6.5 font-medium">
                         <Card>
-
+                            <div className="flex flex-col gap-3 text-gray-500">
+                                <div className="text-lg">
+                                    주문 요약
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>
+                                        상품 금액
+                                    </div>
+                                    <div className="text-[black]">
+                                    </div>
+                                </div>
+                            </div>
                         </Card>
                     </div>
                 </div>
