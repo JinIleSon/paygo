@@ -44,7 +44,7 @@ function CartPage() {
                         <Card>
                             <label
                                 htmlFor="agreeAll"
-                                className="cursor-pointer flex items-center gap-3"
+                                className="cursor-pointer flex items-center gap-3 pt-0.5"
                             >
                                 <input
                                     type="checkbox"
@@ -61,7 +61,7 @@ function CartPage() {
                                     }
                                     className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
-                                <div className="text-gray-500">
+                                <div className="text-gray-500 text-lg pb-0.5">
                                     전체 선택 ({selectedIds.length}/{items.length})
                                 </div>
                             </label>
@@ -153,7 +153,11 @@ function CartPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5"></div>
+                    <div className="flex flex-col gap-6.5">
+                        <Card>
+
+                        </Card>
+                    </div>
                 </div>
             </div>
         </div>
