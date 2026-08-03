@@ -10,6 +10,9 @@ function CartPage() {
     const updateItem = useCartStore((state) => state.updateItem);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
+    const selectedItem = items.filter((item) => selectedIds.includes(item.cartItemId));
+    const selectedItemPrice = selectedItem.reduce((sum, item) => sum + item.count * item.price, 0);
+
     // 개별 체크박스 토글
     const toggleItem = (cartItemId: string) => {
         setSelectedIds(
@@ -155,7 +158,7 @@ function CartPage() {
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-6.5 font-medium">
                         <Card>
-                            <div className="flex flex-col gap-3 text-gray-500">
+                            <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-lg">
                                     주문 요약
                                 </div>
@@ -164,7 +167,33 @@ function CartPage() {
                                         상품 금액
                                     </div>
                                     <div className="text-[black]">
+                                        {selectedItemPrice.toLocaleString()}원
                                     </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>
+                                        할인 금액
+                                    </div>
+                                    <div className="text-[black]">
+                                        {selectedItemPrice.toLocaleString()}원
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>
+                                        배송비
+                                    </div>
+                                    <div className="text-[black]">
+                                        무료
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 -mt-3 flex justify-between">
+                                    <div></div>
+                                    <div className="text-[gray]">
+                                        배송비는 Paygo가 부담했어요
+                                    </div>
+                                </div>
+                                <div className="border-b border-[#D9D9D9]">
+
                                 </div>
                             </div>
                         </Card>
