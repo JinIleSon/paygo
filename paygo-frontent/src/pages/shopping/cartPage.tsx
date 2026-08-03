@@ -175,7 +175,7 @@ function CartPage() {
                                         할인 금액
                                     </div>
                                     <div className="text-[black]">
-                                        {selectedItemPrice.toLocaleString()}원
+                                        {/* TODO: coupon 타입 추가 후 가장 할인이 많이 되는 쿠폰 적용 필요 */}
                                     </div>
                                 </div>
                                 <div className="text-gray-400 flex justify-between">
