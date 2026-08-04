@@ -3,6 +3,8 @@ import Card from '../../components/common/card';
 import { useCartStore } from '../../stores/useCartStore';
 import { IconAlertTriangle, IconX } from '@tabler/icons-react';
 import Button from '../../components/common/button';
+import { getHighestDiscount } from '../../lib/couponUtils';
+import type { Coupon } from '../../types/coupon';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
@@ -38,14 +40,14 @@ function CartPage() {
         backgroundColor: '#6266F1', // 연한 회색빛 보라
         borderColor: '#6266F1', // 테두리도 같이 맞춰주기
     };
-    const coupons = [
+    const coupons : Coupon[] = [
         {
             id: '1',
             name: '첫 구매 혜택 5,000원권',
             discountType: 'fixed',
             discountValue: 5000,
             status: 'expired',
-            expiresAt: '2026.08.03',
+            expiresAt: '2026-08-03',
         },
         {
             id: '2',
@@ -53,7 +55,7 @@ function CartPage() {
             discountType: 'percent',
             discountValue: 10,
             status: 'active',
-            expiresAt: '2026.08.05',
+            expiresAt: '2026-08-21',
         },
         {
             id: '3',
@@ -61,7 +63,7 @@ function CartPage() {
             discountType: 'fixed',
             discountValue: 10000,
             status: 'active',
-            expiresAt: '2026.08.04',
+            expiresAt: '2026-08-21',
         },
         {
             id: '4',
@@ -69,7 +71,7 @@ function CartPage() {
             discountType: 'fixed',
             discountValue: 20000,
             status: 'used',
-            expiresAt: '2026.08.06',
+            expiresAt: '2026-08-21',
         },
     ];
 
@@ -207,8 +209,13 @@ function CartPage() {
                                 </div>
                                 <div className="text-gray-400 flex justify-between">
                                     <div>할인 금액</div>
-                                    <div className="text-[black]">
+                                    <div className={`${getHighestDiscount(selectedItemPrice, coupons) > 0 ? "text-[red]" : "text-[black]"}`}>
                                         {/* TODO: coupon 타입 추가 후 가장 할인이 많이 되는 쿠폰 적용 필요 */}
+                                        {
+                                            getHighestDiscount(selectedItemPrice, coupons) > 0 ?
+                                            getHighestDiscount(selectedItemPrice, coupons).toLocaleString() + '원' :
+                                            '—'
+                                        }
                                     </div>
                                 </div>
                                 <div className="text-gray-400 flex justify-between">
@@ -217,9 +224,10 @@ function CartPage() {
                                 </div>
                                 <div className="text-gray-400 -mt-3 flex justify-between">
                                     <div></div>
-                                    <div className="text-[gray]">배송비는 Paygo가 부담했어요</div>
+                                    <div className="text-[gray] text-sm">배송비는 Paygo가 부담했어요</div>
                                 </div>
-                                <div className="border-b border-[#D9D9D9]"></div>
+                                <div className="border-b border-[#D9D9D9]">
+                                </div>
                             </div>
                         </Card>
                     </div>
