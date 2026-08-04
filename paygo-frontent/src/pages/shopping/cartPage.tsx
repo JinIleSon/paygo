@@ -62,7 +62,7 @@ function CartPage() {
             name: 'Paygo하자 이벤트',
             discountType: 'fixed',
             discountValue: 10000,
-            status: 'active',
+            status: 'used',
             expiresAt: '2026-08-21',
         },
         {
@@ -70,7 +70,7 @@ function CartPage() {
             name: '개인 회원 이벤트',
             discountType: 'fixed',
             discountValue: 20000,
-            status: 'used',
+            status: 'active',
             expiresAt: '2026-08-21',
         },
     ];
@@ -198,7 +198,7 @@ function CartPage() {
                 </div>
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-6.5 font-medium">
-                        <Card>
+                        <Card className="h-180">
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-lg">주문 요약</div>
                                 <div className="text-gray-400 flex justify-between">
@@ -213,7 +213,7 @@ function CartPage() {
                                         {/* TODO: coupon 타입 추가 후 가장 할인이 많이 되는 쿠폰 적용 필요 */}
                                         {
                                             getHighestDiscount(selectedItemPrice, coupons) > 0 ?
-                                            getHighestDiscount(selectedItemPrice, coupons).toLocaleString() + '원' :
+                                            '-' + getHighestDiscount(selectedItemPrice, coupons).toLocaleString() + '원' :
                                             '—'
                                         }
                                     </div>
@@ -226,7 +226,12 @@ function CartPage() {
                                     <div></div>
                                     <div className="text-[gray] text-sm">배송비는 Paygo가 부담했어요</div>
                                 </div>
-                                <div className="border-b border-[#D9D9D9]">
+                                <div className="border-b border-[#D9D9D9]"></div>
+                                <div className="flex justify-between mt-2">
+                                    <div className="text-xl text-gray-600">최종 결제</div>
+                                    <div className="font-bold text-2xl text-[#6266F1]">
+                                        {(Math.max(0, selectedItemPrice - getHighestDiscount(selectedItemPrice, coupons))).toLocaleString() + '원'}
+                                    </div>
                                 </div>
                             </div>
                         </Card>
