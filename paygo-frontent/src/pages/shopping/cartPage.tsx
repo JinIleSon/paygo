@@ -40,6 +40,7 @@ function CartPage() {
         backgroundColor: '#6266F1', // 연한 회색빛 보라
         borderColor: '#6266F1', // 테두리도 같이 맞춰주기
     };
+
     const coupons : Coupon[] = [
         {
             id: '1',
@@ -74,6 +75,8 @@ function CartPage() {
             expiresAt: '2026-08-21',
         },
     ];
+
+    const balance = 3842000; // TODO: 백엔드에서 값 불러와야 함
 
     return (
         <div>
@@ -233,6 +236,16 @@ function CartPage() {
                                         {(Math.max(0, selectedItemPrice - getHighestDiscount(selectedItemPrice, coupons))).toLocaleString() + '원'}
                                     </div>
                                 </div>
+                            </div>
+                        </Card>
+                        <Card className="flex flex-col gap-4 bg-[#F5F6FF]">
+                            <div className="flex items-center justify-between text-lg">
+                                <div className="text-gray-500">Paygo 잔액</div>
+                                <div className="font-bold text-xl">{balance.toLocaleString()}원</div>
+                            </div>
+                            <div className="flex items-center justify-between text-lg">
+                                <div className="text-gray-600">결제 후 잔액</div>
+                                <div className="font-bold text-2xl text-[#6266F1]">{(balance - (Math.max(0, selectedItemPrice - getHighestDiscount(selectedItemPrice, coupons)))).toLocaleString()}원</div>
                             </div>
                         </Card>
                     </div>
