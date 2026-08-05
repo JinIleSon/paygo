@@ -5,22 +5,12 @@ import TextInput from '../../components/common/textInput';
 import Button from '../../components/common/button';
 import {
     IconArrowRight,
-    IconBackpack,
-    IconChevronRight,
-    IconCoffee,
-    IconDeviceLaptop,
-    IconEye,
-    IconHeadphones,
     IconSearch,
-    IconShirt,
-    IconShoe,
-    IconShoppingCartPlus,
-    IconTent,
-    IconYoga,
 } from '@tabler/icons-react';
 import SelectBox from '../../components/common/selectBox';
 import { NavLink, useNavigate } from 'react-router-dom';
 import type { Product } from '../../types/product';
+import { iconMap } from '../../constants/icons';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('');
@@ -45,7 +35,7 @@ function ProductListPage() {
             stock: 3,
             itemBg: 'bg-[#F5F6FF]',
             itemText: 'text-[#6266F1]',
-            icon: IconShoe,
+            iconName: "IconShoe",
         },
         {
             id: 1,
@@ -55,7 +45,7 @@ function ProductListPage() {
             stock: 1,
             itemBg: 'bg-[#E8FBF2]',
             itemText: 'text-[#22C55E]',
-            icon: IconHeadphones,
+            iconName: "IconHeadphones",
         },
         {
             id: 2,
@@ -65,7 +55,7 @@ function ProductListPage() {
             stock: 8,
             itemBg: 'bg-[#FEF9EB]',
             itemText: 'text-[#E0B36B]',
-            icon: IconTent,
+            iconName: "IconTent",
         },
         {
             id: 3,
@@ -75,7 +65,7 @@ function ProductListPage() {
             stock: 12,
             itemBg: 'bg-[#FCF2F8]',
             itemText: 'text-[#D862A1]',
-            icon: IconShirt,
+            iconName: "IconShirt",
         },
     ];
 
@@ -88,7 +78,7 @@ function ProductListPage() {
             stock: 5,
             itemBg: 'bg-[#EEF6FF]',
             itemText: 'text-[#4D84D8]',
-            icon: IconDeviceLaptop,
+            iconName: "IconDeviceLaptop",
         },
         {
             id: 1,
@@ -98,7 +88,7 @@ function ProductListPage() {
             stock: 2,
             itemBg: 'bg-[#F0FEFB]',
             itemText: 'text-[#22B1A0]',
-            icon: IconYoga,
+            iconName: "IconYoga",
         },
         {
             id: 2,
@@ -108,7 +98,7 @@ function ProductListPage() {
             stock: 6,
             itemBg: 'bg-[#FEF2F2]',
             itemText: 'text-[#EF4444]',
-            icon: IconCoffee,
+            iconName: "IconCoffee",
         },
         {
             id: 3,
@@ -118,7 +108,7 @@ function ProductListPage() {
             stock: 9,
             itemBg: 'bg-[#F9FBFC]',
             itemText: 'text-[#7B808C]',
-            icon: IconBackpack,
+            iconName: "IconBackpack",
         },
     ];
 
@@ -176,7 +166,7 @@ function ProductListPage() {
                 </div>
                 <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
                     {popularItems.map((item) => {
-                        const Icon = item.icon;
+                        const Icon = iconMap[item.iconName];
 
                         return (
                             <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
@@ -235,7 +225,7 @@ function ProductListPage() {
                 </div>
                 <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
                     {newItems.map((item) => {
-                        const Icon = item.icon;
+                        const Icon = iconMap[item.iconName];
 
                         return (
                             <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">

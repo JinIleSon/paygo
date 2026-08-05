@@ -6,6 +6,7 @@ import Button from '../../components/common/button';
 import type { ProductDetail } from '../../types/product';
 import { useCartStore } from '../../stores/useCartStore';
 import { useToastStore } from '../../stores/useToastStore';
+import { iconMap } from '../../constants/icons';
 
 function ProductDetailPage() {
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -21,7 +22,7 @@ function ProductDetailPage() {
         id: 0,
         itemBg: 'bg-[#F5F6FF]',
         itemText: 'text-[#6266F1]',
-        icon: IconShoe,
+        iconName: "IconShoe",
         colorSet: [
             { color: '#6266F1', bg: '#F5F6FF' },
             { color: '#22C55E', bg: '#E8FBF2' },
@@ -67,7 +68,7 @@ function ProductDetailPage() {
             price: product.discountPrice,
             stock: product.stock, // 남은 재고
             count: selectedCount, // 사용자가 고른 개수
-            icon: product.icon,
+            iconName: product.iconName,
             itemBg: product.itemBg,
             itemText: product.itemText,
         });
@@ -86,7 +87,7 @@ function ProductDetailPage() {
         selectedCount < 1;
 
     const balance = 3842000;
-    const Icon = product.icon;
+    const Icon = iconMap[product.iconName];
 
     return (
         <div>

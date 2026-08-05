@@ -1,4 +1,4 @@
-import type { Icon } from "@tabler/icons-react";
+import type { IconName } from "../constants/icons";
 
 // 두 타입 공통 필드 모음(Product 또는 ProductDetail)
 export interface ProductBase {
@@ -8,7 +8,7 @@ export interface ProductBase {
     stock: number;
     itemBg: string;
     itemText: string;
-    icon: Icon;
+    iconName: IconName;
 }
 
 // 목록 리스트

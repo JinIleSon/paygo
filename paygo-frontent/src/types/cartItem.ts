@@ -1,4 +1,4 @@
-import type { Icon } from '@tabler/icons-react';
+import type { IconName } from '../constants/icons';
 
 export interface CartItem {
     cartItemId: string; // 장바구니 고유 ID
@@ -9,7 +9,7 @@ export interface CartItem {
     price: number;
     stock: number; // TODO: 목업 단계 임시값, 추후 실시간 재고 조회로 대체 예정
     count: number;
-    icon: Icon;
+    iconName: IconName;
     itemBg: string;
     itemText: string;
 }

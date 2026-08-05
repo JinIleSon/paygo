@@ -5,7 +5,8 @@ import { IconAlertTriangle, IconX } from '@tabler/icons-react';
 import Button from '../../components/common/button';
 import { getHighestDiscount } from '../../lib/couponUtils';
 import type { Coupon } from '../../types/coupon';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { iconMap } from '../../constants/icons';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
@@ -111,7 +112,7 @@ function CartPage() {
                             </label>
                         </Card>
                         {items.map((item) => {
-                            const Icon = item.icon;
+                            const Icon = iconMap[item.iconName];
 
                             return (
                                 <Card key={item.cartItemId} className="flex">
