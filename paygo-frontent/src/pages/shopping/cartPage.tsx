@@ -5,12 +5,14 @@ import { IconAlertTriangle, IconX } from '@tabler/icons-react';
 import Button from '../../components/common/button';
 import { getHighestDiscount } from '../../lib/couponUtils';
 import type { Coupon } from '../../types/coupon';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
     const updateItem = useCartStore((state) => state.updateItem);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const navigate = useNavigate();
 
     const selectedItem = items.filter((item) => selectedIds.includes(item.cartItemId));
     const selectedItemPrice = selectedItem.reduce((sum, item) => sum + item.count * item.price, 0);
@@ -200,7 +202,7 @@ function CartPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5 font-medium">
+                    <div className="flex flex-col gap-4 font-medium">
                         <Card className="h-180">
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-lg">주문 요약</div>
@@ -248,6 +250,22 @@ function CartPage() {
                                 <div className="font-bold text-2xl text-[#6266F1]">{(balance - (Math.max(0, selectedItemPrice - getHighestDiscount(selectedItemPrice, coupons)))).toLocaleString()}원</div>
                             </div>
                         </Card>
+                        <div className="flex flex-col gap-3">
+                            <Button
+                                variant="secondary"
+                                className="p-3 text-xl"
+                                onClick={() => navigate("/shopping/product-payment")}
+                            >
+                                주문하기 ({selectedIds.length}건)
+                            </Button>
+                            <Button
+                                variant="secondary"
+                                className="p-3 text-xl"
+                                onClick={() => navigate("/shopping/product-list")}
+                            >
+                                쇼핑 계속하기
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
