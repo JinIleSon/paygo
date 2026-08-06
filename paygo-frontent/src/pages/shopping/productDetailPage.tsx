@@ -1,14 +1,18 @@
-import { IconAlertTriangle, IconShoe, IconShoppingCart } from '@tabler/icons-react';
+import { IconAlertTriangle, IconShoppingCart } from '@tabler/icons-react';
 import Card from '../../components/common/card';
 import { useState } from 'react';
 import SelectCard from '../../components/common/selectCard';
 import Button from '../../components/common/button';
-import type { ProductDetail } from '../../types/product';
 import { useCartStore } from '../../stores/useCartStore';
 import { useToastStore } from '../../stores/useToastStore';
 import { iconMap } from '../../constants/icons';
+import { useParams } from 'react-router-dom';
+import { products } from '../../constants/product';
 
 function ProductDetailPage() {
+    const { productId } = useParams();
+    const product = products.find((p) => p.id === Number(productId));
+
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [selectedTab, setSelectedTab] = useState<'info' | 'description'>('info');
     const [selectedSize, setSelectedSize] = useState(-1);
@@ -18,46 +22,7 @@ function ProductDetailPage() {
     const addItem = useCartStore((state) => state.addItem);
     const showToast = useToastStore((state) => state.showToast);
 
-    const product: ProductDetail = {
-        id: 0,
-        itemBg: 'bg-[#F5F6FF]',
-        itemText: 'text-[#6266F1]',
-        iconName: "IconShoe",
-        colorSet: [
-            { color: '#6266F1', bg: '#F5F6FF' },
-            { color: '#22C55E', bg: '#E8FBF2' },
-            { color: '#E0B36B', bg: '#FEF9EB' },
-            { color: '#D862A1', bg: '#FCF2F8' },
-        ],
-
-        // 상품 정보
-        brand: 'Nike',
-        subjectMatter: '메쉬, 합성 소재',
-        origin: '베트남',
-        createdAt: '2024년 9월',
-        deliveryAt: '결제 후 2~3일 이내',
-        return: '수령 후 7일 이내',
-
-        // 상세 설명
-        description: `나이키 에어맥스는 Nike Air 기술의 가장 큰 힐 유닛을 탑재하여 하루 종일 편안한 착화감을 제공합니다.
-
-                        ▪ 경량 메쉬 어퍼로 통기성이 뛰어나 장시간 착용에도 발이 쾌적합니다.
-                        ▪ 270도를 감싸는 대형 Air 유닛이 충격을 흡수하여 발뒤꿈치를 부드럽게 받쳐줍니다.
-                        ▪ 내구성 높은 고무 아웃솔이 다양한 노면에서도 안정적인 그립력을 발휘합니다.
-                        ▪ 세련된 디자인으로 캐주얼 코디부터 스포티한 룩까지 다양하게 매칭 가능합니다.
-
-                        일상 착용부터 가벼운 운동까지, 스타일과 편안함을 동시에 원하는 분께 추천합니다.`,
-
-        // 오른쪽 섹션
-        itemClassification: '패션/신발',
-        name: '나이키 에어맥스',
-        originPrice: 160000,
-        discountPrice: 120000,
-
-        stock: 2,
-        size: [240, 245, 250, 260, 265, 270, 275],
-        chooseColor: ['인디고', '그린', '옐로', '핑크'],
-    };
+    if (!product) return <div>상품을 찾을 수 없습니다.</div>; // undefined 방지
 
     const handleAddToCart = () => {
         addItem({
@@ -186,9 +151,9 @@ function ProductDetailPage() {
                                 <div className="flex items-end">
                                     <div className="text-xl text-[red]">
                                         <span className="text-2xl">
-                                            {((product.originPrice - product.discountPrice) /
+                                            {Math.floor(((product.originPrice - product.discountPrice) /
                                                 product.originPrice) *
-                                                100}
+                                                100)}
                                             %
                                         </span>{' '}
                                         할인

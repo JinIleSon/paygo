@@ -9,8 +9,8 @@ import {
 } from '@tabler/icons-react';
 import SelectBox from '../../components/common/selectBox';
 import { NavLink, useNavigate } from 'react-router-dom';
-import type { Product } from '../../types/product';
 import { iconMap } from '../../constants/icons';
+import { newItems, popularItems } from '../../constants/product';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('');
@@ -24,92 +24,6 @@ function ProductListPage() {
         { id: 'sports', label: '스포츠' },
         { id: 'dailyNecessities', label: '생활용품' },
         { id: 'food', label: '식품' },
-    ];
-
-    const popularItems : Product[] = [
-        {
-            id: 0,
-            itemClassification: '패션/신발',
-            name: '나이키 에어맥스',
-            price: 120000,
-            stock: 3,
-            itemBg: 'bg-[#F5F6FF]',
-            itemText: 'text-[#6266F1]',
-            iconName: "IconShoe",
-        },
-        {
-            id: 1,
-            itemClassification: '전자기기',
-            name: '소니 WH-1000 헤드폰',
-            price: 389000,
-            stock: 1,
-            itemBg: 'bg-[#E8FBF2]',
-            itemText: 'text-[#22C55E]',
-            iconName: "IconHeadphones",
-        },
-        {
-            id: 2,
-            itemClassification: '스포츠/레저',
-            name: '코베아 캠핑 텐트',
-            price: 211000,
-            stock: 8,
-            itemBg: 'bg-[#FEF9EB]',
-            itemText: 'text-[#E0B36B]',
-            iconName: "IconTent",
-        },
-        {
-            id: 3,
-            itemClassification: '패션/의류',
-            name: '유니클로 플리 티셔츠',
-            price: 59900,
-            stock: 12,
-            itemBg: 'bg-[#FCF2F8]',
-            itemText: 'text-[#D862A1]',
-            iconName: "IconShirt",
-        },
-    ];
-
-    const newItems : Product[] = [
-        {
-            id: 0,
-            itemClassification: '전자기기',
-            name: '맥북 프로 14인치 모니터',
-            price: 2490000,
-            stock: 5,
-            itemBg: 'bg-[#EEF6FF]',
-            itemText: 'text-[#4D84D8]',
-            iconName: "IconDeviceLaptop",
-        },
-        {
-            id: 1,
-            itemClassification: '스포츠',
-            name: '룰루레몬 요가 매트',
-            price: 89000,
-            stock: 2,
-            itemBg: 'bg-[#F0FEFB]',
-            itemText: 'text-[#22B1A0]',
-            iconName: "IconYoga",
-        },
-        {
-            id: 2,
-            itemClassification: '생활용품',
-            name: '발뮤다 커피 머그잔',
-            price: 139000,
-            stock: 6,
-            itemBg: 'bg-[#FEF2F2]',
-            itemText: 'text-[#EF4444]',
-            iconName: "IconCoffee",
-        },
-        {
-            id: 3,
-            itemClassification: '패션/가방',
-            name: '어반어스 데이트 백팩',
-            price: 79000,
-            stock: 9,
-            itemBg: 'bg-[#F9FBFC]',
-            itemText: 'text-[#7B808C]',
-            iconName: "IconBackpack",
-        },
     ];
 
     return (
@@ -170,7 +84,7 @@ function ProductListPage() {
 
                         return (
                             <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
-                                <NavLink to="/shopping/product-detail" className="flex-1">
+                                <NavLink to={`/shopping/product-detail/${item.id}`} className="flex-1">
                                     <div
                                         className={`flex justify-center items-center h-50 ${item.itemBg}`}
                                     >
@@ -229,7 +143,7 @@ function ProductListPage() {
 
                         return (
                             <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
-                                <NavLink to="/shopping/product-detail" className="flex-1">
+                                <NavLink to={`/shopping/product-detail/${item.id}`} className="flex-1">
                                     <div
                                         className={`flex justify-center items-center h-50 ${item.itemBg}`}
                                     >

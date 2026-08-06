@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
 
         // 쇼핑
         { path: '/shopping/product-list', element: <ProductListPage />},
-        { path: '/shopping/product-detail', element: <ProductDetailPage />},
+        { path: '/shopping/product-detail/:productId', element: <ProductDetailPage />},
         { path: '/shopping/product-payment', element: <ProductPaymentPage />},
         { path: '/shopping/cart', element: <CartPage />},
         { path: '/shopping/order-list', element: <OrderListPage />},
