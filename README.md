@@ -47,6 +47,11 @@
 <br><br>
 <img width="1288" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c931c74-1b83-4307-bbbd-8cfa690fa406" />
 
+<br><br>
+장바구니
+<br><br>
+<img width="1309" height="1122" alt="image" src="https://github.com/user-attachments/assets/0bfdd790-530b-498f-a519-c8c20f1358f3" />
+
 ## 기술 스택
 | 구분 | 상태 | 내용 |
 |---|---|---|
