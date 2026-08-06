@@ -110,7 +110,7 @@ function ProductListPage() {
                                             onClick={(e) => {
                                                 e.preventDefault();  // <a>, <NavLink> 기본 동작 막기
                                                 e.stopPropagation(); // 이벤트 버블링 막기
-                                                navigate('/shopping/product-detail');
+                                                navigate(`/shopping/product-detail/${item.id}`);
                                             }}
                                         >
                                             <div className="pl-2 w-full">
@@ -169,7 +169,7 @@ function ProductListPage() {
                                             onClick={(e) => {
                                                 e.preventDefault(); 
                                                 e.stopPropagation(); 
-                                                navigate('/shopping/product-detail');
+                                                navigate(`/shopping/product-detail/${item.id}`);
                                             }}
                                         >
                                             <div className="pl-2 w-full">
