@@ -12,31 +12,16 @@ function CartPage() {
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
     const updateItem = useCartStore((state) => state.updateItem);
-    const [selectedIds, setSelectedIds] = useState<string[]>([]);
+    const selectedIds = useCartStore((state) => state.selectedIds);
+     // 개별 체크박스 토글
+    const toggleItem = useCartStore((state) => state.toggleItem);
+
+    // 전체 선택 토글
+    const toggleAll = useCartStore((state) => state.toggleAll);
     const navigate = useNavigate();
 
     const selectedItem = items.filter((item) => selectedIds.includes(item.cartItemId));
     const selectedItemPrice = selectedItem.reduce((sum, item) => sum + item.count * item.price, 0);
-
-    // 개별 체크박스 토글
-    const toggleItem = (cartItemId: string) => {
-        setSelectedIds(
-            (prev) =>
-                prev.includes(cartItemId)
-                    ? prev.filter((id) => cartItemId !== id) // 이미 선택됨 -> 제거
-                    : [...prev, cartItemId] // 선택 안 됨 -> 추가
-        );
-    };
-
-    // 전체 선택 토글
-    const toggleAll = () => {
-        setSelectedIds(
-            (prev) =>
-                prev.length === items.length
-                    ? [] // 전부 선택됨 -> 전체 해제
-                    : items.map((item) => item.cartItemId) // 아니면 -> 전체 선택
-        );
-    };
 
     const checkedStyle = {
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
