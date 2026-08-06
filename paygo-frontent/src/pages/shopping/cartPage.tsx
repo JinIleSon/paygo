@@ -256,6 +256,7 @@ function CartPage() {
                                 variant="secondary"
                                 className="p-3 text-xl"
                                 onClick={() => navigate("/shopping/product-payment")}
+                                isDisabled={selectedIds.length === 0}
                             >
                                 주문하기 ({selectedIds.length}건)
                             </Button>
