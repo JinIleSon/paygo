@@ -142,7 +142,7 @@ function CartPage() {
                                         <div className="flex flex-col gap-2">
                                             <div>{item.productName}</div>
                                             <div className="flex">
-                                                {item.size && (
+                                                {item.size !== -1 && (
                                                     <div className="text-gray-400 text-sm">
                                                         사이즈: {item.size} |
                                                     </div>
