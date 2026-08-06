@@ -171,7 +171,9 @@ function CartPage() {
                                             {item.stock <= 2 && (
                                                 <div className="flex items-center gap-2 text-[red] text-sm">
                                                     <IconAlertTriangle size={18} />
-                                                    <div>재고 {item.stock}개 남음 — 서두르세요</div>
+                                                    <div className="">재고 {item.stock}개 남음 
+                                                        {item.stock === 1 && " - 동시 주문 시 구매불가"}
+                                                    </div>
                                                 </div>
                                             )}
                                         </div>
