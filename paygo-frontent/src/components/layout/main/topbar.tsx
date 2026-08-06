@@ -7,41 +7,46 @@ const pageTitles: Record<string, string> = {
     '/wallet/charge': '충전',
     '/wallet/history': '거래내역',
     '/shopping/product-list': '상품 목록',
-    '/shopping/product-detail': '상품 상세',
     '/shopping/product-payment': '주문/결제',
     '/shopping/cart': '장바구니',
     '/shopping/order-list': '주문 내역',
     '/shopping/order-detail': '주문 상세',
     '/account/mypage': '마이페이지',
     '/account/setting': '설정'
+};
+
+function getPageTitles(pathname: string): string {
+    if (pathname.startsWith("/shopping/product-detail"))
+        return "상품 상세";
+    return pageTitles[pathname] ?? '';
 }
 
-// 뒤로가기 있는 페이지
-const showBackButtonPaths = [
-    '/shopping/product-detail',
-    '/shopping/product-payment',
-    '/shopping/order-detail'
-];
+function getBackIcon(pathname: string): boolean {
+    if (pathname.startsWith("/shopping/product-detail"))
+        return true;
+    else if (pathname.startsWith("/shopping/product-payment"))
+        return true;
+    else if (pathname.startsWith("/shopping/order-detail"))
+        return true;
+    return false;
+};
 
-// 장바구니 아이콘 있는 페이지들
-const showCartIconPaths = [
-    '/shopping/product-list',
-    '/shopping/product-detail',
-    '/shopping/product-payment',
-    '/shopping/order-list',
-    '/shopping/order-detail'
-];
+function getCartIcon(pathname: string): boolean {
+    if (pathname !== "/shopping/cart" && pathname.startsWith("/shopping"))
+        return true;
+    return false;
+};
 
 function Topbar() {
 
     const location = useLocation();
     const navigate = useNavigate();
-    const title = pageTitles[location.pathname] || '';
+    const title = getPageTitles(location.pathname);
 
     const cartCount = useCartStore((state) => state.items.length);
 
-    const showBackButton = showBackButtonPaths.includes(location.pathname);
-    const showCartIcon = showCartIconPaths.includes(location.pathname);
+    const showBackButton = getBackIcon(location.pathname);
+    const showCartIcon = getCartIcon(location.pathname);
 
     return (
         <div className="flex items-center w-full font-bold border-b border-[#D9D9D9] shrink-0 p-5">
