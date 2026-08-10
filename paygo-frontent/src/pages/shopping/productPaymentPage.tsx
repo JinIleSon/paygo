@@ -1,5 +1,6 @@
 import Card from '../../components/common/card';
 import { coupons } from '../../constants/coupon';
+import { user } from '../../constants/user';
 import { getHighestDiscount } from '../../lib/couponUtils';
 import { useCartStore } from '../../stores/useCartStore';
 
@@ -7,10 +8,9 @@ function ProductPaymentPage() {
     const items = useCartStore((state) => state.items);
     const selectedIds = useCartStore((state) => state.selectedIds);
     const selectedItems = items.filter((i) => selectedIds.includes(i.cartItemId));
-
     const selectedItemPrice = selectedItems.reduce((sum, item) => sum + item.count * item.price, 0);
 
-    const balance = 3842000; // TODO: 백엔드에서 값 불러와야 함
+    const balance = user.balance; // TODO: 백엔드에서 값 불러와야 함
 
     return (
         <div>
@@ -94,6 +94,19 @@ function ProductPaymentPage() {
                                 </div>
                             </div>
                         </Card>
+                        <div>
+                            <label htmlFor="agreeTerms" className="flex gap-2 items-center">
+                                <input 
+                                    type="checkbox" 
+                                    name="" 
+                                    id="agreeTerms"
+                                    className="appearance-none border w-5 h-5"
+                                />
+                                <div className="text-gray-500">
+                                    주문 내용 확인 및 결제 동의
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

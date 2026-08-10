@@ -1,13 +1,12 @@
-import { useState } from 'react';
 import Card from '../../components/common/card';
 import { useCartStore } from '../../stores/useCartStore';
 import { IconAlertTriangle, IconX } from '@tabler/icons-react';
 import Button from '../../components/common/button';
 import { getHighestDiscount } from '../../lib/couponUtils';
-import type { Coupon } from '../../types/coupon';
 import { useNavigate } from 'react-router-dom';
 import { iconMap } from '../../constants/icons';
 import { coupons } from '../../constants/coupon';
+import { user } from '../../constants/user';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
@@ -30,7 +29,7 @@ function CartPage() {
         borderColor: '#6266F1', // 테두리도 같이 맞춰주기
     };
 
-    const balance = 3842000; // TODO: 백엔드에서 값 불러와야 함
+    const balance = user.balance; // TODO: 백엔드에서 값 불러와야 함
 
     return (
         <div>

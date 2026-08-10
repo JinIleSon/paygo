@@ -9,11 +9,12 @@ import {
 } from '@tabler/icons-react';
 import Card from '../../components/common/card';
 import { NavLink } from 'react-router-dom';
+import { user } from '../../constants/user';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
-    const balance = 3842000;
-    const pg = 'PG-1234-5678-9012';
+    const balance = user.balance;
+    const pg = user.accountNumber;
 
     // 빠른 송금
     const contacts = [

@@ -9,14 +9,15 @@ import TextInput from '../../components/common/textInput';
 import { useState } from 'react';
 import Button from '../../components/common/button';
 import SelectCard from '../../components/common/selectCard';
+import { user } from '../../constants/user';
 
 function WalletChargePage() {
     const [chargeAmount, setChargeAmount] = useState('');
     const [selectedPayment, setSelectedPayment] = useState('');
 
-    const balance = 3842000;
-    const minCharge = 1000; // 충전 금액 최소
-    const maxCharge = 2000000; // 충전 금액 최대
+    const balance = user.balance;
+    const minCharge = user.minCharge; // 충전 금액 최소
+    const maxCharge = user.maxCharge; // 충전 금액 최대
     const fee = 0; // TODO: 수수료 데이터 연동 필요
 
     const chargeSummary = [
