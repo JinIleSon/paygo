@@ -7,13 +7,14 @@ import { getHighestDiscount } from '../../lib/couponUtils';
 import type { Coupon } from '../../types/coupon';
 import { useNavigate } from 'react-router-dom';
 import { iconMap } from '../../constants/icons';
+import { coupons } from '../../constants/coupon';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
     const updateItem = useCartStore((state) => state.updateItem);
     const selectedIds = useCartStore((state) => state.selectedIds);
-     // 개별 체크박스 토글
+    // 개별 체크박스 토글
     const toggleItem = useCartStore((state) => state.toggleItem);
 
     // 전체 선택 토글
@@ -28,41 +29,6 @@ function CartPage() {
         backgroundColor: '#6266F1', // 연한 회색빛 보라
         borderColor: '#6266F1', // 테두리도 같이 맞춰주기
     };
-
-    const coupons : Coupon[] = [
-        {
-            id: '1',
-            name: '첫 구매 혜택 5,000원권',
-            discountType: 'fixed',
-            discountValue: 5000,
-            status: 'expired',
-            expiresAt: '2026-08-03',
-        },
-        {
-            id: '2',
-            name: '신규 가입 10% 할인',
-            discountType: 'percent',
-            discountValue: 10,
-            status: 'active',
-            expiresAt: '2026-08-21',
-        },
-        {
-            id: '3',
-            name: 'Paygo하자 이벤트',
-            discountType: 'fixed',
-            discountValue: 10000,
-            status: 'used',
-            expiresAt: '2026-08-21',
-        },
-        {
-            id: '4',
-            name: '개인 회원 이벤트',
-            discountType: 'fixed',
-            discountValue: 20000,
-            status: 'active',
-            expiresAt: '2026-08-21',
-        },
-    ];
 
     const balance = 3842000; // TODO: 백엔드에서 값 불러와야 함
 
@@ -171,8 +137,10 @@ function CartPage() {
                                             {item.stock <= 2 && (
                                                 <div className="flex items-center gap-2 text-[red] text-sm">
                                                     <IconAlertTriangle size={18} />
-                                                    <div className="">재고 {item.stock}개 남음 
-                                                        {item.stock === 1 && " - 동시 주문 시 구매불가"}
+                                                    <div className="">
+                                                        재고 {item.stock}개 남음
+                                                        {item.stock === 1 &&
+                                                            ' - 동시 주문 시 구매불가'}
                                                     </div>
                                                 </div>
                                             )}
@@ -202,13 +170,18 @@ function CartPage() {
                                 </div>
                                 <div className="text-gray-400 flex justify-between">
                                     <div>할인 금액</div>
-                                    <div className={`${getHighestDiscount(selectedItemPrice, coupons) > 0 ? "text-[red]" : "text-[black]"}`}>
+                                    <div
+                                        className={`${getHighestDiscount(selectedItemPrice, coupons) > 0 ? 'text-[red]' : 'text-[black]'}`}
+                                    >
                                         {/* TODO: coupon 타입 추가 후 가장 할인이 많이 되는 쿠폰 적용 필요 */}
-                                        {
-                                            getHighestDiscount(selectedItemPrice, coupons) > 0 ?
-                                            '-' + getHighestDiscount(selectedItemPrice, coupons).toLocaleString() + '원' :
-                                            '—'
-                                        }
+                                        {getHighestDiscount(selectedItemPrice, coupons) > 0
+                                            ? '-' +
+                                              getHighestDiscount(
+                                                  selectedItemPrice,
+                                                  coupons
+                                              ).toLocaleString() +
+                                              '원'
+                                            : '—'}
                                     </div>
                                 </div>
                                 <div className="text-gray-400 flex justify-between">
@@ -217,13 +190,19 @@ function CartPage() {
                                 </div>
                                 <div className="text-gray-400 -mt-3 flex justify-between">
                                     <div></div>
-                                    <div className="text-[gray] text-sm">배송비는 Paygo가 부담했어요</div>
+                                    <div className="text-[gray] text-sm">
+                                        배송비는 Paygo가 부담했어요
+                                    </div>
                                 </div>
                                 <div className="border-b border-[#D9D9D9]"></div>
                                 <div className="flex justify-between mt-2">
                                     <div className="text-xl text-gray-600">최종 결제</div>
                                     <div className="font-bold text-2xl text-[#6266F1]">
-                                        {(Math.max(0, selectedItemPrice - getHighestDiscount(selectedItemPrice, coupons))).toLocaleString() + '원'}
+                                        {Math.max(
+                                            0,
+                                            selectedItemPrice -
+                                                getHighestDiscount(selectedItemPrice, coupons)
+                                        ).toLocaleString() + '원'}
                                     </div>
                                 </div>
                             </div>
@@ -231,18 +210,30 @@ function CartPage() {
                         <Card className="flex flex-col gap-4 bg-[#F5F6FF]">
                             <div className="flex items-center justify-between text-lg">
                                 <div className="text-gray-500">Paygo 잔액</div>
-                                <div className="font-bold text-xl">{balance.toLocaleString()}원</div>
+                                <div className="font-bold text-xl">
+                                    {balance.toLocaleString()}원
+                                </div>
                             </div>
                             <div className="flex items-center justify-between text-lg">
                                 <div className="text-gray-600">결제 후 잔액</div>
-                                <div className="font-bold text-2xl text-[#6266F1]">{(balance - (Math.max(0, selectedItemPrice - getHighestDiscount(selectedItemPrice, coupons)))).toLocaleString()}원</div>
+                                <div className="font-bold text-2xl text-[#6266F1]">
+                                    {(
+                                        balance -
+                                        Math.max(
+                                            0,
+                                            selectedItemPrice -
+                                                getHighestDiscount(selectedItemPrice, coupons)
+                                        )
+                                    ).toLocaleString()}
+                                    원
+                                </div>
                             </div>
                         </Card>
                         <div className="flex flex-col gap-3">
                             <Button
                                 variant="secondary"
                                 className="p-3 text-xl"
-                                onClick={() => navigate("/shopping/product-payment")}
+                                onClick={() => navigate('/shopping/product-payment')}
                                 isDisabled={selectedIds.length === 0}
                             >
                                 주문하기 ({selectedIds.length}건)
@@ -250,7 +241,7 @@ function CartPage() {
                             <Button
                                 variant="secondary"
                                 className="p-3 text-xl"
-                                onClick={() => navigate("/shopping/product-list")}
+                                onClick={() => navigate('/shopping/product-list')}
                             >
                                 쇼핑 계속하기
                             </Button>
