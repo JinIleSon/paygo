@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Card from '../../components/common/card';
 import { coupons } from '../../constants/coupon';
 import { user } from '../../constants/user';
@@ -5,12 +6,18 @@ import { getHighestDiscount } from '../../lib/couponUtils';
 import { useCartStore } from '../../stores/useCartStore';
 
 function ProductPaymentPage() {
+    const [isChecked, setIsChecked] = useState(false);
     const items = useCartStore((state) => state.items);
     const selectedIds = useCartStore((state) => state.selectedIds);
     const selectedItems = items.filter((i) => selectedIds.includes(i.cartItemId));
     const selectedItemPrice = selectedItems.reduce((sum, item) => sum + item.count * item.price, 0);
 
     const balance = user.balance; // TODO: 백엔드에서 값 불러와야 함
+    const checkedStyle = {
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
+        backgroundColor: '#6266f1', // 연한 회색빛 보라
+        borderColor: '#6266f1', // 테두리도 같이 맞춰주기
+    };
 
     return (
         <div>
@@ -94,18 +101,24 @@ function ProductPaymentPage() {
                                 </div>
                             </div>
                         </Card>
-                        <div>
-                            <label htmlFor="agreeTerms" className="flex gap-2 items-center">
+                        <div className="flex justify-between">
+                            <label htmlFor="agreeTerms" className="flex gap-2.5 items-center cursor-pointer">
                                 <input 
                                     type="checkbox" 
                                     name="" 
                                     id="agreeTerms"
-                                    className="appearance-none border w-5 h-5"
+                                    checked={isChecked}
+                                    onChange={(e) => setIsChecked(e.target.checked)}
+                                    style={isChecked ? checkedStyle : undefined}
+                                    className="appearance-none inline-block w-5 h-5 border-2 border-gray-300 rounded cursor-pointer"
                                 />
-                                <div className="text-gray-500">
+                                <div className="text-gray-500 pb-0.5">
                                     주문 내용 확인 및 결제 동의
                                 </div>
                             </label>
+                            <div className="text-[#6266F1] mb-1">
+                                약관 보기
+                            </div>
                         </div>
                     </div>
                 </div>
