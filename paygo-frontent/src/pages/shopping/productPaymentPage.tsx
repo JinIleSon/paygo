@@ -23,8 +23,8 @@ function ProductPaymentPage() {
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5">
-                        <Card className="">
+                    <div className="flex flex-col gap-4">
+                        <Card>
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-lg">결제 금액</div>
                                 <div className="text-gray-400 flex justify-between">
