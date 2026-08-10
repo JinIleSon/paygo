@@ -11,12 +11,13 @@ import {
     IconSettings,
 } from '@tabler/icons-react';
 import { NavLink } from 'react-router-dom';
+import { user } from '../../../constants/user';
 
 function Sidebar() {
-    const name = '손진일'; // TODO: 백엔드에서 불러와야 할 데이터
+    const name = user.name; // TODO: 백엔드에서 불러와야 할 데이터
     const nameInitial = name.slice(-2);
 
-    const grade = '일반회원'; // TODO: 백엔드에서 불러와야 할 데이터
+    const grade = user.grade; // TODO: 백엔드에서 불러와야 할 데이터
 
     // 마우스 hover 또는 색상 변경, 애니메이션
     const navItemClass = ({ isActive }: { isActive: boolean }) =>
