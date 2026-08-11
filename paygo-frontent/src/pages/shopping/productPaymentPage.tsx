@@ -19,6 +19,19 @@ function ProductPaymentPage() {
         borderColor: '#6266f1', // 테두리도 같이 맞춰주기
     };
 
+    function handleTermsLinkClick() {
+        const width = 720;
+        const height = 900;
+        const left = window.screenX + (window.outerWidth - width) / 2;
+        const top = window.screenY + (window.outerHeight - height) / 2;
+
+        window.open(
+            '/shopping/product-payment/terms',
+            'orderPaymentTerms', // 창 이름 - 동일 이름이면 재클릭 시 새로 안 열리고 기존 창 재사용
+            `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,noopener,noreferrer` // noopener - 새 창이 원래 창을 조작 못 하게 막음, noreferrer - 어느 페이지에서 왔는지 출처 제공 방지
+        );
+    }
+
     return (
         <div>
             <div className="flex gap-8 pr-8">
@@ -102,10 +115,13 @@ function ProductPaymentPage() {
                             </div>
                         </Card>
                         <div className="flex justify-between">
-                            <label htmlFor="agreeTerms" className="flex gap-2.5 items-center cursor-pointer">
-                                <input 
-                                    type="checkbox" 
-                                    name="" 
+                            <label
+                                htmlFor="agreeTerms"
+                                className="flex gap-2.5 items-center cursor-pointer"
+                            >
+                                <input
+                                    type="checkbox"
+                                    name=""
                                     id="agreeTerms"
                                     checked={isChecked}
                                     onChange={(e) => setIsChecked(e.target.checked)}
@@ -116,9 +132,12 @@ function ProductPaymentPage() {
                                     주문 내용 확인 및 결제 동의
                                 </div>
                             </label>
-                            <div className="text-[#6266F1] mb-1">
+                            <button
+                                className="text-[#6266F1] mb-1 cursor-pointer"
+                                onClick={handleTermsLinkClick}
+                            >
                                 약관 보기
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>

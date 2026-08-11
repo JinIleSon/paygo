@@ -14,6 +14,7 @@ import OrderListPage from '../pages/shopping/orderListPage.tsx';
 import OrderDetailPage from '../pages/shopping/orderDetailPage.tsx';
 import ProductDetailPage from '../pages/shopping/productDetailPage.tsx';
 import ProductPaymentPage from '../pages/shopping/productPaymentPage.tsx';
+import OrderPaymentTermsPage from '../pages/shopping/terms/OrderPaymentTermsPage.tsx';
 
 export const router = createBrowserRouter([
     { path: '/login', element: <LoginPage /> },
@@ -21,19 +22,22 @@ export const router = createBrowserRouter([
     { path: '/terms-of-service', element: <TermsOfServicePage /> },
     { path: '/privacy-consent', element: <PrivacyConsentPage /> },
     { path: '/marketing-consent', element: <MarketingConsentPage /> },
-    { element: <MainLayout />, children: [
+    { path: '/shopping/product-payment/terms', element: <OrderPaymentTermsPage /> },
+    {
+        element: <MainLayout />,
+        children: [
+            // 지갑
+            { path: '/wallet/home', element: <WalletHomePage /> },
+            { path: '/wallet/charge', element: <WalletChargePage /> },
+            { path: '/wallet/history', element: <WalletHistoryPage /> },
 
-        // 지갑
-        { path: '/wallet/home', element: <WalletHomePage /> },
-        { path: '/wallet/charge', element: <WalletChargePage /> },
-        { path: '/wallet/history', element: <WalletHistoryPage /> },
-
-        // 쇼핑
-        { path: '/shopping/product-list', element: <ProductListPage />},
-        { path: '/shopping/product-detail/:productId', element: <ProductDetailPage />},
-        { path: '/shopping/product-payment', element: <ProductPaymentPage />},
-        { path: '/shopping/cart', element: <CartPage />},
-        { path: '/shopping/order-list', element: <OrderListPage />},
-        { path: '/shopping/order-detail', element: <OrderDetailPage />},
-    ]}
+            // 쇼핑
+            { path: '/shopping/product-list', element: <ProductListPage /> },
+            { path: '/shopping/product-detail/:productId', element: <ProductDetailPage /> },
+            { path: '/shopping/product-payment', element: <ProductPaymentPage /> },
+            { path: '/shopping/cart', element: <CartPage /> },
+            { path: '/shopping/order-list', element: <OrderListPage /> },
+            { path: '/shopping/order-detail', element: <OrderDetailPage /> },
+        ],
+    },
 ]);
