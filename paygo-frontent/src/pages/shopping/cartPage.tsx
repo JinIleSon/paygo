@@ -129,7 +129,7 @@ function CartPage() {
                                                 >
                                                     +
                                                 </Button>
-                                                <div>
+                                                <div className="font-bold">
                                                     {(item.count * item.price).toLocaleString()}원
                                                 </div>
                                             </div>
