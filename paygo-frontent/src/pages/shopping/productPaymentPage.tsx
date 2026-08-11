@@ -6,6 +6,7 @@ import { getHighestDiscount } from '../../lib/couponUtils';
 import { useCartStore } from '../../stores/useCartStore';
 import Button from '../../components/common/button';
 import { IconLock } from '@tabler/icons-react';
+import { useNavigate } from 'react-router-dom';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
@@ -13,6 +14,7 @@ function ProductPaymentPage() {
     const selectedIds = useCartStore((state) => state.selectedIds);
     const selectedItems = items.filter((i) => selectedIds.includes(i.cartItemId));
     const selectedItemPrice = selectedItems.reduce((sum, item) => sum + item.count * item.price, 0);
+    const navigate = useNavigate();
 
     const balance = user.balance; // TODO: 백엔드에서 값 불러와야 함
     const checkedStyle = {
@@ -38,17 +40,32 @@ function ProductPaymentPage() {
         <div>
             <div className="flex gap-8 pr-8">
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-6.5">
+                    <div className="flex flex-col gap-6.5 font-medium">
                         <Card>
-                            <div className="text-lg text-gray-500 font-medium">배송지</div>
+                            <div className="flex justify-between">
+                                <div className="text-lg text-gray-500 mb-6">배송지</div>
+                                <div>
+                                    <button 
+                                        className="text-[#6266F1] cursor-pointer"
+                                        onClick={() => navigate('/account/mypage')}
+                                    >
+                                        변경
+                                    </button>
+                                </div>
+                            </div>
+                            <Card className="flex flex-col gap-1 bg-[#FAFAFA]">
+                                <div className="text-lg">{user.name} (기본 배송지)</div>
+                                <div className="text-gray-500">{user.address}</div>
+                                <div className="text-gray-500">{user.phone}</div>
+                            </Card>
                         </Card>
                     </div>
                 </div>
                 <div className="min-w-1/2">
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-4 font-medium">
                         <Card>
                             <div className="flex flex-col gap-4 text-gray-500">
-                                <div className="text-lg">결제 금액</div>
+                                <div className="text-lg ">결제 금액</div>
                                 <div className="text-gray-400 flex justify-between">
                                     <div>상품 금액</div>
                                     <div className="text-[black]">
