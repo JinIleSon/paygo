@@ -142,7 +142,10 @@ function ProductPaymentPage() {
                             </button>
                         </div>
                         <div>
-                            <Button className="p-3 w-full text-xl font-bold">
+                            <Button 
+                                className="p-3 w-full text-xl font-bold"
+                                disabled={!isChecked}
+                            >
                                 {Math.max(
                                     0,
                                     selectedItemPrice -
