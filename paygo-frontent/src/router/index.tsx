@@ -15,6 +15,8 @@ import OrderDetailPage from '../pages/shopping/orderDetailPage.tsx';
 import ProductDetailPage from '../pages/shopping/productDetailPage.tsx';
 import ProductPaymentPage from '../pages/shopping/productPaymentPage.tsx';
 import OrderPaymentTermsPage from '../pages/shopping/terms/OrderPaymentTermsPage.tsx';
+import MypagePage from '../pages/account/mypage.tsx';
+import SettingPage from '../pages/account/setting.tsx';
 
 export const router = createBrowserRouter([
     { path: '/login', element: <LoginPage /> },
@@ -38,6 +40,10 @@ export const router = createBrowserRouter([
             { path: '/shopping/cart', element: <CartPage /> },
             { path: '/shopping/order-list', element: <OrderListPage /> },
             { path: '/shopping/order-detail', element: <OrderDetailPage /> },
+
+            // 계정
+            { path: '/account/mypage', element: <MypagePage /> },
+            { path: '/account/setting', element: <SettingPage /> },
         ],
     },
 ]);
