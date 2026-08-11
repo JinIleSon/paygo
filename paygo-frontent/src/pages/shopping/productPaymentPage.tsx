@@ -5,8 +5,9 @@ import { user } from '../../constants/user';
 import { getHighestDiscount } from '../../lib/couponUtils';
 import { useCartStore } from '../../stores/useCartStore';
 import Button from '../../components/common/button';
-import { IconLock } from '@tabler/icons-react';
+import { IconAlertTriangle, IconLock } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { iconMap } from '../../constants/icons';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
@@ -58,6 +59,51 @@ function ProductPaymentPage() {
                                 <div className="text-gray-500">{user.address}</div>
                                 <div className="text-gray-500">{user.phone}</div>
                             </Card>
+                        </Card>
+                        <Card>
+                            <div className="text-lg text-gray-500 mb-6">주문 상품 ({selectedItems.length}건)</div>
+                            {selectedItems.map((item) => {
+                                const Icon = iconMap[item.iconName];
+
+                                return (
+                                    <div key={item.cartItemId} className="flex items-center gap-4 mb-4">
+                                        <div
+                                            className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
+                                        >
+                                            <Icon size={30} className={item.itemText} />
+                                        </div>
+                                        <div className={`w-52 flex flex-col ${item.stock <= 2 ? '' : 'gap-2'}`}>
+                                            <div className="truncate">{item.productName}</div>
+                                            <div className="flex text-gray-400 text-xs">
+                                                {item.size !== -1 && (
+                                                    <div>
+                                                        사이즈: {item.size} |&nbsp;
+                                                    </div>
+                                                )}
+                                                <div>
+                                                    색상: {item.color} |&nbsp;
+                                                </div>
+                                                <div>
+                                                    주문수량: {item.count}
+                                                </div>
+                                            </div>
+                                            {item.stock <= 2 && (
+                                                <div className="flex items-center gap-2 text-[red] text-sm">
+                                                    <IconAlertTriangle size={item.stock == 1 ? 18 : 14} />
+                                                    <div className="whitespace-pre-line">
+                                                        재고 {item.stock}개 남음
+                                                        {item.stock === 1 &&
+                                                            '\n동시 주문 시 구매불가'}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="font-bold">
+                                            {(item.price * item.count).toLocaleString()}원
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </Card>
                     </div>
                 </div>
