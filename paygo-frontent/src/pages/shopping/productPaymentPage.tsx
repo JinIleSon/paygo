@@ -28,7 +28,7 @@ function ProductPaymentPage() {
         window.open(
             '/shopping/product-payment/terms',
             'orderPaymentTerms', // 창 이름 - 동일 이름이면 재클릭 시 새로 안 열리고 기존 창 재사용
-            `width=${width},height=${height},left=${left},top=${top},scrollbars=yes,noopener,noreferrer` // noopener - 새 창이 원래 창을 조작 못 하게 막음, noreferrer - 어느 페이지에서 왔는지 출처 제공 방지
+            `width=${width},height=${height},left=${left},top=${top},scrollbars=yes`
         );
     }
 
