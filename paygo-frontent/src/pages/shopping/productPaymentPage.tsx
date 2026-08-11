@@ -4,6 +4,8 @@ import { coupons } from '../../constants/coupon';
 import { user } from '../../constants/user';
 import { getHighestDiscount } from '../../lib/couponUtils';
 import { useCartStore } from '../../stores/useCartStore';
+import Button from '../../components/common/button';
+import { IconLock } from '@tabler/icons-react';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
@@ -138,6 +140,19 @@ function ProductPaymentPage() {
                             >
                                 약관 보기
                             </button>
+                        </div>
+                        <div>
+                            <Button className="p-3 w-full text-xl font-bold">
+                                {Math.max(
+                                    0,
+                                    selectedItemPrice -
+                                        getHighestDiscount(selectedItemPrice, coupons)
+                                ).toLocaleString() + '원 결제하기'}
+                            </Button>
+                        </div>
+                        <div className="text-gray-500 text-sm flex justify-center items-center gap-1 -mt-1">
+                            <IconLock size={20} />
+                            결제 처리 중 중복 요청이 방지됩니다
                         </div>
                     </div>
                 </div>
