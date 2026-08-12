@@ -8,9 +8,13 @@ import Button from '../../components/common/button';
 import { IconAlertTriangle, IconLock } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { iconMap } from '../../constants/icons';
+import SelectCard from '../../components/common/selectCard';
+import { getIcon } from '../../constants/useIcons';
+import { paymentMethods } from '../../constants/methods';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
+    const [selectedPayment, setSelectedPayment] = useState('');
     const items = useCartStore((state) => state.items);
     const selectedIds = useCartStore((state) => state.selectedIds);
     const selectedItems = items.filter((i) => selectedIds.includes(i.cartItemId));
@@ -110,6 +114,28 @@ function ProductPaymentPage() {
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-4 font-medium">
                         <Card>
+                        <div className="text-[gray] mb-6">결제 수단</div>
+                        <div className="flex flex-col gap-3 mb-3">
+                            {paymentMethods.map((method) => (
+                                <SelectCard
+                                    key={method.id}
+                                    isSelected={selectedPayment === method.id}
+                                    onClick={() => setSelectedPayment(method.id)}
+                                    variant="secondary"
+                                    importance="high"
+                                >
+                                    <div className="flex items-center p-5 gap-5">
+                                        {getIcon(method.id)}
+                                        <div className="flex flex-col justify-start">
+                                            <div className="flex font-medium">{method.label}</div>
+                                            <div>{method.desc}</div>
+                                        </div>
+                                    </div>
+                                </SelectCard>
+                            ))}
+                        </div>
+                    </Card>
+                        <Card>
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-lg ">결제 금액</div>
                                 <div className="text-gray-400 flex justify-between">
@@ -157,28 +183,30 @@ function ProductPaymentPage() {
                                 </div>
                             </div>
                         </Card>
-                        <Card className="flex flex-col gap-4 bg-[#F5F6FF]">
-                            <div className="flex items-center justify-between text-lg">
-                                <div className="text-gray-500">현재 잔액</div>
-                                <div className="font-bold text-xl">
-                                    {balance.toLocaleString()}원
+                        {selectedPayment === 'paygo' &&
+                            <Card className="flex flex-col gap-4 bg-[#F5F6FF]">
+                                <div className="flex items-center justify-between text-lg">
+                                    <div className="text-gray-500">현재 잔액</div>
+                                    <div className="font-bold text-xl">
+                                        {balance.toLocaleString()}원
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex items-center justify-between text-lg">
-                                <div className="text-gray-600">결제 후 잔액</div>
-                                <div className="font-bold text-2xl text-[#6266F1]">
-                                    {(
-                                        balance -
-                                        Math.max(
-                                            0,
-                                            selectedItemPrice -
-                                                getHighestDiscount(selectedItemPrice, coupons)
-                                        )
-                                    ).toLocaleString()}
-                                    원
+                                <div className="flex items-center justify-between text-lg">
+                                    <div className="text-gray-600">결제 후 잔액</div>
+                                    <div className="font-bold text-2xl text-[#6266F1]">
+                                        {(
+                                            balance -
+                                            Math.max(
+                                                0,
+                                                selectedItemPrice -
+                                                    getHighestDiscount(selectedItemPrice, coupons)
+                                            )
+                                        ).toLocaleString()}
+                                        원
+                                    </div>
                                 </div>
-                            </div>
-                        </Card>
+                            </Card>
+                        }
                         <div className="flex justify-between">
                             <label
                                 htmlFor="agreeTerms"
