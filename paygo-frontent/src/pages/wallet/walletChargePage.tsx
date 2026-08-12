@@ -1,8 +1,5 @@
 import {
     IconWallet,
-    IconBuildingBank,
-    IconCreditCard,
-    IconDeviceMobile,
 } from '@tabler/icons-react';
 import Card from '../../components/common/card';
 import TextInput from '../../components/common/textInput';
@@ -10,10 +7,12 @@ import { useState } from 'react';
 import Button from '../../components/common/button';
 import SelectCard from '../../components/common/selectCard';
 import { user } from '../../constants/user';
+import { getIcon } from '../../constants/useIcons';
+import { chargeMethods } from '../../constants/methods';
 
 function WalletChargePage() {
     const [chargeAmount, setChargeAmount] = useState('');
-    const [selectedPayment, setSelectedPayment] = useState('');
+    const [selectedCharge, setSelectedCharge] = useState('');
 
     const balance = user.balance;
     const minCharge = user.minCharge; // 충전 금액 최소
@@ -30,12 +29,6 @@ function WalletChargePage() {
         },
     ];
 
-    const paymentMethods = [
-        { id: 'account', label: '계좌이체', desc: '국민·신한·우리·하나 등' },
-        { id: 'card', label: '신용/체크카드', desc: 'VISA·MasterCard 등' },
-        { id: 'digitalWallet', label: '간편결제', desc: '카카오페이·네이버페이' },
-    ];
-
     // 충전할 금액 - 숫자만 입력 가능
     const handleCharge = (e) => {
         const onlyNumbersOne = e.target.value.replace(/[^0-9]/g, '');
@@ -48,26 +41,6 @@ function WalletChargePage() {
         const sum = current + amount;
         if (sum > maxCharge) return; // 최대 초과 시 막기
         setChargeAmount(String(sum));
-    };
-
-    const getIcon = (id: string) => {
-        if (id === 'account')
-            return (
-                <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center">
-                    <IconBuildingBank size={20} className="text-[#22C55E]" />
-                </div>
-            );
-        if (id === 'card')
-            return (
-                <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
-                    <IconCreditCard size={20} className="text-[#E0B36B]" />
-                </div>
-            );
-        return (
-            <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
-                <IconDeviceMobile size={20} className="text-[#E0B36B]" />
-            </div>
-        );
     };
 
     return (
@@ -161,11 +134,11 @@ function WalletChargePage() {
                     <Card className="my-6.5">
                         <div className="text-[gray] mb-6">충전 수단</div>
                         <div className="flex flex-col gap-3 mb-3">
-                            {paymentMethods.map((method) => (
+                            {chargeMethods.map((method) => (
                                 <SelectCard
                                     key={method.id}
-                                    isSelected={selectedPayment === method.id}
-                                    onClick={() => setSelectedPayment(method.id)}
+                                    isSelected={selectedCharge === method.id}
+                                    onClick={() => setSelectedCharge(method.id)}
                                     variant="secondary"
                                     importance="high"
                                 >
