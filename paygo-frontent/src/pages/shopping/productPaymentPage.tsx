@@ -88,12 +88,12 @@ function ProductPaymentPage() {
                                                 </div>
                                             </div>
                                             {item.stock <= 2 && (
-                                                <div className="flex items-center gap-2 text-[red] text-sm">
+                                                <div className="flex items-center gap-2 text-[red] text-sm mt-1">
                                                     <IconAlertTriangle size={item.stock == 1 ? 18 : 14} />
                                                     <div className="whitespace-pre-line">
                                                         재고 {item.stock}개 남음
                                                         {item.stock === 1 &&
-                                                            '\n동시 주문 시 구매불가'}
+                                                            '\n동시 주문 시 구매불가 가능'}
                                                     </div>
                                                 </div>
                                             )}
