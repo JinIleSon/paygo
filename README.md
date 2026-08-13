@@ -52,6 +52,11 @@
 <br><br>
 <img width="1309" height="1122" alt="image" src="https://github.com/user-attachments/assets/0bfdd790-530b-498f-a519-c8c20f1358f3" />
 
+<br><br>
+주문/결제
+<br><br>
+<img width="1260" height="1288" alt="image" src="https://github.com/user-attachments/assets/8a6e7f4b-1ca3-4ecb-a90f-401de9de0453" />
+
 ## 기술 스택
 | 구분 | 상태 | 내용 |
 |---|---|---|
@@ -75,7 +80,7 @@
 - **인증**: JWT Access/Refresh, 구매자/판매자 권한 분리 (설계)
 
 ## 진행 상황
-- [x] 화면 설계 및 프론트엔드 12개 화면 중 8개 완료
-- [ ] 나머지 4개 화면
+- [x] 화면 설계 및 프론트엔드 12개 화면 중 10개 완료
+- [ ] 나머지 2개 화면
 - [ ] 백엔드 API 연동
 - [ ] 낙관적 락 / 분산 락 구현
