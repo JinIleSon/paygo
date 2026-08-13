@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Card from '../../components/common/card';
 import { coupons } from '../../constants/coupon';
 import { user } from '../../constants/user';
-import { getHighestDiscount } from '../../lib/couponUtils';
+import { getDiscount } from '../../lib/couponUtils';
 import { useCartStore } from '../../stores/useCartStore';
 import Button from '../../components/common/button';
 import { IconAlertTriangle, IconLock } from '@tabler/icons-react';
@@ -11,10 +11,16 @@ import { iconMap } from '../../constants/icons';
 import SelectCard from '../../components/common/selectCard';
 import { getIcon } from '../../constants/useIcons';
 import { paymentMethods } from '../../constants/methods';
+import SelectBox from '../../components/common/selectBox';
+import type { Coupon } from '../../types/coupon';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
     const [selectedPayment, setSelectedPayment] = useState('');
+
+    const usableCoupon = coupons.filter((coupon) => coupon.userId === user.id && coupon.status === 'active');
+
+    const [selectedCoupon, setSelectedCoupon] = useState<Coupon | undefined>(usableCoupon[0]);
     const items = useCartStore((state) => state.items);
     const selectedIds = useCartStore((state) => state.selectedIds);
     const selectedItems = items.filter((i) => selectedIds.includes(i.cartItemId));
@@ -144,23 +150,47 @@ function ProductPaymentPage() {
                                         {selectedItemPrice.toLocaleString()}원
                                     </div>
                                 </div>
+                                <div className="text-gray-400 flex items-center justify-between">
+                                    <div>쿠폰 선택</div>
+                                    <div>
+                                        <SelectBox 
+                                            className="h-10"
+                                            value={selectedCoupon?.id ?? ''}
+                                            onChange={(e) => {
+                                                const coupon = usableCoupon.find((coupon) => coupon.id === e.target.value)
+                                                setSelectedCoupon(coupon);
+                                            }}>
+                                            {usableCoupon.length > 0 &&
+                                                usableCoupon.map((coupon) => (
+                                                    <option 
+                                                        key={coupon.id}
+                                                        value={coupon.id}
+                                                    >{coupon.name}</option> // TODO: 사용 시 status - 'used'로 변경
+                                                ))
+                                            }
+                                            {usableCoupon.length === 0 &&
+                                                    <option value="#">선택가능한 쿠폰이 없습니다</option>
+                                            }
+                                        </SelectBox>
+
+                                    </div>
+                                </div>
                                 <div className="text-gray-400 flex justify-between">
                                     <div>할인 금액</div>
                                     <div
-                                        className={`${getHighestDiscount(selectedItemPrice, coupons) > 0 ? 'text-[red]' : 'text-[black]'}`}
+                                        className={`${selectedCoupon && getDiscount(selectedItemPrice, selectedCoupon) > 0 ? 'text-[red]' : 'text-[black]'}`}
                                     >
-                                        {/* TODO: coupon 타입 추가 후 가장 할인이 많이 되는 쿠폰 적용 필요 */}
-                                        {getHighestDiscount(selectedItemPrice, coupons) > 0
+                                        {selectedCoupon && getDiscount(selectedItemPrice, selectedCoupon) > 0
                                             ? '-' +
-                                              getHighestDiscount(
+                                              getDiscount(
                                                   selectedItemPrice,
-                                                  coupons
+                                                  selectedCoupon
                                               ).toLocaleString() +
                                               '원'
                                             : '—'}
                                     </div>
                                 </div>
-                                <div className="text-gray-400 flex justify-between">
+                                <div className="mt-2 text-gray-400 flex justify-between">
                                     <div>배송비</div>
                                     <div className="text-[black]">무료</div>
                                 </div>
@@ -174,10 +204,10 @@ function ProductPaymentPage() {
                                 <div className="flex justify-between mt-2">
                                     <div className="text-xl text-gray-600">최종 결제</div>
                                     <div className="font-bold text-2xl text-[#6266F1]">
-                                        {Math.max(
+                                        {selectedCoupon && Math.max(
                                             0,
                                             selectedItemPrice -
-                                                getHighestDiscount(selectedItemPrice, coupons)
+                                                getDiscount(selectedItemPrice, selectedCoupon)
                                         ).toLocaleString() + '원'}
                                     </div>
                                 </div>
@@ -194,12 +224,19 @@ function ProductPaymentPage() {
                                 <div className="flex items-center justify-between text-lg">
                                     <div className="text-gray-600">결제 후 잔액</div>
                                     <div className="font-bold text-2xl text-[#6266F1]">
-                                        {(
+                                        {selectedCoupon && (
                                             balance -
                                             Math.max(
                                                 0,
                                                 selectedItemPrice -
-                                                    getHighestDiscount(selectedItemPrice, coupons)
+                                                    getDiscount(selectedItemPrice, selectedCoupon)
+                                            )
+                                        ).toLocaleString()}
+                                        {!selectedCoupon && (
+                                            balance -
+                                            Math.max(
+                                                0,
+                                                selectedItemPrice
                                             )
                                         ).toLocaleString()}
                                         원
@@ -233,14 +270,19 @@ function ProductPaymentPage() {
                             </button>
                         </div>
                         <div>
+                            {/* TODO: 결제하기 버튼 누르고 난 뒤 트랜잭션 처리 완료 필요 */}
                             <Button 
                                 className="p-3 w-full text-xl font-bold"
-                                disabled={!isChecked}
+                                disabled={!isChecked || !selectedPayment}
                             >
-                                {Math.max(
+                                {selectedCoupon && Math.max(
                                     0,
                                     selectedItemPrice -
-                                        getHighestDiscount(selectedItemPrice, coupons)
+                                        getDiscount(selectedItemPrice, selectedCoupon)
+                                ).toLocaleString() + '원 결제하기'}
+                                {!selectedCoupon && Math.max(
+                                    0,
+                                    selectedItemPrice
                                 ).toLocaleString() + '원 결제하기'}
                             </Button>
                         </div>

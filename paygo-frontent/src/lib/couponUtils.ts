@@ -24,3 +24,13 @@ export function getHighestDiscount(total: number, coupon: Coupon[]): number {
     const usableCoupon = coupon.filter((c) => isCouponUsable(c));
     return usableCoupon.reduce((max, c) => Math.max(max, calculateDiscountPrice(total, c)), 0);
 }
+
+// 쿠폰 선택 시 할인가
+export function getDiscount(total: number, coupon: Coupon): number {
+    // 정률일 때 할인
+    if (coupon.discountType === 'percent')
+        return total * coupon.discountValue / 100;
+
+    // 정액일 때 할인
+    return coupon.discountValue;
+}
