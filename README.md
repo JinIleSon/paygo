@@ -7,6 +7,27 @@
 설계한 결제 커머스 플랫폼입니다.
 
 ## 스크린샷
+
+<br><br>
+상품 목록
+<br><br>
+<img width="1262" height="1336" alt="image" src="https://github.com/user-attachments/assets/201acfdb-e0f9-4c5f-9968-1682723cd709" />
+
+<br><br>
+상품 상세
+<br><br>
+<img width="1288" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c931c74-1b83-4307-bbbd-8cfa690fa406" />
+
+<br><br>
+장바구니
+<br><br>
+<img width="1309" height="1122" alt="image" src="https://github.com/user-attachments/assets/0bfdd790-530b-498f-a519-c8c20f1358f3" />
+
+<br><br>
+주문/결제
+<br><br>
+<img width="1260" height="1288" alt="image" src="https://github.com/user-attachments/assets/8a6e7f4b-1ca3-4ecb-a90f-401de9de0453" />
+
 <br><br>
 로그인
 <br><br>
@@ -36,26 +57,6 @@
 거래내역
 <br><br>
 <img width="1274" height="970" alt="image" src="https://github.com/user-attachments/assets/ceac7558-1046-4b42-b67e-f9c2d7598638" />
-
-<br><br>
-상품 목록
-<br><br>
-<img width="1262" height="1336" alt="image" src="https://github.com/user-attachments/assets/201acfdb-e0f9-4c5f-9968-1682723cd709" />
-
-<br><br>
-상품 상세
-<br><br>
-<img width="1288" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c931c74-1b83-4307-bbbd-8cfa690fa406" />
-
-<br><br>
-장바구니
-<br><br>
-<img width="1309" height="1122" alt="image" src="https://github.com/user-attachments/assets/0bfdd790-530b-498f-a519-c8c20f1358f3" />
-
-<br><br>
-주문/결제
-<br><br>
-<img width="1260" height="1288" alt="image" src="https://github.com/user-attachments/assets/8a6e7f4b-1ca3-4ecb-a90f-401de9de0453" />
 
 ## 기술 스택
 | 구분 | 상태 | 내용 |
