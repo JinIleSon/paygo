@@ -3,6 +3,7 @@ import type { Coupon } from '../types/coupon';
 export const coupons: Coupon[] = [
     {
         id: '1',
+        userId: 'sonjinil',
         name: '첫 구매 혜택 5,000원권',
         discountType: 'fixed',
         discountValue: 5000,
@@ -11,6 +12,7 @@ export const coupons: Coupon[] = [
     },
     {
         id: '2',
+        userId: 'sonjinil',
         name: '신규 가입 10% 할인',
         discountType: 'percent',
         discountValue: 10,
@@ -19,6 +21,7 @@ export const coupons: Coupon[] = [
     },
     {
         id: '3',
+        userId: 'sonjinil',
         name: 'Paygo하자 이벤트',
         discountType: 'fixed',
         discountValue: 10000,
@@ -27,6 +30,7 @@ export const coupons: Coupon[] = [
     },
     {
         id: '4',
+        userId: 'sonjinil',
         name: '개인 회원 이벤트',
         discountType: 'fixed',
         discountValue: 20000,
