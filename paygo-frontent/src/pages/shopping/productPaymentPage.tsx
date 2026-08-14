@@ -18,7 +18,9 @@ function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
     const [selectedPayment, setSelectedPayment] = useState('');
 
-    const usableCoupon = coupons.filter((coupon) => coupon.userId === user.id && coupon.status === 'active');
+    const usableCoupon = coupons.filter(
+        (coupon) => coupon.userId === user.id && coupon.status === 'active'
+    );
 
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | undefined>(usableCoupon[0]);
     const items = useCartStore((state) => state.items);
@@ -56,7 +58,7 @@ function ProductPaymentPage() {
                             <div className="flex justify-between">
                                 <div className="text-lg text-gray-500 mb-6">배송지</div>
                                 <div>
-                                    <button 
+                                    <button
                                         className="text-[#6266F1] cursor-pointer"
                                         onClick={() => navigate('/account/mypage')}
                                     >
@@ -71,35 +73,38 @@ function ProductPaymentPage() {
                             </Card>
                         </Card>
                         <Card>
-                            <div className="text-lg text-gray-500 mb-6">주문 상품 ({selectedItems.length}건)</div>
+                            <div className="text-lg text-gray-500 mb-6">
+                                주문 상품 ({selectedItems.length}건)
+                            </div>
                             {selectedItems.map((item) => {
                                 const Icon = iconMap[item.iconName];
 
                                 return (
-                                    <div key={item.cartItemId} className="flex items-center gap-4 mb-4">
+                                    <div
+                                        key={item.cartItemId}
+                                        className="flex items-center gap-4 mb-4"
+                                    >
                                         <div
                                             className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
                                         >
                                             <Icon size={30} className={item.itemText} />
                                         </div>
-                                        <div className={`w-52 flex flex-col ${item.stock <= 2 ? '' : 'gap-2'}`}>
+                                        <div
+                                            className={`w-52 flex flex-col ${item.stock <= 2 ? '' : 'gap-2'}`}
+                                        >
                                             <div className="truncate">{item.productName}</div>
                                             <div className="flex text-gray-400 text-xs">
                                                 {item.size !== -1 && (
-                                                    <div>
-                                                        사이즈: {item.size} |&nbsp;
-                                                    </div>
+                                                    <div>사이즈: {item.size} |&nbsp;</div>
                                                 )}
-                                                <div>
-                                                    색상: {item.color} |&nbsp;
-                                                </div>
-                                                <div>
-                                                    주문수량: {item.count}
-                                                </div>
+                                                <div>색상: {item.color} |&nbsp;</div>
+                                                <div>주문수량: {item.count}</div>
                                             </div>
                                             {item.stock <= 2 && (
                                                 <div className="flex items-center gap-2 text-[red] text-sm mt-1">
-                                                    <IconAlertTriangle size={item.stock == 1 ? 18 : 14} />
+                                                    <IconAlertTriangle
+                                                        size={item.stock == 1 ? 18 : 14}
+                                                    />
                                                     <div className="whitespace-pre-line">
                                                         재고 {item.stock}개 남음
                                                         {item.stock === 1 &&
@@ -120,27 +125,29 @@ function ProductPaymentPage() {
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-4 font-medium">
                         <Card>
-                        <div className="text-[gray] mb-6">결제 수단</div>
-                        <div className="flex flex-col gap-3 mb-3">
-                            {paymentMethods.map((method) => (
-                                <SelectCard
-                                    key={method.id}
-                                    isSelected={selectedPayment === method.id}
-                                    onClick={() => setSelectedPayment(method.id)}
-                                    variant="secondary"
-                                    importance="high"
-                                >
-                                    <div className="flex items-center p-5 gap-5">
-                                        {getIcon(method.id)}
-                                        <div className="flex flex-col justify-start">
-                                            <div className="flex font-medium">{method.label}</div>
-                                            <div>{method.desc}</div>
+                            <div className="text-[gray] mb-6">결제 수단</div>
+                            <div className="flex flex-col gap-3 mb-3">
+                                {paymentMethods.map((method) => (
+                                    <SelectCard
+                                        key={method.id}
+                                        isSelected={selectedPayment === method.id}
+                                        onClick={() => setSelectedPayment(method.id)}
+                                        variant="secondary"
+                                        importance="high"
+                                    >
+                                        <div className="flex items-center p-5 gap-5">
+                                            {getIcon(method.id)}
+                                            <div className="flex flex-col justify-start">
+                                                <div className="flex font-medium">
+                                                    {method.label}
+                                                </div>
+                                                <div>{method.desc}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </SelectCard>
-                            ))}
-                        </div>
-                    </Card>
+                                    </SelectCard>
+                                ))}
+                            </div>
+                        </Card>
                         <Card>
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-lg ">결제 금액</div>
@@ -153,26 +160,28 @@ function ProductPaymentPage() {
                                 <div className="text-gray-400 flex items-center justify-between">
                                     <div>쿠폰 선택</div>
                                     <div>
-                                        <SelectBox 
+                                        <SelectBox
                                             className="h-10"
                                             value={selectedCoupon?.id ?? ''}
                                             onChange={(e) => {
-                                                const coupon = usableCoupon.find((coupon) => coupon.id === e.target.value)
+                                                const coupon = usableCoupon.find(
+                                                    (coupon) => coupon.id === e.target.value
+                                                );
                                                 setSelectedCoupon(coupon);
-                                            }}>
+                                            }}
+                                        >
                                             {usableCoupon.length > 0 &&
                                                 usableCoupon.map((coupon) => (
-                                                    <option 
-                                                        key={coupon.id}
-                                                        value={coupon.id}
-                                                    >{coupon.name}</option> // TODO: 사용 시 status - 'used'로 변경
-                                                ))
-                                            }
-                                            {usableCoupon.length === 0 &&
-                                                    <option value="#">선택가능한 쿠폰이 없습니다</option>
-                                            }
+                                                    <option key={coupon.id} value={coupon.id}>
+                                                        {coupon.name}
+                                                    </option> // TODO: 사용 시 status - 'used'로 변경
+                                                ))}
+                                            {usableCoupon.length === 0 && (
+                                                <option value="#">
+                                                    선택가능한 쿠폰이 없습니다
+                                                </option>
+                                            )}
                                         </SelectBox>
-
                                     </div>
                                 </div>
                                 <div className="text-gray-400 flex justify-between">
@@ -180,7 +189,8 @@ function ProductPaymentPage() {
                                     <div
                                         className={`${selectedCoupon && getDiscount(selectedItemPrice, selectedCoupon) > 0 ? 'text-[red]' : 'text-[black]'}`}
                                     >
-                                        {selectedCoupon && getDiscount(selectedItemPrice, selectedCoupon) > 0
+                                        {selectedCoupon &&
+                                        getDiscount(selectedItemPrice, selectedCoupon) > 0
                                             ? '-' +
                                               getDiscount(
                                                   selectedItemPrice,
@@ -204,16 +214,17 @@ function ProductPaymentPage() {
                                 <div className="flex justify-between mt-2">
                                     <div className="text-xl text-gray-600">최종 결제</div>
                                     <div className="font-bold text-2xl text-[#6266F1]">
-                                        {selectedCoupon && Math.max(
-                                            0,
-                                            selectedItemPrice -
-                                                getDiscount(selectedItemPrice, selectedCoupon)
-                                        ).toLocaleString() + '원'}
+                                        {selectedCoupon &&
+                                            Math.max(
+                                                0,
+                                                selectedItemPrice -
+                                                    getDiscount(selectedItemPrice, selectedCoupon)
+                                            ).toLocaleString() + '원'}
                                     </div>
                                 </div>
                             </div>
                         </Card>
-                        {selectedPayment === 'paygo' &&
+                        {selectedPayment === 'paygo' && (
                             <Card className="flex flex-col gap-4 bg-[#F5F6FF]">
                                 <div className="flex items-center justify-between text-lg">
                                     <div className="text-gray-500">현재 잔액</div>
@@ -224,26 +235,27 @@ function ProductPaymentPage() {
                                 <div className="flex items-center justify-between text-lg">
                                     <div className="text-gray-600">결제 후 잔액</div>
                                     <div className="font-bold text-2xl text-[#6266F1]">
-                                        {selectedCoupon && (
-                                            balance -
-                                            Math.max(
-                                                0,
-                                                selectedItemPrice -
-                                                    getDiscount(selectedItemPrice, selectedCoupon)
-                                            )
-                                        ).toLocaleString()}
-                                        {!selectedCoupon && (
-                                            balance -
-                                            Math.max(
-                                                0,
-                                                selectedItemPrice
-                                            )
-                                        ).toLocaleString()}
+                                        {selectedCoupon &&
+                                            (
+                                                balance -
+                                                Math.max(
+                                                    0,
+                                                    selectedItemPrice -
+                                                        getDiscount(
+                                                            selectedItemPrice,
+                                                            selectedCoupon
+                                                        )
+                                                )
+                                            ).toLocaleString()}
+                                        {!selectedCoupon &&
+                                            (
+                                                balance - Math.max(0, selectedItemPrice)
+                                            ).toLocaleString()}
                                         원
                                     </div>
                                 </div>
                             </Card>
-                        }
+                        )}
                         <div className="flex justify-between">
                             <label
                                 htmlFor="agreeTerms"
@@ -271,19 +283,19 @@ function ProductPaymentPage() {
                         </div>
                         <div>
                             {/* TODO: 결제하기 버튼 누르고 난 뒤 트랜잭션 처리 완료 필요 */}
-                            <Button 
+                            <Button
                                 className="p-3 w-full text-xl font-bold"
                                 disabled={!isChecked || !selectedPayment}
+                                onClick={() => navigate('/shopping/order-list')}
                             >
-                                {selectedCoupon && Math.max(
-                                    0,
-                                    selectedItemPrice -
-                                        getDiscount(selectedItemPrice, selectedCoupon)
-                                ).toLocaleString() + '원 결제하기'}
-                                {!selectedCoupon && Math.max(
-                                    0,
-                                    selectedItemPrice
-                                ).toLocaleString() + '원 결제하기'}
+                                {selectedCoupon &&
+                                    Math.max(
+                                        0,
+                                        selectedItemPrice -
+                                            getDiscount(selectedItemPrice, selectedCoupon)
+                                    ).toLocaleString() + '원 결제하기'}
+                                {!selectedCoupon &&
+                                    Math.max(0, selectedItemPrice).toLocaleString() + '원 결제하기'}
                             </Button>
                         </div>
                         <div className="text-gray-500 text-sm flex justify-center items-center gap-1 -mt-1">
