@@ -3,35 +3,24 @@ import Card from '../../components/common/card';
 import SelectCard from '../../components/common/selectCard';
 import TextInput from '../../components/common/textInput';
 import Button from '../../components/common/button';
-import {
-    IconArrowRight,
-    IconSearch,
-} from '@tabler/icons-react';
+import { IconArrowRight, IconSearch } from '@tabler/icons-react';
 import SelectBox from '../../components/common/selectBox';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { iconMap } from '../../constants/icons';
 import { newItems, popularItems } from '../../constants/product';
+import { productClassification } from '../../constants/classification';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('');
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
 
-    const classification = [
-        { id: 'all', label: '전체' },
-        { id: 'fashion', label: '패션' },
-        { id: 'electronicDevices', label: '전자기기' },
-        { id: 'sports', label: '스포츠' },
-        { id: 'dailyNecessities', label: '생활용품' },
-        { id: 'food', label: '식품' },
-    ];
-
     return (
         <div className="flex flex-col gap-6.5">
             <Card>
                 <div className="flex items-center">
                     <div className="flex gap-3">
-                        {classification.map((clas) => (
+                        {productClassification.map((clas) => (
                             <SelectCard
                                 onClick={() => setSelectedType(clas.id)}
                                 isSelected={selectedType === clas.id}
@@ -84,7 +73,10 @@ function ProductListPage() {
 
                         return (
                             <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
-                                <NavLink to={`/shopping/product-detail/${item.id}`} className="flex-1">
+                                <NavLink
+                                    to={`/shopping/product-detail/${item.id}`}
+                                    className="flex-1"
+                                >
                                     <div
                                         className={`flex justify-center items-center h-50 ${item.itemBg}`}
                                     >
@@ -105,19 +97,17 @@ function ProductListPage() {
                                         <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                             <div>{item.price.toLocaleString()}원</div>
                                         </div>
-                                        <Button 
+                                        <Button
                                             className="flex p-2 w-full mt-3"
                                             onClick={(e) => {
-                                                e.preventDefault();  // <a>, <NavLink> 기본 동작 막기
+                                                e.preventDefault(); // <a>, <NavLink> 기본 동작 막기
                                                 e.stopPropagation(); // 이벤트 버블링 막기
                                                 navigate(`/shopping/product-detail/${item.id}`);
                                             }}
                                         >
                                             <div className="pl-2 w-full">
                                                 <div className="flex items-center justify-center text-xl">
-                                                    <div className="mr-2">
-                                                        상세보기
-                                                    </div>
+                                                    <div className="mr-2">상세보기</div>
                                                     <IconArrowRight />
                                                 </div>
                                             </div>
@@ -143,7 +133,10 @@ function ProductListPage() {
 
                         return (
                             <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
-                                <NavLink to={`/shopping/product-detail/${item.id}`} className="flex-1">
+                                <NavLink
+                                    to={`/shopping/product-detail/${item.id}`}
+                                    className="flex-1"
+                                >
                                     <div
                                         className={`flex justify-center items-center h-50 ${item.itemBg}`}
                                     >
@@ -164,19 +157,17 @@ function ProductListPage() {
                                         <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                             <div>{item.price.toLocaleString()}원</div>
                                         </div>
-                                        <Button 
+                                        <Button
                                             className="flex p-2 w-full mt-3"
                                             onClick={(e) => {
-                                                e.preventDefault(); 
-                                                e.stopPropagation(); 
+                                                e.preventDefault();
+                                                e.stopPropagation();
                                                 navigate(`/shopping/product-detail/${item.id}`);
                                             }}
                                         >
                                             <div className="pl-2 w-full">
                                                 <div className="flex items-center justify-center text-xl">
-                                                    <div className="mr-2">
-                                                        상세보기
-                                                    </div>
+                                                    <div className="mr-2">상세보기</div>
                                                     <IconArrowRight />
                                                 </div>
                                             </div>

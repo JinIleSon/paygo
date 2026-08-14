@@ -6,6 +6,7 @@ import Button from '../../components/common/button';
 import PeriodPicker from '../../components/common/periodPicker';
 import { type DateRange } from 'react-day-picker';
 import { IconPlus, IconRefresh, IconShoppingBag } from '@tabler/icons-react';
+import { statement, types } from '../../constants/classification';
 
 function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('');
@@ -14,20 +15,6 @@ function WalletHistoryPage() {
     const [period, setPeriod] = useState<DateRange | undefined>();
 
     const graphStyle = 'flex justify-center items-center border-t border-[#D9D9D9]';
-
-    const types = [
-        { id: 'all', label: '전체' },
-        { id: 'charge', label: '충전' },
-        { id: 'buy', label: '구매' },
-        { id: 'refund', label: '환불' },
-    ];
-
-    const statement = [
-        { id: 'all', label: '전체' },
-        { id: 'complete', label: '완료' },
-        { id: 'fail', label: '실패' },
-        { id: 'processing', label: '처리중' },
-    ];
 
     const summary = [
         { title: '총 충전', content: 1250000, summation: 3 },
@@ -100,27 +87,44 @@ function WalletHistoryPage() {
     ];
 
     const getIcon = (title: string) => {
-        if (title.includes('충전')) return (
-        <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
-            <IconPlus size={20} className="text-[#E0B36B]" />
-        </div>
-    )
-    if (title.includes('환불')) return (
-        <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center">
-            <IconRefresh size={20} className="text-[#22C55E]" />
-        </div>
-    )
-    return (
-        <div className="w-10 h-10 rounded-xl bg-[#F5F6FF] flex items-center justify-center">
-            <IconShoppingBag size={20} className="text-[#6266F1]" />
-        </div>
-    ) // 구매 등 기본 아이콘
+        if (title.includes('충전'))
+            return (
+                <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
+                    <IconPlus size={20} className="text-[#E0B36B]" />
+                </div>
+            );
+        if (title.includes('환불'))
+            return (
+                <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center">
+                    <IconRefresh size={20} className="text-[#22C55E]" />
+                </div>
+            );
+        return (
+            <div className="w-10 h-10 rounded-xl bg-[#F5F6FF] flex items-center justify-center">
+                <IconShoppingBag size={20} className="text-[#6266F1]" />
+            </div>
+        ); // 구매 등 기본 아이콘
     };
 
     const getBadge = (statement: string) => {
-        if (statement === '완료') return <span className="rounded-full text-[#22C55E] bg-[#E8FBF2] px-2 py-1 text-xs">완료</span>
-        if (statement === '결제실패') return <span className="bg-[#FFE4E4] text-[red] px-2 py-1 rounded-full text-xs">결제실패</span>
-        if (statement === '처리중') return <span className="bg-[#F5F6FF] text-[#6266F1] px-2 py-1 rounded-full text-xs">처리중</span>
+        if (statement === '완료')
+            return (
+                <span className="rounded-full text-[#22C55E] bg-[#E8FBF2] px-2 py-1 text-xs">
+                    완료
+                </span>
+            );
+        if (statement === '결제실패')
+            return (
+                <span className="bg-[#FFE4E4] text-[red] px-2 py-1 rounded-full text-xs">
+                    결제실패
+                </span>
+            );
+        if (statement === '처리중')
+            return (
+                <span className="bg-[#F5F6FF] text-[#6266F1] px-2 py-1 rounded-full text-xs">
+                    처리중
+                </span>
+            );
     };
 
     return (
@@ -207,19 +211,28 @@ function WalletHistoryPage() {
                             <Fragment key={tran.id}>
                                 <div className="border-t border-[#D9D9D9] py-3">
                                     <div className="flex gap-4 items-center text-start">
+                                        <div>{getIcon(tran.type)}</div>
                                         <div>
-                                            {getIcon(tran.type)}
-                                        </div>
-                                        <div>
-                                            <div className="text-black font-normal">{tran.content}</div>
+                                            <div className="text-black font-normal">
+                                                {tran.content}
+                                            </div>
                                             <div className="text-sm">{tran.createdAt}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className={graphStyle}>{tran.type}</div>
                                 <div className={graphStyle}>{tran.paymentMethod}</div>
-                                <div className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-[red]'}`}>{tran.amount > 0 ? '+' : ''}{tran.amount.toLocaleString()}원</div>
-                                <div className={graphStyle}>{tran.statement !== '결제실패' ? tran.balance.toLocaleString() + '원' : '-'}</div>
+                                <div
+                                    className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-[red]'}`}
+                                >
+                                    {tran.amount > 0 ? '+' : ''}
+                                    {tran.amount.toLocaleString()}원
+                                </div>
+                                <div className={graphStyle}>
+                                    {tran.statement !== '결제실패'
+                                        ? tran.balance.toLocaleString() + '원'
+                                        : '-'}
+                                </div>
                                 <div className={graphStyle}>{getBadge(tran.statement)}</div>
                             </Fragment>
                         ))}
