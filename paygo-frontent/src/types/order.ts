@@ -1,6 +1,6 @@
 import type { IconName } from "../constants/icons";
 
-export type OrderStatus = 'paymentComplete' | 'shipping' | 'delivered' | 'cancelled' | 'refunded' | 'paymentFailed';
+export type OrderStatus = 'paymentComplete' | 'shipping' | 'delivered' | 'cancelled' | 'refunded' | 'paymentFailed'; // cancelled는 취소, refunded 취소 후 환불까지
 export type DeliveryStatus = 'paymentComplete' | 'productReady' | 'shipping' | 'delivered';
 export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
@@ -24,7 +24,7 @@ export interface Order {
     items: OrderItem[];  // 주문한 item 리스트
     totalPrice: number;  // "할인까지 적용된" 총 금액 - 사용자 개인이 사용한 쿠폰까지 적용된 금액 저장
     failureReason?: string; // 실패사유 - 결제실패 시에 존재
-    refundAmount?: number;  // 취소 및 환불 시에 존재
+    refundAmount?: number;  // 환불 시에 존재
 }
 
 export interface OrderDetail extends Order {
