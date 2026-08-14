@@ -1,0 +1,36 @@
+import type { Order } from "../types/order";
+
+export const order: Order[] = [
+    { 
+        orderId: 'PG-20260815-0042', 
+        createAt: '2026.08.15 07:58', 
+        orderStatus: 'shipping', 
+        items: [
+            { productId: 1, productName: '소니 WH-1000 헤드폰', color: '블랙', price: 389000, count: 1, iconName: 'IconHeadphones', itemBg: 'bg-[#E8F8F2]', itemText: 'text-[#22C55E]'},
+            { productId: 5, productName: '룰루레몬 요가 매트', color: '민트', price: 89000, count: 2, iconName: 'IconYoga', itemBg: 'bg-[#F0FEFB]', itemText: 'text-[#22B1A0]'},
+            { productId: 0, productName: '나이키 에어맥스', size: 270, color: '그린', price: 120000, count: 1, iconName: 'IconShoe', itemBg: 'bg-[#F5F6FF]', itemText: 'text-[#6266F1]'},
+        ],
+        totalPrice: 6183000 // TODO: 백엔드에서 데이터 가져와야 함
+    },
+    {
+       orderId: 'PG-20260815-0043', 
+        createAt: '2026.08.15 08:13', 
+        orderStatus: 'paymentFailed', 
+        items: [
+            { productId: 2, productName: '코베아 캠핑 텐트', color: '카키', price: 211000, count: 1, iconName: 'IconTent', itemBg: 'bg-[#FEF9EB]', itemText: 'text-[#E0B36B]'},
+            { productId: 7, productName: '어반어스 데이트 백팩', color: '블랙', price: 79000, count: 1, iconName: 'IconBackpack', itemBg: 'bg-[#F9FBFC]', itemText: 'text-[#7B808C]'}
+        ],
+        totalPrice: 261000,
+        failureReason: '재고 부족 — 동시 주문으로 인해 결제가 처리되지 않았습니다. 잔액은 차감되지 않았습니다.'
+    },
+    {
+       orderId: 'PG-20260815-0044', 
+        createAt: '2026.08.15 08:18', 
+        orderStatus: 'refunded',
+        items: [
+            { productId: 3, productName: '유니클로 플리스 티셔츠', size: 105, color: '핑크', price: 59900, count: 3, iconName: 'IconShirt', itemBg: 'bg-[#FCF2F8]', itemText: 'text-[#D862A1]'}
+        ],
+        totalPrice: 159700,
+        refundAmount: 159700
+    },
+];

@@ -9,10 +9,10 @@ import { IconAlertTriangle, IconLock } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
 import { iconMap } from '../../constants/icons';
 import SelectCard from '../../components/common/selectCard';
-import { getIcon } from '../../constants/useIcons';
 import { paymentMethods } from '../../constants/methods';
 import SelectBox from '../../components/common/selectBox';
 import type { Coupon } from '../../types/coupon';
+import { getMethodIcon } from '../../constants/useIcons';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
@@ -136,7 +136,7 @@ function ProductPaymentPage() {
                                         importance="high"
                                     >
                                         <div className="flex items-center p-5 gap-5">
-                                            {getIcon(method.id)}
+                                            {getMethodIcon(method.id)}
                                             <div className="flex flex-col justify-start">
                                                 <div className="flex font-medium">
                                                     {method.label}
