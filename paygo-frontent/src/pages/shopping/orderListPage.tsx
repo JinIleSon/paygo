@@ -5,6 +5,7 @@ import SelectCard from '../../components/common/selectCard';
 import { orderClassification } from '../../constants/classification';
 import { order } from '../../constants/order';
 import { getOrderBadges } from '../../constants/useBadges';
+import { iconMap } from '../../constants/icons';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState('');
 
@@ -48,11 +49,37 @@ function OrderListPage() {
                         </div>
                     </div>
                     <div className="border-b border-[#D9D9D9]"></div>
-                    {eachOrder.items.map((item) => (
-                        <div key={item.productId}>
-                            
+                    {eachOrder.items.map((item) => {
+                        const Icon = iconMap[item.iconName];
+
+                        return (
+                        <div 
+                            key={item.productId}
+                        >
+                            <div className="flex items-center gap-4">
+                                <div
+                                    className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
+                                >
+                                    <Icon size={30} className={item.itemText} />
+                                </div>
+                                <div
+                                    className="flex flex-col gap-2"
+                                >
+                                    <div className="truncate text-[black]">{item.productName}</div>
+                                    <div className="flex text-gray-400 text-sm">
+                                        {item.size && (
+                                            <div>사이즈: {item.size} |&nbsp;</div>
+                                        )}
+                                        <div>색상: {item.color} |&nbsp;</div>
+                                        <div>주문수량: {item.count}</div>
+                                    </div>
+                                </div>
+                                <div className="ml-auto text-[black] font-bold">{(item.price * item.count).toLocaleString()}원</div>
+                            </div>
                         </div>
-                    ))}
+                    );
+                })}
+                <div className="border-b border-[#D9D9D9]"></div>
                 </Card>
             ))}
         </div>
