@@ -1,15 +1,15 @@
 import Button from '../../components/common/button';
 import {
-    IconShoppingBag,
     IconPlus,
     IconArrowRight,
     IconArrowDown,
     IconArrowUp,
-    IconRefresh,
 } from '@tabler/icons-react';
 import Card from '../../components/common/card';
 import { NavLink } from 'react-router-dom';
 import { user } from '../../constants/user';
+import { getHistoryBadge } from '../../constants/useBadges';
+import { getHistoryIcon } from '../../constants/useIcons';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
@@ -85,31 +85,6 @@ function WalletHomePage() {
             statement: '처리중',
         },
     ];
-
-    // 텍스트에 따른 아이콘 종류
-    const getIcon = (title: string) => {
-        if (title.includes('충전')) return (
-        <div className="w-10 h-10 rounded-xl bg-[#FEF9EB] flex items-center justify-center">
-            <IconPlus size={20} className="text-[#E0B36B]" />
-        </div>
-    )
-    if (title.includes('취소')) return (
-        <div className="w-10 h-10 rounded-xl bg-[#E8FBF2] flex items-center justify-center">
-            <IconRefresh size={20} className="text-[#22C55E]" />
-        </div>
-    )
-    return (
-        <div className="w-10 h-10 rounded-xl bg-[#F5F6FF] flex items-center justify-center">
-            <IconShoppingBag size={20} className="text-[#6266F1]" />
-        </div>
-    ) // 구매 등 기본 아이콘
-    };
-
-    const getBadge = (statement: string) => {
-        if (statement === '완료') return <span className="rounded-full text-[#22C55E] bg-[#E8FBF2] px-2 py-1 text-xs">완료</span>
-        if (statement === '결제실패') return <span className="bg-[#FFE4E4] text-[red] px-2 py-1 rounded-full text-xs">결제실패</span>
-        if (statement === '처리중') return <span className="bg-[#F5F6FF] text-[#6266F1] px-2 py-1 rounded-full text-xs">처리중</span>
-    };
 
     return (
         // MainLayout에서 Outlet으로 불러온 레이아웃 상태
@@ -188,7 +163,7 @@ function WalletHomePage() {
                             {transHistory.map((trans, index) => (
                                 <div key={index} className="grid grid-cols-[2.5rem_7.5rem_6.875rem_4.375rem] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[1.28125rem]">
                                     <div>
-                                        {getIcon(trans.title)}
+                                        {getHistoryIcon(trans.title)}
                                     </div>
                                     <div>
                                         <div>{trans.title}</div>
@@ -201,7 +176,7 @@ function WalletHomePage() {
                                         <div className="text-sm text-[gray] font-medium">잔액 {trans.balance.toLocaleString()}원</div>
                                     </div>
                                     <div className="flex justify-center">
-                                        {getBadge(trans.statement)}
+                                        {getHistoryBadge(trans.statement)}
                                     </div>
                                 </div>
                             ))}

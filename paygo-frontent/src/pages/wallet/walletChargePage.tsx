@@ -7,8 +7,8 @@ import { useState } from 'react';
 import Button from '../../components/common/button';
 import SelectCard from '../../components/common/selectCard';
 import { user } from '../../constants/user';
-import { getIcon } from '../../constants/useIcons';
 import { chargeMethods } from '../../constants/methods';
+import { getMethodIcon } from '../../constants/useIcons';
 
 function WalletChargePage() {
     const [chargeAmount, setChargeAmount] = useState('');
@@ -143,7 +143,7 @@ function WalletChargePage() {
                                     importance="high"
                                 >
                                     <div className="flex items-center p-5 gap-5">
-                                        {getIcon(method.id)}
+                                        {getMethodIcon(method.id)}
                                         <div className="flex flex-col justify-start">
                                             <div className="flex font-medium">{method.label}</div>
                                             <div>{method.desc}</div>

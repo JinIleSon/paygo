@@ -3,6 +3,7 @@ import Card from '../../components/common/card';
 import SelectBox from '../../components/common/selectBox';
 import SelectCard from '../../components/common/selectCard';
 import { orderClassification } from '../../constants/classification';
+import { order } from '../../constants/order';
 
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState('');
@@ -32,6 +33,27 @@ function OrderListPage() {
                     </div>
                 </div>
             </Card>
+            {order.map((eachOrder) => (
+                <Card
+                    key={eachOrder.orderId}
+                    className="flex flex-col gap-4 text-gray-400 font-medium"
+                >
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <div className="text-sm">주문번호 {eachOrder.orderId}</div>
+                            <div className="text-xs">{eachOrder.createAt}</div>
+                        </div>
+                        <div>
+                            {eachOrder.orderStatus}
+                        </div>
+                    </div>
+                    {eachOrder.items.map((item) => (
+                        <div key={item.productId}>
+                            
+                        </div>
+                    ))}
+                </Card>
+            ))}
         </div>
     );
 }
