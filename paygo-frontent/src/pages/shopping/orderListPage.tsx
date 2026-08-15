@@ -4,7 +4,7 @@ import SelectBox from '../../components/common/selectBox';
 import SelectCard from '../../components/common/selectCard';
 import { orderClassification } from '../../constants/classification';
 import { order } from '../../constants/order';
-
+import { getOrderBadges } from '../../constants/useBadges';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState('');
 
@@ -44,9 +44,10 @@ function OrderListPage() {
                             <div className="text-xs">{eachOrder.createAt}</div>
                         </div>
                         <div>
-                            {eachOrder.orderStatus}
+                            {getOrderBadges(eachOrder.orderStatus)}
                         </div>
                     </div>
+                    <div className="border-b border-[#D9D9D9]"></div>
                     {eachOrder.items.map((item) => (
                         <div key={item.productId}>
                             
