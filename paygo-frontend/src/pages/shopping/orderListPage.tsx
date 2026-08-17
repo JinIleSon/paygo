@@ -79,6 +79,12 @@ function OrderListPage() {
                         </div>
                     );
                 })}
+                {eachOrder.failureReason && 
+                    <div className="rounded-lg bg-[#FFE4E4] text-red-400 p-2 pl-4">
+                        <span>ⓘ</span>
+                        <span className="ml-2">{eachOrder.failureReason}</span>
+                    </div>
+                }
                 <div className="border-b border-[#D9D9D9]"></div>
                 </Card>
             ))}

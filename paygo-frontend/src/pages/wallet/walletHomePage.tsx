@@ -135,7 +135,7 @@ function WalletHomePage() {
                             </div>
                         </Card>
                         <Card className="flex flex-col items-center">
-                            <div className="flex items-center gap-1.5 text-[red] font-medium">
+                            <div className="flex items-center gap-1.5 text-red-400 font-medium">
                                 <IconArrowDown size={24} />
                                 <div className="text-xl">이번달 지출</div>
                             </div>
@@ -146,7 +146,7 @@ function WalletHomePage() {
                             <div className="flex items-center gap-1.5">
                                 <IconArrowUp size={16} />
                                 <div>
-                                    지난달 대비 <span className="font-bold text-[red]">+12%</span>
+                                    지난달 대비 <span className="font-bold text-red-400">+12%</span>
                                 </div>
                             </div>
                         </Card>
@@ -170,7 +170,7 @@ function WalletHomePage() {
                                         <div className="text-sm text-[gray] font-medium">{trans.date}</div>
                                     </div>
                                     <div className="text-right">
-                                        <div className={trans.change > 0 ? `text-[#22C55E] font-medium` : `text-[red] font-medium`}>
+                                        <div className={trans.change > 0 ? `text-[#22C55E] font-medium` : `text-red-400 font-medium`}>
                                             {trans.change > 0 ? '+' : ''}{trans.change.toLocaleString()}원
                                         </div>
                                         <div className="text-sm text-[gray] font-medium">잔액 {trans.balance.toLocaleString()}원</div>

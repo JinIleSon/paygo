@@ -142,7 +142,7 @@ function WalletHistoryPage() {
                         <Card key={index} className="flex-1 flex flex-col gap-2 text-[gray]">
                             <div>{sum.title}</div>
                             <div
-                                className={`${!isLast && sum.content > 0 ? 'text-[#22C55E]' : 'text-[red]'} text-2xl font-medium`}
+                                className={`${!isLast && sum.content > 0 ? 'text-[#22C55E]' : 'text-red-400'} text-2xl font-medium`}
                             >
                                 {/* 마지막 실패 건수는 중요도 때문에 빨간색으로 표현 */}
                                 <span>{!isLast && sum.content > 0 ? '+' : ''}</span>
@@ -183,7 +183,7 @@ function WalletHistoryPage() {
                                 <div className={graphStyle}>{tran.type}</div>
                                 <div className={graphStyle}>{tran.paymentMethod}</div>
                                 <div
-                                    className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-[red]'}`}
+                                    className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-red-400'}`}
                                 >
                                     {tran.amount > 0 ? '+' : ''}
                                     {tran.amount.toLocaleString()}원

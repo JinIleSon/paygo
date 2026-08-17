@@ -101,7 +101,7 @@ function ProductPaymentPage() {
                                                 <div>주문수량: {item.count}</div>
                                             </div>
                                             {item.stock <= 2 && (
-                                                <div className="flex items-center gap-2 text-[red] text-sm mt-1">
+                                                <div className="flex items-center gap-2 text-red-400 text-sm mt-1">
                                                     <IconAlertTriangle
                                                         size={item.stock == 1 ? 18 : 14}
                                                     />
@@ -187,7 +187,7 @@ function ProductPaymentPage() {
                                 <div className="text-gray-400 flex justify-between">
                                     <div>할인 금액</div>
                                     <div
-                                        className={`${selectedCoupon && getDiscount(selectedItemPrice, selectedCoupon) > 0 ? 'text-[red]' : 'text-[black]'}`}
+                                        className={`${selectedCoupon && getDiscount(selectedItemPrice, selectedCoupon) > 0 ? 'text-red-400' : 'text-[black]'}`}
                                     >
                                         {selectedCoupon &&
                                         getDiscount(selectedItemPrice, selectedCoupon) > 0
