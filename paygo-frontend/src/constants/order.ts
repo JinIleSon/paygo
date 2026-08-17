@@ -21,7 +21,7 @@ export const order: Order[] = [
             { productId: 7, productName: '어반어스 데이트 백팩', color: '블랙', price: 79000, count: 1, iconName: 'IconBackpack', itemBg: 'bg-[#F9FBFC]', itemText: 'text-[#7B808C]'}
         ],
         totalPrice: 261000,
-        failureReason: '재고 부족 — 동시 주문으로 인해 결제가 처리되지 않았습니다. 잔액은 차감되지 않았습니다.'
+        failureReason: '재고 부족 — 동시 주문으로 인해 결제가 처리되지 않았어요. 잔액은 차감되지 않았으니 안심하세요.'
     },
     {
        orderId: 'PG-20260815-0044', 
