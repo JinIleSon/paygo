@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "prettier": "^3.9.4"
+  },
+  "dependencies": {
+    "react-day-picker": "^10.0.1"
+  }
+}
