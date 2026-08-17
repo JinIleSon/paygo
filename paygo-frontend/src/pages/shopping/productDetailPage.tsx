@@ -150,7 +150,7 @@ function ProductDetailPage() {
                                 </div>{' '}
                                 {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
                                 <div className="flex items-end">
-                                    <div className="text-xl text-[red]">
+                                    <div className="text-xl text-red-400">
                                         <span className="text-2xl">
                                             {Math.floor(((product.originPrice - product.discountPrice) /
                                                 product.originPrice) *
@@ -162,7 +162,7 @@ function ProductDetailPage() {
                                     <div className="text-[gray] ml-auto">
                                         재고{' '}
                                         <span
-                                            className={`${product.stock > 2 ? 'text-[gray]' : 'text-[red]'}`}
+                                            className={`${product.stock > 2 ? 'text-[gray]' : 'text-red-400'}`}
                                         >
                                             {product.stock}개
                                         </span>{' '}
@@ -242,7 +242,7 @@ function ProductDetailPage() {
                                                 +
                                             </Button>
                                             {product.stock <= 2 && (
-                                                <div className="flex items-center gap-2 text-[red]">
+                                                <div className="flex items-center gap-2 text-red-400">
                                                     <IconAlertTriangle size={20} />
                                                     <div>
                                                         재고 {product.stock}개 남음 — 서두르세요

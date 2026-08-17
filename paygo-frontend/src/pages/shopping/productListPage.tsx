@@ -86,7 +86,7 @@ function ProductListPage() {
                                         <div className="text-sm text-gray-400 flex">
                                             <div>{item.itemClassification}</div>
                                             <div
-                                                className={`ml-auto ${item.stock > 2 ? '' : 'text-[red]'}`}
+                                                className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
                                             >
                                                 재고 {item.stock}개
                                             </div>
@@ -146,7 +146,7 @@ function ProductListPage() {
                                         <div className="text-sm text-gray-400 flex">
                                             <div>{item.itemClassification}</div>
                                             <div
-                                                className={`ml-auto ${item.stock > 2 ? '' : 'text-[red]'}`}
+                                                className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
                                             >
                                                 재고 {item.stock}개
                                             </div>

@@ -134,7 +134,7 @@ function CartPage() {
                                                 </div>
                                             </div>
                                             {item.stock <= 2 && (
-                                                <div className="flex items-center gap-2 text-[red] text-sm">
+                                                <div className="flex items-center gap-2 text-[#ED6373] text-sm">
                                                     <IconAlertTriangle size={18} />
                                                     <div className="">
                                                         재고 {item.stock}개 남음
@@ -170,7 +170,7 @@ function CartPage() {
                                 <div className="text-gray-400 flex justify-between">
                                     <div>할인 금액</div>
                                     <div
-                                        className={`${getHighestDiscount(selectedItemPrice, coupons) > 0 ? 'text-[red]' : 'text-[black]'}`}
+                                        className={`${getHighestDiscount(selectedItemPrice, coupons) > 0 ? 'text-red-400' : 'text-[black]'}`}
                                     >
                                         {/* TODO: coupon 타입 추가 후 가장 할인이 많이 되는 쿠폰 적용 필요 */}
                                         {getHighestDiscount(selectedItemPrice, coupons) > 0
