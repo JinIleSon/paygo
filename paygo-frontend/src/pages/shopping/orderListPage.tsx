@@ -6,6 +6,7 @@ import { orderClassification } from '../../constants/classification';
 import { order } from '../../constants/order';
 import { getOrderBadges } from '../../constants/useBadges';
 import { iconMap } from '../../constants/icons';
+import Button from '../../components/common/button';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState('');
 
@@ -86,6 +87,45 @@ function OrderListPage() {
                     </div>
                 }
                 <div className="border-b border-[#D9D9D9]"></div>
+                {['paymentComplete', 'shipping', 'delivered'].includes(eachOrder.orderStatus) && (
+                    <div className="flex items-end">
+                        <div className="flex flex-col gap-2">
+                            <div className="flex gap-3 text-black text-lg items-center">
+                                <span>상품 금액</span>
+                                <span className="font-bold">{eachOrder.items.reduce((sum, item) => sum + (item.price * item.count), 0).toLocaleString()}원</span>
+                            </div>
+                            <div className="flex gap-3 text-black text-lg items-center">
+                                <span>할인 금액</span>
+                                <span className="text-red-400 font-bold">-{eachOrder.discount.toLocaleString()}원</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                {['paymentComplete', 'shipping', 'delivered'].includes(eachOrder.orderStatus) && (
+                    <div>
+                        <div className="border-b border-[#D9D9D9]"></div>
+                        <div className="flex justify-between mt-7 mb-2">
+                            <div className="flex gap-3 text-black text-2xl items-center">
+                                <span>총 결제 금액</span>
+                                <span className="font-bold text-3xl text-[#6266F1]">{eachOrder.totalPrice.toLocaleString()}원</span>
+                            </div>
+                            <div className="flex justify-end">
+                                <div className="flex gap-3">
+                                    <Button
+                                        variant="secondary"
+                                        className="px-2 py-1"
+                                    >배송 조회
+                                    </Button>
+                                    <Button
+                                        variant="cancel"
+                                        className="px-2 py-1"
+                                    >주문/배송 취소
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 </Card>
             ))}
         </div>
