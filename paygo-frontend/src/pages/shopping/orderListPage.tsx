@@ -8,6 +8,7 @@ import { getOrderBadges } from '../../constants/useBadges';
 import { iconMap } from '../../constants/icons';
 import Button from '../../components/common/button';
 import { formatDateTime } from '../../lib/dateUtils';
+import { getRemainRefundedDate } from '../../lib/orderUtils';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState('');
 
@@ -136,12 +137,15 @@ function OrderListPage() {
                     {eachOrder.orderStatus === 'cancelled' && (
                         <div>
                             <div className="flex justify-between mt-3 mb-2">
-                                <div className="flex gap-3 text-black text-2xl items-end">
+                                <div className="flex gap-3 text-gray-500 text-2xl items-end">
                                     <span>주문 취소</span>
                                 </div>
                                 <div className="flex justify-end">
                                     <span className="text-red-400">
-                                        7일 뒤에 환불돼요
+                                        {getRemainRefundedDate(eachOrder.createdAt) > 0 ? 
+                                            getRemainRefundedDate(eachOrder.createdAt) + '일 뒤에 환불돼요' :
+                                            '곧 환불 처리돼요'
+                                        }
                                     </span>
                                 </div>
                             </div>
