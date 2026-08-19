@@ -3,8 +3,8 @@ import type { Order } from '../types/order';
 export const order: Order[] = [
     {
         orderId: 'PG-20260815-0042',
-        createAt: '2026.08.15 07:58',
-        orderStatus: 'shipping',
+        createAt: '2026-08-15T07:58:23',
+        orderStatus: 'cancelled',
         items: [
             {
                 productId: 1,
@@ -43,7 +43,7 @@ export const order: Order[] = [
     },
     {
         orderId: 'PG-20260815-0043',
-        createAt: '2026.08.15 08:13',
+        createAt: '2026-08-15T08:13:20',
         orderStatus: 'paymentFailed',
         items: [
             {
@@ -74,7 +74,7 @@ export const order: Order[] = [
     },
     {
         orderId: 'PG-20260815-0044',
-        createAt: '2026.08.15 08:18',
+        createAt: '2026-08-15T08:18:35',
         orderStatus: 'refunded',
         items: [
             {
