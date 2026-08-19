@@ -2,25 +2,31 @@ import type { ButtonHTMLAttributes } from 'react';
 import { cn } from '../../lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'cancel';
+    variant?: 'primary' | 'secondary' | 'cancel' | 'retry';
     isDisabled?: boolean;
 }
 
-function Button({ variant = 'primary', isDisabled = false, className, children, ...props }: ButtonProps) {
-    const base = 'text-gray-400 border rounded-md cursor-pointer duration-500 transition-colors disabled:opacity-50 disabled:pointer-events-none';
+function Button({
+    variant = 'primary',
+    isDisabled = false,
+    className,
+    children,
+    ...props
+}: ButtonProps) {
+    const base =
+        'text-gray-400 border rounded-md cursor-pointer duration-500 transition-colors disabled:opacity-50 disabled:pointer-events-none';
 
     const variants = {
-        primary: 'border-[#D1D5DB] bg-white text-[#4D4D4D] hover:border-[#B4B6F8] hover:bg-[#F5F6FF] hover:text-[#9294F5]',
-        secondary: 'border-[#D1D5DB] hover:text-gray-700 bg-white hover:bg-[#F4F4F4] hover:border-[#C5C8CD]',
-        cancel: 'border-red-400 bg-[#FFE4E4] text-red-400 hover:bg-red-200 hover:border-red-500 hover:text-red-500'
+        primary:
+            'border-[#D1D5DB] bg-white text-[#4D4D4D] hover:border-[#B4B6F8] hover:bg-[#F5F6FF] hover:text-[#9294F5]',
+        secondary:
+            'border-[#D1D5DB] hover:text-gray-700 bg-white hover:bg-[#F4F4F4] hover:border-[#C5C8CD]',
+        cancel: 'border-red-400 bg-[#FFE4E4] text-red-400 hover:bg-red-200 hover:border-red-500 hover:text-red-500',
+        retry: 'border-[#9294F5] bg-[#F5F6FF] text-[#9294F5] hover:bg-[#E4E4FF] hover:text-[#6266F1] hover:border-[#6266F1]',
     };
 
     return (
-        <button 
-            disabled={isDisabled}
-            className={cn(base, variants[variant], className)} 
-            {...props}
-        >
+        <button disabled={isDisabled} className={cn(base, variants[variant], className)} {...props}>
             {children}
         </button>
     );

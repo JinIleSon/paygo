@@ -45,87 +45,131 @@ function OrderListPage() {
                             <div className="text-sm">주문번호 {eachOrder.orderId}</div>
                             <div className="text-xs">{eachOrder.createAt}</div>
                         </div>
-                        <div>
-                            {getOrderBadges(eachOrder.orderStatus)}
-                        </div>
+                        <div>{getOrderBadges(eachOrder.orderStatus)}</div>
                     </div>
                     <div className="border-b border-[#D9D9D9]"></div>
                     {eachOrder.items.map((item) => {
                         const Icon = iconMap[item.iconName];
 
                         return (
-                        <div 
-                            key={item.productId}
-                        >
-                            <div className="flex items-center gap-4">
-                                <div
-                                    className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
-                                >
-                                    <Icon size={30} className={item.itemText} />
-                                </div>
-                                <div
-                                    className="flex flex-col gap-2"
-                                >
-                                    <div className="truncate text-[black]">{item.productName}</div>
-                                    <div className="flex text-gray-400 text-sm">
-                                        {item.size && (
-                                            <div>사이즈: {item.size} |&nbsp;</div>
-                                        )}
-                                        <div>색상: {item.color} |&nbsp;</div>
-                                        <div>주문수량: {item.count}</div>
+                            <div key={item.productId}>
+                                <div className="flex items-center gap-4">
+                                    <div
+                                        className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
+                                    >
+                                        <Icon size={30} className={item.itemText} />
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <div className="truncate text-[black]">
+                                            {item.productName}
+                                        </div>
+                                        <div className="flex text-gray-400 text-sm">
+                                            {item.size && <div>사이즈: {item.size} |&nbsp;</div>}
+                                            <div>색상: {item.color} |&nbsp;</div>
+                                            <div>주문수량: {item.count}</div>
+                                        </div>
+                                    </div>
+                                    <div className="ml-auto text-[black] font-bold">
+                                        {(item.price * item.count).toLocaleString()}원
                                     </div>
                                 </div>
-                                <div className="ml-auto text-[black] font-bold">{(item.price * item.count).toLocaleString()}원</div>
                             </div>
+                        );
+                    })}
+                    {eachOrder.failureReason && (
+                        <div className="rounded-lg bg-[#FFE4E4] text-red-400 p-2 pl-4">
+                            <span>ⓘ</span>
+                            <span className="ml-2">{eachOrder.failureReason}</span>
                         </div>
-                    );
-                })}
-                {eachOrder.failureReason && 
-                    <div className="rounded-lg bg-[#FFE4E4] text-red-400 p-2 pl-4">
-                        <span>ⓘ</span>
-                        <span className="ml-2">{eachOrder.failureReason}</span>
-                    </div>
-                }
-                <div className="border-b border-[#D9D9D9]"></div>
-                {['paymentComplete', 'shipping', 'delivered'].includes(eachOrder.orderStatus) && (
-                    <div className="flex items-end">
-                        <div className="flex flex-col gap-2">
-                            <div className="flex gap-3 text-black text-lg items-center">
-                                <span>상품 금액</span>
-                                <span className="font-bold">{eachOrder.items.reduce((sum, item) => sum + (item.price * item.count), 0).toLocaleString()}원</span>
-                            </div>
-                            <div className="flex gap-3 text-black text-lg items-center">
-                                <span>할인 금액</span>
-                                <span className="text-red-400 font-bold">-{eachOrder.discount.toLocaleString()}원</span>
-                            </div>
-                        </div>
-                    </div>
-                )}
-                {['paymentComplete', 'shipping', 'delivered'].includes(eachOrder.orderStatus) && (
-                    <div>
-                        <div className="border-b border-[#D9D9D9]"></div>
-                        <div className="flex justify-between mt-7 mb-2">
-                            <div className="flex gap-3 text-black text-2xl items-center">
-                                <span>총 결제 금액</span>
-                                <span className="font-bold text-3xl text-[#6266F1]">{eachOrder.totalPrice.toLocaleString()}원</span>
-                            </div>
-                            <div className="flex justify-end">
-                                <div className="flex gap-3">
-                                    <Button
-                                        variant="secondary"
-                                        className="px-2 py-1"
-                                    >배송 조회
-                                    </Button>
-                                    <Button
-                                        variant="cancel"
-                                        className="px-2 py-1"
-                                    >주문/배송 취소
-                                    </Button>
+                    )}
+                    <div className="border-b border-[#D9D9D9]"></div>
+                    {['paymentComplete', 'shipping', 'delivered'].includes(
+                        eachOrder.orderStatus
+                    ) && (
+                        <div className="flex items-end">
+                            <div className="flex flex-col gap-2">
+                                <div className="flex gap-3 text-black text-lg items-center">
+                                    <span>상품 금액</span>
+                                    <span className="font-bold">
+                                        {eachOrder.items
+                                            .reduce((sum, item) => sum + item.price * item.count, 0)
+                                            .toLocaleString()}
+                                        원
+                                    </span>
+                                </div>
+                                <div className="flex gap-3 text-black text-lg items-center">
+                                    <span>할인 금액</span>
+                                    <span className="text-red-400 font-bold">
+                                        -{eachOrder.discount.toLocaleString()}원
+                                    </span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                    {['paymentComplete', 'shipping', 'delivered'].includes(
+                        eachOrder.orderStatus
+                    ) && (
+                        <div>
+                            <div className="border-b border-[#D9D9D9]"></div>
+                            <div className="flex justify-between mt-7 mb-2">
+                                <div className="flex gap-3 text-black text-2xl items-end">
+                                    <span>총 결제 금액</span>
+                                    <span className="font-bold text-3xl text-[#6266F1]">
+                                        {eachOrder.totalPrice.toLocaleString()}원
+                                    </span>
+                                </div>
+                                <div className="flex justify-end">
+                                    <div className="flex gap-3">
+                                        <Button variant="secondary" className="px-2 py-1">
+                                            배송 조회
+                                        </Button>
+                                        <Button variant="cancel" className="px-2 py-1">
+                                            주문/배송 취소
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {/* 환불 */}
+                    {'refunded'.includes(eachOrder.orderStatus) && (
+                        <div>
+                            <div className="flex justify-between mt-3 mb-2">
+                                <div className="flex gap-3 text-black text-2xl items-end">
+                                    <span>환불 완료</span>
+                                    <span className="font-bold text-3xl text-[#22C55E]">
+                                        {eachOrder.refundAmount !== undefined
+                                            ? eachOrder.refundAmount.toLocaleString() + '원'
+                                            : '—'}
+                                    </span>
+                                </div>
+                                <div className="flex justify-end">
+                                    <div className="flex gap-3">
+                                        <Button variant="retry" className="px-2 py-1">
+                                            재구매
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    {/* 결제 실패 */}
+                    {'paymentFailed'.includes(eachOrder.orderStatus) && (
+                        <div>
+                            <div className="flex justify-between mt-3 mb-2">
+                                <div className="flex gap-3 text-red-400 text-2xl items-center">
+                                    <span>결제 실패</span>
+                                </div>
+                                <div className="flex justify-end">
+                                    <div className="flex gap-3">
+                                        <Button variant="retry" className="px-2 py-1">
+                                            재주문
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </Card>
             ))}
         </div>
