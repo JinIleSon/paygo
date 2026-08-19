@@ -1,6 +1,6 @@
 # Paygo — 지갑 충전부터 정산까지, 결제 커머스 플랫폼
 
-[상태 배지: 🚧 진행중 | Frontend 70% · Backend 설계 완료/구현 예정]
+[상태 배지: 🚧 진행중 | Frontend 90% · Backend 설계 완료/구현 예정]
 
 ## 프로젝트 소개
 지갑 충전 → 상품 구매 → 판매자 정산까지, 돈의 흐름 전체를 
@@ -27,6 +27,11 @@
 주문/결제
 <br><br>
 <img width="1260" height="1288" alt="image" src="https://github.com/user-attachments/assets/8a6e7f4b-1ca3-4ecb-a90f-401de9de0453" />
+
+<br><br>
+주문 내역
+<br><br>
+<img width="1267" height="1726" alt="Group 3" src="https://github.com/user-attachments/assets/424dff62-4375-4f91-8e0b-6f8cc62d1ebc" />
 
 <br><br>
 지갑 홈
