@@ -4,7 +4,7 @@ export const order: Order[] = [
     {
         orderId: 'PG-20260815-0042',
         createdAt: '2026-08-15T07:58:23',
-        orderStatus: 'cancelled',
+        orderStatus: 'paymentComplete',
         items: [
             {
                 productId: 1,
@@ -92,5 +92,24 @@ export const order: Order[] = [
         discount: 20000,
         totalPrice: 159700,
         refundAmount: 159700,
+    },
+    {
+        orderId: 'PG-20260815-0044',
+        createdAt: '2026-08-15T08:18:35',
+        orderStatus: 'cancelled',
+        items: [
+            {
+                productId: 4,
+                productName: '맥북 프로 14인치 모니터',
+                color: '실버',
+                price: 2490000,
+                count: 1,
+                iconName: 'IconDeviceLaptop',
+                itemBg: 'bg-[#EEF6FF]',
+                itemText: 'text-[#4D84D8]',
+            },
+        ],
+        discount: 249000,
+        totalPrice: 2490000,
     },
 ];
