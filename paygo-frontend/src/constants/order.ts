@@ -1,9 +1,10 @@
+import { formatDateTime } from '../lib/dateUtils';
 import type { Order } from '../types/order';
 
 export const order: Order[] = [
     {
         orderId: 'PG-20260815-0042',
-        createAt: '2026-08-15T07:58:23',
+        createAt: formatDateTime('2026-08-15T07:58:23'),
         orderStatus: 'cancelled',
         items: [
             {
@@ -43,7 +44,7 @@ export const order: Order[] = [
     },
     {
         orderId: 'PG-20260815-0043',
-        createAt: '2026-08-15T08:13:20',
+        createAt: formatDateTime('2026-08-15T08:13:20'),
         orderStatus: 'paymentFailed',
         items: [
             {
@@ -74,7 +75,7 @@ export const order: Order[] = [
     },
     {
         orderId: 'PG-20260815-0044',
-        createAt: '2026-08-15T08:18:35',
+        createAt: formatDateTime('2026-08-15T08:18:35'),
         orderStatus: 'refunded',
         items: [
             {
