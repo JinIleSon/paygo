@@ -7,6 +7,7 @@ import { order } from '../../constants/order';
 import { getOrderBadges } from '../../constants/useBadges';
 import { iconMap } from '../../constants/icons';
 import Button from '../../components/common/button';
+import { formatDateTime } from '../../lib/dateUtils';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState('');
 
@@ -43,7 +44,7 @@ function OrderListPage() {
                     <div className="flex justify-between items-center">
                         <div>
                             <div className="text-sm">주문번호 {eachOrder.orderId}</div>
-                            <div className="text-xs">{eachOrder.createAt}</div>
+                            <div className="text-xs">{formatDateTime(eachOrder.createdAt)}</div>
                         </div>
                         <div>{getOrderBadges(eachOrder.orderStatus)}</div>
                     </div>
@@ -131,8 +132,23 @@ function OrderListPage() {
                             </div>
                         </div>
                     )}
+                    {/* 취소접수 */}
+                    {eachOrder.orderStatus === 'cancelled' && (
+                        <div>
+                            <div className="flex justify-between mt-3 mb-2">
+                                <div className="flex gap-3 text-black text-2xl items-end">
+                                    <span>주문 취소</span>
+                                </div>
+                                <div className="flex justify-end">
+                                    <span className="text-red-400">
+                                        7일 뒤에 환불돼요
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     {/* 환불 */}
-                    {'refunded'.includes(eachOrder.orderStatus) && (
+                    {eachOrder.orderStatus === 'refunded' && (
                         <div>
                             <div className="flex justify-between mt-3 mb-2">
                                 <div className="flex gap-3 text-black text-2xl items-end">
@@ -154,7 +170,7 @@ function OrderListPage() {
                         </div>
                     )}
                     {/* 결제 실패 */}
-                    {'paymentFailed'.includes(eachOrder.orderStatus) && (
+                    {eachOrder.orderStatus === 'paymentFailed' && (
                         <div>
                             <div className="flex justify-between mt-3 mb-2">
                                 <div className="flex gap-3 text-red-400 text-2xl items-center">

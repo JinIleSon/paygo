@@ -20,7 +20,7 @@ export interface OrderItem {
 
 export interface Order {
     orderId: string; // 주문번호
-    createAt: string; // 주문시간
+    createdAt: string; // 주문시간
     orderStatus: OrderStatus; // 주문상태
     items: OrderItem[]; // 주문한 item 리스트
     discount: number; // 할인 금액

@@ -4,7 +4,7 @@ import type { Order } from '../types/order';
 export const order: Order[] = [
     {
         orderId: 'PG-20260815-0042',
-        createAt: formatDateTime('2026-08-15T07:58:23'),
+        createdAt: '2026-08-15T07:58:23',
         orderStatus: 'cancelled',
         items: [
             {
@@ -44,7 +44,7 @@ export const order: Order[] = [
     },
     {
         orderId: 'PG-20260815-0043',
-        createAt: formatDateTime('2026-08-15T08:13:20'),
+        createdAt: '2026-08-15T08:13:20',
         orderStatus: 'paymentFailed',
         items: [
             {
@@ -75,7 +75,7 @@ export const order: Order[] = [
     },
     {
         orderId: 'PG-20260815-0044',
-        createAt: formatDateTime('2026-08-15T08:18:35'),
+        createdAt: '2026-08-15T08:18:35',
         orderStatus: 'refunded',
         items: [
             {
