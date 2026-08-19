@@ -110,6 +110,6 @@ export const order: Order[] = [
             },
         ],
         discount: 249000,
-        totalPrice: 2490000,
+        totalPrice: 2241000,
     },
 ];
