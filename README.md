@@ -31,7 +31,7 @@
 <br><br>
 주문 내역
 <br><br>
-<img width="1267" height="1726" alt="Group 3" src="https://github.com/user-attachments/assets/424dff62-4375-4f91-8e0b-6f8cc62d1ebc" />
+<img width="1267" height="1722" alt="Group 4" src="https://github.com/user-attachments/assets/cb7a22c0-63bb-40d9-b8e7-b081915f5fc5" />
 
 <br><br>
 지갑 홈
