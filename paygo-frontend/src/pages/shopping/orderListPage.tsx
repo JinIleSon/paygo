@@ -9,8 +9,12 @@ import { iconMap } from '../../constants/icons';
 import Button from '../../components/common/button';
 import { formatDateTime } from '../../lib/dateUtils';
 import { getRemainRefundedDate } from '../../lib/orderUtils';
+import type { OrderStatus } from '../../types/order';
 function OrderListPage() {
-    const [selectedType, setSelectedType] = useState('');
+    const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
+    const filteredOrders = order.filter((eachOrder) => 
+        selectedType === 'all' || eachOrder.orderStatus === selectedType
+    );
 
     return (
         <div className="flex flex-col gap-6.5">
@@ -19,7 +23,7 @@ function OrderListPage() {
                     <div className="flex gap-3">
                         {orderClassification.map((clas) => (
                             <SelectCard
-                                onClick={() => setSelectedType(clas.id)}
+                                onClick={() => setSelectedType(clas.id as 'all' | OrderStatus)}
                                 isSelected={selectedType === clas.id}
                                 key={clas.id}
                             >
@@ -37,7 +41,7 @@ function OrderListPage() {
                     </div>
                 </div>
             </Card>
-            {order.map((eachOrder) => (
+            {filteredOrders.map((eachOrder) => (
                 <Card
                     key={eachOrder.orderId}
                     className="flex flex-col gap-4 text-gray-400 font-medium"
