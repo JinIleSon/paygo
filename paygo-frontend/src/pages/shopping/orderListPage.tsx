@@ -125,9 +125,14 @@ function OrderListPage() {
                                         <Button variant="secondary" className="px-2 py-1">
                                             배송 조회
                                         </Button>
-                                        <Button variant="cancel" className="px-2 py-1">
-                                            주문/배송 취소
-                                        </Button>
+                                        {['paymentComplete', 'shipping'].includes(eachOrder.orderStatus) ? 
+                                            <Button variant="cancel" className="px-2 py-1">
+                                                주문/배송 취소
+                                            </Button> :
+                                            <Button variant="cancel" className="px-2 py-1">
+                                                교환/반품 신청
+                                            </Button>
+                                        }
                                     </div>
                                 </div>
                             </div>
