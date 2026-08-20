@@ -1,4 +1,4 @@
-export interface classification {
+export interface Classification {
     id: string;
     label: string;
 }
