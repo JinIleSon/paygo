@@ -42,6 +42,25 @@ export const order: Order[] = [
         totalPrice: 618300, // TODO: 백엔드에서 데이터 가져와야 함
     },
     {
+        orderId: 'PG-20260815-0047',
+        createdAt: '2026-08-22T07:58:23',
+        orderStatus: 'shipping',
+        items: [
+            {
+                productId: 1,
+                productName: '소니 WH-1000 헤드폰',
+                color: '블랙',
+                price: 389000,
+                count: 1,
+                iconName: 'IconHeadphones',
+                itemBg: 'bg-[#E8F8F2]',
+                itemText: 'text-[#22C55E]',
+            },
+        ],
+        discount: 38900,
+        totalPrice: 350100, // TODO: 백엔드에서 데이터 가져와야 함
+    },
+    {
         orderId: 'PG-20260815-0046',
         createdAt: '2026-08-21T08:18:35',
         orderStatus: 'delivered',

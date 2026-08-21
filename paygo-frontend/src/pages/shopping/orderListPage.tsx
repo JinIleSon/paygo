@@ -12,9 +12,23 @@ import { getRemainRefundedDate } from '../../lib/orderUtils';
 import type { OrderStatus } from '../../types/order';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
-    const filteredOrders = order.filter((eachOrder) => 
-        selectedType === 'all' || eachOrder.orderStatus === selectedType
+    const [sortType, setSortType] = useState('latest');
+    const filteredOrders = order.filter(
+        (eachOrder) => selectedType === 'all' || eachOrder.orderStatus === selectedType
     );
+
+    const sortedOrders = [...filteredOrders].sort((a, b) => {
+        if (sortType === 'latest') {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        } else if (sortType === 'oldest') {
+            return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+        } else if (sortType === 'priceHigh') {
+            return b.totalPrice - a.totalPrice;
+        } else if (sortType === 'priceLow') {
+            return a.totalPrice - b.totalPrice;
+        }
+        return 0; // sort에서 0 반환은 순서 그대로 유지
+    });
 
     return (
         <div className="flex flex-col gap-6.5">
@@ -32,7 +46,7 @@ function OrderListPage() {
                         ))}
                     </div>
                     <div className="ml-auto">
-                        <SelectBox>
+                        <SelectBox onChange={(e) => setSortType(e.target.value)}>
                             <option value="latest">최신순</option>
                             <option value="oldest">오래된 순</option>
                             <option value="priceHigh">높은 금액순</option>
@@ -41,7 +55,7 @@ function OrderListPage() {
                     </div>
                 </div>
             </Card>
-            {filteredOrders.map((eachOrder) => (
+            {sortedOrders.map((eachOrder) => (
                 <Card
                     key={eachOrder.orderId}
                     className="flex flex-col gap-4 text-gray-400 font-medium"
@@ -129,14 +143,17 @@ function OrderListPage() {
                                         <Button variant="secondary" className="px-2 py-1">
                                             배송 조회
                                         </Button>
-                                        {['paymentComplete', 'shipping'].includes(eachOrder.orderStatus) ? 
+                                        {['paymentComplete', 'shipping'].includes(
+                                            eachOrder.orderStatus
+                                        ) ? (
                                             <Button variant="cancel" className="px-2 py-1">
                                                 주문/배송 취소
-                                            </Button> :
+                                            </Button>
+                                        ) : (
                                             <Button variant="cancel" className="px-2 py-1">
                                                 교환/반품 신청
                                             </Button>
-                                        }
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -151,10 +168,10 @@ function OrderListPage() {
                                 </div>
                                 <div className="flex justify-end">
                                     <span className="text-red-400">
-                                        {getRemainRefundedDate(eachOrder.createdAt) > 0 ? 
-                                            getRemainRefundedDate(eachOrder.createdAt) + '일 뒤에 환불돼요' :
-                                            '곧 환불 처리돼요'
-                                        }
+                                        {getRemainRefundedDate(eachOrder.createdAt) > 0
+                                            ? getRemainRefundedDate(eachOrder.createdAt) +
+                                              '일 뒤에 환불돼요'
+                                            : '곧 환불 처리돼요'}
                                     </span>
                                 </div>
                             </div>
