@@ -8,7 +8,7 @@ export const coupons: Coupon[] = [
         discountType: 'fixed',
         discountValue: 5000,
         status: 'expired',
-        expiresAt: '2026-08-03',
+        expiresAt: '2027-08-03',
     },
     {
         id: '2',
@@ -17,7 +17,7 @@ export const coupons: Coupon[] = [
         discountType: 'percent',
         discountValue: 10,
         status: 'active',
-        expiresAt: '2026-08-21',
+        expiresAt: '2027-08-21',
     },
     {
         id: '3',
@@ -26,7 +26,7 @@ export const coupons: Coupon[] = [
         discountType: 'fixed',
         discountValue: 10000,
         status: 'used',
-        expiresAt: '2026-08-21',
+        expiresAt: '2027-08-21',
     },
     {
         id: '4',
@@ -35,6 +35,6 @@ export const coupons: Coupon[] = [
         discountType: 'fixed',
         discountValue: 20000,
         status: 'active',
-        expiresAt: '2026-08-21',
+        expiresAt: '2027-08-21',
     },
 ];
