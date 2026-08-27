@@ -209,7 +209,13 @@ function OrderListPage() {
                                 </div>
                                 <div className="flex justify-end">
                                     <div className="flex gap-3">
-                                        <Button variant="retry" className="px-2 py-1">
+                                        <Button
+                                            variant="retry"
+                                            className="px-2 py-1"
+                                            onClick={() =>
+                                                setModal({ type: 'repurchase', order: eachOrder })
+                                            }
+                                        >
                                             재구매
                                         </Button>
                                     </div>
@@ -242,6 +248,18 @@ function OrderListPage() {
                 <ConfirmModal
                     title="주문을 취소할까요?"
                     description={`취소하면 결제 금액 ${modal?.order.totalPrice.toLocaleString()}원이 7일 뒤에 환불돼요. 배송이 이미 시작된 경우 취소가 제한될 수 있어요.`}
+                    cancelLabel="아니오"
+                    variant="cancel"
+                    confirmLabel="취소하기"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
+            )}
+            {modal?.type === 'repurchase' && (
+                <ConfirmModal
+                    title="다시 구매할까요?"
+                    description={``} // TODO: description 작성 필요
                     cancelLabel="아니오"
                     variant="cancel"
                     confirmLabel="취소하기"
