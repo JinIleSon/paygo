@@ -15,13 +15,13 @@ function OrderListPage() {
     const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
     const [sortType, setSortType] = useState('latest');
 
-    type ModalState = 
-    | { type: 'tracking', order: Order }
-    | { type: 'cancel', order: Order }
-    | { type: 'return', order: Order }
-    | { type: 'repurchase', order: Order }
-    | { type: 'reorder', order: Order }
-    | null;
+    type ModalState =
+        | { type: 'tracking'; order: Order }
+        | { type: 'cancel'; order: Order }
+        | { type: 'return'; order: Order }
+        | { type: 'repurchase'; order: Order }
+        | { type: 'reorder'; order: Order }
+        | null;
 
     const [modal, setModal] = useState<ModalState>(null);
 
@@ -158,7 +158,13 @@ function OrderListPage() {
                                         {['paymentComplete', 'shipping'].includes(
                                             eachOrder.orderStatus
                                         ) ? (
-                                            <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'cancel', order: eachOrder })}>
+                                            <Button
+                                                variant="cancel"
+                                                className="px-2 py-1"
+                                                onClick={() =>
+                                                    setModal({ type: 'cancel', order: eachOrder })
+                                                }
+                                            >
                                                 주문/배송 취소
                                             </Button>
                                         ) : (
@@ -232,20 +238,18 @@ function OrderListPage() {
             ))}
 
             {/* TODO: modalState에 따른 모달창 호출 후 따로 컴포넌트로 빼기 */}
-            {modal?.type === 'cancel' &&
+            {modal?.type === 'cancel' && (
                 <ConfirmModal
-                    title='주문을 취소할까요?'
-                    description={`취소하시면 결제 금액 ${modal?.order.totalPrice}원이 7일 뒤에 환불돼요. 배송이 이미 시작된 경우 취소가 제한될 수 있어요.`}
-                    cancelLabel='아니오'
-                    variant='cancel'
-                    confirmLabel='취소하기'
+                    title="주문을 취소할까요?"
+                    description={`취소하면 결제 금액 ${modal?.order.totalPrice.toLocaleString()}원이 7일 뒤에 환불돼요. 배송이 이미 시작된 경우 취소가 제한될 수 있어요.`}
+                    cancelLabel="아니오"
+                    variant="cancel"
+                    confirmLabel="취소하기"
                     onClose={() => setModal(null)}
                     // TODO: 이후 API 호출 필요
                     onConfirm={() => setModal(null)}
-                >
-
-                </ConfirmModal>
-            }
+                ></ConfirmModal>
+            )}
         </div>
     );
 }
