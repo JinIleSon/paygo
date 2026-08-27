@@ -232,7 +232,7 @@ function OrderListPage() {
                                 </div>
                                 <div className="flex justify-end">
                                     <div className="flex gap-3">
-                                        <Button variant="retry" className="px-2 py-1">
+                                        <Button variant="retry" className="px-2 py-1" onClick={() => setModal({ type: 'reorder', order: eachOrder})}>
                                             재주문
                                         </Button>
                                     </div>
@@ -259,10 +259,23 @@ function OrderListPage() {
             {modal?.type === 'repurchase' && (
                 <ConfirmModal
                     title="다시 구매할까요?"
-                    description={``} // TODO: description 작성 필요
+                    description={`${modal?.order.items.map((item) => item.productName).join(', ')}를 같은 옵션으로 장바구니에 담아요.`}
                     cancelLabel="아니오"
-                    variant="cancel"
-                    confirmLabel="취소하기"
+                    variant="retry"
+                    confirmLabel="장바구니에 담기"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
+            )}
+            {modal?.type === 'reorder' && (
+                <ConfirmModal
+                    title="재주문할까요?"
+                    description={`이전과 동일한 상품, 수량으로 다시 주문해요.`}
+                    subDescription="재고 부족으로 실패했던 주문은 재고 확인 후 결제가 진행돼요."
+                    cancelLabel="아니오"
+                    variant="retry"
+                    confirmLabel="재주문"
                     onClose={() => setModal(null)}
                     // TODO: 이후 API 호출 필요
                     onConfirm={() => setModal(null)}
