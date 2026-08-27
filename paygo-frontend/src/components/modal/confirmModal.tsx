@@ -4,9 +4,10 @@ import ModalShell from './modalShell';
 interface ConfirmModalProps {
     title: string;
     description: string;
+    subDescription?: string;
     cancelLabel: string;
     confirmLabel: string;
-    variant?: 'secondary' | 'primary' | 'cancel';
+    variant?: 'primary' | 'secondary' | 'retry' | 'cancel';
     onClose: () => void;
     onConfirm: () => void;
 }
@@ -14,6 +15,7 @@ interface ConfirmModalProps {
 function ConfirmModal({
     title,
     description,
+    subDescription,
     cancelLabel,
     confirmLabel,
     variant,
@@ -25,6 +27,7 @@ function ConfirmModal({
             <div className="flex flex-col gap-2">
                 <div className="font-medium text-lg">{title}</div>
                 <div className="text-gray-600">{description}</div>
+                <div className="text-gray-400">{subDescription}</div>
                 <div className="flex gap-3 w-full mt-3">
                     <Button variant="secondary" onClick={onClose} className="w-1/2 h-10">
                         {cancelLabel}
