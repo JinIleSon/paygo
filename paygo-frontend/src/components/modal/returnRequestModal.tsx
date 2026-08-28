@@ -20,27 +20,30 @@ function ReturnRequestModal({ title, description, category, text, cancelLabel, c
     
     return (
         <ModalShell onClose={onClose}>
-            <div>{title}</div>
-            <div>{description}</div>
-            <div>{category}</div>
-            <div>
-                <SelectBox value={reason} onChange={(e) => setReason(e.target.value)}>
-                    <option value="simple_change">단순 변심</option>
-                    <option value="wrong_product">상품문제</option>
-                    <option value="wrong_delivery">배송문제</option>
-                </SelectBox>
-            </div>
-            <div>{text}</div>
-            <div>
-                <textarea
-                    value={detailedReason} 
-                    onChange={(e) => setDetailedReason(e.target.value)}
-                    name="" id="" placeholder="구체적인 사유를 입력해주세요.">
-                </textarea>
-            </div>
-            <div>
-                <Button variant="secondary" onClick={onClose}>{cancelLabel}</Button>
-                <Button variant="retry" onClick={() => onConfirm(reason, detailedReason)}>{confirmLabel}</Button>
+            <div className="flex flex-col gap-2">
+                <div>{title}</div>
+                <div className="whitespace-pre-line">{description}</div>
+                <div>{category}</div>
+                <div>
+                    <SelectBox value={reason} onChange={(e) => setReason(e.target.value)} className="w-full">
+                        <option value="simple_change">단순 변심</option>
+                        <option value="wrong_product">상품문제</option>
+                        <option value="wrong_delivery">배송문제</option>
+                    </SelectBox>
+                </div>
+                <div>{text}</div>
+                <div>
+                    <textarea
+                        value={detailedReason} 
+                        onChange={(e) => setDetailedReason(e.target.value)}
+                        name="" id="" placeholder="구체적인 사유를 입력해주세요."
+                        className="p-3 w-full border border-[#D1D5DB] hover:border-[#C5C8CD] hover:bg-[#F4F4F4] duration-500 rounded-md outline-none h-40">
+                    </textarea>
+                </div>
+                <div className="flex gap-3 w-full mt-3">
+                    <Button variant="secondary" onClick={onClose} className="w-1/2 h-10">{cancelLabel}</Button>
+                    <Button variant="retry" onClick={() => onConfirm(reason, detailedReason)} className="w-1/2 h-10">{confirmLabel}</Button>
+                </div>
             </div>
         </ModalShell>
     );

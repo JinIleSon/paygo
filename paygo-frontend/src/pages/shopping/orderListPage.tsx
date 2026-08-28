@@ -11,6 +11,7 @@ import { formatDateTime } from '../../lib/dateUtils';
 import { getRemainRefundedDate } from '../../lib/orderUtils';
 import type { Order, OrderStatus } from '../../types/order';
 import ConfirmModal from '../../components/modal/confirmModal';
+import ReturnRequestModal from '../../components/modal/returnRequestModal';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
     const [sortType, setSortType] = useState('latest');
@@ -168,7 +169,7 @@ function OrderListPage() {
                                                 주문/배송 취소
                                             </Button>
                                         ) : (
-                                            <Button variant="cancel" className="px-2 py-1">
+                                            <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder})}>
                                                 교환/반품 신청
                                             </Button>
                                         )}
@@ -280,6 +281,27 @@ function OrderListPage() {
                     // TODO: 이후 API 호출 필요
                     onConfirm={() => setModal(null)}
                 ></ConfirmModal>
+            )}
+            {modal?.type === 'return' && (
+                <ReturnRequestModal
+                    title="교환 / 반품 신청"
+                    description={`${modal?.order.items
+                    .map((item) => 
+                        [item.productName, item.size, item.color, `${item.count}개`]
+                        .filter((i) => i !== undefined)
+                        .join(' · ')
+                    )
+                    .join('\n')}`}
+                    category="사유"
+                    text="상세 사유 (선택)"
+                    cancelLabel="취소"
+                    confirmLabel="신청하기"
+                    onClose={() => setModal(null)}
+                    // TODO: API 연동 시 변경 필요
+                    onConfirm={() => setModal(null)}
+                >
+
+                </ReturnRequestModal>
             )}
         </div>
     );
