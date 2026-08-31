@@ -14,7 +14,7 @@ function ModalShell({ children, onClose }: { children: React.ReactNode; onClose:
             className="fixed inset-0 bg-black/45 flex items-center justify-center"
             onClick={onClose}
         >
-            <div className="bg-white rounded-2xl p-5 px-7 w-90" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white rounded-2xl p-5 px-7 w-95" onClick={(e) => e.stopPropagation()}>
                 {children}
             </div>
         </div>,
