@@ -31,7 +31,7 @@ function ReturnRequestModal({
         <ModalShell onClose={onClose}>
             <div className="flex flex-col gap-2">
                 <div className="font-medium text-lg">{title}</div>
-                <div className="whitespace-pre-line text-gray-500">{description}</div>
+                <div className="whitespace-pre-line text-gray-500 text-sm">{description}</div>
                 <div className="mt-2 font-medium text-gray-600">{category}</div>
                 <div>
                     <SelectBox
