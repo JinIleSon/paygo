@@ -12,6 +12,7 @@ import { getRemainRefundedDate } from '../../lib/orderUtils';
 import type { Order, OrderStatus } from '../../types/order';
 import ConfirmModal from '../../components/modal/confirmModal';
 import ReturnRequestModal from '../../components/modal/returnRequestModal';
+import ShippingModal from '../../components/modal/shippingModal';
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
     const [sortType, setSortType] = useState('latest');
@@ -153,7 +154,7 @@ function OrderListPage() {
                                 </div>
                                 <div className="flex justify-end">
                                     <div className="flex gap-3">
-                                        <Button variant="secondary" className="px-2 py-1">
+                                        <Button variant="secondary" className="px-2 py-1" onClick={() => setModal({ type: 'tracking', order: eachOrder })}>
                                             배송 조회
                                         </Button>
                                         {['paymentComplete', 'shipping'].includes(
@@ -302,6 +303,17 @@ function OrderListPage() {
                 >
 
                 </ReturnRequestModal>
+            )}
+            {modal?.type === 'tracking' && (
+                <ShippingModal
+                    title="배송 조회"
+                    orderId={modal?.order.orderId}
+                    productName={modal?.order.items[0].productName}
+                    count={modal?.order.items.length - 1}
+                    closeLabel="닫기"
+                    onClose={() => setModal(null)}
+                >
+                </ShippingModal>
             )}
         </div>
     );
