@@ -4,7 +4,7 @@ export const order: Order[] = [
     {
         orderId: 'PG-20260815-0042',
         createdAt: '2026-08-15T07:58:23',
-        orderStatus: 'delivered',
+        orderStatus: 'paymentComplete',
         items: [
             {
                 productId: 1,
