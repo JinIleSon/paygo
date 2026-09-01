@@ -1,4 +1,6 @@
+import type { OrderStatus } from "../../types/order";
 import Button from "../common/button";
+import ShippingStep from "../ship/shippingStep";
 import ModalShell from "./modalShell";
 
 interface ShippingModalProps {
@@ -6,11 +8,12 @@ interface ShippingModalProps {
     orderId: string;
     productName: string;
     count: number; // 몇 개 외로 계산
+    orderStatus: OrderStatus;
     closeLabel: string;
     onClose: () => void;
 }
 
-function ShippingModal({ title, orderId, productName, count, closeLabel, onClose } : ShippingModalProps) {
+function ShippingModal({ title, orderId, productName, count, orderStatus, closeLabel, onClose } : ShippingModalProps) {
     return (
         <ModalShell onClose={onClose}>
             <div className="flex flex-col gap-2">
@@ -18,6 +21,9 @@ function ShippingModal({ title, orderId, productName, count, closeLabel, onClose
                 <div className="text-gray-600 text-sm">
                     {orderId} · {productName} 
                     {count > 0 && <span> 외 {count}개</span>}
+                </div>
+                <div className="mt-3">
+                    <ShippingStep orderStatus={orderStatus}></ShippingStep>
                 </div>
                 <div className="mt-3 w-full">
                     <Button
