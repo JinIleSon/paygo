@@ -10,7 +10,6 @@ const pageTitles: Record<string, string> = {
     '/shopping/product-payment': '주문/결제',
     '/shopping/cart': '장바구니',
     '/shopping/order-list': '주문 내역',
-    '/shopping/order-detail': '주문 상세',
     '/account/mypage': '마이페이지',
     '/account/setting': '설정'
 };
@@ -18,6 +17,8 @@ const pageTitles: Record<string, string> = {
 function getPageTitles(pathname: string): string {
     if (pathname.startsWith("/shopping/product-detail"))
         return "상품 상세";
+    if (pathname.startsWith("/shopping/order-detail"))
+        return "주문 상세"
     return pageTitles[pathname] ?? '';
 }
 
