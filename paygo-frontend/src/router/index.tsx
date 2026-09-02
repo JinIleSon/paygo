@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
             { path: '/shopping/product-payment', element: <ProductPaymentPage /> },
             { path: '/shopping/cart', element: <CartPage /> },
             { path: '/shopping/order-list', element: <OrderListPage /> },
-            { path: '/shopping/order-detail', element: <OrderDetailPage /> },
+            { path: '/shopping/order-detail/:orderId', element: <OrderDetailPage /> },
 
             // 계정
             { path: '/account/mypage', element: <MypagePage /> },
