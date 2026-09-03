@@ -23,7 +23,8 @@ export function getShippingStep(orderStatus: OrderStatus) {
     // label과 done/current/pending이 따로 놀지 않게 객체로 묶음
     const result = labels.map((label, i) => ({
                     label: label,
-                    status: step > i ? "done" : step === i ? "current" : "pending"}));
+                    // 배송과 관련 없는 상태일 경우 전체 pending 상태
+                    status: ["cancelled", "refunded", "paymentFailed"].includes(orderStatus) ? "pending" : step > i ? "done" : step === i ? "current" : "pending"}));
 
     return result;
 }

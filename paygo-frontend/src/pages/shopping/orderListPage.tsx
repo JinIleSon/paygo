@@ -319,6 +319,7 @@ function OrderListPage() {
                     productName={modal?.order.items[0].productName}
                     count={modal?.order.items.length - 1}
                     orderStatus={modal?.order.orderStatus}
+                    isOrderDetailPage={false}
                     closeLabel="닫기"
                     createdAt={modal?.order.createdAt}
                     onClose={() => setModal(null)}

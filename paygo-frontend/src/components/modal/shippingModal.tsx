@@ -11,12 +11,13 @@ interface ShippingModalProps {
     productName: string;
     count: number; // 몇 개 외로 계산
     orderStatus: OrderStatus;
+    isOrderDetailPage: boolean;
     createdAt: string;
     closeLabel: string;
     onClose: () => void;
 }
 
-function ShippingModal({ title, orderId, productName, count, orderStatus, createdAt, closeLabel, onClose } : ShippingModalProps) {
+function ShippingModal({ title, orderId, productName, count, orderStatus, isOrderDetailPage, createdAt, closeLabel, onClose } : ShippingModalProps) {
     // getShippingStep(orderStatus) = [{ label: label, status: done/current/pending }, ... ]
     const message = getShippingStep(orderStatus).map((m) => {
         if (m.status !== "current")
@@ -41,7 +42,7 @@ function ShippingModal({ title, orderId, productName, count, orderStatus, create
                     {count > 0 && <span> 외 {count}개</span>}
                 </div>
                 <div className="mt-3">
-                    <ShippingStep orderStatus={orderStatus}></ShippingStep>
+                    <ShippingStep orderStatus={orderStatus} isOrderDetailPage={isOrderDetailPage}></ShippingStep>
                 </div>
                 <div className="mt-3 py-2 pl-4 flex items-center text-sm w-full rounded-lg bg-gray-100 text-gray-600">
                     {message.filter((m) => m !== undefined)}

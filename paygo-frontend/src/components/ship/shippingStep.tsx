@@ -4,9 +4,10 @@ import type { OrderStatus } from "../../types/order";
 
 interface ShippingStepProps {
     orderStatus: OrderStatus;
+    isOrderDetailPage: boolean;
 }
 
-function ShippingStep({ orderStatus } : ShippingStepProps) {
+function ShippingStep({ orderStatus, isOrderDetailPage } : ShippingStepProps) {
     const step = getShippingStep(orderStatus); // { label: label, status: "done" 또는 "current" 또는 "pending" }
     
     const stepIconColor = step.map((s) => {
@@ -45,7 +46,7 @@ function ShippingStep({ orderStatus } : ShippingStepProps) {
                 const Icon = shippingIcon[index];
                 
                 return (
-                <div key={index} className="relative flex flex-col items-center justify-center w-18 gap-1">
+                <div key={index} className={`relative flex flex-col items-center justify-center ${isOrderDetailPage ? 'w-24' : 'w-18'} gap-1`}>
                     <div className={`flex items-center justify-center rounded-full w-8 h-8 ${stepIconColor[index]}`}>
                         <Icon />
                     </div>
@@ -53,7 +54,7 @@ function ShippingStep({ orderStatus } : ShippingStepProps) {
                         {s.label}
                     </div>
                     {index !== 0 && (
-                    <div className={`absolute w-14 h-1 top-3.5 right-12 ${stepBarColor[index]}`}></div>
+                    <div className={`absolute ${isOrderDetailPage ? 'w-15 right-18 rounded-full' : 'w-14 right-12'} h-1 top-3.5 ${stepBarColor[index]}`}></div>
                     )}
                 </div>
             )})}

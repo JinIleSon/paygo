@@ -4,6 +4,7 @@ import { order } from "../../constants/order";
 import { formatDateTime } from "../../lib/dateUtils";
 import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
+import ShippingStep from "../../components/ship/shippingStep";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
@@ -21,7 +22,7 @@ function OrderDetailPage() {
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-6.5 font-medium">
                         <Card
-                            className="flex flex-col gap-4 text-gray-400 font-medium"
+                            className="flex flex-col gap-8 text-gray-400 font-medium"
                         >
                             <div className="flex justify-between items-center">
                                 <div>
@@ -30,7 +31,9 @@ function OrderDetailPage() {
                                 </div>
                                 <div>{getOrderBadges(orderDetail.orderStatus)}</div>
                             </div>
-
+                            <div className="flex items-center justify-center mb-4">
+                                <ShippingStep orderStatus={orderDetail.orderStatus} isOrderDetailPage={true}></ShippingStep>
+                            </div>
                         </Card>
                     </div>
                 </div>
