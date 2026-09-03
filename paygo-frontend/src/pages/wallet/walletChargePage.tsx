@@ -48,7 +48,7 @@ function WalletChargePage() {
             <div className="flex gap-8 pr-8 w-full">
                 <div className="min-w-1/2">
                     <Card>
-                        <div className="text-[gray] mb-6">충전 금액</div>
+                        <div className="text-lg text-gray-500 mb-6 font-medium">충전 금액</div>
                         <Card className="bg-[#F5F6FF] border-0 px-6">
                             <div className="flex items-center">
                                 <div>
@@ -132,7 +132,7 @@ function WalletChargePage() {
                         </div>
                     </Card>
                     <Card className="my-6.5">
-                        <div className="text-[gray] mb-6">충전 수단</div>
+                        <div className="text-lg text-gray-500 mb-6 font-medium">충전 수단</div>
                         <div className="flex flex-col gap-3 mb-3">
                             {chargeMethods.map((method) => (
                                 <SelectCard
@@ -156,7 +156,7 @@ function WalletChargePage() {
                 </div>
                 <div className="min-w-1/2">
                     <Card>
-                        <div className="text-[gray] mb-6">충전 요약</div>
+                        <div className="text-lg text-gray-500 mb-6 font-medium">충전 요약</div>
                         <Card className="bg-[#FAFAFA] text-[gray]">
                             {chargeSummary.map((summary, index) => (
                                 <div
@@ -184,7 +184,7 @@ function WalletChargePage() {
                         </div>
                     </Card>
                     <Card className="my-6.5">
-                        <div className="text-[gray] mb-6">충전 유의사항</div>
+                        <div className="text-lg text-gray-500 mb-6 font-medium">충전 유의사항</div>
                         <div className="text-lg flex flex-col gap-5 mb-3">
                             <div>
                                 <span className="mr-3">ⓘ</span>

@@ -61,8 +61,8 @@ function ProductListPage() {
             </Card>
             <div>
                 <div className="flex">
-                    <div className="text-[gray]">인기 상품</div>
-                    <NavLink to="#" className="ml-auto flex items-center text-[#6266F1]">
+                    <div className="text-2xl text-gray-500 font-medium mb-4">인기 상품</div>
+                    <NavLink to="#" className="ml-auto flex items-end mb-1 text-[#6266F1]">
                         <div>전체보기</div>
                         <IconArrowRight size={16} />
                     </NavLink>
@@ -121,8 +121,8 @@ function ProductListPage() {
             </div>
             <div>
                 <div className="flex">
-                    <div className="text-[gray]">신규 상품</div>
-                    <NavLink to="#" className="ml-auto flex items-center text-[#6266F1]">
+                    <div className="text-2xl text-gray-500 font-medium mb-4">신규 상품</div>
+                    <NavLink to="#" className="ml-auto flex items-end mb-1 text-[#6266F1]">
                         <div>전체보기</div>
                         <IconArrowRight size={16} />
                     </NavLink>

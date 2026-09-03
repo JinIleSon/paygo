@@ -140,7 +140,7 @@ function WalletHistoryPage() {
 
                     return (
                         <Card key={index} className="flex-1 flex flex-col gap-2 text-[gray]">
-                            <div>{sum.title}</div>
+                            <div className="text-lg text-gray-500 font-medium">{sum.title}</div>
                             <div
                                 className={`${!isLast && sum.content > 0 ? 'text-[#22C55E]' : 'text-red-400'} text-2xl font-medium`}
                             >

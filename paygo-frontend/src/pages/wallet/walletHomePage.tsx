@@ -93,7 +93,7 @@ function WalletHomePage() {
                 <div className="min-w-1/2">
                     <Card variant="primary">
                         <div>
-                            <div className="text-[#E2E3FF]">Paygo 지갑 잔액</div>
+                            <div className="text-lg text-[#E2E3FF] font-medium">Paygo 지갑 잔액</div>
                             <div className="py-3 text-white text-[2rem] font-medium">
                                 {balance.toLocaleString()}원
                             </div>
@@ -153,8 +153,8 @@ function WalletHomePage() {
                     </div>
                     <div>
                         <div className="flex">
-                            <div className="text-[gray]">최근 거래내역</div>
-                            <NavLink to="#" className="ml-auto flex items-center text-[#6266F1]">
+                            <div className="text-xl text-gray-500 font-medium mb-4">최근 거래내역</div>
+                            <NavLink to="#" className="ml-auto flex items-end mb-1 text-[#6266F1]">
                                 <div>전체보기</div>
                                 <IconArrowRight size={16} />
                             </NavLink>
@@ -185,7 +185,7 @@ function WalletHomePage() {
                 </div>
                 <div className="min-w-1/2">
                     <Card>
-                        <div className="text-[gray] ">빠른 송금</div>
+                        <div className="text-lg text-gray-500 mb-3 font-medium">빠른 송금</div>
                         {contacts.map((contact, index) => (
                             <div key={index} className="mt-auto py-4">
                                 <div className="flex items-center gap-4">
@@ -214,7 +214,7 @@ function WalletHomePage() {
                         ))}
                     </Card>
                     <Card className="my-6.5">
-                        <div className="text-[gray] ">소비 카테고리</div>
+                        <div className="text-lg text-gray-500 mb-6 font-medium">소비 카테고리</div>
                         {categories.map((cat, index) => (
                             <div key={index}>
                                 <div className="mt-4">
@@ -241,11 +241,11 @@ function WalletHomePage() {
                         ))}
                     </Card>
                     <Card className="">
-                        <div className="text-[gray] mb-2">공지사항</div>
+                        <div className="text-lg text-gray-500 mb-[0.83rem] font-medium">공지사항</div>
                         {notices.map((notice, index) => (
                             <div
                                 key={index}
-                                className="py-2.5 border-b-2 border-[#E6E6E6] last:border-b-0"
+                                className="py-3 border-b-2 border-[#E6E6E6] last:border-b-0"
                             >
                                 <NavLink to="#">
                                     <div>{notice.title}</div>

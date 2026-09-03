@@ -125,7 +125,7 @@ function ProductPaymentPage() {
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-4 font-medium">
                         <Card>
-                            <div className="text-[gray] mb-6">결제 수단</div>
+                            <div className="text-lg text-gray-500 mb-6">결제 수단</div>
                             <div className="flex flex-col gap-3 mb-3">
                                 {paymentMethods.map((method) => (
                                     <SelectCard
@@ -150,7 +150,7 @@ function ProductPaymentPage() {
                         </Card>
                         <Card>
                             <div className="flex flex-col gap-4 text-gray-500">
-                                <div className="text-lg ">결제 금액</div>
+                                <div className="text-lg mb-2">결제 금액</div>
                                 <div className="text-gray-400 flex justify-between">
                                     <div>상품 금액</div>
                                     <div className="text-[black]">

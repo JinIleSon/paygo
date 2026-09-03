@@ -35,6 +35,9 @@ function OrderDetailPage() {
                                 <ShippingStep orderStatus={orderDetail.orderStatus} isOrderDetailPage={true}></ShippingStep>
                             </div>
                         </Card>
+                        <Card>
+                            <div className="text-lg text-gray-500 mb-6 font-medium">주문 상품</div>
+                        </Card>
                     </div>
                 </div>
                 <div className="min-w-1/2">

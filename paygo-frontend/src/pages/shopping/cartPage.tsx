@@ -160,7 +160,7 @@ function CartPage() {
                     <div className="flex flex-col gap-4 font-medium">
                         <Card className="h-180">
                             <div className="flex flex-col gap-4 text-gray-500">
-                                <div className="text-lg">주문 요약</div>
+                                <div className="text-lg mb-2">주문 요약</div>
                                 <div className="text-gray-400 flex justify-between">
                                     <div>상품 금액</div>
                                     <div className="text-[black]">
