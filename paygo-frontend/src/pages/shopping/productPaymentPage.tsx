@@ -90,7 +90,7 @@ function ProductPaymentPage() {
                                             <Icon size={30} className={item.itemText} />
                                         </div>
                                         <div
-                                            className={`w-52 flex flex-col ${item.stock <= 2 ? '' : 'gap-2'}`}
+                                            className={`w-50 truncate flex flex-col ${item.stock <= 2 ? '' : 'gap-2'}`}
                                         >
                                             <div className="truncate">{item.productName}</div>
                                             <div className="flex text-gray-400 text-xs">

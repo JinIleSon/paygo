@@ -5,6 +5,7 @@ import { formatDateTime } from "../../lib/dateUtils";
 import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
+import { iconMap } from "../../constants/icons";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
@@ -36,7 +37,38 @@ function OrderDetailPage() {
                             </div>
                         </Card>
                         <Card>
-                            <div className="text-lg text-gray-500 mb-6 font-medium">주문 상품</div>
+                            <div className="text-lg text-gray-500 mb-6 font-medium">주문 상품 ({orderDetail.items.length}건)</div>
+                            {orderDetail.items.map((item) => {
+                                const Icon = iconMap[item.iconName];
+
+                                return (
+                                    <div
+                                        key={item.productId}
+                                        className="flex items-center gap-4 mb-4"
+                                    >
+                                        <div
+                                            className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
+                                        >
+                                            <Icon size={30} className={item.itemText} />
+                                        </div>
+                                        <div
+                                            className="w-50 flex flex-col gap-2 truncate"
+                                        >
+                                            <div className="truncate">{item.productName}</div>
+                                            <div className="flex text-gray-400 text-xs">
+                                                {item.size && (
+                                                    <div>사이즈: {item.size} |&nbsp;</div>
+                                                )}
+                                                <div>색상: {item.color} |&nbsp;</div>
+                                                <div>주문수량: {item.count}</div>
+                                            </div>
+                                        </div>
+                                        <div className="font-bold">
+                                            {(item.price * item.count).toLocaleString()}원
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </Card>
                     </div>
                 </div>
