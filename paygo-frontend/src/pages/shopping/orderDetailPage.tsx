@@ -75,7 +75,44 @@ function OrderDetailPage() {
                 <div className="min-w-1/2">
                     <div className="flex flex-col gap-4 font-medium">
                         <Card>
-                            
+                            <div className="flex flex-col gap-4 text-gray-500">
+                                <div className="text-lg mb-2">결제 정보</div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>상품 금액</div>
+                                    <div className="text-[black]">
+                                        {orderDetail.items.reduce((sum, item) => (item.price * item.count) + sum, 0).toLocaleString()}원
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>할인 금액</div>
+                                    <div
+                                        className={`${orderDetail.discount > 0 ? 'text-red-400' : 'text-[black]'}`}
+                                    >
+                                        {orderDetail.discount > 0
+                                            ? '-' +
+                                              orderDetail.discount.toLocaleString() +
+                                              '원'
+                                            : '—'}
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>배송비</div>
+                                    <div className="text-[black]">무료</div>
+                                </div>
+                                <div className="text-gray-400 -mt-3 flex justify-between">
+                                    <div></div>
+                                    <div className="text-[gray] text-sm">
+                                        배송비는 Paygo가 부담했어요
+                                    </div>
+                                </div>
+                                <div className="border-b border-[#D9D9D9]"></div>
+                                <div className="flex justify-between mt-2">
+                                    <div className="text-xl text-gray-600">결제 금액</div>
+                                    <div className="font-bold text-2xl text-[#6266F1]">
+                                        {orderDetail.totalPrice.toLocaleString() + '원'}
+                                    </div>
+                                </div>
+                            </div>
                         </Card>
                     </div>
                 </div>
