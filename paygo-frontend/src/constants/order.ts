@@ -1,7 +1,7 @@
-import type { Order } from '../types/order';
+import type { OrderDetail } from '../types/order';
 
 // Order, OrderDetail 타입 모두 받음
-export const order: Order[] = [
+export const order: OrderDetail[] = [
     {
         orderId: 'PG-20260815-0042',
         createdAt: '2026-08-15T07:58:23',
@@ -39,9 +39,16 @@ export const order: Order[] = [
                 itemText: 'text-[#6266F1]',
             },
         ],
+        
         discount: 68700,
         totalPrice: 618300, // TODO: 백엔드에서 데이터 가져와야 함
-        paymentMethod: 'paygo'
+        paymentMethod: 'paygo',
+        recipient: '박도윤',
+        recipientAddress: '서울시 마포구 월드컵로 45, 그린빌 302호',
+        recipientPhone: '010-7734-1298',
+        carrier: 'CJ대한통운',
+        trackingNumber: '987654321098',
+        transactionId: 'TXN-20260815-0042',
     },
     {
         orderId: 'PG-20260815-0047',
@@ -61,7 +68,13 @@ export const order: Order[] = [
         ],
         discount: 38900,
         totalPrice: 350100, // TODO: 백엔드에서 데이터 가져와야 함
-        paymentMethod: 'simplePayment'
+        paymentMethod: 'simplePayment',
+        recipient: '최지안',
+        recipientAddress: '경기도 성남시 분당구 판교역로 231, 101동 1502호',
+        recipientPhone: '010-3391-6720',
+        carrier: '한진택배',
+        trackingNumber: '456123789045',
+        transactionId: 'TXN-20260822-0047',
     },
     {
         orderId: 'PG-20260815-0046',
@@ -81,7 +94,13 @@ export const order: Order[] = [
         ],
         discount: 249000,
         totalPrice: 2241000,
-        paymentMethod: 'account'
+        paymentMethod: 'account',
+        recipient: '정하준',
+        recipientAddress: '인천시 연수구 컨벤시아대로 105, 오션뷰 1804호',
+        recipientPhone: '010-5528-3467',
+        carrier: '롯데택배',
+        trackingNumber: '778899001122',
+        transactionId: 'TXN-20260821-0046',
     },
     {
         orderId: 'PG-20260815-0045',
@@ -101,7 +120,12 @@ export const order: Order[] = [
         ],
         discount: 249000,
         totalPrice: 2241000,
-        paymentMethod: 'card'
+        paymentMethod: 'card',
+        recipient: '김하윤',
+        recipientAddress: '부산시 해운대구 센텀중앙로 78, 센텀타워 909호',
+        recipientPhone: '010-2247-9081',
+        // 취소된 주문이라 carrier, trackingNumber 없음
+        transactionId: 'TXN-20260815-0045',
     },
     {
         orderId: 'PG-20260815-0044',
@@ -123,7 +147,13 @@ export const order: Order[] = [
         discount: 20000,
         totalPrice: 159700,
         refundAmount: 159700,
-        paymentMethod: 'simplePayment'
+        paymentMethod: 'simplePayment',
+        recipient: '이서준',
+        recipientAddress: '대구시 수성구 동대구로 320, 팰리스빌 601호',
+        recipientPhone: '010-6614-8853',
+        carrier: 'CJ대한통운',
+        trackingNumber: '334455667788',
+        transactionId: 'TXN-20260815-0044',
     },
     {
         orderId: 'PG-20260815-0043',
@@ -155,6 +185,10 @@ export const order: Order[] = [
         totalPrice: 261000,
         failureReason:
             '재고 부족 — 동시 주문으로 인해 결제가 처리되지 않았어요. 잔액은 차감되지 않았으니 안심하세요.',
-        paymentMethod: 'paygo'
+        paymentMethod: 'paygo',
+        recipient: '박서아',
+        recipientAddress: '광주시 서구 상무중앙로 88, 상무캐슬 1203호',
+        recipientPhone: '010-9903-2145',
+        // 결제 실패로 배송 자체가 진행되지 않음. 결제도 없음 - carrier, trackingNumber, transactionId 없음
     },
 ];

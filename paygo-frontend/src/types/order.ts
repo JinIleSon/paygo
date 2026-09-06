@@ -2,7 +2,6 @@ import type { IconName } from '../constants/icons';
 
 export type OrderStatus =
     'paymentComplete' | 'shipping' | 'delivered' | 'cancelled' | 'refunded' | 'paymentFailed'; // cancelled는 취소, refunded 취소 후 환불까지
-export type DeliveryStatus = 'paymentComplete' | 'productReady' | 'shipping' | 'delivered';
 export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
 export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
@@ -41,8 +40,11 @@ export interface OrderDetail extends Order {
     recipient: string; // 수취인
     recipientAddress: string; // 수취인 주소
     recipientPhone: string; // 수취인 연락처
-    carrier: string; // 택배사
-    trackingNumber: string; // 운송장 번호 - 앞이 0이 오는 경우가 있어 string
-    paymentMethod: PaymentMethod; // 결제 수단
-    transactionId: string; // 거래 ID
+
+    // cancelled, paymentFailed일 때 carrier, trackingNumber이 없음
+    carrier?: string; // 택배사
+    trackingNumber?: string; // 운송장 번호 - 앞이 0이 오는 경우가 있어 string
+
+    // paymentFailed일 때 transactionId가 없음
+    transactionId?: string; // 거래 ID
 }
