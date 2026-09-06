@@ -1,5 +1,6 @@
 import type { Order } from '../types/order';
 
+// Order, OrderDetail 타입 모두 받음
 export const order: Order[] = [
     {
         orderId: 'PG-20260815-0042',
@@ -40,6 +41,7 @@ export const order: Order[] = [
         ],
         discount: 68700,
         totalPrice: 618300, // TODO: 백엔드에서 데이터 가져와야 함
+        paymentMethod: 'paygo'
     },
     {
         orderId: 'PG-20260815-0047',
@@ -59,6 +61,7 @@ export const order: Order[] = [
         ],
         discount: 38900,
         totalPrice: 350100, // TODO: 백엔드에서 데이터 가져와야 함
+        paymentMethod: 'simplePayment'
     },
     {
         orderId: 'PG-20260815-0046',
@@ -78,6 +81,7 @@ export const order: Order[] = [
         ],
         discount: 249000,
         totalPrice: 2241000,
+        paymentMethod: 'account'
     },
     {
         orderId: 'PG-20260815-0045',
@@ -97,6 +101,7 @@ export const order: Order[] = [
         ],
         discount: 249000,
         totalPrice: 2241000,
+        paymentMethod: 'card'
     },
     {
         orderId: 'PG-20260815-0044',
@@ -118,6 +123,7 @@ export const order: Order[] = [
         discount: 20000,
         totalPrice: 159700,
         refundAmount: 159700,
+        paymentMethod: 'simplePayment'
     },
     {
         orderId: 'PG-20260815-0043',
@@ -149,5 +155,6 @@ export const order: Order[] = [
         totalPrice: 261000,
         failureReason:
             '재고 부족 — 동시 주문으로 인해 결제가 처리되지 않았어요. 잔액은 차감되지 않았으니 안심하세요.',
+        paymentMethod: 'paygo'
     },
 ];

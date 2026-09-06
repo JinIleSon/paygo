@@ -5,6 +5,13 @@ export type OrderStatus =
 export type DeliveryStatus = 'paymentComplete' | 'productReady' | 'shipping' | 'delivered';
 export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
+export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
+    paygo: 'Paygo 잔액 결제',
+    account: '계좌이체',
+    card: '신용/체크카드',
+    simplePayment: '간편결제',
+};
+
 // 장바구니 CartItem과 생명주기가 달라 types로 정의
 export interface OrderItem {
     productId: number; // 상품 고유 ID
@@ -27,16 +34,15 @@ export interface Order {
     totalPrice: number; // "할인까지 적용된" 총 금액 - 사용자 개인이 사용한 쿠폰까지 적용된 금액 저장
     failureReason?: string; // 실패사유 - 결제실패 시에 존재
     refundAmount?: number; // 환불 시에 존재
+    paymentMethod: PaymentMethod; // 결제 수단
 }
 
 export interface OrderDetail extends Order {
-    deliveryStatus: DeliveryStatus; // 배송상태
     recipient: string; // 수취인
     recipientAddress: string; // 수취인 주소
     recipientPhone: string; // 수취인 연락처
     carrier: string; // 택배사
     trackingNumber: string; // 운송장 번호 - 앞이 0이 오는 경우가 있어 string
-    discount: number; // 할인 금액
     paymentMethod: PaymentMethod; // 결제 수단
     transactionId: string; // 거래 ID
 }
