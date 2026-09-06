@@ -6,6 +6,7 @@ import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
 import { iconMap } from "../../constants/icons";
+import { user } from "../../constants/user";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
@@ -69,6 +70,35 @@ function OrderDetailPage() {
                                     </div>
                                 );
                             })}
+                        </Card>
+                        <Card>
+                            <div className="flex flex-col gap-4 text-gray-500">
+                                <div className="text-lg mb-2">배송 정보</div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>받는 분</div>
+                                    <div className="text-[black]">
+                                        {user.name}
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>주소</div>
+                                    <div className="text-[black]">
+                                        {user.address}
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>연락처</div>
+                                    <div className="text-[black]">
+                                        {user.phone}
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex justify-between">
+                                    <div>운송장번호</div>
+                                    <div className="text-[#6266F1] font-bold mb-4">
+                                        {user.phone}
+                                    </div>
+                                </div>
+                            </div>
                         </Card>
                     </div>
                 </div>
