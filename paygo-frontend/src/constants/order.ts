@@ -44,15 +44,15 @@ export const order: OrderDetail[] = [
         totalPrice: 618300, // TODO: 백엔드에서 데이터 가져와야 함
         paymentMethod: 'paygo',
         recipient: '박도윤',
-        recipientAddress: '서울시 마포구 월드컵로 45, 그린빌 302호',
+        recipientAddress: '서울시 마포구 월드컵로 45, 그린빌리지 302호',
         recipientPhone: '010-7734-1298',
         carrier: 'CJ대한통운',
         trackingNumber: '987654321098',
         transactionId: 'TXN-20260815-0042',
     },
     {
-        orderId: 'PG-20260815-0047',
-        createdAt: '2026-08-22T07:58:23',
+        orderId: 'PG-20260909-0047',
+        createdAt: '2026-09-09T07:58:23',
         orderStatus: 'shipping',
         items: [
             {
@@ -74,7 +74,7 @@ export const order: OrderDetail[] = [
         recipientPhone: '010-3391-6720',
         carrier: '한진택배',
         trackingNumber: '456123789045',
-        transactionId: 'TXN-20260822-0047',
+        transactionId: 'TXN-20260909-0047',
     },
     {
         orderId: 'PG-20260815-0046',
