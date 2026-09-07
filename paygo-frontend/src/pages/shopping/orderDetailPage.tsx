@@ -1,15 +1,17 @@
 import { useParams } from "react-router-dom";
 import Card from "../../components/common/card";
 import { order } from "../../constants/order";
-import { formatDateTime } from "../../lib/dateUtils";
+import { addDays, diffDays, formatDateTime, formatYearMonthDay } from "../../lib/dateUtils";
 import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
 import { iconMap } from "../../constants/icons";
+import { PAYMENT_METHOD_LABELS } from "../../types/order";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
     const orderDetail = order.find((o) => o.orderId === orderId);
+    const today = new Date().toISOString(); // 렌더링 시작 시점에 날짜 한 번만 계산
 
     if (!orderDetail)
         return <div className="fixed inset-0 left-60 flex flex-col items-center justify-center gap-2 text-gray-600">
@@ -91,6 +93,7 @@ function OrderDetailPage() {
                                         {orderDetail.recipientPhone}
                                     </div>
                                 </div>
+                                {/* 거래가 취소되거나 결제가 실패하면 운송장번호 없음 */}
                                 {!["cancelled", "paymentFailed"].includes(orderDetail.orderStatus) &&
                                 <div className="text-gray-400 flex justify-between">
                                     <div className="w-19">운송장번호</div>
@@ -143,6 +146,53 @@ function OrderDetailPage() {
                                         {orderDetail.totalPrice.toLocaleString() + '원'}
                                     </div>
                                 </div>
+                            </div>
+                        </Card>
+                        <Card>
+                            <div className="flex flex-col gap-4 text-gray-500">
+                                <div className="text-gray-400 flex items-center justify-between">
+                                    <div className="w-26">결제 수단</div>
+                                    <div className="text-[black]">
+                                        {PAYMENT_METHOD_LABELS[orderDetail.paymentMethod]}
+                                    </div>
+                                </div>
+                                <div className="text-gray-400 flex items-center justify-between">
+                                    <div className="w-26">결제 일시</div>
+                                    <div className="text-[black]">
+                                        {formatDateTime(orderDetail.createdAt)}
+                                    </div>
+                                </div>
+                                {/* 결제실패 시 거래 ID가 없음 */}
+                                {orderDetail.orderStatus !== 'paymentFailed' && (
+                                    <div className="text-gray-400 flex items-center justify-between">
+                                        <div className="w-26">거래 ID</div>
+                                        <div className="text-[#6266F1] font-bold">
+                                            {orderDetail.transactionId}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* 주문 취소, 환불, 결제 실패 시 환불 관련 시 환불 관련 내용 삭제 */}
+                                {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
+                                    <div className="text-gray-400 flex items-center justify-between">
+                                        <div className="w-26">환불 가능 여부</div>
+                                        <div className="font-bold">
+                                            {diffDays(today, orderDetail.createdAt) >= 0 ? (
+                                                <div className="text-[#22C55E]">{`가능 (D-${diffDays(today, orderDetail.createdAt)})`}</div>
+                                            ) : (
+                                                <div className="text-red-400">불가</div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                                {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
+                                    <div className="text-gray-400 flex items-center justify-between">
+                                        <div className="w-26">환불 마감일</div>
+                                        <div className="text-[black]">
+                                            {formatYearMonthDay(String(addDays(orderDetail.createdAt, 7)))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </Card>
                     </div>
