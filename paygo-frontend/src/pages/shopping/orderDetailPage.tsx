@@ -6,7 +6,8 @@ import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
 import { iconMap } from "../../constants/icons";
-import { PAYMENT_METHOD_LABELS } from "../../types/order";
+import { PAYMENT_METHOD_LABELS, type OrderDetail } from "../../types/order";
+import { getRemainRefundedDate } from "../../lib/orderUtils";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
@@ -173,7 +174,7 @@ function OrderDetailPage() {
                                 )}
 
                                 {/* 주문 취소, 환불, 결제 실패 시 환불 관련 시 환불 관련 내용 삭제 */}
-                                {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
+                                {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) ? (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-26">환불 가능 여부</div>
                                         <div className="font-bold">
@@ -184,7 +185,19 @@ function OrderDetailPage() {
                                             )}
                                         </div>
                                     </div>
-                                )}
+                                ) : orderDetail.orderStatus === "cancelled" ? (
+                                    <div className="text-gray-400 flex items-center justify-between">
+                                        <div className="w-26">환불 상태</div>
+                                        <div className="font-bold">
+                                            <span className="text-red-400">
+                                                {getRemainRefundedDate(orderDetail.createdAt) > 0
+                                                    ? getRemainRefundedDate(orderDetail.createdAt) +
+                                                        '일 뒤에 환불돼요'
+                                                    : '곧 환불 처리돼요'}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ) : ''}
                                 {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-26">환불 마감일</div>
