@@ -6,7 +6,7 @@ import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
 import { iconMap } from "../../constants/icons";
-import { PAYMENT_METHOD_LABELS, type OrderDetail } from "../../types/order";
+import { PAYMENT_METHOD_LABELS } from "../../types/order";
 import { getRemainRefundedDate } from "../../lib/orderUtils";
 
 function OrderDetailPage() {
@@ -149,7 +149,7 @@ function OrderDetailPage() {
                                 </div>
                             </div>
                         </Card>
-                        <Card>
+                        <Card className="bg-[#F5F6FF]">
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-gray-400 flex items-center justify-between">
                                     <div className="w-26">결제 수단</div>
@@ -178,31 +178,47 @@ function OrderDetailPage() {
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-26">환불 가능 여부</div>
                                         <div className="font-bold">
-                                            {diffDays(today, orderDetail.createdAt) >= 0 ? (
-                                                <div className="text-[#22C55E]">{`가능 (D-${diffDays(today, orderDetail.createdAt)})`}</div>
+                                            {diffDays(today, String(addDays(orderDetail.createdAt, 7))) >= 0 ? (
+                                                <div className="text-[#22C55E]">{`가능 (D-${diffDays(today, String(addDays(orderDetail.createdAt, 7)))})`}</div>
                                             ) : (
                                                 <div className="text-red-400">불가</div>
                                             )}
                                         </div>
                                     </div>
-                                ) : orderDetail.orderStatus === "cancelled" ? (
+                                ) : (["cancelled", "refunded"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-26">환불 상태</div>
                                         <div className="font-bold">
-                                            <span className="text-red-400">
-                                                {getRemainRefundedDate(orderDetail.createdAt) > 0
-                                                    ? getRemainRefundedDate(orderDetail.createdAt) +
-                                                        '일 뒤에 환불돼요'
-                                                    : '곧 환불 처리돼요'}
-                                            </span>
+                                            {orderDetail.orderStatus === "cancelled" ? (
+                                                <span className="text-red-400">
+                                                    {getRemainRefundedDate(orderDetail.createdAt) > 0
+                                                        ? getRemainRefundedDate(orderDetail.createdAt) +
+                                                            '일 뒤에 환불돼요'
+                                                        : '곧 환불 처리돼요'}
+                                                </span>
+                                            ) : (
+                                                <span className="text-[#22C55E]">
+                                                    환불 완료
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
-                                ) : ''}
+                                ))}
                                 {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-26">환불 마감일</div>
                                         <div className="text-[black]">
                                             {formatYearMonthDay(String(addDays(orderDetail.createdAt, 7)))}
+                                        </div>
+                                    </div>
+                                )}
+                                {orderDetail.orderStatus === "refunded" && (
+                                    <div className="text-gray-400 flex items-center justify-between">
+                                        <div className="w-26">환불 금액</div>
+                                        <div className="font-bold">
+                                            <span className="text-[black]">
+                                                {orderDetail.refundAmount?.toLocaleString()}원
+                                            </span>
                                         </div>
                                     </div>
                                 )}
