@@ -6,13 +6,28 @@ import { getOrderBadges } from "../../constants/useBadges";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
 import { iconMap } from "../../constants/icons";
-import { PAYMENT_METHOD_LABELS } from "../../types/order";
+import { PAYMENT_METHOD_LABELS, type Order } from "../../types/order";
 import { getRemainRefundedDate } from "../../lib/orderUtils";
+import Button from "../../components/common/button";
+import { useState } from "react";
+import ShippingModal from "../../components/modal/shippingModal";
+import ConfirmModal from "../../components/modal/confirmModal";
+import ReturnRequestModal from "../../components/modal/returnRequestModal";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
     const orderDetail = order.find((o) => o.orderId === orderId);
     const today = new Date().toISOString(); // 렌더링 시작 시점에 날짜 한 번만 계산
+
+    type ModalState =
+        | { type: 'tracking'; order: Order }
+        | { type: 'cancel'; order: Order }
+        | { type: 'return'; order: Order }
+        | { type: 'repurchase'; order: Order }
+        | { type: 'reorder'; order: Order }
+        | null;
+
+    const [modal, setModal] = useState<ModalState>(null);
 
     if (!orderDetail)
         return <div className="fixed inset-0 left-60 flex flex-col items-center justify-center gap-2 text-gray-600">
@@ -66,7 +81,7 @@ function OrderDetailPage() {
                                                 <div>주문수량: {item.count}</div>
                                             </div>
                                         </div>
-                                        <div className="font-bold">
+                                        <div className="font-bold flex-1 text-right">
                                             {(item.price * item.count).toLocaleString()}원
                                         </div>
                                     </div>
@@ -224,9 +239,129 @@ function OrderDetailPage() {
                                 )}
                             </div>
                         </Card>
+                        <div className="flex flex-col gap-3">
+                            {/* 결제완료, 배송중, 배송완료 시 배송 조회가 나타남 */}
+                            {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
+                                <Button
+                                    variant="secondary"
+                                    className="p-3 text-xl"
+                                    onClick={() => setModal({ type: 'tracking', order: orderDetail })}
+                                >
+                                    배송 조회
+                                </Button>
+                            )}
+                            {/* 배송중, 결제완료일 때 주문/배송 취소, 배송완료일 때 교환/반품 신청 */}
+                            {["shipping", "paymentComplete"].includes(orderDetail.orderStatus) ? (
+                                <Button
+                                    variant="secondary"
+                                    className="p-3 text-xl"
+                                    onClick={() => setModal({ type: 'cancel', order: orderDetail })}
+                                >
+                                    주문/배송 취소
+                                </Button>
+                            ) : (orderDetail.orderStatus === "delivered" && (
+                                <Button
+                                    variant="secondary"
+                                    className="p-3 text-xl"
+                                    onClick={() => setModal({ type: 'return', order: orderDetail })}
+                                >
+                                    교환/반품 신청
+                                </Button>
+                            ))}
+                            {/* 결제실패 시 재주문, 그 외에는 재구매(장바구니 담기) 가능하도록 함. 사용자가 장바구니로 확인 후에 구매할 수 있도록 함 */}
+                            {orderDetail.orderStatus === "paymentFailed" ? (
+                                <Button
+                                    variant="secondary"
+                                    className="p-3 text-xl"
+                                    onClick={() => setModal({ type: 'reorder', order: orderDetail })}
+                                >
+                                    재주문
+                                </Button>
+                            ) : (
+                                <Button
+                                    variant="secondary"
+                                    className="p-3 text-xl"
+                                    onClick={() => setModal({ type: 'repurchase', order: orderDetail })}
+                                >
+                                    재구매
+                                </Button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
+            {modal?.type === 'cancel' && (
+                <ConfirmModal
+                    title="주문을 취소할까요?"
+                    description={`취소하면 결제 금액 ${modal?.order.totalPrice.toLocaleString()}원이 7일 뒤에 환불돼요. 배송이 이미 시작된 경우 취소가 제한될 수 있어요.`}
+                    cancelLabel="아니오"
+                    variant="cancel"
+                    confirmLabel="취소하기"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
+            )}
+            {modal?.type === 'repurchase' && (
+                <ConfirmModal
+                    title="다시 구매할까요?"
+                    description={`${modal?.order.items.map((item) => item.productName).join(', ')}를 같은 옵션으로 장바구니에 담아요.`}
+                    cancelLabel="아니오"
+                    variant="retry"
+                    confirmLabel="장바구니에 담기"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
+            )}
+            {modal?.type === 'reorder' && (
+                <ConfirmModal
+                    title="재주문할까요?"
+                    description={`이전과 동일한 상품, 수량으로 다시 주문해요.`}
+                    subDescription="재고 부족으로 실패했던 주문은 재고 확인 후 결제가 진행돼요."
+                    cancelLabel="아니오"
+                    variant="retry"
+                    confirmLabel="재주문"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
+            )}
+            {modal?.type === 'return' && (
+                <ReturnRequestModal
+                    title="교환 / 반품 신청"
+                    description={`${modal?.order.items
+                    .map((item) => 
+                        [item.productName, item.size, item.color, `${item.count}개`]
+                        .filter((i) => i !== undefined)
+                        .join(' · ')
+                    )
+                    .join('\n')}`}
+                    category="사유"
+                    text="상세 사유 (선택)"
+                    cancelLabel="취소"
+                    confirmLabel="신청하기"
+                    onClose={() => setModal(null)}
+                    // TODO: API 연동 시 변경 필요
+                    onConfirm={() => setModal(null)}
+                >
+
+                </ReturnRequestModal>
+            )}
+            {modal?.type === 'tracking' && (
+                <ShippingModal
+                    title="배송 조회"
+                    orderId={modal?.order.orderId}
+                    productName={modal?.order.items[0].productName}
+                    count={modal?.order.items.length - 1}
+                    orderStatus={modal?.order.orderStatus}
+                    isOrderDetailPage={false}
+                    closeLabel="닫기"
+                    createdAt={modal?.order.createdAt}
+                    onClose={() => setModal(null)}
+                >
+                </ShippingModal>
+            )}
         </div>
     );
 }
