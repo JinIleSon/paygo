@@ -167,13 +167,13 @@ function OrderDetailPage() {
                         <Card className="bg-[#F5F6FF]">
                             <div className="flex flex-col gap-4 text-gray-500">
                                 <div className="text-gray-400 flex items-center justify-between">
-                                    <div className="w-26">결제 수단</div>
+                                    <div className="w-34">결제 수단</div>
                                     <div className="text-[black]">
                                         {PAYMENT_METHOD_LABELS[orderDetail.paymentMethod]}
                                     </div>
                                 </div>
                                 <div className="text-gray-400 flex items-center justify-between">
-                                    <div className="w-26">결제 일시</div>
+                                    <div className="w-34">결제 일시</div>
                                     <div className="text-[black]">
                                         {formatDateTime(orderDetail.createdAt)}
                                     </div>
@@ -181,7 +181,7 @@ function OrderDetailPage() {
                                 {/* 결제실패 시 거래 ID가 없음 */}
                                 {orderDetail.orderStatus !== 'paymentFailed' && (
                                     <div className="text-gray-400 flex items-center justify-between">
-                                        <div className="w-26">거래 ID</div>
+                                        <div className="w-34">거래 ID</div>
                                         <div className="text-[#6266F1] font-bold">
                                             {orderDetail.transactionId}
                                         </div>
@@ -191,7 +191,7 @@ function OrderDetailPage() {
                                 {/* 주문 취소, 환불, 결제 실패 시 환불 관련 시 환불 관련 내용 삭제 */}
                                 {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) ? (
                                     <div className="text-gray-400 flex items-center justify-between">
-                                        <div className="w-26">환불 가능 여부</div>
+                                        <div className="w-34">취소/반품 가능 여부</div>
                                         <div className="font-bold">
                                             {diffDays(today, String(addDays(orderDetail.createdAt, 7))) >= 0 ? (
                                                 <div className="text-[#22C55E]">{`가능 (D-${diffDays(today, String(addDays(orderDetail.createdAt, 7)))})`}</div>
@@ -202,7 +202,7 @@ function OrderDetailPage() {
                                     </div>
                                 ) : (["cancelled", "refunded"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
-                                        <div className="w-26">환불 상태</div>
+                                        <div className="w-34">환불 상태</div>
                                         <div className="font-bold">
                                             {orderDetail.orderStatus === "cancelled" ? (
                                                 <span className="text-red-400">
@@ -221,7 +221,7 @@ function OrderDetailPage() {
                                 ))}
                                 {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
-                                        <div className="w-26">환불 마감일</div>
+                                        <div className="w-34">취소/반품 마감일</div>
                                         <div className="text-[black]">
                                             {formatYearMonthDay(String(addDays(orderDetail.createdAt, 7)))}
                                         </div>
@@ -229,7 +229,7 @@ function OrderDetailPage() {
                                 )}
                                 {orderDetail.orderStatus === "refunded" && (
                                     <div className="text-gray-400 flex items-center justify-between">
-                                        <div className="w-26">환불 금액</div>
+                                        <div className="w-34">환불 금액</div>
                                         <div className="font-bold">
                                             <span className="text-[black]">
                                                 {orderDetail.refundAmount?.toLocaleString()}원
