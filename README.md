@@ -1,6 +1,6 @@
 # Paygo — 지갑 충전부터 정산까지, 결제 커머스 플랫폼
 
-[상태 배지: 🚧 진행중 | Frontend 90% · Backend 설계 완료/구현 예정]
+[상태 배지: 🚧 진행중 | Frontend 100% · Backend 설계 완료/구현 예정]
 
 ## 프로젝트 소개
 지갑 충전 → 상품 구매 → 판매자 정산까지, 돈의 흐름 전체를 
@@ -32,6 +32,11 @@
 주문 내역
 <br><br>
 <img width="1267" height="1722" alt="Group 4" src="https://github.com/user-attachments/assets/cb7a22c0-63bb-40d9-b8e7-b081915f5fc5" />
+
+<br><br>
+주문 상세
+<br><br>
+<img width="1276" height="901" alt="image" src="https://github.com/user-attachments/assets/b3af3a44-90df-4966-a96b-46bbb873bf11" />
 
 <br><br>
 지갑 홈
@@ -86,7 +91,6 @@
 - **인증**: JWT Access/Refresh, 구매자/판매자 권한 분리 (설계)
 
 ## 진행 상황
-- [x] 화면 설계 및 프론트엔드 12개 화면 중 10개 완료
-- [ ] 나머지 2개 화면
+- [x] 화면 설계 및 프론트엔드 12개 화면 중 12개 완료
 - [ ] 백엔드 API 연동
 - [ ] 낙관적 락 / 분산 락 구현
