@@ -10,7 +10,7 @@ import { getHistoryBadge } from '../../constants/useBadges';
 import { getHistoryIcon } from '../../constants/useIcons';
 
 function WalletHistoryPage() {
-    const [selectedType, setSelectedType] = useState('');
+    const [selectedType, setSelectedType] = useState('all');
     const [selectedStatement, setSelectedStatement] = useState('');
     const [search, setSearch] = useState('');
     const [period, setPeriod] = useState<DateRange | undefined>();
@@ -29,7 +29,7 @@ function WalletHistoryPage() {
             id: 0,
             content: '지갑 충전',
             createdAt: '2025.01.15 14:23',
-            type: '충전',
+            type: 'charge',
             paymentMethod: '계좌이체',
             amount: 300000,
             balance: 3842000,
@@ -39,7 +39,7 @@ function WalletHistoryPage() {
             id: 1,
             content: '나이키 에어맥스',
             createdAt: '2025.01.14 11:05',
-            type: '구매',
+            type: 'buy',
             paymentMethod: 'Paygo 잔액',
             amount: -120000,
             balance: 3542000,
@@ -49,7 +49,7 @@ function WalletHistoryPage() {
             id: 2,
             content: '무선 이어폰',
             createdAt: '2025.01.13 16:42',
-            type: '구매',
+            type: 'buy',
             paymentMethod: 'Paygo 잔액',
             amount: -89000,
             balance: '-',
@@ -59,7 +59,7 @@ function WalletHistoryPage() {
             id: 3,
             content: '주문 취소 환불',
             createdAt: '2025.01.12 09:30',
-            type: '환불',
+            type: 'refund',
             paymentMethod: 'Paygo 잔액',
             amount: 45000,
             balance: 3751000,
@@ -69,7 +69,7 @@ function WalletHistoryPage() {
             id: 4,
             content: '캠핑 텐트',
             createdAt: '2025.01.11 20:15',
-            type: '구매',
+            type: 'buy',
             paymentMethod: 'Paygo 잔액',
             amount: -211000,
             balance: 3706000,
@@ -79,13 +79,25 @@ function WalletHistoryPage() {
             id: 5,
             content: '지갑 충전',
             createdAt: '2025.01.10 00:20',
-            type: '충전',
+            type: 'charge',
             paymentMethod: '신용카드',
             amount: 500000,
             balance: 3917000,
             statement: '완료',
         },
     ];
+    
+    function getKoreanType(type: string) {
+        if (type === 'charge')
+            return '충전';
+        else if (type === 'buy')
+            return '구매';
+        else if (type === 'refund')
+            return '환불';
+        return '구매';
+    };
+
+    const filteredTransactionType = transactionHistory.filter((tran) => (selectedType === 'all' || selectedType === tran.type));
 
     return (
         <div className="flex flex-col gap-6.5">
@@ -167,11 +179,11 @@ function WalletHistoryPage() {
                         <div className="py-3">금액</div>
                         <div className="py-3">잔액</div>
                         <div className="py-3">상태</div>
-                        {transactionHistory.map((tran) => (
+                        {filteredTransactionType.map((tran) => (
                             <Fragment key={tran.id}>
                                 <div className="border-t border-[#D9D9D9] py-3">
                                     <div className="flex gap-4 items-center text-start">
-                                        <div>{getHistoryIcon(tran.type)}</div>
+                                        <div>{getHistoryIcon(getKoreanType(tran.type))}</div>
                                         <div>
                                             <div className="text-black font-normal">
                                                 {tran.content}
@@ -180,7 +192,7 @@ function WalletHistoryPage() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={graphStyle}>{tran.type}</div>
+                                <div className={graphStyle}>{getKoreanType(tran.type)}</div>
                                 <div className={graphStyle}>{tran.paymentMethod}</div>
                                 <div
                                     className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-red-400'}`}
