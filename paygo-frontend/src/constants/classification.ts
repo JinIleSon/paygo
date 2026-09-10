@@ -10,7 +10,7 @@ export const types: Classification[] = [
 export const statement: Classification[] = [
     { id: 'all', label: '전체' },
     { id: 'complete', label: '완료' },
-    { id: 'fail', label: '실패' },
+    { id: 'fail', label: '결제실패' },
     { id: 'processing', label: '처리중' },
 ];
 
