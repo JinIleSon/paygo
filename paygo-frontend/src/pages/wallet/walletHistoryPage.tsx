@@ -107,8 +107,10 @@ function WalletHistoryPage() {
         return '완료';
     }
 
-    const filteredTransactionType = transactionHistory.filter((tran) => (selectedType === 'all' || selectedType === tran.type));
-    const filteredTypeStatement = filteredTransactionType.filter((tranType) => (selectedStatement === 'all' || selectedStatement === tranType.statement));
+    const filteredTransaction = transactionHistory.filter((tran) => 
+        (selectedType === 'all' || selectedType === tran.type) &&
+        (selectedStatement === 'all' || selectedStatement === tran.statement) &&
+        (search === '' || tran.content.includes(search)));
 
     return (
         <div className="flex flex-col gap-6.5">
@@ -151,6 +153,8 @@ function WalletHistoryPage() {
                             placeholder="검색어 입력"
                             className="w-100"
                         />
+
+                        {/* TODO: 실제 데이터 연동 후 API 호출 빈도 고려해서 삭제할지 결정 */}
                         <Button variant="secondary" className="w-16">
                             검색
                         </Button>
@@ -190,7 +194,7 @@ function WalletHistoryPage() {
                         <div className="py-3">금액</div>
                         <div className="py-3">잔액</div>
                         <div className="py-3">상태</div>
-                        {filteredTypeStatement.map((tran) => (
+                        {filteredTransaction.map((tran) => (
                             <Fragment key={tran.id}>
                                 <div className="border-t border-[#D9D9D9] py-3">
                                     <div className="flex gap-4 items-center text-start">
