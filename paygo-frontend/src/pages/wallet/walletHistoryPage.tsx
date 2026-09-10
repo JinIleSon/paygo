@@ -11,7 +11,7 @@ import { getHistoryIcon } from '../../constants/useIcons';
 
 function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('all');
-    const [selectedStatement, setSelectedStatement] = useState('');
+    const [selectedStatement, setSelectedStatement] = useState('all');
     const [search, setSearch] = useState('');
     const [period, setPeriod] = useState<DateRange | undefined>();
 
@@ -33,7 +33,7 @@ function WalletHistoryPage() {
             paymentMethod: '계좌이체',
             amount: 300000,
             balance: 3842000,
-            statement: '완료',
+            statement: 'complete',
         },
         {
             id: 1,
@@ -43,7 +43,7 @@ function WalletHistoryPage() {
             paymentMethod: 'Paygo 잔액',
             amount: -120000,
             balance: 3542000,
-            statement: '완료',
+            statement: 'complete',
         },
         {
             id: 2,
@@ -53,7 +53,7 @@ function WalletHistoryPage() {
             paymentMethod: 'Paygo 잔액',
             amount: -89000,
             balance: '-',
-            statement: '결제실패',
+            statement: 'fail',
         },
         {
             id: 3,
@@ -63,7 +63,7 @@ function WalletHistoryPage() {
             paymentMethod: 'Paygo 잔액',
             amount: 45000,
             balance: 3751000,
-            statement: '완료',
+            statement: 'complete',
         },
         {
             id: 4,
@@ -73,7 +73,7 @@ function WalletHistoryPage() {
             paymentMethod: 'Paygo 잔액',
             amount: -211000,
             balance: 3706000,
-            statement: '처리중',
+            statement: 'processing',
         },
         {
             id: 5,
@@ -83,7 +83,7 @@ function WalletHistoryPage() {
             paymentMethod: '신용카드',
             amount: 500000,
             balance: 3917000,
-            statement: '완료',
+            statement: 'complete',
         },
     ];
     
@@ -97,7 +97,18 @@ function WalletHistoryPage() {
         return '구매';
     };
 
+    function getKoreanStatement(statement: string) {
+        if (statement === 'complete')
+            return '완료';
+        else if (statement === 'fail')
+            return '결제실패';
+        else if (statement === 'processing')
+            return '처리중';
+        return '완료';
+    }
+
     const filteredTransactionType = transactionHistory.filter((tran) => (selectedType === 'all' || selectedType === tran.type));
+    const filteredTypeStatement = filteredTransactionType.filter((tranType) => (selectedStatement === 'all' || selectedStatement === tranType.statement));
 
     return (
         <div className="flex flex-col gap-6.5">
@@ -179,7 +190,7 @@ function WalletHistoryPage() {
                         <div className="py-3">금액</div>
                         <div className="py-3">잔액</div>
                         <div className="py-3">상태</div>
-                        {filteredTransactionType.map((tran) => (
+                        {filteredTypeStatement.map((tran) => (
                             <Fragment key={tran.id}>
                                 <div className="border-t border-[#D9D9D9] py-3">
                                     <div className="flex gap-4 items-center text-start">
@@ -201,11 +212,11 @@ function WalletHistoryPage() {
                                     {tran.amount.toLocaleString()}원
                                 </div>
                                 <div className={graphStyle}>
-                                    {tran.statement !== '결제실패'
+                                    {getKoreanStatement(tran.statement) !== '결제실패'
                                         ? tran.balance.toLocaleString() + '원'
                                         : '-'}
                                 </div>
-                                <div className={graphStyle}>{getHistoryBadge(tran.statement)}</div>
+                                <div className={graphStyle}>{getHistoryBadge(getKoreanStatement(tran.statement))}</div>
                             </Fragment>
                         ))}
                     </div>
