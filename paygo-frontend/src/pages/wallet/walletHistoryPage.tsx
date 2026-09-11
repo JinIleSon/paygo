@@ -28,7 +28,7 @@ function WalletHistoryPage() {
         {
             id: 0,
             content: '지갑 충전',
-            createdAt: '2025.01.15 14:23',
+            createdAt: '2026.09.10 14:23',
             type: 'charge',
             paymentMethod: '계좌이체',
             amount: 300000,
@@ -38,7 +38,7 @@ function WalletHistoryPage() {
         {
             id: 1,
             content: '나이키 에어맥스',
-            createdAt: '2025.01.14 11:05',
+            createdAt: '2026.09.11 11:05',
             type: 'buy',
             paymentMethod: 'Paygo 잔액',
             amount: -120000,
@@ -48,7 +48,7 @@ function WalletHistoryPage() {
         {
             id: 2,
             content: '무선 이어폰',
-            createdAt: '2025.01.13 16:42',
+            createdAt: '2026.09.12 16:42',
             type: 'buy',
             paymentMethod: 'Paygo 잔액',
             amount: -89000,
@@ -58,7 +58,7 @@ function WalletHistoryPage() {
         {
             id: 3,
             content: '주문 취소 환불',
-            createdAt: '2025.01.12 09:30',
+            createdAt: '2026.09.12 09:30',
             type: 'refund',
             paymentMethod: 'Paygo 잔액',
             amount: 45000,
@@ -68,7 +68,7 @@ function WalletHistoryPage() {
         {
             id: 4,
             content: '캠핑 텐트',
-            createdAt: '2025.01.11 20:15',
+            createdAt: '2026.09.13 20:15',
             type: 'buy',
             paymentMethod: 'Paygo 잔액',
             amount: -211000,
@@ -78,7 +78,7 @@ function WalletHistoryPage() {
         {
             id: 5,
             content: '지갑 충전',
-            createdAt: '2025.01.10 00:20',
+            createdAt: '2026.09.14 00:20',
             type: 'charge',
             paymentMethod: '신용카드',
             amount: 500000,
@@ -107,10 +107,18 @@ function WalletHistoryPage() {
         return '완료';
     }
 
-    const filteredTransaction = transactionHistory.filter((tran) => 
-        (selectedType === 'all' || selectedType === tran.type) &&
-        (selectedStatement === 'all' || selectedStatement === tran.statement) &&
-        (search === '' || tran.content.includes(search)));
+    const filteredTransaction = transactionHistory.filter((tran) => {
+        const tranDate = new Date(tran.createdAt);
+        const endDate = period?.to ? new Date(period?.to) : undefined;
+        if (endDate) endDate.setHours(23, 59, 59, 999);
+
+        return (
+            (selectedType === 'all' || selectedType === tran.type) &&
+            (selectedStatement === 'all' || selectedStatement === tran.statement) &&
+            (search === '' || tran.content.includes(search)) &&
+            (!period?.from || !period?.to || endDate! >= tranDate && period.from <= tranDate)
+        );
+    });
 
     return (
         <div className="flex flex-col gap-6.5">
