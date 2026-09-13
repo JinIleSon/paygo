@@ -11,14 +11,17 @@ import { newItems, popularItems } from '../../constants/product';
 import { productClassification } from '../../constants/classification';
 
 function ProductListPage() {
-    const [selectedType, setSelectedType] = useState('');
+    const [selectedType, setSelectedType] = useState('all');
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
+
+    const allItems = [...popularItems, ...newItems];
+    const isFiltering = selectedType !== 'all' || search !== '';
 
     return (
         <div className="flex flex-col gap-6.5">
             <Card>
-                <div className="flex items-center">
+                <div className="flex items-center h-[3rem]">
                     <div className="flex gap-3">
                         {productClassification.map((clas) => (
                             <SelectCard
@@ -30,13 +33,15 @@ function ProductListPage() {
                             </SelectCard>
                         ))}
                     </div>
-                    <div className="ml-auto">
-                        <SelectBox>
-                            <option value="latest">최신순</option>
-                            <option value="priceAsc">낮은 가격순</option>
-                            <option value="priceDesc">높은 가격순</option>
-                        </SelectBox>
-                    </div>
+                    {isFiltering && 
+                        <div className="ml-auto">
+                            <SelectBox>
+                                <option value="latest">최신순</option>
+                                <option value="priceAsc">낮은 가격순</option>
+                                <option value="priceDesc">높은 가격순</option>
+                            </SelectBox>
+                        </div>
+                    }
                 </div>
                 <div className="flex gap-3 items-center justify-end mt-5">
                     <IconSearch size={20} className="text-gray-400" />
@@ -59,126 +64,179 @@ function ProductListPage() {
                     </div>
                 </div>
             </Card>
-            <div>
-                <div className="flex">
-                    <div className="text-2xl text-gray-500 font-medium mb-4">인기 상품</div>
-                    <NavLink to="#" className="ml-auto flex items-end mb-1 text-[#6266F1]">
-                        <div>전체보기</div>
-                        <IconArrowRight size={16} />
-                    </NavLink>
-                </div>
-                <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
-                    {popularItems.map((item) => {
-                        const Icon = iconMap[item.iconName];
+            {isFiltering ? (
+                <div>
+                    <div className="flex">
+                        <div className="text-2xl text-gray-500 font-medium mb-4">조회 결과</div>
+                    </div>
+                    <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
+                        {allItems.map((item) => {
+                            const Icon = iconMap[item.iconName];
 
-                        return (
-                            <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
-                                <NavLink
-                                    to={`/shopping/product-detail/${item.id}`}
-                                    className="flex-1"
-                                >
-                                    <div
-                                        className={`flex justify-center items-center h-50 ${item.itemBg}`}
+                            return (
+                                <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
+                                    <NavLink
+                                        to={`/shopping/product-detail/${item.id}`}
+                                        className="flex-1"
                                     >
-                                        <Icon size={80} className={item.itemText} />
-                                    </div>
-                                    <div className="p-3 px-4.5 flex flex-col">
-                                        <div className="text-sm text-gray-400 flex">
-                                            <div>{item.itemClassification}</div>
-                                            <div
-                                                className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
-                                            >
-                                                재고 {item.stock}개
-                                            </div>
-                                        </div>
-                                        <div className="text-2xl text-gray-600 mt-3 truncate">
-                                            {item.name}
-                                        </div>
-                                        <div className="flex text-3xl text-gray-600 font-medium mt-3">
-                                            <div>{item.price.toLocaleString()}원</div>
-                                        </div>
-                                        <Button
-                                            className="flex p-2 w-full mt-3"
-                                            onClick={(e) => {
-                                                e.preventDefault(); // <a>, <NavLink> 기본 동작 막기
-                                                e.stopPropagation(); // 이벤트 버블링 막기
-                                                navigate(`/shopping/product-detail/${item.id}`);
-                                            }}
+                                        <div
+                                            className={`flex justify-center items-center h-50 ${item.itemBg}`}
                                         >
-                                            <div className="pl-2 w-full">
-                                                <div className="flex items-center justify-center text-xl">
-                                                    <div className="mr-2">상세보기</div>
-                                                    <IconArrowRight />
+                                            <Icon size={80} className={item.itemText} />
+                                        </div>
+                                        <div className="p-3 px-4.5 flex flex-col">
+                                            <div className="text-sm text-gray-400 flex">
+                                                <div>{item.itemClassification}</div>
+                                                <div
+                                                    className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
+                                                >
+                                                    재고 {item.stock}개
                                                 </div>
                                             </div>
-                                        </Button>
-                                    </div>
-                                </NavLink>
-                            </Card>
-                        );
-                    })}
-                </div>
-            </div>
-            <div>
-                <div className="flex">
-                    <div className="text-2xl text-gray-500 font-medium mb-4">신규 상품</div>
-                    <NavLink to="#" className="ml-auto flex items-end mb-1 text-[#6266F1]">
-                        <div>전체보기</div>
-                        <IconArrowRight size={16} />
-                    </NavLink>
-                </div>
-                <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
-                    {newItems.map((item) => {
-                        const Icon = iconMap[item.iconName];
-
-                        return (
-                            <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
-                                <NavLink
-                                    to={`/shopping/product-detail/${item.id}`}
-                                    className="flex-1"
-                                >
-                                    <div
-                                        className={`flex justify-center items-center h-50 ${item.itemBg}`}
-                                    >
-                                        <Icon size={80} className={item.itemText} />
-                                    </div>
-                                    <div className="p-3 px-4.5 flex flex-col">
-                                        <div className="text-sm text-gray-400 flex">
-                                            <div>{item.itemClassification}</div>
-                                            <div
-                                                className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
+                                            <div className="text-2xl text-gray-600 mt-3 truncate">
+                                                {item.name}
+                                            </div>
+                                            <div className="flex text-3xl text-gray-600 font-medium mt-3">
+                                                <div>{item.price.toLocaleString()}원</div>
+                                            </div>
+                                            <Button
+                                                className="flex p-2 w-full mt-3"
+                                                onClick={(e) => {
+                                                    e.preventDefault(); // <a>, <NavLink> 기본 동작 막기
+                                                    e.stopPropagation(); // 이벤트 버블링 막기
+                                                    navigate(`/shopping/product-detail/${item.id}`);
+                                                }}
                                             >
-                                                재고 {item.stock}개
-                                            </div>
-                                        </div>
-                                        <div className="text-2xl text-gray-600 mt-3 truncate">
-                                            {item.name}
-                                        </div>
-                                        <div className="flex text-3xl text-gray-600 font-medium mt-3">
-                                            <div>{item.price.toLocaleString()}원</div>
-                                        </div>
-                                        <Button
-                                            className="flex p-2 w-full mt-3"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                e.stopPropagation();
-                                                navigate(`/shopping/product-detail/${item.id}`);
-                                            }}
-                                        >
-                                            <div className="pl-2 w-full">
-                                                <div className="flex items-center justify-center text-xl">
-                                                    <div className="mr-2">상세보기</div>
-                                                    <IconArrowRight />
+                                                <div className="pl-2 w-full">
+                                                    <div className="flex items-center justify-center text-xl">
+                                                        <div className="mr-2">상세보기</div>
+                                                        <IconArrowRight />
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </Button>
-                                    </div>
-                                </NavLink>
-                            </Card>
-                        );
-                    })}
+                                            </Button>
+                                        </div>
+                                    </NavLink>
+                                </Card>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className="flex flex-col gap-6.5">
+                    <div>
+                        <div className="flex">
+                            <div className="text-2xl text-gray-500 font-medium mb-4">인기 상품</div>
+                        </div>
+                        <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
+                            {popularItems.map((item) => {
+                                const Icon = iconMap[item.iconName];
+
+                                return (
+                                    <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
+                                        <NavLink
+                                            to={`/shopping/product-detail/${item.id}`}
+                                            className="flex-1"
+                                        >
+                                            <div
+                                                className={`flex justify-center items-center h-50 ${item.itemBg}`}
+                                            >
+                                                <Icon size={80} className={item.itemText} />
+                                            </div>
+                                            <div className="p-3 px-4.5 flex flex-col">
+                                                <div className="text-sm text-gray-400 flex">
+                                                    <div>{item.itemClassification}</div>
+                                                    <div
+                                                        className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
+                                                    >
+                                                        재고 {item.stock}개
+                                                    </div>
+                                                </div>
+                                                <div className="text-2xl text-gray-600 mt-3 truncate">
+                                                    {item.name}
+                                                </div>
+                                                <div className="flex text-3xl text-gray-600 font-medium mt-3">
+                                                    <div>{item.price.toLocaleString()}원</div>
+                                                </div>
+                                                <Button
+                                                    className="flex p-2 w-full mt-3"
+                                                    onClick={(e) => {
+                                                        e.preventDefault(); // <a>, <NavLink> 기본 동작 막기
+                                                        e.stopPropagation(); // 이벤트 버블링 막기
+                                                        navigate(`/shopping/product-detail/${item.id}`);
+                                                    }}
+                                                >
+                                                    <div className="pl-2 w-full">
+                                                        <div className="flex items-center justify-center text-xl">
+                                                            <div className="mr-2">상세보기</div>
+                                                            <IconArrowRight />
+                                                        </div>
+                                                    </div>
+                                                </Button>
+                                            </div>
+                                        </NavLink>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div>
+                        <div className="flex">
+                            <div className="text-2xl text-gray-500 font-medium mb-4">신규 상품</div>
+                        </div>
+                        <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
+                            {newItems.map((item) => {
+                                const Icon = iconMap[item.iconName];
+
+                                return (
+                                    <Card key={item.id} className="p-0 h-100 overflow-hidden flex flex-col">
+                                        <NavLink
+                                            to={`/shopping/product-detail/${item.id}`}
+                                            className="flex-1"
+                                        >
+                                            <div
+                                                className={`flex justify-center items-center h-50 ${item.itemBg}`}
+                                            >
+                                                <Icon size={80} className={item.itemText} />
+                                            </div>
+                                            <div className="p-3 px-4.5 flex flex-col">
+                                                <div className="text-sm text-gray-400 flex">
+                                                    <div>{item.itemClassification}</div>
+                                                    <div
+                                                        className={`ml-auto ${item.stock > 2 ? '' : 'text-red-400'}`}
+                                                    >
+                                                        재고 {item.stock}개
+                                                    </div>
+                                                </div>
+                                                <div className="text-2xl text-gray-600 mt-3 truncate">
+                                                    {item.name}
+                                                </div>
+                                                <div className="flex text-3xl text-gray-600 font-medium mt-3">
+                                                    <div>{item.price.toLocaleString()}원</div>
+                                                </div>
+                                                <Button
+                                                    className="flex p-2 w-full mt-3"
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        e.stopPropagation();
+                                                        navigate(`/shopping/product-detail/${item.id}`);
+                                                    }}
+                                                >
+                                                    <div className="pl-2 w-full">
+                                                        <div className="flex items-center justify-center text-xl">
+                                                            <div className="mr-2">상세보기</div>
+                                                            <IconArrowRight />
+                                                        </div>
+                                                    </div>
+                                                </Button>
+                                            </div>
+                                        </NavLink>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

@@ -154,10 +154,6 @@ function WalletHomePage() {
                     <div>
                         <div className="flex">
                             <div className="text-xl text-gray-500 font-medium mb-4">최근 거래내역</div>
-                            <NavLink to="#" className="ml-auto flex items-end mb-1 text-[#6266F1]">
-                                <div>전체보기</div>
-                                <IconArrowRight size={16} />
-                            </NavLink>
                         </div>
                         <Card className="mt-2">
                             {transHistory.map((trans, index) => (
