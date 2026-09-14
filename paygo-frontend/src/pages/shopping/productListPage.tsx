@@ -13,6 +13,7 @@ import { productClassification } from '../../constants/classification';
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('all');
     const [search, setSearch] = useState('');
+    const [sortItems, setSortItems] = useState('priceAsc');
     const navigate = useNavigate();
 
     const allItems = [...popularItems, ...newItems];
@@ -36,6 +37,14 @@ function ProductListPage() {
         (item.name.includes(search))
     );
 
+    const sortedItems = [...filteredItems].sort((a, b) => {
+        if (sortItems === 'priceAsc')
+            return a.price - b.price;
+        else if (sortItems === 'priceDesc')
+            return b.price - a.price;
+        return 0;
+    });
+
     return (
         <div className="flex flex-col gap-6.5">
             <Card>
@@ -53,7 +62,10 @@ function ProductListPage() {
                     </div>
                     {isFiltering && 
                         <div className="ml-auto">
-                            <SelectBox>
+                            <SelectBox
+                                value={sortItems} 
+                                onChange={(e) => setSortItems(e.target.value)}
+                            >
                                 <option value="priceAsc">낮은 가격순</option>
                                 <option value="priceDesc">높은 가격순</option>
                             </SelectBox>
@@ -87,7 +99,7 @@ function ProductListPage() {
                         <div className="text-2xl text-gray-500 font-medium mb-4">조회 결과</div>
                     </div>
                     <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
-                        {filteredItems.map((item) => {
+                        {sortedItems.map((item) => {
                             const Icon = iconMap[item.iconName];
 
                             return (
