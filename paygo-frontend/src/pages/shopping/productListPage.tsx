@@ -18,6 +18,23 @@ function ProductListPage() {
     const allItems = [...popularItems, ...newItems];
     const isFiltering = selectedType !== 'all' || search !== '';
 
+    function getKoreanClassification(itemClassification: string) {
+        if (itemClassification.includes('패션'))
+            return 'fashion';
+        else if (itemClassification.includes('전자기기'))
+            return 'electronicDevices';
+        else if (itemClassification.includes('스포츠'))
+            return 'sports';
+        else if (itemClassification.includes('생활용품'))
+            return 'dailyNecessities';
+        else if (itemClassification.includes('식품'))
+            return 'food';
+    };
+
+    const filteredItems = allItems.filter((item) => 
+        selectedType === 'all' || selectedType === getKoreanClassification(item.itemClassification)
+    );
+
     return (
         <div className="flex flex-col gap-6.5">
             <Card>
@@ -70,7 +87,7 @@ function ProductListPage() {
                         <div className="text-2xl text-gray-500 font-medium mb-4">조회 결과</div>
                     </div>
                     <div className="mt-4 grid grid-cols-[1fr_1fr_1fr_1fr] gap-4">
-                        {allItems.map((item) => {
+                        {filteredItems.map((item) => {
                             const Icon = iconMap[item.iconName];
 
                             return (
