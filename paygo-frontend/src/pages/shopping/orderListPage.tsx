@@ -63,7 +63,10 @@ function OrderListPage() {
                         ))}
                     </div>
                     <div className="ml-auto">
-                        <SelectBox onChange={(e) => setSortType(e.target.value)}>
+                        <SelectBox
+                            value={sortType} 
+                            onChange={(e) => setSortType(e.target.value)}
+                            >
                             <option value="latest">최신순</option>
                             <option value="oldest">오래된 순</option>
                             <option value="priceHigh">높은 금액순</option>
