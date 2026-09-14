@@ -32,7 +32,8 @@ function ProductListPage() {
     };
 
     const filteredItems = allItems.filter((item) => 
-        selectedType === 'all' || selectedType === getKoreanClassification(item.itemClassification)
+        (selectedType === 'all' || selectedType === getKoreanClassification(item.itemClassification)) &&
+        (item.name.includes(search))
     );
 
     return (
@@ -53,7 +54,6 @@ function ProductListPage() {
                     {isFiltering && 
                         <div className="ml-auto">
                             <SelectBox>
-                                <option value="latest">최신순</option>
                                 <option value="priceAsc">낮은 가격순</option>
                                 <option value="priceDesc">높은 가격순</option>
                             </SelectBox>
