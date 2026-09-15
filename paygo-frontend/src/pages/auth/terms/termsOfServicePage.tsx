@@ -127,14 +127,14 @@ function TermsOfServicePage() {
                         <span className="text-[#6266F1]">Pay</span>
                         <span>go</span>
                     </span>
-                    <span className="text-gray-400 text-sm ml-1">서비스 이용약관</span>
+                    <span className="text-gray-400 text-sm ml-1">서비스 이용약관 동의</span>
                 </div>
             </div>
 
             <div className="max-w-3xl mx-auto px-6 py-10">
                 {/* Title Block */}
                 <div className="mb-10">
-                    <h1 className="text-3xl font-bold text-gray-900 mb-3">서비스 이용약관</h1>
+                    <h1 className="text-3xl font-bold text-gray-900 mb-3">서비스 이용약관 동의</h1>
                     <div className="flex items-center gap-4 text-sm text-gray-500">
                         <span>시행일: 2026년 06월 15일</span>
                         <span className="w-1 h-1 rounded-full bg-gray-300 inline-block" />
