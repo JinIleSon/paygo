@@ -13,6 +13,7 @@ import { paymentMethods } from '../../constants/methods';
 import SelectBox from '../../components/common/selectBox';
 import type { Coupon } from '../../types/coupon';
 import { getMethodIcon } from '../../constants/useIcons';
+import { handleTermsLinkClick } from '../../lib/windowUtils';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
@@ -35,19 +36,6 @@ function ProductPaymentPage() {
         backgroundColor: '#6266f1', // 연한 회색빛 보라
         borderColor: '#6266f1', // 테두리도 같이 맞춰주기
     };
-
-    function handleTermsLinkClick() {
-        const width = 720;
-        const height = 900;
-        const left = window.screenX + (window.outerWidth - width) / 2;
-        const top = window.screenY + (window.outerHeight - height) / 2;
-
-        window.open(
-            '/shopping/product-payment/terms',
-            'orderPaymentTerms', // 창 이름 - 동일 이름이면 재클릭 시 새로 안 열리고 기존 창 재사용
-            `width=${width},height=${height},left=${left},top=${top},scrollbars=yes`
-        );
-    }
 
     return (
         <div>
@@ -276,7 +264,7 @@ function ProductPaymentPage() {
                             </label>
                             <button
                                 className="text-[#6266F1] mb-1 cursor-pointer"
-                                onClick={handleTermsLinkClick}
+                                onClick={() => handleTermsLinkClick('/shopping/product-payment/terms', 'orderPaymentTerms')}
                             >
                                 약관 보기
                             </button>

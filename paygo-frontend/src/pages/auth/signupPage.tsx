@@ -6,6 +6,7 @@ import PasswordInput from '../../components/common/passwordInput';
 import Button from '../../components/common/button';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { handleTermsLinkClick } from '../../lib/windowUtils';
 
 function SignupPage() {
     const [lastName, setLastName] = useState('');
@@ -340,12 +341,12 @@ function SignupPage() {
                                 <span className="">
                                     서비스 이용약관 동의<span className="font-bold"> (필수)</span>
                                 </span>
-                                <Link
-                                    to="/terms-of-service"
-                                    className="ml-auto underline text-[#bdb6b1]"
+                                <button
+                                    onClick={() => handleTermsLinkClick('/terms-of-service', 'serviceTerms')}
+                                    className="ml-auto underline text-[#bdb6b1] cursor-pointer"
                                 >
                                     보기
-                                </Link>
+                                </button>
                             </label>
                             <label
                                 htmlFor="agreeSecond"
@@ -365,12 +366,12 @@ function SignupPage() {
                                 <span className="">
                                     개인정보 수집 및 이용 동의<span className="font-bold"> (필수)</span>
                                 </span>
-                                <Link
-                                    to="/privacy-consent"
-                                    className="ml-auto underline text-[#bdb6b1]"
+                                <button
+                                    onClick={() => handleTermsLinkClick('/privacy-consent', 'privacyTerms')}
+                                    className="ml-auto underline text-[#bdb6b1] cursor-pointer"
                                 >
                                     보기
-                                </Link>
+                                </button>
                             </label>
                             <label
                                 htmlFor="agreeThird"
@@ -390,12 +391,12 @@ function SignupPage() {
                                 <span className="">
                                     마케팅 정보 수신 동의<span className=""> (선택)</span>
                                 </span>
-                                <Link
-                                    to="/marketing-consent"
-                                    className="ml-auto underline text-[#bdb6b1]"
+                                <button
+                                    onClick={() => handleTermsLinkClick('/marketing-consent', 'marketingTerms')}
+                                    className="ml-auto underline text-[#bdb6b1] cursor-pointer"
                                 >
                                     보기
-                                </Link>
+                                </button>
                             </label>
                         </div>
                         <div>
