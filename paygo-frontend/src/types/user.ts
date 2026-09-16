@@ -2,6 +2,7 @@ export interface User {
     id: string;
     name: string;
     email: string;
+    password: string;
     phone: string;
     address: string;
     grade: string;           // 등급: '일반회원', 'VIP', 'VVIP'
