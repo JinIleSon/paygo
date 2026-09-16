@@ -9,8 +9,7 @@ import { Link } from 'react-router-dom';
 import { handleTermsLinkClick } from '../../lib/windowUtils';
 
 function SignupPage() {
-    const [lastName, setLastName] = useState('');
-    const [firstName, setFirstName] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -177,29 +176,19 @@ function SignupPage() {
                         </div>
                         <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
                         <div className="text-[#bdb6b1] mt-6">기본 정보</div>
-                        <div className="flex mt-6 text-[#bdb6b1] font-medium gap-3">
-                            <div className="flex-[1]">
-                                <div className="mb-2">성</div>
-                                <div>
-                                    <TextInput
-                                        value={lastName}
-                                        onChange={(e) => setLastName(e.target.value)}
-                                        placeholder="손"
-                                    />
-                                </div>
-                            </div>
+                        <div className="flex mt-6 text-[#bdb6b1] font-medium">
                             <div className="flex-[1]">
                                 <div className="mb-2">이름</div>
                                 <div>
                                     <TextInput
-                                        value={firstName}
-                                        onChange={(e) => setFirstName(e.target.value)}
-                                        placeholder="진일"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="손진일"
                                     />
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-5 text-[#bdb6b1] font-medium text">
+                        <div className="mt-5 text-[#bdb6b1] font-medium">
                             <div className="mb-2">이메일</div>
                             <div>
                                 <TextInput
