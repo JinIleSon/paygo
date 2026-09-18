@@ -4,15 +4,22 @@ import { IconCreditCard } from '@tabler/icons-react';
 import TextInput from '../../components/common/textInput';
 import PasswordInput from '../../components/common/passwordInput';
 import Button from '../../components/common/button';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { handleTermsLinkClick } from '../../lib/windowUtils';
+import { searchAddress } from '../../lib/addressUtils';
 
 function SignupPage() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    
+    // 주소
+    const [zipCode, setZipCode] = useState('');
+    const [roadAddress, setRoadAddress] = useState('');
+    const [detailAddress, setDetailAddress] = useState('');
+    
     const [phoneNumber, setPhoneNumber] = useState('');
     const [certificationNumber, setCertificationNumber] = useState('');
 
@@ -32,6 +39,13 @@ function SignupPage() {
         if (digits.length <= 3) return digits;
         else if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
         else return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7, 11)}`;
+    };
+
+    const handleSearchAddress = () => {
+        searchAddress((result) => {
+            setZipCode(result.zipCode);
+            setRoadAddress(result.roadAddress);
+        });
     };
 
     const checkedStyle = {
@@ -94,7 +108,7 @@ function SignupPage() {
                             <div className="text-[#49576f] flex flex-col">
                                 <div className="font-bold text-base text-start">기본 정보</div>
                                 <div className="font-medium text-sm text-gray-400 mt-0.5">
-                                    이름, 이메일, 비밀번호
+                                    이름, 이메일, 비밀번호, 주소
                                 </div>
                             </div>
                         </div>
@@ -246,6 +260,40 @@ function SignupPage() {
                                 </div>
                             </div>
                         </div>
+                        <div className="mt-5 text-[#bdb6b1] font-medium">
+                            <div>
+                                <div className="mb-2">주소</div>
+                                <div className="w-full flex gap-3 mb-2.5">
+                                    <TextInput
+                                        value={zipCode}
+                                        placeholder="우편번호"
+                                        readOnly
+                                        className="flex-[4]"
+                                    />
+                                    <Button
+                                        variant="secondary"
+                                        className="font-bold flex-[1]"
+                                        onClick={handleSearchAddress}
+                                    >
+                                        주소 검색
+                                    </Button>
+                                </div>
+                                <div className="mb-2.5">
+                                    <TextInput
+                                        value={roadAddress}
+                                        placeholder="도로명 주소"
+                                        readOnly
+                                    />
+                                </div>
+                                <div>
+                                    <TextInput
+                                        value={detailAddress}
+                                        onChange={(e) => setDetailAddress(e.target.value)}
+                                        placeholder="상세주소 (동/호수 등)"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                         <div className="flex-1 border-t border-[#d8d8d8] mt-14"></div>
                         <div className="text-[#bdb6b1] mt-6">본인 인증</div>
                         <div className="flex mt-6 text-[#bdb6b1] font-medium">
@@ -265,6 +313,7 @@ function SignupPage() {
                                         />
                                     </div>
                                     <Button
+                                        variant="secondary"
                                         className="flex-[2] font-bold"
                                         onClick={() => setIsOpen(true)}
                                     >
@@ -285,7 +334,10 @@ function SignupPage() {
                                             className="text-[#bdb6b1] font-medium"
                                         />
                                     </div>
-                                    <Button className="flex-[1] font-bold">확인</Button>
+                                    <Button 
+                                        variant="secondary"
+                                        className="flex-[1] font-bold"
+                                    >확인</Button>
                                 </div>
                                 {/* TODO: 인증번호 API 연동 시 시간 만료 및 타이머 기능 추가 */}
                                 <div className="mt-1 ml-1 text-sm text-[14px] h-[22px]">

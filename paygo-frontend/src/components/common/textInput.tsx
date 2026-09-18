@@ -3,14 +3,15 @@ import { cn } from '../../lib/utils';
 
 interface TextInputProps {
     value?: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     className?: string;
+    readOnly?: boolean;
 }
 
-function TextInput({ value, onChange, placeholder, className, ...props }: TextInputProps) {
+function TextInput({ value, onChange, placeholder, readOnly = false, className, ...props }: TextInputProps) {
     const base =
-        'w-full leading-10 pl-3.5 h-10 rounded-md outline-none bg-white border border-[#D9D9D9]';
+        'w-full leading-10 font-medium text-gray-600 pl-3.5 h-10 rounded-md outline-none bg-white border border-[#D9D9D9]';
 
     return (
         <input
@@ -18,7 +19,8 @@ function TextInput({ value, onChange, placeholder, className, ...props }: TextIn
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            className={cn(base, `font-medium text-gray-600`, className)}
+            readOnly={readOnly}
+            className={cn(base, `read-only:bg-gray-100 read-only:cursor-default`, className)}
             {...props}
         />
     );
