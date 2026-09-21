@@ -56,7 +56,8 @@ function ProductPaymentPage() {
                             </div>
                             <Card className="flex flex-col gap-1 bg-[#FAFAFA]">
                                 <div className="text-lg">{user.name} (기본 배송지)</div>
-                                <div className="text-gray-500">{user.address}</div>
+                                <div className="text-gray-500 -mb-1">{user.roadAddress}</div>
+                                <div className="text-gray-500">{user.detailAddress}</div>
                                 <div className="text-gray-500">{user.phone}</div>
                             </Card>
                         </Card>

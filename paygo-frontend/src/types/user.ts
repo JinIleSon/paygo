@@ -4,7 +4,9 @@ export interface User {
     email: string;
     password: string;
     phone: string;
-    address: string;
+    zipCode: string;
+    roadAddress: string;
+    detailAddress: string;
     grade: string;           // 등급: '일반회원', 'VIP', 'VVIP'
     balance: number;
     minCharge: number;       // 충전 금액 최소
