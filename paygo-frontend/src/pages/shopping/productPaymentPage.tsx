@@ -14,13 +14,14 @@ import SelectBox from '../../components/common/selectBox';
 import type { Coupon } from '../../types/coupon';
 import { getMethodIcon } from '../../constants/useIcons';
 import { handleTermsLinkClick } from '../../lib/windowUtils';
+import { userWallet } from '../../constants/wallet';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
     const [selectedPayment, setSelectedPayment] = useState('');
 
     const usableCoupon = coupons.filter(
-        (coupon) => coupon.userId === user.id && coupon.status === 'active'
+        (coupon) => coupon.userId === user.userId && coupon.status === 'active'
     );
 
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | undefined>(usableCoupon[0]);
@@ -30,7 +31,7 @@ function ProductPaymentPage() {
     const selectedItemPrice = selectedItems.reduce((sum, item) => sum + item.count * item.price, 0);
     const navigate = useNavigate();
 
-    const balance = user.balance; // TODO: 백엔드에서 값 불러와야 함
+    const balance = userWallet.balance; // TODO: 백엔드에서 값 불러와야 함
     const checkedStyle = {
         backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 5' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")`,
         backgroundColor: '#6266f1', // 연한 회색빛 보라

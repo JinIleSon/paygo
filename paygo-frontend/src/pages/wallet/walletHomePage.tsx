@@ -7,14 +7,15 @@ import {
 } from '@tabler/icons-react';
 import Card from '../../components/common/card';
 import { NavLink } from 'react-router-dom';
-import { user } from '../../constants/user';
 import { getHistoryBadge } from '../../constants/useBadges';
 import { getHistoryIcon } from '../../constants/useIcons';
+import { userAccount } from '../../constants/account';
+import { userWallet } from '../../constants/wallet';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
-    const balance = user.balance;
-    const pg = user.accountNumber;
+    const balance = userWallet.balance;
+    const pg = userAccount.accountNumber;
 
     // 빠른 송금
     const contacts = [

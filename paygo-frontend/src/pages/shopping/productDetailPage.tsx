@@ -8,7 +8,7 @@ import { useToastStore } from '../../stores/useToastStore';
 import { iconMap } from '../../constants/icons';
 import { useParams } from 'react-router-dom';
 import { products } from '../../constants/product';
-import { user } from '../../constants/user';
+import { userWallet } from '../../constants/wallet';
 
 function ProductDetailPage() {
     const { productId } = useParams();
@@ -52,7 +52,7 @@ function ProductDetailPage() {
         selectedCount > product.stock ||
         selectedCount < 1;
 
-    const balance = user.balance;
+    const balance = userWallet.balance;
     const Icon = iconMap[product.iconName];
 
     return (

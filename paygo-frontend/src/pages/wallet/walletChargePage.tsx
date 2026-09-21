@@ -6,17 +6,17 @@ import TextInput from '../../components/common/textInput';
 import { useState } from 'react';
 import Button from '../../components/common/button';
 import SelectCard from '../../components/common/selectCard';
-import { user } from '../../constants/user';
 import { chargeMethods } from '../../constants/methods';
 import { getMethodIcon } from '../../constants/useIcons';
+import { userWallet } from '../../constants/wallet';
 
 function WalletChargePage() {
     const [chargeAmount, setChargeAmount] = useState('');
     const [selectedCharge, setSelectedCharge] = useState('');
 
-    const balance = user.balance;
-    const minCharge = user.minCharge; // 충전 금액 최소
-    const maxCharge = user.maxCharge; // 충전 금액 최대
+    const balance = userWallet.balance;
+    const minCharge = userWallet.minCharge; // 충전 금액 최소
+    const maxCharge = userWallet.maxCharge; // 충전 금액 최대
     const fee = 0; // TODO: 수수료 데이터 연동 필요
 
     const chargeSummary = [
