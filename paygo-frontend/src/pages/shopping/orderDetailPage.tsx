@@ -13,6 +13,7 @@ import { useState } from "react";
 import ShippingModal from "../../components/modal/shippingModal";
 import ConfirmModal from "../../components/modal/confirmModal";
 import ReturnRequestModal from "../../components/modal/returnRequestModal";
+import { COLOR_NAMES } from "../../constants/color";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
@@ -77,7 +78,7 @@ function OrderDetailPage() {
                                                 {item.size && (
                                                     <div>사이즈: {item.size} |&nbsp;</div>
                                                 )}
-                                                <div>색상: {item.color} |&nbsp;</div>
+                                                <div>색상: {COLOR_NAMES[item.color]} |&nbsp;</div>
                                                 <div>주문수량: {item.count}</div>
                                             </div>
                                         </div>

@@ -14,6 +14,7 @@ import ConfirmModal from '../../components/modal/confirmModal';
 import ReturnRequestModal from '../../components/modal/returnRequestModal';
 import ShippingModal from '../../components/modal/shippingModal';
 import { useNavigate } from 'react-router-dom';
+import { COLOR_NAMES } from '../../constants/color';
 
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
@@ -109,7 +110,7 @@ function OrderListPage() {
                                             </div>
                                             <div className="flex text-gray-400 text-sm">
                                                 {item.size && <div>사이즈: {item.size} |&nbsp;</div>}
-                                                <div>색상: {item.color} |&nbsp;</div>
+                                                <div>색상: {COLOR_NAMES[item.color]} |&nbsp;</div>
                                                 <div>주문수량: {item.count}</div>
                                             </div>
                                         </div>

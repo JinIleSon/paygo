@@ -15,6 +15,7 @@ import type { Coupon } from '../../types/coupon';
 import { getMethodIcon } from '../../constants/useIcons';
 import { handleTermsLinkClick } from '../../lib/windowUtils';
 import { userWallet } from '../../constants/wallet';
+import { COLOR_NAMES } from '../../constants/color';
 
 function ProductPaymentPage() {
     const [isChecked, setIsChecked] = useState(false);
@@ -87,7 +88,7 @@ function ProductPaymentPage() {
                                                 {item.size !== -1 && (
                                                     <div>사이즈: {item.size} |&nbsp;</div>
                                                 )}
-                                                <div>색상: {item.color} |&nbsp;</div>
+                                                <div>색상: {COLOR_NAMES[item.color]} |&nbsp;</div>
                                                 <div>주문수량: {item.count}</div>
                                             </div>
                                             {item.stock <= 2 && (

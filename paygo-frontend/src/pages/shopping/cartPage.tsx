@@ -6,8 +6,8 @@ import { getHighestDiscount } from '../../lib/couponUtils';
 import { useNavigate } from 'react-router-dom';
 import { iconMap } from '../../constants/icons';
 import { coupons } from '../../constants/coupon';
-import { user } from '../../constants/user';
 import { userWallet } from '../../constants/wallet';
+import { COLOR_NAMES } from '../../constants/color';
 
 function CartPage() {
     const items = useCartStore((state) => state.items);
@@ -99,7 +99,7 @@ function CartPage() {
                                                     </div>
                                                 )}
                                                 <div className="text-gray-400 text-sm">
-                                                    &nbsp;색상: {item.color}
+                                                    &nbsp;색상: {COLOR_NAMES[item.color]}
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-5">

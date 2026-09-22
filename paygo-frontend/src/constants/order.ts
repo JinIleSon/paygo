@@ -10,7 +10,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 1,
                 productName: '소니 WH-1000 헤드폰',
-                color: '블랙',
+                color: '#333333',
                 price: 389000,
                 count: 1,
                 iconName: 'IconHeadphones',
@@ -20,7 +20,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 5,
                 productName: '룰루레몬 요가 매트',
-                color: '민트',
+                color: '#22B1A0',
                 price: 89000,
                 count: 2,
                 iconName: 'IconYoga',
@@ -31,7 +31,7 @@ export const order: OrderDetail[] = [
                 productId: 0,
                 productName: '나이키 에어맥스',
                 size: 270,
-                color: '그린',
+                color: '#22C55E',
                 price: 120000,
                 count: 1,
                 iconName: 'IconShoe',
@@ -58,7 +58,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 1,
                 productName: '소니 WH-1000 헤드폰',
-                color: '블랙',
+                color: '#333333',
                 price: 389000,
                 count: 1,
                 iconName: 'IconHeadphones',
@@ -84,7 +84,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 4,
                 productName: '맥북 프로 14인치 모니터',
-                color: '실버',
+                color: '#7B808C',
                 price: 2490000,
                 count: 1,
                 iconName: 'IconDeviceLaptop',
@@ -110,7 +110,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 4,
                 productName: '맥북 프로 14인치 모니터',
-                color: '실버',
+                color: '#7B808C',
                 price: 2490000,
                 count: 1,
                 iconName: 'IconDeviceLaptop',
@@ -136,7 +136,7 @@ export const order: OrderDetail[] = [
                 productId: 3,
                 productName: '유니클로 플리스 티셔츠',
                 size: 105,
-                color: '핑크',
+                color: '#D862A1',
                 price: 59900,
                 count: 3,
                 iconName: 'IconShirt',
@@ -163,7 +163,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 2,
                 productName: '코베아 캠핑 텐트',
-                color: '카키',
+                color: '#E0B36B',
                 price: 211000,
                 count: 1,
                 iconName: 'IconTent',
@@ -173,7 +173,7 @@ export const order: OrderDetail[] = [
             {
                 productId: 7,
                 productName: '어반어스 데이트 백팩',
-                color: '블랙',
+                color: '#333333',
                 price: 79000,
                 count: 1,
                 iconName: 'IconBackpack',

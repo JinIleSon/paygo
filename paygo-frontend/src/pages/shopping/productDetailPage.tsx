@@ -9,6 +9,7 @@ import { iconMap } from '../../constants/icons';
 import { useParams } from 'react-router-dom';
 import { products } from '../../constants/product';
 import { userWallet } from '../../constants/wallet';
+import { COLOR_NAMES } from '../../constants/color';
 
 function ProductDetailPage() {
     const { productId } = useParams();
@@ -146,7 +147,7 @@ function ProductDetailPage() {
                                 </div>
                                 <div className="text-2xl">
                                     {product.name} {selectedColor && '— '}
-                                    {selectedColor}
+                                    {COLOR_NAMES[selectedColor]}
                                 </div>{' '}
                                 {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}
                                 <div className="flex items-end">
@@ -199,15 +200,15 @@ function ProductDetailPage() {
                                     <div className="flex flex-col gap-4">
                                         <div className="text-[gray]">색상 선택</div>
                                         <div className="flex flex-wrap gap-3">
-                                            {product.chooseColor.map((color) => (
+                                            {product.colorSet.map((c) => (
                                                 <SelectCard
-                                                    key={color}
-                                                    onClick={() => setSelectedColor(color)}
-                                                    isSelected={selectedColor === color}
+                                                    key={c.color}
+                                                    onClick={() => setSelectedColor(c.color)}
+                                                    isSelected={selectedColor === c.color}
                                                     variant="secondary"
                                                     className="px-4 py-1 rounded-md"
                                                 >
-                                                    {color}
+                                                    {COLOR_NAMES[c.color]}
                                                 </SelectCard>
                                             ))}
                                         </div>
