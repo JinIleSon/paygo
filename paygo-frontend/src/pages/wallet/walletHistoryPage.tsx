@@ -8,6 +8,7 @@ import { type DateRange } from 'react-day-picker';
 import { statement, types } from '../../constants/classification';
 import { getHistoryBadge } from '../../constants/useBadges';
 import { getHistoryIcon } from '../../constants/useIcons';
+import { transactionHistory } from '../../constants/transactionHistory';
 
 function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('all');
@@ -24,69 +25,6 @@ function WalletHistoryPage() {
         { title: '실패 건수', content: 2, summation: '동시성 처리 실패 포함' },
     ];
 
-    const transactionHistory = [
-        {
-            id: 0,
-            content: '지갑 충전',
-            createdAt: '2026.09.10 14:23',
-            type: 'charge',
-            paymentMethod: '계좌이체',
-            amount: 300000,
-            balance: 3842000,
-            statement: 'complete',
-        },
-        {
-            id: 1,
-            content: '나이키 에어맥스',
-            createdAt: '2026.09.11 11:05',
-            type: 'buy',
-            paymentMethod: 'Paygo 잔액',
-            amount: -120000,
-            balance: 3542000,
-            statement: 'complete',
-        },
-        {
-            id: 2,
-            content: '무선 이어폰',
-            createdAt: '2026.09.12 16:42',
-            type: 'buy',
-            paymentMethod: 'Paygo 잔액',
-            amount: -89000,
-            balance: '-',
-            statement: 'fail',
-        },
-        {
-            id: 3,
-            content: '주문 취소 환불',
-            createdAt: '2026.09.12 09:30',
-            type: 'refund',
-            paymentMethod: 'Paygo 잔액',
-            amount: 45000,
-            balance: 3751000,
-            statement: 'complete',
-        },
-        {
-            id: 4,
-            content: '캠핑 텐트',
-            createdAt: '2026.09.13 20:15',
-            type: 'buy',
-            paymentMethod: 'Paygo 잔액',
-            amount: -211000,
-            balance: 3706000,
-            statement: 'processing',
-        },
-        {
-            id: 5,
-            content: '지갑 충전',
-            createdAt: '2026.09.14 00:20',
-            type: 'charge',
-            paymentMethod: '신용카드',
-            amount: 500000,
-            balance: 3917000,
-            statement: 'complete',
-        },
-    ];
-    
     function getKoreanType(type: string) {
         if (type === 'charge')
             return '충전';
