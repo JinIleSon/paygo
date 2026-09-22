@@ -39,5 +39,4 @@ export interface ProductDetail extends ProductBase {
     discountPrice: number;
 
     size: number[];
-    chooseColor: string[];
 }

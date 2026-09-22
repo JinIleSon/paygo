@@ -118,7 +118,6 @@ export const products: ProductDetail[] = [
         discountPrice: 120000,
         stock: 3,
         size: [240, 245, 250, 260, 265, 270, 275],
-        chooseColor: ['인디고', '그린', '옐로', '핑크'],
     },
     {
         id: 1,
@@ -149,7 +148,6 @@ export const products: ProductDetail[] = [
         discountPrice: 389000,
         stock: 1,
         size: [],
-        chooseColor: ['블랙', '실버'],
     },
     {
         id: 2,
@@ -180,7 +178,6 @@ export const products: ProductDetail[] = [
         discountPrice: 211000,
         stock: 8,
         size: [],
-        chooseColor: ['카키', '네이비'],
     },
     {
         id: 3,
@@ -212,7 +209,6 @@ export const products: ProductDetail[] = [
         discountPrice: 59900,
         stock: 12,
         size: [90, 95, 100, 105, 110],
-        chooseColor: ['핑크', '그레이', '블랙'],
     },
     {
         id: 4,
@@ -243,7 +239,6 @@ export const products: ProductDetail[] = [
         discountPrice: 2490000,
         stock: 5,
         size: [],
-        chooseColor: ['스페이스 그레이', '실버'],
     },
     {
         id: 5,
@@ -274,7 +269,6 @@ export const products: ProductDetail[] = [
         discountPrice: 89000,
         stock: 2,
         size: [],
-        chooseColor: ['민트', '핑크'],
     },
     {
         id: 6,
@@ -305,7 +299,6 @@ export const products: ProductDetail[] = [
         discountPrice: 139000,
         stock: 6,
         size: [],
-        chooseColor: ['화이트', '블랙'],
     },
     {
         id: 7,
@@ -337,6 +330,5 @@ export const products: ProductDetail[] = [
         discountPrice: 79000,
         stock: 9,
         size: [],
-        chooseColor: ['그레이', '네이비', '블랙'],
     },
 ];
