@@ -1,6 +1,9 @@
 # Paygo — 지갑 충전부터 정산까지, 결제 커머스 플랫폼
 
-[상태 배지: 🚧 진행중 | Frontend 100% · Backend 설계 완료/구현 예정]
+![Status](https://img.shields.io/badge/상태-진행중-yellow)
+![Frontend](https://img.shields.io/badge/Frontend-완료-brightgreen)
+![Backend](https://img.shields.io/badge/Backend-DB_설계중-yellow)
+![Concurrency](https://img.shields.io/badge/동시성_제어-예정-lightgrey)
 
 ## 프로젝트 소개
 지갑 충전 → 상품 구매 → 판매자 정산까지, 돈의 흐름 전체를 
