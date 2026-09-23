@@ -102,8 +102,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '메쉬, 합성 소재',
         origin: '베트남',
         createdAt: '2024년 9월',
-        deliveryAt: '결제 후 2~3일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 2~3일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `나이키 에어맥스는 Nike Air 기술의 가장 큰 힐 유닛을 탑재하여 하루 종일 편안한 착화감을 제공합니다.
 
                     ▪ 경량 메쉬 어퍼로 통기성이 뛰어나 장시간 착용에도 발이 쾌적합니다.
@@ -132,8 +132,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '플라스틱, 인조가죽',
         origin: '말레이시아',
         createdAt: '2024년 5월',
-        deliveryAt: '결제 후 2~3일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 2~3일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `소니 WH-1000 헤드폰은 업계 최고 수준의 노이즈 캔슬링 기술을 탑재해 주변 소음을 완벽히 차단합니다.
 
                     ▪ 30시간 이상 지속되는 배터리로 장시간 사용에도 문제없습니다.
@@ -162,8 +162,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '폴리에스터, 알루미늄 폴대',
         origin: '대한민국',
         createdAt: '2024년 3월',
-        deliveryAt: '결제 후 3~4일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 3~4일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `코베아 캠핑 텐트는 4인 가족이 여유롭게 사용할 수 있는 넉넉한 공간을 제공합니다.
 
                     ▪ 완전 방수 원단으로 우천 시에도 안심하고 사용할 수 있습니다.
@@ -193,8 +193,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '폴리에스터 플리스',
         origin: '베트남',
         createdAt: '2024년 11월',
-        deliveryAt: '결제 후 1~2일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 1~2일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `유니클로 플리스 티셔츠는 부드러운 촉감과 뛰어난 보온성을 자랑합니다.
 
                     ▪ 가볍고 따뜻한 플리스 소재로 환절기 아우터로 활용하기 좋습니다.
@@ -223,8 +223,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '알루미늄 유니바디',
         origin: '중국',
         createdAt: '2024년 10월',
-        deliveryAt: '결제 후 2~3일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 2~3일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `맥북 프로 14인치는 강력한 성능과 뛰어난 화질을 겸비한 프로페셔널용 노트북입니다.
 
                     ▪ Liquid Retina XDR 디스플레이로 선명하고 정확한 색 표현이 가능합니다.
@@ -253,8 +253,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '천연고무, 폴리우레탄',
         origin: '베트남',
         createdAt: '2024년 6월',
-        deliveryAt: '결제 후 2~3일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 2~3일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `룰루레몬 요가 매트는 뛰어난 그립감과 쿠셔닝으로 안정적인 운동을 돕습니다.
 
                     ▪ 미끄럼 방지 표면으로 격렬한 동작에도 안정적입니다.
@@ -283,8 +283,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '도자기',
         origin: '일본',
         createdAt: '2024년 4월',
-        deliveryAt: '결제 후 2~3일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 2~3일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `발뮤다 커피 머그잔은 미니멀한 디자인과 뛰어난 보온성을 자랑합니다.
 
                     ▪ 이중 벽 구조로 음료의 온도를 오래 유지합니다.
@@ -314,8 +314,8 @@ export const products: ProductDetail[] = [
         subjectMatter: '방수 나일론',
         origin: '대한민국',
         createdAt: '2024년 8월',
-        deliveryAt: '결제 후 1~2일 이내',
-        return: '수령 후 7일 이내',
+        deliveryInfo: '결제 후 1~2일 이내',
+        returnInfo: '수령 후 7일 이내',
         description: `어반어스 데이트 백팩은 실용성과 스타일을 모두 갖춘 데일리 백팩입니다.
 
                     ▪ 발수 코팅 원단으로 우천 시에도 내용물을 안전하게 보호합니다.

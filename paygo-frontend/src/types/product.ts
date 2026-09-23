@@ -30,8 +30,8 @@ export interface ProductDetail extends ProductBase {
     subjectMatter: string;
     origin: string;
     createdAt: string;
-    deliveryAt: string;
-    return: string;
+    deliveryInfo: string;
+    returnInfo: string;
 
     description: string;
 

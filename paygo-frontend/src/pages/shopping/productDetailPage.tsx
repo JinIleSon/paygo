@@ -116,9 +116,9 @@ function ProductDetailPage() {
                                         <div className="text-[gray] font-medium">출시일</div>
                                         <div>{product.createdAt}</div>
                                         <div className="text-[gray] font-medium">배송</div>
-                                        <div>{product.deliveryAt}</div>
+                                        <div>{product.deliveryInfo}</div>
                                         <div className="text-[gray] font-medium">반품</div>
-                                        <div>{product.return}</div>
+                                        <div>{product.returnInfo}</div>
                                     </div>
                                 </section>
                             )}
