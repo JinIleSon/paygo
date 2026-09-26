@@ -5,10 +5,10 @@ import TextInput from '../../components/common/textInput';
 import Button from '../../components/common/button';
 import PeriodPicker from '../../components/common/periodPicker';
 import { type DateRange } from 'react-day-picker';
-import { statement, types } from '../../constants/classification';
-import { getHistoryBadge } from '../../constants/useBadges';
-import { getHistoryIcon } from '../../constants/useIcons';
-import { transactionHistory } from '../../constants/transactionHistory';
+import { statements, types } from '../../constants/classification';
+import { getHistoryBadge } from '../../lib/badgeUtils';
+import { getHistoryIcon } from '../../lib/iconUtils';
+import { transactionHistories } from '../../constants/transactionHistory';
 
 function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('all');
@@ -45,7 +45,7 @@ function WalletHistoryPage() {
         return '완료';
     }
 
-    const filteredTransaction = transactionHistory.filter((tran) => {
+    const filteredTransaction = transactionHistories.filter((tran) => {
         const tranDate = new Date(tran.createdAt);
         const endDate = period?.to ? new Date(period?.to) : undefined;
         if (endDate) endDate.setHours(23, 59, 59, 999);
@@ -82,7 +82,7 @@ function WalletHistoryPage() {
                 <div className="flex items-center mt-5">
                     <div className="text-[gray] mr-6">상태</div>
                     <div className="flex gap-3">
-                        {statement.map((state) => (
+                        {statements.map((state) => (
                             <SelectCard
                                 onClick={() => setSelectedStatement(state.id)}
                                 isSelected={selectedStatement === state.id}

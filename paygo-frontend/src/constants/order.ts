@@ -1,7 +1,7 @@
 import type { OrderDetail } from '../types/order';
 
 // Order, OrderDetail 타입 모두 받음
-export const order: OrderDetail[] = [
+export const orders: OrderDetail[] = [
     {
         orderId: 'PG-20260815-0042',
         createdAt: '2026-08-15T07:58:23',

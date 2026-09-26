@@ -6,9 +6,9 @@ import Button from '../../components/common/button';
 import { IconArrowRight, IconSearch } from '@tabler/icons-react';
 import SelectBox from '../../components/common/selectBox';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { iconMap } from '../../constants/icons';
+import { iconMap } from '../../constants/icon';
 import { newItems, popularItems } from '../../constants/product';
-import { productClassification } from '../../constants/classification';
+import { productClassifications } from '../../constants/classification';
 
 function ProductListPage() {
     const [selectedType, setSelectedType] = useState('all');
@@ -50,7 +50,7 @@ function ProductListPage() {
             <Card>
                 <div className="flex items-center h-[3rem]">
                     <div className="flex gap-3">
-                        {productClassification.map((clas) => (
+                        {productClassifications.map((clas) => (
                             <SelectCard
                                 onClick={() => setSelectedType(clas.id)}
                                 isSelected={selectedType === clas.id}

@@ -1,4 +1,4 @@
-import type { IconName } from "../constants/icons";
+import type { IconName } from "../constants/icon";
 
 // 두 타입 공통 필드 모음(Product 또는 ProductDetail)
 export interface ProductBase {

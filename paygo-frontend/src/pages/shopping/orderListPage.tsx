@@ -2,10 +2,10 @@ import { useState } from 'react';
 import Card from '../../components/common/card';
 import SelectBox from '../../components/common/selectBox';
 import SelectCard from '../../components/common/selectCard';
-import { orderClassification } from '../../constants/classification';
-import { order } from '../../constants/order';
-import { getOrderBadges } from '../../constants/useBadges';
-import { iconMap } from '../../constants/icons';
+import { orderClassifications } from '../../constants/classification';
+import { orders } from '../../constants/order';
+import { getOrderBadge } from '../../lib/badgeUtils';
+import { iconMap } from '../../constants/icon';
 import Button from '../../components/common/button';
 import { formatDateTime } from '../../lib/dateUtils';
 import { getRemainRefundedDate } from '../../lib/orderUtils';
@@ -31,7 +31,7 @@ function OrderListPage() {
 
     const [modal, setModal] = useState<ModalState>(null);
 
-    const filteredOrders = order.filter(
+    const filteredOrders = orders.filter(
         (eachOrder) => selectedType === 'all' || eachOrder.orderStatus === selectedType
     );
 
@@ -53,7 +53,7 @@ function OrderListPage() {
             <Card>
                 <div className="flex items-center">
                     <div className="flex gap-3">
-                        {orderClassification.map((clas) => (
+                        {orderClassifications.map((clas) => (
                             <SelectCard
                                 onClick={() => setSelectedType(clas.id as 'all' | OrderStatus)}
                                 isSelected={selectedType === clas.id}
@@ -86,7 +86,7 @@ function OrderListPage() {
                             <div className="text-sm">주문번호 {eachOrder.orderId}</div>
                             <div className="text-xs">{formatDateTime(eachOrder.createdAt)}</div>
                         </div>
-                        <div>{getOrderBadges(eachOrder.orderStatus)}</div>
+                        <div>{getOrderBadge(eachOrder.orderStatus)}</div>
                     </div>
                     <div className="border-b border-[#D9D9D9]"></div>
                     <div 

@@ -4,7 +4,7 @@ import { IconAlertTriangle, IconX } from '@tabler/icons-react';
 import Button from '../../components/common/button';
 import { getHighestDiscount } from '../../lib/couponUtils';
 import { useNavigate } from 'react-router-dom';
-import { iconMap } from '../../constants/icons';
+import { iconMap } from '../../constants/icon';
 import { coupons } from '../../constants/coupon';
 import { userWallet } from '../../constants/wallet';
 import { COLOR_NAMES } from '../../constants/color';

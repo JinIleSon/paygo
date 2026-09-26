@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import Card from "../../components/common/card";
-import { order } from "../../constants/order";
+import { orders } from "../../constants/order";
 import { addDays, diffDays, formatDateTime, formatYearMonthDay } from "../../lib/dateUtils";
-import { getOrderBadges } from "../../constants/useBadges";
+import { getOrderBadge } from "../../lib/badgeUtils";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
-import { iconMap } from "../../constants/icons";
+import { iconMap } from "../../constants/icon";
 import { PAYMENT_METHOD_LABELS, type Order } from "../../types/order";
 import { getRemainRefundedDate } from "../../lib/orderUtils";
 import Button from "../../components/common/button";
@@ -17,7 +17,7 @@ import { COLOR_NAMES } from "../../constants/color";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
-    const orderDetail = order.find((o) => o.orderId === orderId);
+    const orderDetail = orders.find((o) => o.orderId === orderId);
     const today = new Date().toISOString(); // 렌더링 시작 시점에 날짜 한 번만 계산
 
     type ModalState =
@@ -49,7 +49,7 @@ function OrderDetailPage() {
                                     <div className="text-sm">주문번호 {orderDetail.orderId}</div>
                                     <div className="text-xs">{formatDateTime(orderDetail.createdAt)}</div>
                                 </div>
-                                <div>{getOrderBadges(orderDetail.orderStatus)}</div>
+                                <div>{getOrderBadge(orderDetail.orderStatus)}</div>
                             </div>
                             <div className="flex items-center justify-center mb-4">
                                 <ShippingStep orderStatus={orderDetail.orderStatus} isOrderDetailPage={true}></ShippingStep>

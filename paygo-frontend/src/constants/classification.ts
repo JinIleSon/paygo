@@ -7,14 +7,14 @@ export const types: Classification[] = [
     { id: 'refund', label: '환불' },
 ];
 
-export const statement: Classification[] = [
+export const statements: Classification[] = [
     { id: 'all', label: '전체' },
     { id: 'complete', label: '완료' },
     { id: 'fail', label: '결제실패' },
     { id: 'processing', label: '처리중' },
 ];
 
-export const productClassification: Classification[] = [
+export const productClassifications: Classification[] = [
     { id: 'all', label: '전체' },
     { id: 'fashion', label: '패션' },
     { id: 'electronicDevices', label: '전자기기' },
@@ -23,7 +23,7 @@ export const productClassification: Classification[] = [
     { id: 'food', label: '식품' },
 ];
 
-export const orderClassification: Classification[] = [
+export const orderClassifications: Classification[] = [
     { id: 'all', label: '전체' },
     { id: 'paymentComplete', label: '결제완료' },
     { id: 'shipping', label: '배송중' },

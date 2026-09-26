@@ -1,4 +1,4 @@
-import type { IconName } from '../constants/icons';
+import type { IconName } from '../constants/icon';
 
 export type OrderStatus =
     'paymentComplete' | 'shipping' | 'delivered' | 'cancelled' | 'refunded' | 'paymentFailed'; // cancelled는 취소, refunded 취소 후 환불까지

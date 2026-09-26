@@ -7,8 +7,8 @@ import {
 } from '@tabler/icons-react';
 import Card from '../../components/common/card';
 import { NavLink } from 'react-router-dom';
-import { getHistoryBadge } from '../../constants/useBadges';
-import { getHistoryIcon } from '../../constants/useIcons';
+import { getHistoryBadge } from '../../lib/badgeUtils';
+import { getHistoryIcon } from '../../lib/iconUtils';
 import { userAccount } from '../../constants/account';
 import { userWallet } from '../../constants/wallet';
 import { notices } from '../../constants/notice';

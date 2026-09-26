@@ -5,7 +5,7 @@ import SelectCard from '../../components/common/selectCard';
 import Button from '../../components/common/button';
 import { useCartStore } from '../../stores/useCartStore';
 import { useToastStore } from '../../stores/useToastStore';
-import { iconMap } from '../../constants/icons';
+import { iconMap } from '../../constants/icon';
 import { useParams } from 'react-router-dom';
 import { products } from '../../constants/product';
 import { userWallet } from '../../constants/wallet';

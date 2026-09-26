@@ -6,8 +6,8 @@ import TextInput from '../../components/common/textInput';
 import { useState } from 'react';
 import Button from '../../components/common/button';
 import SelectCard from '../../components/common/selectCard';
-import { chargeMethods } from '../../constants/methods';
-import { getMethodIcon } from '../../constants/useIcons';
+import { chargeMethods } from '../../constants/method';
+import { getMethodIcon } from '../../lib/iconUtils';
 import { userWallet } from '../../constants/wallet';
 
 function WalletChargePage() {

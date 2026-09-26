@@ -9,7 +9,7 @@ export const getHistoryBadge = (statement: string) => {
         return <span className="bg-[#F5F6FF] text-[#6266F1] px-2 py-1 rounded-full text-xs">처리중</span>;
 };
 
-export const getOrderBadges = (orderStatus: OrderStatus) => {
+export const getOrderBadge = (orderStatus: OrderStatus) => {
     if (orderStatus === 'paymentComplete')
         return <span className="rounded-full bg-[#F5F6FF] text-[#6266F1] px-2 py-1 text-xs">결제완료</span>;
     if (orderStatus === 'shipping')

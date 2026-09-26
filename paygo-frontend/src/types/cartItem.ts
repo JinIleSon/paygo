@@ -1,4 +1,4 @@
-import type { IconName } from '../constants/icons';
+import type { IconName } from '../constants/icon';
 
 export interface CartItem {
     cartItemId: string; // 장바구니 고유 ID

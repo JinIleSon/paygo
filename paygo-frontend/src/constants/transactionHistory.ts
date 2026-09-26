@@ -1,6 +1,6 @@
 import type { TransactionHistory } from "../types/transactionHistory";
 
-export const transactionHistory : TransactionHistory[] = [
+export const transactionHistories : TransactionHistory[] = [
     {
         id: 0,
         userId: 'sonjinil',
