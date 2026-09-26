@@ -11,6 +11,7 @@ import { getHistoryBadge } from '../../constants/useBadges';
 import { getHistoryIcon } from '../../constants/useIcons';
 import { userAccount } from '../../constants/account';
 import { userWallet } from '../../constants/wallet';
+import { notices } from '../../constants/notice';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
@@ -40,13 +41,6 @@ function WalletHomePage() {
 
     // 비율에 따른 bar 그리기용
     const total = categories.reduce((sum, cat) => sum + cat.amount, 0);
-
-    // 공지사항
-    const notices = [
-        { title: '수수료 정책 변경 안내', date: '2026.06.29' },
-        { title: '앱 업데이트 v2.1.0', date: '2026.06.15' },
-        { title: '설 연휴 운영시간 안내', date: '2026.01.02' },
-    ];
 
     // 최근 거래내역
     const transHistory = [
@@ -244,10 +238,11 @@ function WalletHomePage() {
                                 key={index}
                                 className="py-3 border-b-2 border-[#E6E6E6] last:border-b-0"
                             >
+                                {/* 추후 공지사항 상세보기 모달창 추가 예정 */}
                                 <NavLink to="#">
                                     <div>{notice.title}</div>
                                     <div className="text-sm text-[gray] font-medium">
-                                        {notice.date}
+                                        {notice.createdAt}
                                     </div>
                                 </NavLink>
                             </div>
