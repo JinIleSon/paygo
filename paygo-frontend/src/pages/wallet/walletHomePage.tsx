@@ -147,12 +147,10 @@ function WalletHomePage() {
                         </Card>
                     </div>
                     <div>
-                        <div className="flex">
-                            <div className="text-xl text-gray-500 font-medium mb-4">최근 거래내역</div>
-                        </div>
-                        <Card className="mt-2">
+                        <Card>
+                            <div className="text-lg text-gray-500 mb-3 font-medium">최근 거래내역</div>
                             {transHistory.map((trans, index) => (
-                                <div key={index} className="grid grid-cols-[2.5rem_7.5rem_6.875rem_4.375rem] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[1.28125rem]">
+                                <div key={index} className="grid grid-cols-[2.5rem_7.5rem_6.875rem_4.375rem] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[1.358rem]">
                                     <div>
                                         {getHistoryIcon(trans.title)}
                                     </div>
