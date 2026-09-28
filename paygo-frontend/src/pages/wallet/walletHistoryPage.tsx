@@ -32,6 +32,10 @@ function WalletHistoryPage() {
             return '구매';
         else if (type === 'refund')
             return '환불';
+        else if (type === 'transferIn')
+            return '입금';
+        else if (type === 'transferOut')
+            return '출금';
         return '구매';
     };
 

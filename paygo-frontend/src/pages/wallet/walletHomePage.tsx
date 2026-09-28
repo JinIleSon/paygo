@@ -45,39 +45,39 @@ function WalletHomePage() {
     // 최근 거래내역
     const transHistory = [
         {
-            title: '지갑 충전',
-            date: '01.15 14:23',
-            change: 300000,
-            balance: 3842000,
+            title: '정하준님이 입금',
+            date: '09.26 09:12',
+            change: 30000,
+            balance: 3931000,
             statement: '완료',
         },
         {
-            title: '나이키 슈즈 구매',
-            date: '01.14 11:05',
+            title: '주문 취소 환불',
+            date: '09.25 13:40',
+            change: 45000,
+            balance: 3901000,
+            statement: '완료',
+        },
+        {
+            title: '김철수님에게 출금',
+            date: '09.24 18:40',
+            change: -50000,
+            balance: 3856000,
+            statement: '완료',
+        },
+        {
+            title: '나이키 에어맥스 구매',
+            date: '09.23 11:05',
             change: -120000,
-            balance: 3542000,
-            statement: '완료',
-        },
-        {
-            title: '무선 이어폰 구매',
-            date: '01.13 16:42',
-            change: -89000,
-            balance: 3662000,
+            balance: 3906000,
             statement: '결제실패',
         },
         {
-            title: '주문 취소',
-            date: '01.12 09:30',
-            change: 45000,
-            balance: 3751000,
+            title: '지갑 충전',
+            date: '09.22 14:23',
+            change: 300000,
+            balance: 3906000,
             statement: '완료',
-        },
-        {
-            title: '캠핑 도구 구매',
-            date: '01.11 20:15',
-            change: -211000,
-            balance: 3706000,
-            statement: '처리중',
         },
     ];
 
@@ -155,14 +155,14 @@ function WalletHomePage() {
                                         {getHistoryIcon(trans.title)}
                                     </div>
                                     <div>
-                                        <div>{trans.title}</div>
+                                        <div className="truncate">{trans.title}</div>
                                         <div className="text-sm text-[gray] font-medium">{trans.date}</div>
                                     </div>
                                     <div className="text-right">
                                         <div className={trans.change > 0 ? `text-[#22C55E] font-medium` : `text-red-400 font-medium`}>
                                             {trans.change > 0 ? '+' : ''}{trans.change.toLocaleString()}원
                                         </div>
-                                        <div className="text-sm text-[gray] font-medium">잔액 {trans.balance.toLocaleString()}원</div>
+                                        <div className="text-sm text-[gray] font-medium">{trans.statement !== '결제실패' ? '잔액 ' + trans.balance.toLocaleString() + '원': '잔액 변동 없음'}</div>
                                     </div>
                                     <div className="flex justify-center">
                                         {getHistoryBadge(trans.statement)}
