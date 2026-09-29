@@ -168,7 +168,7 @@ function WalletHistoryPage() {
                                 <div className={graphStyle}>
                                     {getKoreanStatement(tran.statement) !== '결제실패'
                                         ? tran.balance.toLocaleString() + '원'
-                                        : '-'}
+                                        : '변동 없음'}
                                 </div>
                                 <div className={graphStyle}>{getHistoryBadge(getKoreanStatement(tran.statement))}</div>
                             </Fragment>
