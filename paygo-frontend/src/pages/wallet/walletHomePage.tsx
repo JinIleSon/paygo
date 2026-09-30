@@ -12,6 +12,8 @@ import { getHistoryIcon } from '../../lib/iconUtils';
 import { userAccount } from '../../constants/account';
 import { userWallet } from '../../constants/wallet';
 import { notices } from '../../constants/notice';
+import { transactionHistories } from '../../constants/transactionHistory';
+import { getKoreanStatement, getKoreanType } from '../../lib/koreanUtils';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
@@ -41,45 +43,6 @@ function WalletHomePage() {
 
     // 비율에 따른 bar 그리기용
     const total = categories.reduce((sum, cat) => sum + cat.amount, 0);
-
-    // 최근 거래내역
-    const transHistory = [
-        {
-            title: '정하준님이 입금',
-            date: '09.26 09:12',
-            change: 30000,
-            balance: 3931000,
-            statement: '완료',
-        },
-        {
-            title: '주문 취소 환불',
-            date: '09.25 13:40',
-            change: 45000,
-            balance: 3901000,
-            statement: '완료',
-        },
-        {
-            title: '김철수님에게 출금',
-            date: '09.24 18:40',
-            change: -50000,
-            balance: 3856000,
-            statement: '완료',
-        },
-        {
-            title: '나이키 에어맥스 구매',
-            date: '09.23 11:05',
-            change: -120000,
-            balance: 3906000,
-            statement: '결제실패',
-        },
-        {
-            title: '지갑 충전',
-            date: '09.22 14:23',
-            change: 300000,
-            balance: 3906000,
-            statement: '완료',
-        },
-    ];
 
     return (
         // MainLayout에서 Outlet으로 불러온 레이아웃 상태
@@ -149,23 +112,23 @@ function WalletHomePage() {
                     <div>
                         <Card>
                             <div className="text-lg text-gray-500 mb-3 font-medium">최근 거래내역</div>
-                            {transHistory.map((trans, index) => (
+                            {transactionHistories.slice(0, 5).map((tran, index) => (
                                 <div key={index} className="grid grid-cols-[2.5rem_7.5rem_6.875rem_4.375rem] gap-4 justify-center items-center border-b-2 border-[#E6E6E6] last:border-b-0 py-[1.358rem]">
                                     <div>
-                                        {getHistoryIcon(trans.title)}
+                                        {getHistoryIcon(getKoreanType(tran.type))}
                                     </div>
                                     <div>
-                                        <div className="truncate">{trans.title}</div>
-                                        <div className="text-sm text-[gray] font-medium">{trans.date}</div>
+                                        <div className="truncate">{tran.content}</div>
+                                        <div className="text-sm text-[gray] font-medium truncate">{getKoreanType(tran.type)}·{tran.createdAt}</div>
                                     </div>
                                     <div className="text-right">
-                                        <div className={trans.change > 0 ? `text-[#22C55E] font-medium` : `text-red-400 font-medium`}>
-                                            {trans.change > 0 ? '+' : ''}{trans.change.toLocaleString()}원
+                                        <div className={tran.amount > 0 ? `text-[#22C55E] font-medium` : `text-red-400 font-medium`}>
+                                            {tran.amount > 0 ? '+' : ''}{tran.amount.toLocaleString()}원
                                         </div>
-                                        <div className="text-sm text-[gray] font-medium">{trans.statement !== '결제실패' ? '잔액 ' + trans.balance.toLocaleString() + '원': '잔액 변동 없음'}</div>
+                                        <div className="text-sm text-[gray] font-medium">{getKoreanStatement(tran.statement) !== '결제실패' ? '잔액 ' + tran.balance.toLocaleString() + '원': '잔액 변동 없음'}</div>
                                     </div>
                                     <div className="flex justify-center">
-                                        {getHistoryBadge(trans.statement)}
+                                        {getHistoryBadge(getKoreanStatement(tran.statement))}
                                     </div>
                                 </div>
                             ))}
