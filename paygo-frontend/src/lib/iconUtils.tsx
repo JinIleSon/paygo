@@ -24,7 +24,7 @@ export const getMethodIcon = (id: string) => {
             <IconDeviceMobile size={20} className="text-[#E0B36B]" />
         </div>
     );
-};
+}
 
 // 텍스트에 따른 아이콘 종류
 export const getHistoryIcon = (title: string) => {
@@ -53,4 +53,4 @@ export const getHistoryIcon = (title: string) => {
             <IconShoppingBag size={20} className="text-[#6266F1]" />
         </div>
     ); // 구매 등 기본 아이콘
-};
+}

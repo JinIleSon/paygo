@@ -7,7 +7,7 @@ import PeriodPicker from '../../components/common/periodPicker';
 import { type DateRange } from 'react-day-picker';
 import { statements, types } from '../../constants/classification';
 import { getHistoryBadge } from '../../lib/badgeUtils';
-import { getHistoryIcon } from '../../lib/iconUtils';
+import { getHistoryIcon, getKoreanStatement, getKoreanType } from '../../lib/iconUtils';
 import { transactionHistories } from '../../constants/transactionHistory';
 
 function WalletHistoryPage() {
@@ -24,30 +24,6 @@ function WalletHistoryPage() {
         { title: '총 환불', content: 45000, summation: 1 },
         { title: '실패 건수', content: 2, summation: '동시성 처리 실패 포함' },
     ];
-
-    function getKoreanType(type: string) {
-        if (type === 'charge')
-            return '충전';
-        else if (type === 'buy')
-            return '구매';
-        else if (type === 'refund')
-            return '환불';
-        else if (type === 'transferIn')
-            return '입금';
-        else if (type === 'transferOut')
-            return '출금';
-        return '구매';
-    };
-
-    function getKoreanStatement(statement: string) {
-        if (statement === 'complete')
-            return '완료';
-        else if (statement === 'fail')
-            return '결제실패';
-        else if (statement === 'processing')
-            return '처리중';
-        return '완료';
-    }
 
     const filteredTransaction = transactionHistories.filter((tran) => {
         const tranDate = new Date(tran.createdAt);
