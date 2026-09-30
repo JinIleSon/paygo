@@ -7,8 +7,9 @@ import PeriodPicker from '../../components/common/periodPicker';
 import { type DateRange } from 'react-day-picker';
 import { statements, types } from '../../constants/classification';
 import { getHistoryBadge } from '../../lib/badgeUtils';
-import { getHistoryIcon, getKoreanStatement, getKoreanType } from '../../lib/iconUtils';
+import { getHistoryIcon } from '../../lib/iconUtils';
 import { transactionHistories } from '../../constants/transactionHistory';
+import { getKoreanStatement, getKoreanType } from '../../lib/koreanUtils';
 
 function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('all');
