@@ -6,7 +6,7 @@ import {
     IconArrowUp,
 } from '@tabler/icons-react';
 import Card from '../../components/common/card';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { getHistoryBadge } from '../../lib/badgeUtils';
 import { getHistoryIcon } from '../../lib/iconUtils';
 import { userAccount } from '../../constants/account';
@@ -17,6 +17,7 @@ import { getKoreanStatement, getKoreanType } from '../../lib/koreanUtils';
 import { formatRecentDate } from '../../lib/dateUtils';
 
 function WalletHomePage() {
+    const navigate = useNavigate();
     // TODO: DB 데이터 연동 필요
     const balance = userWallet.balance;
     const pg = userAccount.accountNumber;
@@ -59,13 +60,20 @@ function WalletHomePage() {
                             <div className="flex items-center gap-3">
                                 <div className="text-[#E2E3FF]">{pg}</div>
                                 <div className="flex ml-auto gap-3">
-                                    <Button variant="secondary" className="p-3">
+                                    <Button 
+                                        onClick={() => navigate('/wallet/charge')}
+                                        variant="secondary" 
+                                        className="p-3"
+                                    >
                                         <div className="flex items-center gap-2">
                                             <IconPlus size={16} />
                                             <div>충전</div>
                                         </div>
                                     </Button>
-                                    <Button variant="secondary" className="p-3">
+                                    <Button 
+                                        variant="secondary" 
+                                        className="p-3"
+                                    >
                                         <div className="flex items-center gap-2">
                                             <IconArrowRight size={16} />
                                             <div>송금</div>
