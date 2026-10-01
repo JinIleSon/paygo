@@ -35,3 +35,13 @@ export function diffDays(isoString1: string, isoString2: string): number {
     
     return diffDays;
 }
+
+// 지갑 홈 페이지 내 최근 거래내역 createdAt 조정 - 1. 지금 기점으로 현재 년도일 때 년도 없애기 2. 이전 년도면 년도까지 표시 후 시간은 없애기
+export function formatRecentDate(isoString: string): string {
+    const recentYear = String(new Date().getFullYear());
+    const isoStringYear = String(new Date(isoString).getFullYear());
+
+    return recentYear.startsWith(isoStringYear)
+        ? formatDateTime(isoString).slice(5) // 년도 부분 이후부터 가져옴
+        : formatYearMonthDay(isoString); // 년도.월.일
+}

@@ -14,6 +14,7 @@ import { userWallet } from '../../constants/wallet';
 import { notices } from '../../constants/notice';
 import { transactionHistories } from '../../constants/transactionHistory';
 import { getKoreanStatement, getKoreanType } from '../../lib/koreanUtils';
+import { formatRecentDate } from '../../lib/dateUtils';
 
 function WalletHomePage() {
     // TODO: DB 데이터 연동 필요
@@ -119,7 +120,7 @@ function WalletHomePage() {
                                     </div>
                                     <div>
                                         <div className="truncate">{tran.content}</div>
-                                        <div className="text-sm text-[gray] font-medium truncate">{getKoreanType(tran.type)}·{tran.createdAt}</div>
+                                        <div className="text-sm text-[gray] font-medium">{getKoreanType(tran.type)}·{formatRecentDate(tran.createdAt)}</div>
                                     </div>
                                     <div className="text-right">
                                         <div className={tran.amount > 0 ? `text-[#22C55E] font-medium` : `text-red-400 font-medium`}>
