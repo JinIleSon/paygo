@@ -119,8 +119,13 @@ function WalletHomePage() {
                                         {getHistoryIcon(getKoreanType(tran.type))}
                                     </div>
                                     <div>
-                                        <div className="truncate">{tran.content}</div>
-                                        <div className="text-sm text-[gray] font-medium">{getKoreanType(tran.type)}·{formatRecentDate(tran.createdAt)}</div>
+                                        <div className="truncate">
+                                            {/* 계좌이체로 충전하는 경우 너무 길어 계좌번호가 잘리는 것 방지 */}
+                                            {tran.type.includes("charge") && tran.paymentMethod.includes("계좌이체") ? "내 계좌" : tran.content}
+                                        </div>
+                                        <div className="text-sm text-[gray] font-medium">
+                                            {getKoreanType(tran.type)}·{formatRecentDate(tran.createdAt)}
+                                        </div>
                                     </div>
                                     <div className="text-right">
                                         <div className={tran.amount > 0 ? `text-[#22C55E] font-medium` : `text-red-400 font-medium`}>
