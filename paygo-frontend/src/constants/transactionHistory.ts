@@ -2,7 +2,7 @@ import type { TransactionHistory } from "../types/transactionHistory";
 
 export const transactionHistories : TransactionHistory[] = [
     {
-        id: 0,
+        id: 1,
         userId: 'sonjinil',
         content: '농협 3521234123401',
         createdAt: '2026.09.14 14:23',
@@ -13,7 +13,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'complete',
     },
     {
-        id: 1,
+        id: 2,
         userId: 'sonjinil',
         content: '나이키 에어맥스',
         createdAt: '2026.09.13 11:05',
@@ -24,7 +24,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'complete',
     },
     {
-        id: 2,
+        id: 3,
         userId: 'sonjinil',
         content: '정하준',
         createdAt: '2026.09.09 00:20',
@@ -35,7 +35,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'complete',
     },
     {
-        id: 3,
+        id: 4,
         userId: 'sonjinil',
         content: '유니클로 플리스 티셔츠',
         createdAt: '2026.09.12 14:29',
@@ -46,7 +46,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'complete',
     },
     {
-        id: 4,
+        id: 5,
         userId: 'sonjinil',
         content: '최지안',
         createdAt: '2025.09.08 11:21',
@@ -57,7 +57,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'complete',
     },
     {
-        id: 5,
+        id: 6,
         userId: 'sonjinil',
         content: '농협 3521234123402',
         createdAt: '2025.09.10 00:20',
@@ -68,7 +68,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'complete',
     },
     {
-        id: 6,
+        id: 7,
         userId: 'sonjinil',
         content: '소니 WH-1000 헤드폰',
         createdAt: '2025.09.12 09:30',
@@ -79,7 +79,7 @@ export const transactionHistories : TransactionHistory[] = [
         statement: 'fail',
     },
     {
-        id: 7,
+        id: 8,
         userId: 'sonjinil',
         content: '코베아 캠핑 텐트',
         createdAt: '2025.09.11 20:15',

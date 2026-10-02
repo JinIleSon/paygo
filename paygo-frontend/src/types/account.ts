@@ -1,5 +1,5 @@
 export interface Account {
-    id: string; // PK
+    id: number; // PK
     userId: string; // FK -> 사용자 ID
     bankName: string; // 은행 이름
     accountNumber: string; // 계좌번호

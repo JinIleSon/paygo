@@ -1,5 +1,6 @@
 export interface User {
-    userId: string;          // PK이자 사용자 ID
+    id: number; // PK
+    userId: string;          // 사용자 아이디
     name: string;
     email: string;
     password: string;

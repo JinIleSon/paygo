@@ -2,7 +2,7 @@ import type { Product, ProductDetail } from "../types/product";
 
 export const popularItems : Product[] = [
     {
-        id: 0,
+        id: 1,
         itemClassification: '패션/신발',
         name: '나이키 에어맥스',
         price: 120000,
@@ -12,7 +12,7 @@ export const popularItems : Product[] = [
         iconName: "IconShoe",
     },
     {
-        id: 1,
+        id: 2,
         itemClassification: '전자기기',
         name: '소니 WH-1000 헤드폰',
         price: 389000,
@@ -22,7 +22,7 @@ export const popularItems : Product[] = [
         iconName: "IconHeadphones",
     },
     {
-        id: 2,
+        id: 3,
         itemClassification: '스포츠/레저',
         name: '코베아 캠핑 텐트',
         price: 211000,
@@ -32,7 +32,7 @@ export const popularItems : Product[] = [
         iconName: "IconTent",
     },
     {
-        id: 3,
+        id: 4,
         itemClassification: '패션/의류',
         name: '유니클로 플리 티셔츠',
         price: 59900,
@@ -45,7 +45,7 @@ export const popularItems : Product[] = [
 
 export const newItems : Product[] = [
     {
-        id: 4,
+        id: 5,
         itemClassification: '전자기기',
         name: '맥북 프로 14인치 모니터',
         price: 2490000,
@@ -55,7 +55,7 @@ export const newItems : Product[] = [
         iconName: "IconDeviceLaptop",
     },
     {
-        id: 5,
+        id: 6,
         itemClassification: '스포츠',
         name: '룰루레몬 요가 매트',
         price: 89000,
@@ -65,7 +65,7 @@ export const newItems : Product[] = [
         iconName: "IconYoga",
     },
     {
-        id: 6,
+        id: 7,
         itemClassification: '생활용품',
         name: '발뮤다 커피 머그잔',
         price: 139000,
@@ -75,7 +75,7 @@ export const newItems : Product[] = [
         iconName: "IconCoffee",
     },
     {
-        id: 7,
+        id: 8,
         itemClassification: '패션/가방',
         name: '어반어스 데이트 백팩',
         price: 79000,
@@ -88,7 +88,7 @@ export const newItems : Product[] = [
 
 export const products: ProductDetail[] = [
     {
-        id: 0,
+        id: 1,
         itemBg: 'bg-[#F5F6FF]',
         itemText: 'text-[#6266F1]',
         iconName: 'IconShoe',
@@ -120,7 +120,7 @@ export const products: ProductDetail[] = [
         size: [240, 245, 250, 260, 265, 270, 275],
     },
     {
-        id: 1,
+        id: 2,
         itemBg: 'bg-[#E8FBF2]',
         itemText: 'text-[#22C55E]',
         iconName: 'IconHeadphones',
@@ -150,7 +150,7 @@ export const products: ProductDetail[] = [
         size: [],
     },
     {
-        id: 2,
+        id: 3,
         itemBg: 'bg-[#FEF9EB]',
         itemText: 'text-[#E0B36B]',
         iconName: 'IconTent',
@@ -180,7 +180,7 @@ export const products: ProductDetail[] = [
         size: [],
     },
     {
-        id: 3,
+        id: 4,
         itemBg: 'bg-[#FCF2F8]',
         itemText: 'text-[#D862A1]',
         iconName: 'IconShirt',
@@ -211,7 +211,7 @@ export const products: ProductDetail[] = [
         size: [90, 95, 100, 105, 110],
     },
     {
-        id: 4,
+        id: 5,
         itemBg: 'bg-[#EEF6FF]',
         itemText: 'text-[#4D84D8]',
         iconName: 'IconDeviceLaptop',
@@ -241,7 +241,7 @@ export const products: ProductDetail[] = [
         size: [],
     },
     {
-        id: 5,
+        id: 6,
         itemBg: 'bg-[#F0FEFB]',
         itemText: 'text-[#22B1A0]',
         iconName: 'IconYoga',
@@ -271,7 +271,7 @@ export const products: ProductDetail[] = [
         size: [],
     },
     {
-        id: 6,
+        id: 7,
         itemBg: 'bg-[#FEF2F2]',
         itemText: 'text-[#EF4444]',
         iconName: 'IconCoffee',
@@ -301,7 +301,7 @@ export const products: ProductDetail[] = [
         size: [],
     },
     {
-        id: 7,
+        id: 8,
         itemBg: 'bg-[#F9FBFC]',
         itemText: 'text-[#7B808C]',
         iconName: 'IconBackpack',
