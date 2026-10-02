@@ -1,6 +1,6 @@
 export interface User {
     id: number; // PK
-    userId: string;          // 사용자 아이디
+    loginId: string;          // 사용자 실제 아이디
     name: string;
     email: string;
     password: string;
