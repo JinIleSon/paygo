@@ -9,7 +9,6 @@ import Card from '../../components/common/card';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { getHistoryBadge } from '../../lib/badgeUtils';
 import { getHistoryIcon } from '../../lib/iconUtils';
-import { userAccount } from '../../constants/account';
 import { userWallet } from '../../constants/wallet';
 import { notices } from '../../constants/notice';
 import { transactionHistories } from '../../constants/transactionHistory';
@@ -20,7 +19,7 @@ function WalletHomePage() {
     const navigate = useNavigate();
     // TODO: DB 데이터 연동 필요
     const balance = userWallet.balance;
-    const pg = userAccount.accountNumber;
+    const pg = userWallet.walletNumber;
 
     // 빠른 송금
     const contacts = [
