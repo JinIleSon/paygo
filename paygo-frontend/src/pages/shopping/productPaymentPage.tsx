@@ -156,22 +156,22 @@ function ProductPaymentPage() {
                                             value={selectedCoupon?.id ?? ''}
                                             onChange={(e) => {
                                                 const coupon = usableCoupon.find(
-                                                    (coupon) => coupon.id === e.target.value
+                                                    (coupon) => coupon.id === Number(e.target.value)
                                                 );
                                                 setSelectedCoupon(coupon);
                                             }}
                                         >
+                                            
+                                            <option value="">
+                                                쿠폰 선택 안 함
+                                            </option>
                                             {usableCoupon.length > 0 &&
                                                 usableCoupon.map((coupon) => (
                                                     <option key={coupon.id} value={coupon.id}>
                                                         {coupon.name}
                                                     </option> // TODO: 사용 시 status - 'used'로 변경
-                                                ))}
-                                            {usableCoupon.length === 0 && (
-                                                <option value="#">
-                                                    선택가능한 쿠폰이 없습니다
-                                                </option>
-                                            )}
+                                                ))
+                                            }
                                         </SelectBox>
                                     </div>
                                 </div>
@@ -210,7 +210,11 @@ function ProductPaymentPage() {
                                                 0,
                                                 selectedItemPrice -
                                                     getDiscount(selectedItemPrice, selectedCoupon)
-                                            ).toLocaleString() + '원'}
+                                            ).toLocaleString()
+                                        }
+                                        {!selectedCoupon &&
+                                            Math.max(0, selectedItemPrice).toLocaleString()
+                                        }원
                                     </div>
                                 </div>
                             </div>
