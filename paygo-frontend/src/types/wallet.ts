@@ -1,6 +1,6 @@
 export interface Wallet {
     id: number; // PK
-    userId: string; // 사용자 아이디
+    userId: number; // User 테이블의 id(식별자)
     walletNumber: string; // 지갑계좌번호
     balance: number; // 잔액
     minCharge: number; // 최소 충전금액

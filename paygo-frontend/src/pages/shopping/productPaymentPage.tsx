@@ -22,7 +22,7 @@ function ProductPaymentPage() {
     const [selectedPayment, setSelectedPayment] = useState('');
 
     const usableCoupon = coupons.filter(
-        (coupon) => coupon.userId === user.userId && coupon.status === 'active'
+        (coupon) => coupon.userId === user.id && coupon.status === 'active'
     );
 
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | undefined>(usableCoupon[0]);

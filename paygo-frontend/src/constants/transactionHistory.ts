@@ -3,7 +3,7 @@ import type { TransactionHistory } from "../types/transactionHistory";
 export const transactionHistories : TransactionHistory[] = [
     {
         id: 1,
-        userId: 'sonjinil',
+        userId: 1,
         content: '농협 3521234123401',
         createdAt: '2026.09.14 14:23',
         type: 'charge',
@@ -14,7 +14,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 2,
-        userId: 'sonjinil',
+        userId: 1,
         content: '나이키 에어맥스',
         createdAt: '2026.09.13 11:05',
         type: 'buy',
@@ -25,7 +25,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 3,
-        userId: 'sonjinil',
+        userId: 1,
         content: '정하준',
         createdAt: '2026.09.09 00:20',
         type: 'transferIn',
@@ -36,7 +36,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 4,
-        userId: 'sonjinil',
+        userId: 1,
         content: '유니클로 플리스 티셔츠',
         createdAt: '2026.09.12 14:29',
         type: 'refund',
@@ -47,7 +47,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 5,
-        userId: 'sonjinil',
+        userId: 1,
         content: '최지안',
         createdAt: '2025.09.08 11:21',
         type: 'transferOut',
@@ -58,7 +58,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 6,
-        userId: 'sonjinil',
+        userId: 1,
         content: '농협 3521234123402',
         createdAt: '2025.09.10 00:20',
         type: 'charge',
@@ -69,7 +69,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 7,
-        userId: 'sonjinil',
+        userId: 1,
         content: '소니 WH-1000 헤드폰',
         createdAt: '2025.09.12 09:30',
         type: 'buy',
@@ -80,7 +80,7 @@ export const transactionHistories : TransactionHistory[] = [
     },
     {
         id: 8,
-        userId: 'sonjinil',
+        userId: 1,
         content: '코베아 캠핑 텐트',
         createdAt: '2025.09.11 20:15',
         type: 'buy',

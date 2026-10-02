@@ -1,6 +1,6 @@
 export interface Coupon {
     id: number;
-    userId: string; // 쿠폰 소유자
+    userId: number; // 쿠폰 소유자(User의 id)
     name: string; // 쿠폰명
     discountType: 'percent' | 'fixed'; // 할인이 정률인지 정액인지
     discountValue: number;

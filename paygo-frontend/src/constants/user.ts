@@ -2,7 +2,7 @@ import type { User } from "../types/user";
 
 export const user : User = {
     id: 1,
-    userId: 'sonjinil',
+    loginId: 'sonjinil',
     name: '손진일',
     email: 'sonjinil@naver.com',
     password: 'abc123',
