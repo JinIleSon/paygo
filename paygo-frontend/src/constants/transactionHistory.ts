@@ -33,7 +33,7 @@ export const transactionHistories : TransactionHistory[] = [
         amount: 50000,
         balance: 3867000,
         statement: 'complete',
-        counterpartyId: 2 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
+        counterpartyId: 5 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
     },
     {
         id: 4,
