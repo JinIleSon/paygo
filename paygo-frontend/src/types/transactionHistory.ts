@@ -10,4 +10,5 @@ export interface TransactionHistory {
     balance: number; // 이 거래 완료 직후의 잔액
     statement: 'complete' | 'fail' | 'processing'; // 상태
     createdAt: string; // 거래시각
+    counterpartyId?: number; // 거래 상대방 사용자 User의 id(식별자). type이 transferIn 또는 transferOut일 때
 }
