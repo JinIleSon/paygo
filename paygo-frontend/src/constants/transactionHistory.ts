@@ -91,4 +91,28 @@ export const transactionHistories : TransactionHistory[] = [
         balance: 3706000,
         statement: 'processing',
     },
+    {
+        id: 9,
+        userId: 1,
+        content: '정지웅',
+        createdAt: '2025.09.11 13:10',
+        type: 'transferOut',
+        paymentMethod: 'Paygo 잔액',
+        amount: -20000,
+        balance: 3917000,
+        statement: 'complete',
+        counterpartyId: 3 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
+    },
+    {
+        id: 10,
+        userId: 1,
+        content: '김현태',
+        createdAt: '2025.09.11 09:40',
+        type: 'transferOut',
+        paymentMethod: 'Paygo 잔액',
+        amount: -15000,
+        balance: 3937000,
+        statement: 'complete',
+        counterpartyId: 4 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
+    },
 ];
