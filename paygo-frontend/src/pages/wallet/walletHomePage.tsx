@@ -14,19 +14,13 @@ import { notices } from '../../constants/notice';
 import { transactionHistories } from '../../constants/transactionHistory';
 import { getKoreanStatement, getKoreanType } from '../../lib/koreanUtils';
 import { formatRecentDate } from '../../lib/dateUtils';
+import { quickTransferOuts } from '../../constants/quickTransferOut';
 
 function WalletHomePage() {
     const navigate = useNavigate();
     // TODO: DB 데이터 연동 필요
     const balance = userWallet.balance;
     const pg = userWallet.walletNumber;
-
-    // 빠른 송금
-    const contacts = [
-        { name: '김철수', bank: 'Paygo', account: '123-1234-1234-1234' },
-        { name: '홍길동', bank: 'KB국민', account: '110-1234-1234-1234' },
-        { name: '박민수', bank: '신한', account: '111-1234-1234-1234' },
-    ];
 
     const avatarColors = [
         { bg: 'bg-[#E4E4FF]', text: 'text-[#6266F1]' }, // 인디고
@@ -151,19 +145,19 @@ function WalletHomePage() {
                 <div className="min-w-1/2">
                     <Card>
                         <div className="text-lg text-gray-500 mb-3 font-medium">빠른 송금</div>
-                        {contacts.map((contact, index) => (
+                        {quickTransferOuts.map((out, index) => (
                             <div key={index} className="mt-auto py-4">
                                 <div className="flex items-center gap-4">
                                     <div
                                         className={`${avatarColors[index % 3].bg} ${avatarColors[index % 3].text} flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium`}
                                     >
-                                        {contact.name.slice(-2)}
+                                        {out.name.slice(-2)}
                                     </div>
                                     <div>
-                                        <div className="flex font-medium">{contact.name}</div>
+                                        <div className="flex font-medium">{out.name}</div>
                                         <div className="text-[gray] text-sm">
-                                            <span>{contact.bank}</span>
-                                            <span className="ml-2">{contact.account}</span>
+                                            <span>Paygo</span>
+                                            <span className="ml-2">{out.walletNumber}</span>
                                         </div>
                                     </div>
                                     <div className="ml-auto">
