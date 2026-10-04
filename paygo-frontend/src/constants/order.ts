@@ -3,12 +3,17 @@ import type { OrderDetail } from '../types/order';
 // Order, OrderDetail 타입 모두 받음
 export const orders: OrderDetail[] = [
     {
-        orderId: 'PG-20260815-0042',
+        id: 1,
+        userId: 1,
+        couponId: 2,
+        orderNumber: 'PG-20260815-0042',
         createdAt: '2026-08-15T07:58:23',
         orderStatus: 'paymentComplete',
         items: [
             {
-                productId: 1,
+                id: 1,
+                orderId: 1,
+                productId: 2,
                 productName: '소니 WH-1000 헤드폰',
                 color: '#333333',
                 price: 389000,
@@ -18,7 +23,9 @@ export const orders: OrderDetail[] = [
                 itemText: 'text-[#22C55E]',
             },
             {
-                productId: 5,
+                id: 2,
+                orderId: 1,
+                productId: 6,
                 productName: '룰루레몬 요가 매트',
                 color: '#22B1A0',
                 price: 89000,
@@ -28,7 +35,9 @@ export const orders: OrderDetail[] = [
                 itemText: 'text-[#22B1A0]',
             },
             {
-                productId: 0,
+                id: 3,
+                orderId: 1,
+                productId: 1,
                 productName: '나이키 에어맥스',
                 size: 270,
                 color: '#22C55E',
@@ -48,15 +57,20 @@ export const orders: OrderDetail[] = [
         recipientPhone: '010-7734-1298',
         carrier: 'CJ대한통운',
         trackingNumber: '987654321098',
-        transactionId: 'TXN-20260815-0042',
+        transactionNumber: 'TXN-20260815-0042',
     },
     {
-        orderId: 'PG-20260909-0047',
+        id: 2,
+        userId: 1,
+        couponId: 2,
+        orderNumber: 'PG-20260909-0047',
         createdAt: '2026-09-09T07:58:23',
         orderStatus: 'shipping',
         items: [
             {
-                productId: 1,
+                id: 4,
+                orderId: 2,
+                productId: 2,
                 productName: '소니 WH-1000 헤드폰',
                 color: '#333333',
                 price: 389000,
@@ -74,15 +88,20 @@ export const orders: OrderDetail[] = [
         recipientPhone: '010-3391-6720',
         carrier: '한진택배',
         trackingNumber: '456123789045',
-        transactionId: 'TXN-20260909-0047',
+        transactionNumber: 'TXN-20260909-0047',
     },
     {
-        orderId: 'PG-20260815-0046',
+        id: 3,
+        userId: 1,
+        couponId: 2,
+        orderNumber: 'PG-20260815-0046',
         createdAt: '2026-08-21T08:18:35',
         orderStatus: 'delivered',
         items: [
             {
-                productId: 4,
+                id: 5,
+                orderId: 3,
+                productId: 5,
                 productName: '맥북 프로 14인치 모니터',
                 color: '#7B808C',
                 price: 2490000,
@@ -100,15 +119,20 @@ export const orders: OrderDetail[] = [
         recipientPhone: '010-5528-3467',
         carrier: '롯데택배',
         trackingNumber: '778899001122',
-        transactionId: 'TXN-20260821-0046',
+        transactionNumber: 'TXN-20260821-0046',
     },
     {
-        orderId: 'PG-20260815-0045',
+        id: 4,
+        userId: 1,
+        couponId: 2,
+        orderNumber: 'PG-20260815-0045',
         createdAt: '2026-08-15T08:18:35',
         orderStatus: 'cancelled',
         items: [
             {
-                productId: 4,
+                id: 6,
+                orderId: 4,
+                productId: 5,
                 productName: '맥북 프로 14인치 모니터',
                 color: '#7B808C',
                 price: 2490000,
@@ -125,15 +149,20 @@ export const orders: OrderDetail[] = [
         recipientAddress: '부산시 해운대구 센텀중앙로 78, 센텀타워 909호',
         recipientPhone: '010-2247-9081',
         // 취소된 주문이라 carrier, trackingNumber 없음
-        transactionId: 'TXN-20260815-0045',
+        transactionNumber: 'TXN-20260815-0045',
     },
     {
-        orderId: 'PG-20260815-0044',
+        id: 5,
+        userId: 1,
+        couponId: 4,
+        orderNumber: 'PG-20260815-0044',
         createdAt: '2026-08-15T08:18:35',
         orderStatus: 'refunded',
         items: [
             {
-                productId: 3,
+                id: 7,
+                orderId: 5,
+                productId: 4,
                 productName: '유니클로 플리스 티셔츠',
                 size: 105,
                 color: '#D862A1',
@@ -153,15 +182,20 @@ export const orders: OrderDetail[] = [
         recipientPhone: '010-6614-8853',
         carrier: 'CJ대한통운',
         trackingNumber: '334455667788',
-        transactionId: 'TXN-20260815-0044',
+        transactionNumber: 'TXN-20260815-0044',
     },
     {
-        orderId: 'PG-20260815-0043',
+        id: 6,
+        userId: 1,
+        couponId: 2,
+        orderNumber: 'PG-20260815-0043',
         createdAt: '2026-08-15T08:13:20',
         orderStatus: 'paymentFailed',
         items: [
             {
-                productId: 2,
+                id: 8,
+                orderId: 6,
+                productId: 3,
                 productName: '코베아 캠핑 텐트',
                 color: '#E0B36B',
                 price: 211000,
@@ -171,7 +205,9 @@ export const orders: OrderDetail[] = [
                 itemText: 'text-[#E0B36B]',
             },
             {
-                productId: 7,
+                id: 9,
+                orderId: 6,
+                productId: 8,
                 productName: '어반어스 데이트 백팩',
                 color: '#333333',
                 price: 79000,
@@ -189,6 +225,6 @@ export const orders: OrderDetail[] = [
         recipient: '박서아',
         recipientAddress: '광주시 서구 상무중앙로 88, 상무캐슬 1203호',
         recipientPhone: '010-9903-2145',
-        // 결제 실패로 배송 자체가 진행되지 않음. 결제도 없음 - carrier, trackingNumber, transactionId 없음
+        // 결제 실패로 배송 자체가 진행되지 않음. 결제도 없음 - carrier, trackingNumber, transactionNumber 없음
     },
 ];

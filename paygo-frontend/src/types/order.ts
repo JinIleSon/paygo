@@ -12,8 +12,11 @@ export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
 };
 
 // 장바구니 CartItem과 생명주기가 달라 types로 정의
+// orders 테이블과 1:N 관계이므로 order_items 테이블 생성(order_id로 연결)
 export interface OrderItem {
-    productId: number; // 상품 고유 ID
+    id: number; // PK
+    orderId: number; // FK, orders 테이블의 id(식별자)
+    productId: number; // FK, products 테이블의 id(식별자)
     productName: string;
     size?: number;
     color: string;
@@ -25,7 +28,10 @@ export interface OrderItem {
 }
 
 export interface Order {
-    orderId: string; // 주문번호
+    id: number; // PK
+    userId: number; // FK, users 테이블의 id(식별자)
+    couponId?: number; // FK, coupons 테이블의 id(식별자) - 결제(사용) 시 used, 취소 시 active로 변경
+    orderNumber: string; // 사용자에게 보이는 주문번호
     createdAt: string; // 주문시간
     orderStatus: OrderStatus; // 주문상태
     items: OrderItem[]; // 주문한 item 리스트
@@ -45,6 +51,6 @@ export interface OrderDetail extends Order {
     carrier?: string; // 택배사
     trackingNumber?: string; // 운송장 번호 - 앞이 0이 오는 경우가 있어 string
 
-    // paymentFailed일 때 transactionId가 없음
-    transactionId?: string; // 거래 ID
+    // paymentFailed일 때 transactionNumber가 없음
+    transactionNumber?: string; // 사용자에게 보이는 거래 ID
 }
