@@ -52,5 +52,5 @@ export interface OrderDetail extends Order {
     trackingNumber?: string; // 운송장 번호 - 앞이 0이 오는 경우가 있어 string
 
     // paymentFailed일 때 transactionNumber가 없음
-    transactionNumber?: string; // 사용자에게 보이는 거래 ID
+    transactionNumber?: string; // 사용자에게 보이는 거래번호
 }

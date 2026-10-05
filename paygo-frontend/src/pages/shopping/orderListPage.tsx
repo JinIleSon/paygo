@@ -78,12 +78,12 @@ function OrderListPage() {
             </Card>
             {sortedOrders.map((eachOrder) => (
                 <Card
-                    key={eachOrder.orderId}
+                    key={eachOrder.id}
                     className="flex flex-col gap-4 text-gray-400 font-medium"
                 >
                     <div className="flex justify-between items-center">
                         <div>
-                            <div className="text-sm">주문번호 {eachOrder.orderId}</div>
+                            <div className="text-sm">주문번호 {eachOrder.orderNumber}</div>
                             <div className="text-xs">{formatDateTime(eachOrder.createdAt)}</div>
                         </div>
                         <div>{getOrderBadge(eachOrder.orderStatus)}</div>
@@ -91,13 +91,13 @@ function OrderListPage() {
                     <div className="border-b border-[#D9D9D9]"></div>
                     <div 
                         className="cursor-pointer px-4 -my-4 py-4 hover:bg-gray-50 duration-500 flex flex-col gap-4"
-                        onClick={() => navigate(`/shopping/order-detail/${eachOrder.orderId}`)}
+                        onClick={() => navigate(`/shopping/order-detail/${eachOrder.id}`)}
                     >
                         {eachOrder.items.map((item) => {
                             const Icon = iconMap[item.iconName];
 
                             return (
-                                <div key={item.productId}>
+                                <div key={item.id}>
                                     <div className="flex items-center gap-4">
                                         <div
                                             className={`w-[3.75rem] h-[3.75rem] rounded-xl flex items-center justify-center ${item.itemBg}`}
@@ -300,7 +300,7 @@ function OrderListPage() {
                     title="교환 / 반품 신청"
                     description={`${modal?.order.items
                     .map((item) => 
-                        [item.productName, item.size, item.color, `${item.count}개`]
+                        [item.productName, item.size, COLOR_NAMES[item.color], `${item.count}개`]
                         .filter((i) => i !== undefined)
                         .join(' · ')
                     )
@@ -319,7 +319,7 @@ function OrderListPage() {
             {modal?.type === 'tracking' && (
                 <ShippingModal
                     title="배송 조회"
-                    orderId={modal?.order.orderId}
+                    orderNumber={modal?.order.orderNumber}
                     productName={modal?.order.items[0].productName}
                     count={modal?.order.items.length - 1}
                     orderStatus={modal?.order.orderStatus}

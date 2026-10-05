@@ -7,7 +7,7 @@ import ModalShell from "./modalShell";
 
 interface ShippingModalProps {
     title: string;
-    orderId: string;
+    orderNumber: string;
     productName: string;
     count: number; // 몇 개 외로 계산
     orderStatus: OrderStatus;
@@ -17,7 +17,7 @@ interface ShippingModalProps {
     onClose: () => void;
 }
 
-function ShippingModal({ title, orderId, productName, count, orderStatus, isOrderDetailPage, createdAt, closeLabel, onClose } : ShippingModalProps) {
+function ShippingModal({ title, orderNumber, productName, count, orderStatus, isOrderDetailPage, createdAt, closeLabel, onClose } : ShippingModalProps) {
     // getShippingStep(orderStatus) = [{ label: label, status: done/current/pending }, ... ]
     const message = getShippingStep(orderStatus).map((m) => {
         if (m.status !== "current")
@@ -38,7 +38,7 @@ function ShippingModal({ title, orderId, productName, count, orderStatus, isOrde
             <div className="flex flex-col gap-2">
                 <div className="font-medium text-lg">{title}</div>
                 <div className="text-gray-600 text-sm">
-                    {orderId} · {productName} 
+                    {orderNumber} · {productName} 
                     {count > 0 && <span> 외 {count}개</span>}
                 </div>
                 <div className="mt-3">

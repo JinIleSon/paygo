@@ -17,7 +17,7 @@ import { COLOR_NAMES } from "../../constants/color";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
-    const orderDetail = orders.find((o) => o.orderId === orderId);
+    const orderDetail = orders.find((o) => o.id === Number(orderId));
     const today = new Date().toISOString(); // 렌더링 시작 시점에 날짜 한 번만 계산
 
     type ModalState =
@@ -46,7 +46,7 @@ function OrderDetailPage() {
                         >
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <div className="text-sm">주문번호 {orderDetail.orderId}</div>
+                                    <div className="text-sm">주문번호 {orderDetail.orderNumber}</div>
                                     <div className="text-xs">{formatDateTime(orderDetail.createdAt)}</div>
                                 </div>
                                 <div>{getOrderBadge(orderDetail.orderStatus)}</div>
@@ -62,7 +62,7 @@ function OrderDetailPage() {
 
                                 return (
                                     <div
-                                        key={item.productId}
+                                        key={item.id}
                                         className="flex items-center gap-4 mb-4"
                                     >
                                         <div
@@ -179,12 +179,12 @@ function OrderDetailPage() {
                                         {formatDateTime(orderDetail.createdAt)}
                                     </div>
                                 </div>
-                                {/* 결제실패 시 거래 ID가 없음 */}
+                                {/* 결제실패 시 거래번호가 없음 */}
                                 {orderDetail.orderStatus !== 'paymentFailed' && (
                                     <div className="text-gray-400 flex items-center justify-between">
-                                        <div className="w-34">거래 ID</div>
+                                        <div className="w-34">거래번호</div>
                                         <div className="text-[#6266F1] font-bold">
-                                            {orderDetail.transactionId}
+                                            {orderDetail.transactionNumber}
                                         </div>
                                     </div>
                                 )}
@@ -333,7 +333,7 @@ function OrderDetailPage() {
                     title="교환 / 반품 신청"
                     description={`${modal?.order.items
                     .map((item) => 
-                        [item.productName, item.size, item.color, `${item.count}개`]
+                        [item.productName, item.size, COLOR_NAMES[item.color], `${item.count}개`]
                         .filter((i) => i !== undefined)
                         .join(' · ')
                     )
@@ -352,7 +352,7 @@ function OrderDetailPage() {
             {modal?.type === 'tracking' && (
                 <ShippingModal
                     title="배송 조회"
-                    orderId={modal?.order.orderId}
+                    orderNumber={modal?.order.orderNumber}
                     productName={modal?.order.items[0].productName}
                     count={modal?.order.items.length - 1}
                     orderStatus={modal?.order.orderStatus}
