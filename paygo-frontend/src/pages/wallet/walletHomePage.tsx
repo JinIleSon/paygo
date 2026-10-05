@@ -146,7 +146,7 @@ function WalletHomePage() {
                     <Card>
                         <div className="text-lg text-gray-500 mb-3 font-medium">빠른 송금</div>
                         {quickTransferOuts.map((out, index) => (
-                            <div key={index} className="mt-auto py-4">
+                            <div key={out.userId} className="mt-auto py-4">
                                 <div className="flex items-center gap-4">
                                     <div
                                         className={`${avatarColors[index % 3].bg} ${avatarColors[index % 3].text} flex items-center justify-center w-10 h-10 rounded-full text-sm font-medium`}
