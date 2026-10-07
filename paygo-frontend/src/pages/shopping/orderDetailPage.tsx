@@ -261,13 +261,21 @@ function OrderDetailPage() {
                                     주문/배송 취소
                                 </Button>
                             ) : (orderDetail.orderStatus === "delivered" && (
-                                <Button
-                                    variant="secondary"
-                                    className="p-3 text-xl"
-                                    onClick={() => setModal({ type: 'return', order: orderDetail })}
-                                >
-                                    교환/반품 신청
-                                </Button>
+                                <div className="flex flex-col gap-3">
+                                    <Button 
+                                        variant="secondary" 
+                                        className="p-3 text-xl"
+                                    > {/* TODO: 구매 확정 모달 필요 */}
+                                        구매 확정
+                                    </Button>
+                                    <Button
+                                        variant="secondary"
+                                        className="p-3 text-xl"
+                                        onClick={() => setModal({ type: 'return', order: orderDetail })}
+                                    >
+                                        교환/반품 신청
+                                    </Button>
+                                </div>
                             ))}
                             {/* 결제실패 시 재주문, 그 외에는 재구매(장바구니 담기) 가능하도록 함. 사용자가 장바구니로 확인 후에 구매할 수 있도록 함 */}
                             {orderDetail.orderStatus === "paymentFailed" ? (

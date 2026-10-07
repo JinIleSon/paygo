@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes } from 'react';
 import { cn } from '../../lib/utils';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'cancel' | 'retry';
+    variant?: 'primary' | 'secondary' | 'cancel' | 'retry' | 'confirm';
     isDisabled?: boolean;
 }
 
@@ -23,6 +23,7 @@ function Button({
             'border-[#D1D5DB] hover:text-gray-700 bg-white hover:bg-[#F4F4F4] hover:border-[#C5C8CD]',
         cancel: 'border-red-400 bg-[#FFE4E4] text-red-400 hover:bg-red-200 hover:border-red-500 hover:text-red-500',
         retry: 'border-[#9294F5] bg-[#F5F6FF] text-[#9294F5] hover:bg-[#E4E4FF] hover:text-[#6266F1] hover:border-[#6266F1]',
+        confirm: 'border-[#22C55E] bg-[#E8FBF2] text-[#22C55E] hover:bg-[#D1F5E3] hover:text-[#16A34A] hover:border-[#16A34A]',
     };
 
     return (

@@ -182,9 +182,14 @@ function OrderListPage() {
                                                 주문/배송 취소
                                             </Button>
                                         ) : (
-                                            <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder})}>
-                                                교환/반품 신청
-                                            </Button>
+                                            <div className="flex gap-3">
+                                                <Button variant="confirm" className="px-2 py-1"> {/* TODO: 구매 확정 모달 필요 */}
+                                                    구매 확정
+                                                </Button>
+                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder})}>
+                                                    교환/반품 신청
+                                                </Button>
+                                            </div>
                                         )}
                                     </div>
                                 </div>
