@@ -187,7 +187,7 @@ function OrderListPage() {
                                                     구매 확정
                                                 </Button>
                                                 <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder})}>
-                                                    교환/반품 신청
+                                                    반품 신청
                                                 </Button>
                                             </div>
                                         )}
@@ -302,7 +302,7 @@ function OrderListPage() {
             )}
             {modal?.type === 'return' && (
                 <ReturnRequestModal
-                    title="교환 / 반품 신청"
+                    title="반품 신청"
                     description={`${modal?.order.items
                     .map((item) => 
                         [item.productName, item.size, COLOR_NAMES[item.color], `${item.count}개`]

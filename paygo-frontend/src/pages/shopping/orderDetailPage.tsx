@@ -273,7 +273,7 @@ function OrderDetailPage() {
                                         className="p-3 text-xl"
                                         onClick={() => setModal({ type: 'return', order: orderDetail })}
                                     >
-                                        교환/반품 신청
+                                        반품 신청
                                     </Button>
                                 </div>
                             ))}
@@ -338,7 +338,7 @@ function OrderDetailPage() {
             )}
             {modal?.type === 'return' && (
                 <ReturnRequestModal
-                    title="교환 / 반품 신청"
+                    title="반품 신청"
                     description={`${modal?.order.items
                     .map((item) => 
                         [item.productName, item.size, COLOR_NAMES[item.color], `${item.count}개`]
