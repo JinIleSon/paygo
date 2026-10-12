@@ -1,7 +1,15 @@
 import type { IconName } from '../constants/icon';
 
 export type OrderStatus =
-    'paymentComplete' | 'shipping' | 'delivered' | 'cancelled' | 'refunded' | 'paymentFailed'; // cancelled는 취소, refunded 취소 후 환불까지
+    | 'paymentComplete'    // 결제완료
+    | 'shipping'           // 배송중
+    | 'delivered'          // 배송완료
+    | 'returnRequested'    // 반품 신청 (판매자 확인 중)
+    | 'cancelled'          // 취소 (환불 대기)
+    | 'refunded'           // 환불 완료
+    | 'paymentFailed'      // 결제 실패
+    | 'purchaseConfirmed';  // 구매 확정 (판매자 정산 진행)
+
 export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
 export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
