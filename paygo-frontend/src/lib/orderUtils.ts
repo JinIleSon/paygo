@@ -14,7 +14,9 @@ export function getShippingStep(orderStatus: OrderStatus) {
     const STEP_OF_ORDER: Record<string, number> = {
         paymentComplete: 1,
         shipping: 2,
-        delivered: 3
+        delivered: 3,
+        purchaseConfirmed: 3,
+        returnRequested: 3,
     };
     
     const step = STEP_OF_ORDER[orderStatus] ?? 0;
