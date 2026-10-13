@@ -129,7 +129,7 @@ function OrderListPage() {
                         </div>
                     )}
                     <div className="border-b border-[#D9D9D9]"></div>
-                    {['paymentComplete', 'shipping', 'delivered'].includes(
+                    {['paymentComplete', 'shipping', 'delivered', 'returnRequested', 'purchaseConfirmed'].includes(
                         eachOrder.orderStatus
                     ) && (
                         <div className="flex items-end">
@@ -152,7 +152,7 @@ function OrderListPage() {
                             </div>
                         </div>
                     )}
-                    {['paymentComplete', 'shipping', 'delivered'].includes(
+                    {['paymentComplete', 'shipping', 'delivered', 'returnRequested', 'purchaseConfirmed'].includes(
                         eachOrder.orderStatus
                     ) && (
                         <div>
@@ -181,7 +181,7 @@ function OrderListPage() {
                                             >
                                                 주문/배송 취소
                                             </Button>
-                                        ) : (
+                                        ) : (!['purchaseConfirmed'].includes(eachOrder.orderStatus) && ( // 구매 확정인 '구매 확정', '반품 신청' 경우 제외
                                             <div className="flex gap-3">
                                                 <Button variant="confirm" className="px-2 py-1"> {/* TODO: 구매 확정 모달 필요 */}
                                                     구매 확정
@@ -190,6 +190,7 @@ function OrderListPage() {
                                                     반품 신청
                                                 </Button>
                                             </div>
+                                            ) 
                                         )}
                                     </div>
                                 </div>
