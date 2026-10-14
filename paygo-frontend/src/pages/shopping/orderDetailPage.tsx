@@ -242,7 +242,7 @@ function OrderDetailPage() {
                         </Card>
                         <div className="flex flex-col gap-3">
                             {/* 결제완료, 배송중, 배송완료 시 배송 조회가 나타남 */}
-                            {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
+                            {["paymentComplete", "shipping", "delivered", "returnRequested", "purchaseConfirmed"].includes(orderDetail.orderStatus) && (
                                 <Button
                                     variant="secondary"
                                     className="p-3 text-xl"
