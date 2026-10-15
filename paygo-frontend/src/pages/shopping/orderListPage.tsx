@@ -24,6 +24,7 @@ function OrderListPage() {
     type ModalState =
         | { type: 'tracking'; order: Order }
         | { type: 'cancel'; order: Order }
+        | { type: 'confirm'; order: Order }
         | { type: 'return'; order: Order }
         | { type: 'repurchase'; order: Order }
         | { type: 'reorder'; order: Order }
@@ -183,7 +184,7 @@ function OrderListPage() {
                                             </Button>
                                         ) : (!['returnRequested', 'purchaseConfirmed'].includes(eachOrder.orderStatus) ? ( // 구매 확정인 '구매 확정', '반품 신청' 경우 제외
                                             <div className="flex gap-3">
-                                                <Button variant="confirm" className="px-2 py-1"> {/* TODO: 구매 확정 모달 필요 */}
+                                                <Button variant="confirm" className="px-2 py-1" onClick={() => setModal({ type: 'confirm', order: eachOrder})}> {/* TODO: 구매 확정 모달 필요 */}
                                                     구매 확정
                                                 </Button>
                                                 <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder})}>
@@ -299,6 +300,19 @@ function OrderListPage() {
                     cancelLabel="아니오"
                     variant="retry"
                     confirmLabel="재주문"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
+            )}
+            {modal?.type === 'confirm' && (
+                <ConfirmModal
+                    title="구매를 확정할까요?"
+                    description={`${modal.order.items[0].productName}${modal.order.items.length > 1 ? ` 외 ${modal.order.items.length - 1}개` : ''} 구매를 확정해요. 구매 확정 후에는 반품 신청을 할 수 없어요.`}
+                    subDescription="상품에 문제가 있다면 구매 확정 전에 반품 신청을 해주세요."
+                    cancelLabel="아니오"
+                    variant="confirm"
+                    confirmLabel="구매 확정"
                     onClose={() => setModal(null)}
                     // TODO: 이후 API 호출 필요
                     onConfirm={() => setModal(null)}
