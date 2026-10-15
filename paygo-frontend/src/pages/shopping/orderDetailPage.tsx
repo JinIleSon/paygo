@@ -190,14 +190,17 @@ function OrderDetailPage() {
                                 )}
 
                                 {/* 주문 취소, 환불, 결제 실패 시 환불 관련 시 환불 관련 내용 삭제 */}
-                                {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) ? (
+                                {["paymentComplete", "shipping", "delivered", "returnRequested"].includes(orderDetail.orderStatus) ? (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-34">취소/반품 가능 여부</div>
                                         <div className="font-bold">
-                                            {diffDays(today, String(addDays(orderDetail.createdAt, 7))) >= 0 ? (
+                                            {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) ? ( 
+                                            diffDays(today, String(addDays(orderDetail.createdAt, 7))) >= 0 ? (
                                                 <div className="text-[#22C55E]">{`가능 (D-${diffDays(today, String(addDays(orderDetail.createdAt, 7)))})`}</div>
                                             ) : (
                                                 <div className="text-red-400">불가</div>
+                                            )): (
+                                                <div className="text-red-400">반품 신청</div> // returnRequested(반품 신청)인 경우
                                             )}
                                         </div>
                                     </div>
@@ -220,7 +223,7 @@ function OrderDetailPage() {
                                         </div>
                                     </div>
                                 ))}
-                                {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) && (
+                                {["paymentComplete", "shipping", "delivered", "returnRequested"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-34">취소/반품 마감일</div>
                                         <div className="text-[black]">
