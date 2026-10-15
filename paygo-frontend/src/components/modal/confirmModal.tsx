@@ -7,7 +7,7 @@ interface ConfirmModalProps {
     subDescription?: string;
     cancelLabel: string;
     confirmLabel: string;
-    variant?: 'primary' | 'secondary' | 'retry' | 'cancel';
+    variant?: 'primary' | 'secondary' | 'retry' | 'cancel' | 'confirm';
     onClose: () => void;
     onConfirm: () => void;
 }
