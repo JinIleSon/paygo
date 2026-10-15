@@ -181,7 +181,7 @@ function OrderListPage() {
                                             >
                                                 주문/배송 취소
                                             </Button>
-                                        ) : (!['purchaseConfirmed'].includes(eachOrder.orderStatus) && ( // 구매 확정인 '구매 확정', '반품 신청' 경우 제외
+                                        ) : (!['returnRequested', 'purchaseConfirmed'].includes(eachOrder.orderStatus) ? ( // 구매 확정인 '구매 확정', '반품 신청' 경우 제외
                                             <div className="flex gap-3">
                                                 <Button variant="confirm" className="px-2 py-1"> {/* TODO: 구매 확정 모달 필요 */}
                                                     구매 확정
@@ -190,8 +190,11 @@ function OrderListPage() {
                                                     반품 신청
                                                 </Button>
                                             </div>
-                                            ) 
-                                        )}
+                                            ) : (['returnRequested'].includes(eachOrder.orderStatus) && (
+                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal(null)}> {/* TODO: 반품 취소 모달창 생성 후 매핑 필요 */}
+                                                    반품 취소
+                                                </Button>
+                                            )))}
                                     </div>
                                 </div>
                             </div>
