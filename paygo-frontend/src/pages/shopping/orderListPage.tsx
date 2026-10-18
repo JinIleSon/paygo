@@ -22,12 +22,13 @@ function OrderListPage() {
     const navigate = useNavigate();
 
     type ModalState =
-        | { type: 'tracking'; order: Order }
-        | { type: 'cancel'; order: Order }
-        | { type: 'confirm'; order: Order }
-        | { type: 'return'; order: Order }
-        | { type: 'repurchase'; order: Order }
-        | { type: 'reorder'; order: Order }
+        | { type: 'tracking', order: Order }
+        | { type: 'cancel', order: Order }
+        | { type: 'confirm', order: Order }
+        | { type: 'return', order: Order }
+        | { type: 'returnCancel', order: Order }
+        | { type: 'repurchase', order: Order }
+        | { type: 'reorder', order: Order }
         | null;
 
     const [modal, setModal] = useState<ModalState>(null);
@@ -184,15 +185,15 @@ function OrderListPage() {
                                             </Button>
                                         ) : (!['returnRequested', 'purchaseConfirmed'].includes(eachOrder.orderStatus) ? ( // 구매 확정인 '구매 확정', '반품 신청' 경우 제외
                                             <div className="flex gap-3">
-                                                <Button variant="confirm" className="px-2 py-1" onClick={() => setModal({ type: 'confirm', order: eachOrder})}> {/* TODO: 구매 확정 모달 필요 */}
+                                                <Button variant="confirm" className="px-2 py-1" onClick={() => setModal({ type: 'confirm', order: eachOrder })}> {/* TODO: 구매 확정 모달 필요 */}
                                                     구매 확정
                                                 </Button>
-                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder})}>
+                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder })}>
                                                     반품 신청
                                                 </Button>
                                             </div>
                                             ) : (['returnRequested'].includes(eachOrder.orderStatus) && (
-                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal(null)}> {/* TODO: 반품 취소 모달창 생성 후 매핑 필요 */}
+                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'returnCancel', order: eachOrder })}> {/* TODO: 반품 취소 모달창 생성 후 매핑 필요 */}
                                                     반품 취소
                                                 </Button>
                                             )))}
@@ -338,6 +339,18 @@ function OrderListPage() {
                 >
 
                 </ReturnRequestModal>
+            )}
+            {modal?.type === 'returnCancel' && (
+                <ConfirmModal
+                    title="반품 신청을 취소할까요?"
+                    description="반품 신청을 취소하면 주문이 배송완료 상태로 돌아가요."
+                    cancelLabel="아니오"
+                    variant="cancel"
+                    confirmLabel="취소하기"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
             )}
             {modal?.type === 'tracking' && (
                 <ShippingModal

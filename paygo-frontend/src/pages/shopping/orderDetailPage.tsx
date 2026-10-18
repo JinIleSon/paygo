@@ -21,12 +21,13 @@ function OrderDetailPage() {
     const today = new Date().toISOString(); // 렌더링 시작 시점에 날짜 한 번만 계산
 
     type ModalState =
-        | { type: 'tracking'; order: Order }
-        | { type: 'cancel'; order: Order }
-        | { type: 'confirm'; order: Order }
-        | { type: 'return'; order: Order }
-        | { type: 'repurchase'; order: Order }
-        | { type: 'reorder'; order: Order }
+        | { type: 'tracking', order: Order }
+        | { type: 'cancel', order: Order }
+        | { type: 'confirm', order: Order }
+        | { type: 'return', order: Order }
+        | { type: 'returnCancel', order: Order }
+        | { type: 'repurchase', order: Order }
+        | { type: 'reorder', order: Order }
         | null;
 
     const [modal, setModal] = useState<ModalState>(null);
@@ -269,7 +270,7 @@ function OrderDetailPage() {
                                     <Button 
                                         variant="secondary" 
                                         className="p-3 text-xl"
-                                        onClick={() => setModal({ type: 'confirm', order: orderDetail})}
+                                        onClick={() => setModal({ type: 'confirm', order: orderDetail })}
                                     >
                                         구매 확정
                                     </Button>
@@ -285,7 +286,7 @@ function OrderDetailPage() {
                                 <Button
                                     variant="secondary"
                                     className="p-3 text-xl"
-                                    onClick={() => setModal(null)} // TODO: 반품 취소 모달창
+                                    onClick={() => setModal({ type: 'returnCancel', order: orderDetail })} // TODO: 반품 취소 모달창
                                 >
                                     반품 취소
                                 </Button>
@@ -382,6 +383,18 @@ function OrderDetailPage() {
                 >
 
                 </ReturnRequestModal>
+            )}
+            {modal?.type === 'returnCancel' && (
+                <ConfirmModal
+                    title="반품 신청을 취소할까요?"
+                    description="반품 신청을 취소하면 주문이 배송완료 상태로 돌아가요."
+                    cancelLabel="아니오"
+                    variant="cancel"
+                    confirmLabel="취소하기"
+                    onClose={() => setModal(null)}
+                    // TODO: 이후 API 호출 필요
+                    onConfirm={() => setModal(null)}
+                ></ConfirmModal>
             )}
             {modal?.type === 'tracking' && (
                 <ShippingModal
