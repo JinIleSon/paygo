@@ -9,29 +9,16 @@ import { iconMap } from '../../constants/icon';
 import Button from '../../components/common/button';
 import { formatDateTime } from '../../lib/dateUtils';
 import { getRemainRefundedDate } from '../../lib/orderUtils';
-import type { Order, OrderStatus } from '../../types/order';
-import ConfirmModal from '../../components/modal/confirmModal';
-import ReturnRequestModal from '../../components/modal/returnRequestModal';
-import ShippingModal from '../../components/modal/shippingModal';
+import type { OrderModalState, OrderStatus } from '../../types/order';
 import { useNavigate } from 'react-router-dom';
 import { COLOR_NAMES } from '../../constants/color';
+import OrderModals from '../../components/modal/orderModals';
 
 function OrderListPage() {
     const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
     const [sortType, setSortType] = useState('latest');
     const navigate = useNavigate();
-
-    type ModalState =
-        | { type: 'tracking', order: Order }
-        | { type: 'cancel', order: Order }
-        | { type: 'confirm', order: Order }
-        | { type: 'return', order: Order }
-        | { type: 'returnCancel', order: Order }
-        | { type: 'repurchase', order: Order }
-        | { type: 'reorder', order: Order }
-        | null;
-
-    const [modal, setModal] = useState<ModalState>(null);
+    const [modal, setModal] = useState<OrderModalState>(null);
 
     const filteredOrders = orders.filter(
         (eachOrder) => selectedType === 'all' || eachOrder.orderStatus === selectedType
@@ -185,7 +172,7 @@ function OrderListPage() {
                                             </Button>
                                         ) : (!['returnRequested', 'purchaseConfirmed'].includes(eachOrder.orderStatus) ? ( // 구매 확정인 '구매 확정', '반품 신청' 경우 제외
                                             <div className="flex gap-3">
-                                                <Button variant="confirm" className="px-2 py-1" onClick={() => setModal({ type: 'confirm', order: eachOrder })}> {/* TODO: 구매 확정 모달 필요 */}
+                                                <Button variant="confirm" className="px-2 py-1" onClick={() => setModal({ type: 'confirm', order: eachOrder })}>
                                                     구매 확정
                                                 </Button>
                                                 <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'return', order: eachOrder })}>
@@ -193,7 +180,7 @@ function OrderListPage() {
                                                 </Button>
                                             </div>
                                             ) : (['returnRequested'].includes(eachOrder.orderStatus) && (
-                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'returnCancel', order: eachOrder })}> {/* TODO: 반품 취소 모달창 생성 후 매핑 필요 */}
+                                                <Button variant="cancel" className="px-2 py-1" onClick={() => setModal({ type: 'returnCancel', order: eachOrder })}>
                                                     반품 취소
                                                 </Button>
                                             )))}
@@ -268,104 +255,7 @@ function OrderListPage() {
                 </Card>
             ))}
 
-            {/* TODO: modalState에 따른 모달창 호출 후 따로 컴포넌트로 빼기 */}
-            {modal?.type === 'cancel' && (
-                <ConfirmModal
-                    title="주문을 취소할까요?"
-                    description={`취소하면 결제 금액 ${modal?.order.totalPrice.toLocaleString()}원이 7일 뒤에 환불돼요. 배송이 이미 시작된 경우 취소가 제한될 수 있어요.`}
-                    cancelLabel="아니오"
-                    variant="cancel"
-                    confirmLabel="취소하기"
-                    onClose={() => setModal(null)}
-                    // TODO: 이후 API 호출 필요
-                    onConfirm={() => setModal(null)}
-                ></ConfirmModal>
-            )}
-            {modal?.type === 'repurchase' && (
-                <ConfirmModal
-                    title="다시 구매할까요?"
-                    description={`${modal?.order.items.map((item) => item.productName).join(', ')}를 같은 옵션으로 장바구니에 담아요.`}
-                    cancelLabel="아니오"
-                    variant="retry"
-                    confirmLabel="장바구니에 담기"
-                    onClose={() => setModal(null)}
-                    // TODO: 이후 API 호출 필요
-                    onConfirm={() => setModal(null)}
-                ></ConfirmModal>
-            )}
-            {modal?.type === 'reorder' && (
-                <ConfirmModal
-                    title="재주문할까요?"
-                    description={`이전과 동일한 상품, 수량으로 다시 주문해요.`}
-                    subDescription="재고 부족으로 실패했던 주문은 재고 확인 후 결제가 진행돼요."
-                    cancelLabel="아니오"
-                    variant="retry"
-                    confirmLabel="재주문"
-                    onClose={() => setModal(null)}
-                    // TODO: 이후 API 호출 필요
-                    onConfirm={() => setModal(null)}
-                ></ConfirmModal>
-            )}
-            {modal?.type === 'confirm' && (
-                <ConfirmModal
-                    title="구매를 확정할까요?"
-                    description={`${modal.order.items[0].productName}${modal.order.items.length > 1 ? ` 외 ${modal.order.items.length - 1}개` : ''} 구매를 확정해요. 구매 확정 후에는 반품 신청을 할 수 없어요.`}
-                    subDescription="상품에 문제가 있다면 구매 확정 전에 반품 신청을 해주세요."
-                    cancelLabel="아니오"
-                    variant="confirm"
-                    confirmLabel="구매 확정"
-                    onClose={() => setModal(null)}
-                    // TODO: 이후 API 호출 필요
-                    onConfirm={() => setModal(null)}
-                ></ConfirmModal>
-            )}
-            {modal?.type === 'return' && (
-                <ReturnRequestModal
-                    title="반품 신청"
-                    description={`${modal?.order.items
-                    .map((item) => 
-                        [item.productName, item.size, COLOR_NAMES[item.color], `${item.count}개`]
-                        .filter((i) => i !== undefined)
-                        .join(' · ')
-                    )
-                    .join('\n')}`}
-                    category="사유"
-                    text="상세 사유 (선택)"
-                    cancelLabel="취소"
-                    confirmLabel="신청하기"
-                    onClose={() => setModal(null)}
-                    // TODO: API 연동 시 변경 필요
-                    onConfirm={() => setModal(null)}
-                >
-
-                </ReturnRequestModal>
-            )}
-            {modal?.type === 'returnCancel' && (
-                <ConfirmModal
-                    title="반품 신청을 취소할까요?"
-                    description="반품 신청을 취소하면 주문이 배송완료 상태로 돌아가요."
-                    cancelLabel="아니오"
-                    variant="cancel"
-                    confirmLabel="취소하기"
-                    onClose={() => setModal(null)}
-                    // TODO: 이후 API 호출 필요
-                    onConfirm={() => setModal(null)}
-                ></ConfirmModal>
-            )}
-            {modal?.type === 'tracking' && (
-                <ShippingModal
-                    title="배송 조회"
-                    orderNumber={modal?.order.orderNumber}
-                    productName={modal?.order.items[0].productName}
-                    count={modal?.order.items.length - 1}
-                    orderStatus={modal?.order.orderStatus}
-                    isOrderDetailPage={false}
-                    closeLabel="닫기"
-                    createdAt={modal?.order.createdAt}
-                    onClose={() => setModal(null)}
-                >
-                </ShippingModal>
-            )}
+            <OrderModals modal={modal} onClose={() => setModal(null)} />
         </div>
     );
 }

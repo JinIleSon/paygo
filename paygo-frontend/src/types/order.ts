@@ -1,5 +1,6 @@
 import type { IconName } from '../constants/icon';
 
+// 주문 상태
 export type OrderStatus =
     | 'paymentComplete'    // 결제완료
     | 'shipping'           // 배송중
@@ -9,6 +10,18 @@ export type OrderStatus =
     | 'refunded'           // 환불 완료
     | 'paymentFailed'      // 결제 실패
     | 'purchaseConfirmed';  // 구매 확정 (판매자 정산 진행)
+
+// 모달 타입
+export type OrderModalType = 
+    | 'tracking'
+    | 'cancel'
+    | 'confirm'
+    | 'return'
+    | 'returnCancel'
+    | 'repurchase'
+    | 'reorder';
+
+export type OrderModalState = { type: OrderModalType, order: Order } | null;
 
 export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
