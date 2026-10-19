@@ -25,13 +25,6 @@ export type OrderModalState = { type: OrderModalType, order: Order } | null;
 
 export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
-export const PAYMENT_METHOD_LABELS: Record<PaymentMethod, string> = {
-    paygo: 'Paygo 잔액 결제',
-    account: '계좌이체',
-    card: '신용/체크카드',
-    simplePayment: '간편결제',
-};
-
 // 장바구니 CartItem과 생명주기가 달라 types로 정의
 // orders 테이블과 1:N 관계이므로 order_items 테이블 생성(order_id로 연결)
 export interface OrderItem {

@@ -6,12 +6,13 @@ import { getOrderBadge } from "../../lib/badgeUtils";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import ShippingStep from "../../components/ship/shippingStep";
 import { iconMap } from "../../constants/icon";
-import { PAYMENT_METHOD_LABELS, type OrderModalState } from "../../types/order";
+import { type OrderModalState } from "../../types/order";
 import { getRemainRefundedDate } from "../../lib/orderUtils";
 import Button from "../../components/common/button";
 import { useState } from "react";
 import { COLOR_NAMES } from "../../constants/color";
 import OrderModals from "../../components/modal/orderModals";
+import { PAYMENT_METHOD_LABELS } from "../../constants/method";
 
 function OrderDetailPage() {
     const { orderId } = useParams<{ orderId: string }>();
