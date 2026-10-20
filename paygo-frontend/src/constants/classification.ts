@@ -26,11 +26,10 @@ export const productClassifications: Classification[] = [
 ];
 
 export const orderClassifications: Classification[] = [
-    { id: 'all', label: '전체' },
-    { id: 'paymentComplete', label: '결제완료' },
-    { id: 'shipping', label: '배송중' },
-    { id: 'delivered', label: '배송완료' },
-    { id: 'cancelled', label: '취소' },
-    { id: 'refunded', label: '환불' },
-    { id: 'paymentFailed', label: '결제실패' },
+    { id: 'all', label: '전체', statuses: [] },
+    { id: 'inProgress', label: '진행중', statuses: ['paymentComplete', 'shipping'] },
+    { id: 'delivered', label: '배송완료', statuses: ['delivered'] },
+    { id: 'confirmed', label: '구매확정', statuses: ['purchaseConfirmed'] },
+    { id: 'cancelReturn', label: '취소·반품', statuses: ['returnRequested', 'cancelled', 'refunded'] },
+    { id: 'paymentFailed', label: '결제실패', statuses: ['paymentFailed'] },
 ];

@@ -9,19 +9,21 @@ import { iconMap } from '../../constants/icon';
 import Button from '../../components/common/button';
 import { formatDateTime } from '../../lib/dateUtils';
 import { getRemainRefundedDate } from '../../lib/orderUtils';
-import type { OrderModalState, OrderStatus } from '../../types/order';
+import type { OrderModalState } from '../../types/order';
 import { useNavigate } from 'react-router-dom';
 import { COLOR_NAMES } from '../../constants/color';
 import OrderModals from '../../components/modal/orderModals';
 
 function OrderListPage() {
-    const [selectedType, setSelectedType] = useState<'all' | OrderStatus>('all');
+    const [selectedFilter, setSelectedFilter] = useState('all');
     const [sortType, setSortType] = useState('latest');
     const navigate = useNavigate();
     const [modal, setModal] = useState<OrderModalState>(null);
 
+    const selectedStatuses = orderClassifications.find((group) => group.id === selectedFilter)?.statuses ?? [];
+
     const filteredOrders = orders.filter(
-        (eachOrder) => selectedType === 'all' || eachOrder.orderStatus === selectedType
+        (eachOrder) => selectedFilter === 'all' || selectedStatuses.includes(eachOrder.orderStatus)
     );
 
     const sortedOrders = [...filteredOrders].sort((a, b) => {
@@ -42,13 +44,13 @@ function OrderListPage() {
             <Card>
                 <div className="flex items-center">
                     <div className="flex gap-3">
-                        {orderClassifications.map((clas) => (
+                        {orderClassifications.map((group) => (
                             <SelectCard
-                                onClick={() => setSelectedType(clas.id as 'all' | OrderStatus)}
-                                isSelected={selectedType === clas.id}
-                                key={clas.id}
+                                onClick={() => setSelectedFilter(group.id)}
+                                isSelected={selectedFilter === group.id}
+                                key={group.id}
                             >
-                                <div>{clas.label}</div>
+                                <div>{group.label}</div>
                             </SelectCard>
                         ))}
                     </div>
