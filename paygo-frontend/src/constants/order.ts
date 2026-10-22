@@ -8,7 +8,7 @@ export const orders: OrderDetail[] = [
         couponId: 2,
         orderNumber: 'PG-20260815-0042',
         createdAt: '2026-08-15T07:58:23',
-        orderStatus: 'paymentComplete',
+        orderStatus: 'paymentCompleted',
         items: [
             {
                 id: 1,

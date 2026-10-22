@@ -120,7 +120,7 @@ function OrderListPage() {
                         </div>
                     )}
                     <div className="border-b border-[#D9D9D9]"></div>
-                    {['paymentComplete', 'shipping', 'delivered', 'returnRequested', 'purchaseConfirmed'].includes(
+                    {['paymentCompleted', 'shipping', 'delivered', 'returnRequested', 'purchaseConfirmed'].includes(
                         eachOrder.orderStatus
                     ) && (
                         <div className="flex items-end">
@@ -143,7 +143,7 @@ function OrderListPage() {
                             </div>
                         </div>
                     )}
-                    {['paymentComplete', 'shipping', 'delivered', 'returnRequested', 'purchaseConfirmed'].includes(
+                    {['paymentCompleted', 'shipping', 'delivered', 'returnRequested', 'purchaseConfirmed'].includes(
                         eachOrder.orderStatus
                     ) && (
                         <div>
@@ -160,7 +160,7 @@ function OrderListPage() {
                                         <Button variant="secondary" className="px-2 py-1" onClick={() => setModal({ type: 'tracking', order: eachOrder })}>
                                             배송 조회
                                         </Button>
-                                        {['paymentComplete', 'shipping'].includes(
+                                        {['paymentCompleted', 'shipping'].includes(
                                             eachOrder.orderStatus
                                         ) ? (
                                             <Button

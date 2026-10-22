@@ -10,7 +10,7 @@ export const getHistoryBadge = (statement: string) => {
 };
 
 export const getOrderBadge = (orderStatus: OrderStatus) => {
-    if (orderStatus === 'paymentComplete')
+    if (orderStatus === 'paymentCompleted')
         return <span className="rounded-full bg-[#F5F6FF] text-[#6266F1] px-2 py-1 text-xs">결제완료</span>;
     if (orderStatus === 'shipping')
         return <span className="rounded-full bg-[#FEF9EB] text-[#E0B36B] px-2 py-1 text-xs">배송중</span>;

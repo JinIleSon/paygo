@@ -27,7 +27,7 @@ export const productClassifications: Classification[] = [
 
 export const orderClassifications: Classification[] = [
     { id: 'all', label: '전체', statuses: [] },
-    { id: 'inProgress', label: '진행중', statuses: ['paymentComplete', 'shipping'] },
+    { id: 'inProgress', label: '진행중', statuses: ['paymentCompleted', 'shipping'] },
     { id: 'delivered', label: '배송완료', statuses: ['delivered'] },
     { id: 'confirmed', label: '구매확정', statuses: ['purchaseConfirmed'] },
     { id: 'cancelReturn', label: '취소·반품', statuses: ['returnRequested', 'cancelled', 'refunded'] },

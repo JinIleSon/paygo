@@ -180,11 +180,11 @@ function OrderDetailPage() {
                                 )}
 
                                 {/* 주문 취소, 환불, 결제 실패 시 환불 관련 시 환불 관련 내용 삭제 */}
-                                {["paymentComplete", "shipping", "delivered", "returnRequested"].includes(orderDetail.orderStatus) ? (
+                                {["paymentCompleted", "shipping", "delivered", "returnRequested"].includes(orderDetail.orderStatus) ? (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-34">취소/반품 가능 여부</div>
                                         <div className="font-bold">
-                                            {["paymentComplete", "shipping", "delivered"].includes(orderDetail.orderStatus) ? ( 
+                                            {["paymentCompleted", "shipping", "delivered"].includes(orderDetail.orderStatus) ? ( 
                                             diffDays(today, String(addDays(orderDetail.createdAt, 7))) >= 0 ? (
                                                 <div className="text-[#22C55E]">{`가능 (D-${diffDays(today, String(addDays(orderDetail.createdAt, 7)))})`}</div>
                                             ) : (
@@ -213,7 +213,7 @@ function OrderDetailPage() {
                                         </div>
                                     </div>
                                 ))}
-                                {["paymentComplete", "shipping", "delivered", "returnRequested"].includes(orderDetail.orderStatus) && (
+                                {["paymentCompleted", "shipping", "delivered", "returnRequested"].includes(orderDetail.orderStatus) && (
                                     <div className="text-gray-400 flex items-center justify-between">
                                         <div className="w-34">취소/반품 마감일</div>
                                         <div className="text-[black]">
@@ -235,7 +235,7 @@ function OrderDetailPage() {
                         </Card>
                         <div className="flex flex-col gap-3">
                             {/* 결제완료, 배송중, 배송완료 시 배송 조회가 나타남 */}
-                            {["paymentComplete", "shipping", "delivered", "returnRequested", "purchaseConfirmed"].includes(orderDetail.orderStatus) && (
+                            {["paymentCompleted", "shipping", "delivered", "returnRequested", "purchaseConfirmed"].includes(orderDetail.orderStatus) && (
                                 <Button
                                     variant="secondary"
                                     className="p-3 text-xl"
@@ -245,7 +245,7 @@ function OrderDetailPage() {
                                 </Button>
                             )}
                             {/* 배송중, 결제완료일 때 주문/배송 취소, 배송완료일 때 교환/반품 신청 */}
-                            {["shipping", "paymentComplete"].includes(orderDetail.orderStatus) ? (
+                            {["shipping", "paymentCompleted"].includes(orderDetail.orderStatus) ? (
                                 <Button
                                     variant="secondary"
                                     className="p-3 text-xl"

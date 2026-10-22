@@ -2,7 +2,7 @@ import type { IconName } from '../constants/icon';
 
 // 주문 상태
 export type OrderStatus =
-    | 'paymentComplete'    // 결제완료
+    | 'paymentCompleted'    // 결제완료
     | 'shipping'           // 배송중
     | 'delivered'          // 배송완료
     | 'returnRequested'    // 반품 신청 (판매자 확인 중)

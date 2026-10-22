@@ -12,7 +12,7 @@ export function getRemainRefundedDate(createdAt: string): number {
 
 export function getShippingStep(orderStatus: OrderStatus) {
     const STEP_OF_ORDER: Record<string, number> = {
-        paymentComplete: 1,
+        paymentCompleted: 1,
         shipping: 2,
         delivered: 3,
         purchaseConfirmed: 3,
