@@ -3,6 +3,7 @@ import type { IconName } from "../constants/icon";
 // 두 타입 공통 필드 모음(Product 또는 ProductDetail)
 export interface ProductBase {
     id: number;
+    sellerId: number; // 정산을 위한 판매자 id(users 테이블 내 id 식별자)
     itemClassification: string;
     name: string;
     stock: number;
