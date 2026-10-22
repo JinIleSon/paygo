@@ -11,8 +11,8 @@ export const types: Classification[] = [
 
 export const statements: Classification[] = [
     { id: 'all', label: '전체' },
-    { id: 'complete', label: '완료' },
-    { id: 'fail', label: '결제실패' },
+    { id: 'completed', label: '완료' },
+    { id: 'failed', label: '결제실패' },
     { id: 'processing', label: '처리중' },
 ];
 

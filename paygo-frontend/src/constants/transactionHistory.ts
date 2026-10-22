@@ -10,7 +10,7 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: '계좌이체',
         amount: 300000,
         balance: 3931000,
-        statement: 'complete',
+        statement: 'completed',
     },
     {
         id: 2,
@@ -21,7 +21,7 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: 'Paygo 잔액',
         amount: -120000,
         balance: 3631000,
-        statement: 'complete',
+        statement: 'completed',
     },
     {
         id: 3,
@@ -32,7 +32,7 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: 'Paygo 잔액',
         amount: 50000,
         balance: 3867000,
-        statement: 'complete',
+        statement: 'completed',
         counterpartyId: 5 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
     },
     {
@@ -44,7 +44,7 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: 'Paygo 잔액',
         amount: 45000,
         balance: 3751000,
-        statement: 'complete',
+        statement: 'completed',
     },
     {
         id: 5,
@@ -55,34 +55,36 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: 'Paygo 잔액',
         amount: -30000,
         balance: 3897000,
-        statement: 'complete',
+        statement: 'completed',
         counterpartyId: 2 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
     },
     {
         id: 6,
         userId: 1,
-        content: '농협 3521234123402',
+        content: '룰루레몬 요가 매트',
         createdAt: '2025.09.10 00:20',
-        type: 'charge',
+        type: 'settlement',
         paymentMethod: '계좌이체',
         amount: 500000,
         balance: 3917000,
-        statement: 'complete',
+        statement: 'completed',
     },
     {
         id: 7,
         userId: 1,
+        orderId: 1,
         content: '소니 WH-1000 헤드폰',
         createdAt: '2025.09.12 09:30',
         type: 'buy',
         paymentMethod: 'Paygo 잔액',
         amount: -89000,
         balance: 0,
-        statement: 'fail',
+        statement: 'failed',
     },
     {
         id: 8,
         userId: 1,
+        orderId: 1,
         content: '코베아 캠핑 텐트',
         createdAt: '2025.09.11 20:15',
         type: 'buy',
@@ -100,7 +102,7 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: 'Paygo 잔액',
         amount: -20000,
         balance: 3917000,
-        statement: 'complete',
+        statement: 'completed',
         counterpartyId: 3 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
     },
     {
@@ -112,7 +114,7 @@ export const transactionHistories : TransactionHistory[] = [
         paymentMethod: 'Paygo 잔액',
         amount: -15000,
         balance: 3937000,
-        statement: 'complete',
+        statement: 'completed',
         counterpartyId: 4 // TODO: DB 저장될 때는 transferIn/transferOut이면 양측 거래내역 두 개 다 저장 필요
     },
 ];

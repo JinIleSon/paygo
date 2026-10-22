@@ -13,9 +13,9 @@ export function getKoreanType(type: string) {
 }
 
 export function getKoreanStatement(statement: string) {
-    if (statement === 'complete')
+    if (statement === 'completed')
         return '완료';
-    else if (statement === 'fail')
+    else if (statement === 'failed')
         return '결제실패';
     else if (statement === 'processing')
         return '처리중';
