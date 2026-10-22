@@ -1,4 +1,4 @@
-import { IconArrowDownLeft, IconArrowUpRight, IconBuildingBank, IconCreditCard, IconDeviceMobile, IconPlus, IconRefresh, IconShoppingBag, IconWallet } from "@tabler/icons-react";
+import { IconArrowDownLeft, IconArrowUpRight, IconBuildingBank, IconCreditCard, IconDeviceMobile, IconPigMoney, IconPlus, IconRefresh, IconShoppingBag, IconWallet } from "@tabler/icons-react";
 
 export const getMethodIcon = (id: string) => {
     if (id === 'account')
@@ -46,6 +46,11 @@ export const getHistoryIcon = (title: string) => {
     if (title.includes('출금')) return (
         <div className="w-10 h-10 rounded-xl bg-[#FEF2F2] flex items-center justify-center">
             <IconArrowUpRight size={20} className="text-[#EF4444]" />
+        </div>
+    );
+    if (title.includes('정산')) return (
+        <div className="w-10 h-10 rounded-xl bg-[#F0FEFB] flex items-center justify-center">
+            <IconPigMoney size={20} className="text-[#22B1A0]" />
         </div>
     );
     return (

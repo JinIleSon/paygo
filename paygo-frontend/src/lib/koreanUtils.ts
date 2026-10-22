@@ -9,6 +9,8 @@ export function getKoreanType(type: string) {
         return '입금';
     else if (type === 'transferOut')
         return '출금';
+    else if (type === 'settlement')
+        return '정산';
     return '구매';
 }
 

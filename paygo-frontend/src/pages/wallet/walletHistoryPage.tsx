@@ -135,7 +135,8 @@ function WalletHistoryPage() {
                                     </div>
                                 </div>
                                 <div className={graphStyle}>{getKoreanType(tran.type)}</div>
-                                <div className={graphStyle}>{tran.paymentMethod}</div>
+                                {/* 정산(settlement 상태 시 paymentMethod 없음) */}
+                                <div className={graphStyle}>{tran.paymentMethod ?? '—'}</div>
                                 <div
                                     className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-red-400'}`}
                                 >

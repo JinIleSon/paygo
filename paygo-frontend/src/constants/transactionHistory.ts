@@ -61,10 +61,10 @@ export const transactionHistories : TransactionHistory[] = [
     {
         id: 6,
         userId: 1,
+        settlementId: 1,
         content: '룰루레몬 요가 매트',
         createdAt: '2025.09.10 00:20',
         type: 'settlement',
-        paymentMethod: '계좌이체',
         amount: 500000,
         balance: 3917000,
         statement: 'completed',
