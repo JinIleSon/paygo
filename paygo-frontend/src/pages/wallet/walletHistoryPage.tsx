@@ -20,8 +20,8 @@ function WalletHistoryPage() {
     const graphStyle = 'flex justify-center items-center border-t border-[#D9D9D9]';
 
     const summary = [
-        { title: '총 충전', content: 1250000, summation: 3 },
-        { title: '총 지출', content: -680000, summation: 8 },
+        { title: '들어온 금액', content: 1250000, summation: 3 },
+        { title: '나간 금액', content: -680000, summation: 8 },
         { title: '총 환불', content: 45000, summation: 1 },
         { title: '실패 건수', content: 2, summation: '동시성 처리 실패 포함' },
     ];
