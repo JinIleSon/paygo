@@ -7,6 +7,7 @@ export const types: Classification[] = [
     { id: 'refund', label: '환불' },
     { id: 'transferIn', label: '입금' },
     { id: 'transferOut', label: '출금' },
+    { id: 'settlement', label: '정산' }
 ];
 
 export const statements: Classification[] = [
