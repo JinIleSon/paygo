@@ -11,6 +11,8 @@ import { searchAddress } from '../../lib/addressUtils';
 
 function SignupPage() {
     const [name, setName] = useState('');
+    const [loginId, setLoginId] = useState('');
+    const [isLoginIdChecked, setIsLoginIdChecked] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,7 +33,9 @@ function SignupPage() {
     const isAllChecked = checkedFirst && checkedSecond && checkedThird;
 
     const existedEmail = 'abc@email.com'; // TODO: DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
+    const existedLoginId = 'sonjinile'; // TODO: DB에서 불러와야 하는 데이터. 현재 하드코딩되어 있음
 
+    const isLoginIdValid = /^[a-z][a-z0-9]{4,19}$/.test(loginId);
     const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const isPasswordMatch = password === confirmPassword && confirmPassword !== '';
 
@@ -108,7 +112,7 @@ function SignupPage() {
                             <div className="text-[#49576f] flex flex-col">
                                 <div className="font-bold text-base text-start">기본 정보</div>
                                 <div className="font-medium text-sm text-gray-400 mt-0.5">
-                                    이름, 이메일, 비밀번호, 주소
+                                    아이디, 이메일, 비밀번호, 주소
                                 </div>
                             </div>
                         </div>
@@ -200,6 +204,33 @@ function SignupPage() {
                                         placeholder="손진일"
                                     />
                                 </div>
+                            </div>
+                        </div>
+                        <div className="mt-5 text-[#bdb6b1] font-medium">
+                            <div className="flex-[1]">
+                                <div className="mb-2">아이디</div>
+                                <div>
+                                    <TextInput
+                                        value={loginId}
+                                        onChange={(e) => setLoginId(e.target.value)}
+                                        placeholder="sonjinile"
+                                    />
+                                </div>
+                            </div>
+                            <div className="h-[10px] mt-1 ml-1 text-sm text-[12px]">
+                                {loginId &&
+                                    (!isLoginIdValid ? (
+                                        <div className="text-[#edaeaf]">
+                                            아이디 형식이 올바르지 않습니다
+                                        </div>
+                                    ) : loginId !== existedLoginId ? (
+                                        <div className="text-[#8fe0ae]">사용 가능한 아이디입니다</div>
+                                    ) : (
+                                        <div className="text-[#edaeaf]">
+                                            이미 사용 중인 아이디입니다
+                                        </div>
+                                    )
+                                )}
                             </div>
                         </div>
                         <div className="mt-5 text-[#bdb6b1] font-medium">
