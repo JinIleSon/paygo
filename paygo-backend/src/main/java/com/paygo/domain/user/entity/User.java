@@ -16,15 +16,19 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 50)
     private String loginId;
 
+    @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false, length = 20)
     private String phone;
 
     private String zipCode;
@@ -33,5 +37,6 @@ public class User extends BaseTimeEntity {
 
     private String detailAddress;
 
+    @Column(nullable = false, length = 10)
     private String grade;
 }
