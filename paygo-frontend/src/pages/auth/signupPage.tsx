@@ -213,7 +213,7 @@ function SignupPage() {
                                     <TextInput
                                         value={loginId}
                                         onChange={(e) => setLoginId(e.target.value)}
-                                        placeholder="sonjinile"
+                                        placeholder="sonjinile123"
                                     />
                                 </div>
                             </div>
