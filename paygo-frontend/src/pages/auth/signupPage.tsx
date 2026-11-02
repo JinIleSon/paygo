@@ -1,6 +1,6 @@
 import AuthLayout from '../../components/layout/auth/authLayout';
 import notebookImg from '../../assets/notebook.webp';
-import { IconCreditCard, IconInfoCircle } from '@tabler/icons-react';
+import { IconCreditCard } from '@tabler/icons-react';
 import TextInput from '../../components/common/textInput';
 import PasswordInput from '../../components/common/passwordInput';
 import Button from '../../components/common/button';
@@ -12,7 +12,6 @@ import { searchAddress } from '../../lib/addressUtils';
 function SignupPage() {
     const [name, setName] = useState('');
     const [loginId, setLoginId] = useState('');
-    const [isLoginIdChecked, setIsLoginIdChecked] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
