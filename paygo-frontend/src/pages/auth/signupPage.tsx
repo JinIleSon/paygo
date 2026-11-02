@@ -1,6 +1,6 @@
 import AuthLayout from '../../components/layout/auth/authLayout';
 import notebookImg from '../../assets/notebook.webp';
-import { IconCreditCard } from '@tabler/icons-react';
+import { IconCreditCard, IconInfoCircle } from '@tabler/icons-react';
 import TextInput from '../../components/common/textInput';
 import PasswordInput from '../../components/common/passwordInput';
 import Button from '../../components/common/button';
@@ -208,7 +208,12 @@ function SignupPage() {
                         </div>
                         <div className="mt-5 text-[#bdb6b1] font-medium">
                             <div className="flex-[1]">
-                                <div className="mb-2">아이디</div>
+                                <div className="mb-2 flex items-baseline gap-2">
+                                    <span>아이디</span>
+                                    <span className="text-sm font-light">
+                                        5~20자 영문 소문자, 숫자 (영문으로 시작)
+                                    </span>
+                                </div>
                                 <div>
                                     <TextInput
                                         value={loginId}
@@ -221,7 +226,7 @@ function SignupPage() {
                                 {loginId &&
                                     (!isLoginIdValid ? (
                                         <div className="text-[#edaeaf]">
-                                            아이디 형식이 올바르지 않습니다
+                                            5~20자의 영문 소문자, 숫자만 사용할 수 있어요
                                         </div>
                                     ) : loginId !== existedLoginId ? (
                                         <div className="text-[#8fe0ae]">사용 가능한 아이디입니다</div>
