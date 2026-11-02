@@ -1,5 +1,5 @@
 import AuthLayout from '../../components/layout/auth/authLayout.tsx';
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import {
     IconCreditCard,
     IconWallet,
@@ -14,7 +14,7 @@ import TextInput from '../../components/common/textInput.tsx';
 import { Link } from 'react-router-dom';
 
 function LoginPage() {
-    const [email, setEmail] = useState('');
+    const [loginId, setLoginId] = useState('');
     const [password, setPassword] = useState('');
 
     return (
@@ -88,12 +88,19 @@ function LoginPage() {
                         </div>
                     </div>
                     <div className="mt-10 text-[#BDB6B1] font-medium">
-                        <div className="mb-2">이메일</div>
+                        <div className="flex mb-2">
+                            <div>아이디</div>
+                            <div className="ml-auto">
+                                <a href="#" className="text-xs text-[#6365EF] font-light underline">
+                                    아이디 찾기
+                                </a>
+                            </div>
+                        </div>
                         <div>
                             <TextInput
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="example@email.com"
+                                value={loginId}
+                                onChange={(e) => setLoginId(e.target.value)}
+                                placeholder="sonjinile123"
                             />
                         </div>
                     </div>
