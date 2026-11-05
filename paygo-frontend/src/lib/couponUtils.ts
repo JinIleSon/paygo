@@ -3,7 +3,7 @@ import type { Coupon } from '../types/coupon';
 // 쿠폰 사용 가능 여부
 export function isCouponUsable(coupon: Coupon) : boolean {
     const isExpired = new Date(coupon.expiresAt) < new Date();
-    if (!isExpired && coupon.status === 'active')
+    if (!isExpired && coupon.couponStatus === 'active')
         return true;
     return false;
 }

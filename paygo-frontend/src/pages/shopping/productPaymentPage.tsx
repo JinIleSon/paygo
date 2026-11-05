@@ -22,7 +22,7 @@ function ProductPaymentPage() {
     const [selectedPayment, setSelectedPayment] = useState('');
 
     const usableCoupon = coupons.filter(
-        (coupon) => coupon.userId === user.id && coupon.status === 'active'
+        (coupon) => coupon.userId === user.id && coupon.couponStatus === 'active'
     );
 
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | undefined>(usableCoupon[0]);
@@ -168,7 +168,7 @@ function ProductPaymentPage() {
                                             {usableCoupon.length > 0 &&
                                                 usableCoupon.map((coupon) => (
                                                     <option key={coupon.id} value={coupon.id}>
-                                                        {coupon.name}
+                                                        {coupon.couponName}
                                                     </option> // TODO: 사용 시 status - 'used'로 변경
                                                 ))
                                             }
