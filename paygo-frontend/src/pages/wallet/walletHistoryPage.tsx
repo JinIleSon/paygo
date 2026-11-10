@@ -32,7 +32,7 @@ function WalletHistoryPage() {
         if (endDate) endDate.setHours(23, 59, 59, 999);
 
         return (
-            (selectedType === 'all' || selectedType === tran.type) &&
+            (selectedType === 'all' || selectedType === tran.transactionHistoryType) &&
             (selectedStatement === 'all' || selectedStatement === tran.statement) &&
             (search === '' || tran.content.includes(search)) &&
             (!period?.from || !period?.to || endDate! >= tranDate && period.from <= tranDate)
@@ -125,7 +125,7 @@ function WalletHistoryPage() {
                             <Fragment key={tran.id}>
                                 <div className="border-t border-[#D9D9D9] py-3">
                                     <div className="flex gap-4 items-center text-start">
-                                        <div>{getHistoryIcon(getKoreanType(tran.type))}</div>
+                                        <div>{getHistoryIcon(getKoreanType(tran.transactionHistoryType))}</div>
                                         <div>
                                             <div className="text-black font-normal">
                                                 {tran.content}
@@ -134,7 +134,7 @@ function WalletHistoryPage() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className={graphStyle}>{getKoreanType(tran.type)}</div>
+                                <div className={graphStyle}>{getKoreanType(tran.transactionHistoryType)}</div>
                                 {/* 정산(settlement 상태 시 paymentMethod 없음) */}
                                 <div className={graphStyle}>{tran.paymentMethod ?? '—'}</div>
                                 <div
