@@ -7,7 +7,7 @@ export const transactionHistories : TransactionHistory[] = [
         content: '농협 3521234123401',
         createdAt: '2026.09.14 14:23',
         transactionHistoryType: 'charge',
-        paymentMethod: 'account',
+        chargeMethod: 'account',
         amount: 300000,
         balance: 3931000,
         statement: 'completed',

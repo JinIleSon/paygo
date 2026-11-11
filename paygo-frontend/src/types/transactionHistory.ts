@@ -1,4 +1,4 @@
-import type { PaymentMethod } from "./paymentMethod";
+import type { ChargeMethod, PaymentMethod } from "./method";
 
 export interface TransactionHistory {
     id: number; // PK
@@ -9,6 +9,7 @@ export interface TransactionHistory {
     content: string; // 내용
     transactionHistoryType: 'charge' | 'buy' | 'refund' | 'transferIn' | 'transferOut' | 'settlement'; // 유형
     paymentMethod?: PaymentMethod; // 결제수단(결제 시)
+    chargeMethod?: ChargeMethod; // 충전수단(충전 시)
     amount: number; // 이 거래로 오간 금액(판매자가 정산받을 때는 쿠폰 무시, 수수료만 빼고 받기)
     balance: number; // 이 거래 완료 직후의 잔액
     statement: 'completed' | 'failed' | 'processing'; // 상태

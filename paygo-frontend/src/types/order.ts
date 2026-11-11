@@ -1,5 +1,5 @@
 import type { IconName } from '../constants/icon';
-import type { PaymentMethod } from './paymentMethod';
+import type { PaymentMethod } from './method';
 
 // 주문 상태
 export type OrderStatus =
