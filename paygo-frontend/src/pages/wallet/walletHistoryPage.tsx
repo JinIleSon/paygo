@@ -10,6 +10,7 @@ import { getHistoryBadge } from '../../lib/badgeUtils';
 import { getHistoryIcon } from '../../lib/iconUtils';
 import { transactionHistories } from '../../constants/transactionHistory';
 import { getKoreanStatement, getKoreanType } from '../../lib/koreanUtils';
+import { PAYMENT_METHOD_LABELS } from '../../constants/method';
 
 function WalletHistoryPage() {
     const [selectedType, setSelectedType] = useState('all');
@@ -114,7 +115,7 @@ function WalletHistoryPage() {
             </div>
             <div className="text-[gray]">
                 <Card>
-                    <div className="grid grid-cols-[1fr_5rem_6rem_7rem_7.5rem_5rem] font-medium text-center">
+                    <div className="grid grid-cols-[1fr_5rem_8rem_7rem_7.5rem_5rem] font-medium text-center">
                         <div className="py-3">내용</div>
                         <div className="py-3">유형</div>
                         <div className="py-3">결제수단</div>
@@ -136,7 +137,7 @@ function WalletHistoryPage() {
                                 </div>
                                 <div className={graphStyle}>{getKoreanType(tran.transactionHistoryType)}</div>
                                 {/* 정산(settlement 상태 시 paymentMethod 없음) */}
-                                <div className={graphStyle}>{tran.paymentMethod ?? '—'}</div>
+                                <div className={graphStyle}>{tran.paymentMethod ? PAYMENT_METHOD_LABELS[tran.paymentMethod] : '—'}</div>
                                 <div
                                     className={`${graphStyle} ${tran.amount > 0 ? 'text-[#22C55E]' : 'text-red-400'}`}
                                 >

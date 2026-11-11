@@ -1,3 +1,5 @@
+import type { PaymentMethod } from "./paymentMethod";
+
 export interface TransactionHistory {
     id: number; // PK
     userId: number; // FK -> User의 id(식별자)
@@ -6,7 +8,7 @@ export interface TransactionHistory {
     settlementId?: number; // FK -> 판매했을 때 정산 테이블(settlements) id
     content: string; // 내용
     transactionHistoryType: 'charge' | 'buy' | 'refund' | 'transferIn' | 'transferOut' | 'settlement'; // 유형
-    paymentMethod?: string; // 결제수단(결제 시)
+    paymentMethod?: PaymentMethod; // 결제수단(결제 시)
     amount: number; // 이 거래로 오간 금액(판매자가 정산받을 때는 쿠폰 무시, 수수료만 빼고 받기)
     balance: number; // 이 거래 완료 직후의 잔액
     statement: 'completed' | 'failed' | 'processing'; // 상태

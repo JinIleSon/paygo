@@ -1,4 +1,4 @@
-import type { PaymentMethod } from "../types/order";
+import type { PaymentMethod } from "../types/paymentMethod";
 import { userWallet } from "./wallet";
 
 // 충전수단

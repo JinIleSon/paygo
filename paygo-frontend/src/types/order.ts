@@ -1,4 +1,5 @@
 import type { IconName } from '../constants/icon';
+import type { PaymentMethod } from './paymentMethod';
 
 // 주문 상태
 export type OrderStatus =
@@ -22,8 +23,6 @@ export type OrderModalType =
     | 'reorder';
 
 export type OrderModalState = { type: OrderModalType, order: Order } | null;
-
-export type PaymentMethod = 'paygo' | 'account' | 'card' | 'simplePayment';
 
 // 장바구니 CartItem과 생명주기가 달라 types로 정의
 // orders 테이블과 1:N 관계이므로 order_items 테이블 생성(order_id로 연결)
