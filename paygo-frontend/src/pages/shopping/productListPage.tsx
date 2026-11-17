@@ -34,7 +34,7 @@ function ProductListPage() {
 
     const filteredItems = allItems.filter((item) => 
         (selectedType === 'all' || selectedType === getKoreanClassification(item.itemClassification)) &&
-        (item.name.includes(search))
+        (item.productName.includes(search))
     );
 
     const sortedItems = [...filteredItems].sort((a, b) => {
@@ -123,7 +123,7 @@ function ProductListPage() {
                                                 </div>
                                             </div>
                                             <div className="text-2xl text-gray-600 mt-3 truncate">
-                                                {item.name}
+                                                {item.productName}
                                             </div>
                                             <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                                 <div>{item.price.toLocaleString()}원</div>
@@ -181,7 +181,7 @@ function ProductListPage() {
                                                     </div>
                                                 </div>
                                                 <div className="text-2xl text-gray-600 mt-3 truncate">
-                                                    {item.name}
+                                                    {item.productName}
                                                 </div>
                                                 <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                                     <div>{item.price.toLocaleString()}원</div>
@@ -237,7 +237,7 @@ function ProductListPage() {
                                                     </div>
                                                 </div>
                                                 <div className="text-2xl text-gray-600 mt-3 truncate">
-                                                    {item.name}
+                                                    {item.productName}
                                                 </div>
                                                 <div className="flex text-3xl text-gray-600 font-medium mt-3">
                                                     <div>{item.price.toLocaleString()}원</div>

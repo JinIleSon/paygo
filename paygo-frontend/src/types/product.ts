@@ -5,7 +5,7 @@ export interface ProductBase {
     id: number;
     sellerId: number; // 정산을 위한 판매자 id(users 테이블 내 id 식별자)
     itemClassification: string;
-    name: string;
+    productName: string;
     stock: number;
     itemBg: string;
     itemText: string;
