@@ -48,7 +48,7 @@ export interface Order {
     createdAt: string; // 주문시간
     orderStatus: OrderStatus; // 주문상태
     items: OrderItem[]; // 주문한 item 리스트
-    discount: number; // 할인 금액
+    discount: number; // 할인 금액(할인되는 금액)
     totalPrice: number; // "할인까지 적용된" 총 금액 - 사용자 개인이 사용한 쿠폰까지 적용된 금액 저장
     failureReason?: string; // 실패사유 - 결제실패 시에 존재
     refundAmount?: number; // 환불 시에 존재
