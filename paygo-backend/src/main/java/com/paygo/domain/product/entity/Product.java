@@ -39,4 +39,8 @@ public class Product extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private IconName iconName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_color_set_id", nullable = false)
+    private ProductColorSet productColorSet;
 }
