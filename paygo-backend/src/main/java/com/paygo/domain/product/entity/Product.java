@@ -7,6 +7,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "products")
 @Getter
@@ -43,4 +45,35 @@ public class Product extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_color_set_id", nullable = false)
     private ProductColorSet productColorSet;
+
+    @Column(nullable = false)
+    private String brand;
+
+    @Column(nullable = false)
+    private String subjectMatter;
+
+    @Column(nullable = false)
+    private String origin;
+
+    @Column(nullable = false, length = 20)
+    private LocalDate releaseDate;
+
+    @Column(nullable = false, length = 100)
+    private String deliveryInfo;
+
+    @Column(nullable = false, length = 100)
+    private String returnInfo;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String description;
+
+    @Column(nullable = false)
+    private Long originPrice;
+
+    @Column(nullable = false)
+    private Long discountPrice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_size_id", nullable = false)
+    private ProductSize size;
 }
