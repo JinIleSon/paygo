@@ -29,7 +29,7 @@ function ProductDetailPage() {
     const handleAddToCart = () => {
         addItem({
             productId: product.id,
-            productName: product.name,
+            productName: product.productName,
             size: selectedSize, // 사용자가 고른 사이즈
             color: selectedColor, // 사용자가 고른 색
             price: product.discountPrice,
@@ -114,7 +114,7 @@ function ProductDetailPage() {
                                         <div className="text-[gray] font-medium">제조국</div>
                                         <div>{product.origin}</div>
                                         <div className="text-[gray] font-medium">출시일</div>
-                                        <div>{product.createdAt}</div>
+                                        <div>{product.releaseDate}</div>
                                         <div className="text-[gray] font-medium">배송</div>
                                         <div>{product.deliveryInfo}</div>
                                         <div className="text-[gray] font-medium">반품</div>
@@ -143,10 +143,10 @@ function ProductDetailPage() {
                             <div className="flex flex-col gap-4 font-medium">
                                 <div className="text-[gray]">
                                     쇼핑 &gt; {product.itemClassification} &gt;{' '}
-                                    <span className="text-[#6266F1]">{product.name}</span>
+                                    <span className="text-[#6266F1]">{product.productName}</span>
                                 </div>
                                 <div className="text-2xl">
-                                    {product.name} {selectedColor && '— '}
+                                    {product.productName} {selectedColor && '— '}
                                     {COLOR_NAMES[selectedColor]}
                                 </div>{' '}
                                 {/* TODO: 색상 선택 시 함께 바뀌어야 함 */}

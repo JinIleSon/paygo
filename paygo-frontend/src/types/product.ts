@@ -30,7 +30,7 @@ export interface ProductDetail extends ProductBase {
     brand: string;
     subjectMatter: string;
     origin: string;
-    createdAt: string;
+    releaseDate: string;
     deliveryInfo: string;
     returnInfo: string;
 
