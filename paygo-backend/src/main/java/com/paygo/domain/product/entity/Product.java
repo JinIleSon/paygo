@@ -10,7 +10,10 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "products")
+@Table(
+        name = "products",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"seller_id", "product_name"})
+)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Product extends BaseTimeEntity {
@@ -19,14 +22,14 @@ public class Product extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id", nullable = false)
     private User seller;
 
     @Column(nullable = false)
     private String itemClassification;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String productName;
 
     @Column(nullable = false)
@@ -42,10 +45,6 @@ public class Product extends BaseTimeEntity {
     @Column(nullable = false)
     private IconName iconName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_color_set_id", nullable = false)
-    private ProductColorSet productColorSet;
-
     @Column(nullable = false)
     private String brand;
 
@@ -55,7 +54,7 @@ public class Product extends BaseTimeEntity {
     @Column(nullable = false)
     private String origin;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false)
     private LocalDate releaseDate;
 
     @Column(nullable = false, length = 100)
@@ -71,9 +70,5 @@ public class Product extends BaseTimeEntity {
     private Long originPrice;
 
     @Column(nullable = false)
-    private Long discountPrice;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_size_id", nullable = false)
-    private ProductSize size;
+    private Long discountPrice; // 할인된 판매가
 }
